@@ -23,54 +23,54 @@ var _ = math.Inf
 // proto package needs to be updated.
 const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 
-type GetStorageProviderRequest struct {
-	FilenameOrFileid     string   `protobuf:"bytes,1,opt,name=filename_or_fileid,json=filenameOrFileid,proto3" json:"filename_or_fileid,omitempty"`
+type FindRequest struct {
+	Filename             string   `protobuf:"bytes,1,opt,name=filename,proto3" json:"filename,omitempty"`
 	Extra                []byte   `protobuf:"bytes,2,opt,name=extra,proto3" json:"extra,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *GetStorageProviderRequest) Reset()         { *m = GetStorageProviderRequest{} }
-func (m *GetStorageProviderRequest) String() string { return proto.CompactTextString(m) }
-func (*GetStorageProviderRequest) ProtoMessage()    {}
-func (*GetStorageProviderRequest) Descriptor() ([]byte, []int) {
+func (m *FindRequest) Reset()         { *m = FindRequest{} }
+func (m *FindRequest) String() string { return proto.CompactTextString(m) }
+func (*FindRequest) ProtoMessage()    {}
+func (*FindRequest) Descriptor() ([]byte, []int) {
 	return fileDescriptor_11bbec56005fbe93, []int{0}
 }
 
-func (m *GetStorageProviderRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_GetStorageProviderRequest.Unmarshal(m, b)
+func (m *FindRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_FindRequest.Unmarshal(m, b)
 }
-func (m *GetStorageProviderRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_GetStorageProviderRequest.Marshal(b, m, deterministic)
+func (m *FindRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_FindRequest.Marshal(b, m, deterministic)
 }
-func (m *GetStorageProviderRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_GetStorageProviderRequest.Merge(m, src)
+func (m *FindRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_FindRequest.Merge(m, src)
 }
-func (m *GetStorageProviderRequest) XXX_Size() int {
-	return xxx_messageInfo_GetStorageProviderRequest.Size(m)
+func (m *FindRequest) XXX_Size() int {
+	return xxx_messageInfo_FindRequest.Size(m)
 }
-func (m *GetStorageProviderRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_GetStorageProviderRequest.DiscardUnknown(m)
+func (m *FindRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_FindRequest.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_GetStorageProviderRequest proto.InternalMessageInfo
+var xxx_messageInfo_FindRequest proto.InternalMessageInfo
 
-func (m *GetStorageProviderRequest) GetFilenameOrFileid() string {
+func (m *FindRequest) GetFilename() string {
 	if m != nil {
-		return m.FilenameOrFileid
+		return m.Filename
 	}
 	return ""
 }
 
-func (m *GetStorageProviderRequest) GetExtra() []byte {
+func (m *FindRequest) GetExtra() []byte {
 	if m != nil {
 		return m.Extra
 	}
 	return nil
 }
 
-type GetStorageProviderResponse struct {
+type FindResponse struct {
 	Status               *rpc.Status   `protobuf:"bytes,1,opt,name=status,proto3" json:"status,omitempty"`
 	ProviderInfo         *ProviderInfo `protobuf:"bytes,2,opt,name=provider_info,json=providerInfo,proto3" json:"provider_info,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}      `json:"-"`
@@ -78,39 +78,39 @@ type GetStorageProviderResponse struct {
 	XXX_sizecache        int32         `json:"-"`
 }
 
-func (m *GetStorageProviderResponse) Reset()         { *m = GetStorageProviderResponse{} }
-func (m *GetStorageProviderResponse) String() string { return proto.CompactTextString(m) }
-func (*GetStorageProviderResponse) ProtoMessage()    {}
-func (*GetStorageProviderResponse) Descriptor() ([]byte, []int) {
+func (m *FindResponse) Reset()         { *m = FindResponse{} }
+func (m *FindResponse) String() string { return proto.CompactTextString(m) }
+func (*FindResponse) ProtoMessage()    {}
+func (*FindResponse) Descriptor() ([]byte, []int) {
 	return fileDescriptor_11bbec56005fbe93, []int{1}
 }
 
-func (m *GetStorageProviderResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_GetStorageProviderResponse.Unmarshal(m, b)
+func (m *FindResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_FindResponse.Unmarshal(m, b)
 }
-func (m *GetStorageProviderResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_GetStorageProviderResponse.Marshal(b, m, deterministic)
+func (m *FindResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_FindResponse.Marshal(b, m, deterministic)
 }
-func (m *GetStorageProviderResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_GetStorageProviderResponse.Merge(m, src)
+func (m *FindResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_FindResponse.Merge(m, src)
 }
-func (m *GetStorageProviderResponse) XXX_Size() int {
-	return xxx_messageInfo_GetStorageProviderResponse.Size(m)
+func (m *FindResponse) XXX_Size() int {
+	return xxx_messageInfo_FindResponse.Size(m)
 }
-func (m *GetStorageProviderResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_GetStorageProviderResponse.DiscardUnknown(m)
+func (m *FindResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_FindResponse.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_GetStorageProviderResponse proto.InternalMessageInfo
+var xxx_messageInfo_FindResponse proto.InternalMessageInfo
 
-func (m *GetStorageProviderResponse) GetStatus() *rpc.Status {
+func (m *FindResponse) GetStatus() *rpc.Status {
 	if m != nil {
 		return m.Status
 	}
 	return nil
 }
 
-func (m *GetStorageProviderResponse) GetProviderInfo() *ProviderInfo {
+func (m *FindResponse) GetProviderInfo() *ProviderInfo {
 	if m != nil {
 		return m.ProviderInfo
 	}
@@ -118,8 +118,8 @@ func (m *GetStorageProviderResponse) GetProviderInfo() *ProviderInfo {
 }
 
 func init() {
-	proto.RegisterType((*GetStorageProviderRequest)(nil), "cs3.storagebrokerv0alpha.GetStorageProviderRequest")
-	proto.RegisterType((*GetStorageProviderResponse)(nil), "cs3.storagebrokerv0alpha.GetStorageProviderResponse")
+	proto.RegisterType((*FindRequest)(nil), "cs3.storagebrokerv0alpha.FindRequest")
+	proto.RegisterType((*FindResponse)(nil), "cs3.storagebrokerv0alpha.FindResponse")
 }
 
 func init() {
@@ -127,29 +127,28 @@ func init() {
 }
 
 var fileDescriptor_11bbec56005fbe93 = []byte{
-	// 343 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x94, 0x52, 0xc1, 0x4a, 0xeb, 0x40,
-	0x14, 0x65, 0x0a, 0xaf, 0xf0, 0xa6, 0x7d, 0x3c, 0x19, 0x8a, 0xc4, 0xe0, 0xa2, 0x74, 0xa1, 0x15,
-	0x74, 0x5a, 0x1a, 0x7f, 0xa0, 0x29, 0x28, 0xe2, 0xa2, 0x25, 0x01, 0x11, 0x11, 0x42, 0x3a, 0xbd,
-	0xd5, 0x60, 0x9b, 0x19, 0xef, 0x4c, 0x8b, 0x3b, 0x3f, 0xc0, 0x9d, 0x1b, 0xf7, 0x2e, 0xfd, 0x14,
-	0xbf, 0x4a, 0x32, 0x49, 0xc1, 0x60, 0xb3, 0x70, 0x37, 0xf7, 0x9e, 0x73, 0xee, 0x39, 0x73, 0x67,
-	0xe8, 0x89, 0xd0, 0x5e, 0x4f, 0x1b, 0x89, 0xf1, 0x1d, 0x4c, 0x51, 0x3e, 0x00, 0xf6, 0xd6, 0xfd,
-	0x78, 0xa1, 0xee, 0xe3, 0x72, 0x97, 0x2b, 0x94, 0x46, 0x32, 0x47, 0x68, 0x8f, 0x97, 0x80, 0x82,
-	0xed, 0xb6, 0xb2, 0x41, 0xa8, 0x44, 0x4f, 0x9b, 0xd8, 0xac, 0x74, 0xce, 0x77, 0x8f, 0xaa, 0xc7,
-	0x23, 0x68, 0xb9, 0x42, 0x01, 0x05, 0xb5, 0x13, 0xd1, 0xbd, 0x73, 0x30, 0x61, 0xce, 0x9d, 0xa0,
-	0x5c, 0x27, 0x33, 0xc0, 0x00, 0x1e, 0x57, 0xa0, 0x0d, 0x3b, 0xa6, 0x6c, 0x9e, 0x2c, 0x20, 0x8d,
-	0x97, 0x10, 0x49, 0x8c, 0xb2, 0x73, 0x32, 0x73, 0x48, 0x9b, 0x74, 0xff, 0x06, 0x3b, 0x1b, 0x64,
-	0x8c, 0x67, 0xb6, 0xcf, 0x5a, 0xf4, 0x0f, 0x3c, 0x19, 0x8c, 0x9d, 0x5a, 0x9b, 0x74, 0x9b, 0x41,
-	0x5e, 0x74, 0x5e, 0x09, 0x75, 0xb7, 0x39, 0x68, 0x25, 0x53, 0x0d, 0xec, 0x90, 0xd6, 0xf3, 0xe8,
-	0x76, 0x6c, 0x63, 0xf0, 0x9f, 0x67, 0x77, 0x45, 0x25, 0x78, 0x68, 0xdb, 0x41, 0x01, 0xb3, 0x4b,
-	0xfa, 0x4f, 0x15, 0xe2, 0x28, 0x49, 0xe7, 0xd2, 0xba, 0x34, 0x06, 0x07, 0xbc, 0x6a, 0x37, 0x7c,
-	0xe3, 0x75, 0x91, 0xce, 0x65, 0xd0, 0x54, 0xdf, 0xaa, 0xc1, 0x1b, 0xa1, 0xad, 0x22, 0x91, 0x6f,
-	0x35, 0x21, 0xe0, 0x3a, 0x11, 0xc0, 0x9e, 0x29, 0xfb, 0x19, 0x96, 0x79, 0xd5, 0x26, 0x95, 0xcb,
-	0x73, 0x4f, 0x7f, 0x27, 0xca, 0xf7, 0xe1, 0xbf, 0x10, 0xba, 0x2f, 0xe4, 0xb2, 0x52, 0xeb, 0xb3,
-	0x52, 0xee, 0x49, 0xf6, 0x88, 0x13, 0x72, 0xb3, 0xbb, 0x8d, 0xab, 0xa6, 0xef, 0xb5, 0xfa, 0xc8,
-	0x1f, 0x5f, 0x0f, 0xfd, 0x8f, 0x9a, 0x33, 0x0a, 0x3d, 0x5e, 0xd2, 0x5e, 0xf5, 0x87, 0x19, 0xeb,
-	0xd3, 0x42, 0xb7, 0xdb, 0xa0, 0x69, 0xdd, 0x7e, 0x12, 0xef, 0x2b, 0x00, 0x00, 0xff, 0xff, 0xcc,
-	0x02, 0xed, 0x29, 0xb0, 0x02, 0x00, 0x00,
+	// 322 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x84, 0x91, 0xd1, 0x4a, 0xc3, 0x30,
+	0x14, 0x86, 0xe9, 0xd0, 0xa1, 0xd9, 0x44, 0x08, 0x43, 0x4a, 0xf1, 0x62, 0x0c, 0x9c, 0xf3, 0xc2,
+	0x6c, 0xac, 0x0f, 0x20, 0xeb, 0x40, 0x10, 0x2f, 0x1c, 0x2d, 0x8a, 0x88, 0x20, 0x59, 0x76, 0xa6,
+	0xc5, 0xad, 0x89, 0x27, 0xd9, 0xf0, 0x01, 0xbc, 0xf3, 0x2d, 0xbc, 0xf4, 0x51, 0x7c, 0x2a, 0x69,
+	0x52, 0x64, 0x85, 0x15, 0x2f, 0xcf, 0xf9, 0xbf, 0xf3, 0xf3, 0xff, 0x09, 0x39, 0x17, 0x3a, 0xec,
+	0x6b, 0x23, 0x91, 0x3f, 0xc3, 0x14, 0xe5, 0x2b, 0x60, 0x7f, 0x3d, 0xe0, 0x0b, 0xf5, 0xc2, 0xcb,
+	0x5b, 0xa6, 0x50, 0x1a, 0x49, 0x7d, 0xa1, 0x43, 0x56, 0x12, 0x0a, 0x3a, 0x68, 0xe5, 0x46, 0xa8,
+	0x44, 0x5f, 0x1b, 0x6e, 0x56, 0xda, 0xf1, 0xc1, 0x59, 0xb5, 0x3d, 0x82, 0x96, 0x2b, 0x14, 0x50,
+	0xa0, 0x9d, 0x0b, 0xd2, 0xb8, 0x4c, 0xb3, 0x59, 0x0c, 0x6f, 0x2b, 0xd0, 0x86, 0x06, 0x64, 0x6f,
+	0x9e, 0x2e, 0x20, 0xe3, 0x4b, 0xf0, 0xbd, 0xb6, 0xd7, 0xdb, 0x8f, 0xff, 0x66, 0xda, 0x22, 0xbb,
+	0xf0, 0x6e, 0x90, 0xfb, 0xb5, 0xb6, 0xd7, 0x6b, 0xc6, 0x6e, 0xe8, 0x7c, 0x78, 0xa4, 0xe9, 0x1c,
+	0xb4, 0x92, 0x99, 0x06, 0x7a, 0x4a, 0xea, 0x2e, 0x8c, 0x35, 0x68, 0x0c, 0x0f, 0x59, 0x9e, 0x1e,
+	0x95, 0x60, 0x89, 0x5d, 0xc7, 0x85, 0x4c, 0xaf, 0xc9, 0x81, 0x42, 0xb9, 0x4e, 0x67, 0x80, 0x4f,
+	0x69, 0x36, 0x97, 0xd6, 0xb7, 0x31, 0xec, 0xb2, 0xaa, 0xb6, 0x6c, 0x52, 0xe0, 0x57, 0xd9, 0x5c,
+	0xc6, 0x4d, 0xb5, 0x31, 0x0d, 0x97, 0xa4, 0x95, 0xb8, 0x93, 0xc8, 0x9e, 0x24, 0x80, 0xeb, 0x54,
+	0x00, 0xbd, 0x25, 0x3b, 0x79, 0x3a, 0x7a, 0x52, 0xed, 0xba, 0xd1, 0x3f, 0xe8, 0xfe, 0x87, 0xb9,
+	0x92, 0xd1, 0xa7, 0x47, 0x8e, 0x85, 0x5c, 0x56, 0xd2, 0x11, 0x2d, 0xa5, 0x99, 0xe4, 0x6f, 0x3d,
+	0xf1, 0x1e, 0x8e, 0xb6, 0xb1, 0x6a, 0xfa, 0x55, 0xab, 0x8f, 0xa3, 0x9b, 0xfb, 0x51, 0xf4, 0x5d,
+	0xf3, 0xc7, 0x49, 0xc8, 0x4a, 0xb7, 0x77, 0x83, 0x51, 0x4e, 0xfd, 0x58, 0xe9, 0x71, 0x9b, 0x34,
+	0xad, 0xdb, 0xbf, 0x0c, 0x7f, 0x03, 0x00, 0x00, 0xff, 0xff, 0x4f, 0x17, 0xfe, 0xfd, 0x57, 0x02,
+	0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -164,7 +163,7 @@ const _ = grpc.SupportPackageIsVersion4
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type StorageBrokerServiceClient interface {
-	GetStorageProvider(ctx context.Context, in *GetStorageProviderRequest, opts ...grpc.CallOption) (*GetStorageProviderResponse, error)
+	Find(ctx context.Context, in *FindRequest, opts ...grpc.CallOption) (*FindResponse, error)
 }
 
 type storageBrokerServiceClient struct {
@@ -175,9 +174,9 @@ func NewStorageBrokerServiceClient(cc *grpc.ClientConn) StorageBrokerServiceClie
 	return &storageBrokerServiceClient{cc}
 }
 
-func (c *storageBrokerServiceClient) GetStorageProvider(ctx context.Context, in *GetStorageProviderRequest, opts ...grpc.CallOption) (*GetStorageProviderResponse, error) {
-	out := new(GetStorageProviderResponse)
-	err := c.cc.Invoke(ctx, "/cs3.storagebrokerv0alpha.StorageBrokerService/GetStorageProvider", in, out, opts...)
+func (c *storageBrokerServiceClient) Find(ctx context.Context, in *FindRequest, opts ...grpc.CallOption) (*FindResponse, error) {
+	out := new(FindResponse)
+	err := c.cc.Invoke(ctx, "/cs3.storagebrokerv0alpha.StorageBrokerService/Find", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -186,27 +185,27 @@ func (c *storageBrokerServiceClient) GetStorageProvider(ctx context.Context, in 
 
 // StorageBrokerServiceServer is the server API for StorageBrokerService service.
 type StorageBrokerServiceServer interface {
-	GetStorageProvider(context.Context, *GetStorageProviderRequest) (*GetStorageProviderResponse, error)
+	Find(context.Context, *FindRequest) (*FindResponse, error)
 }
 
 func RegisterStorageBrokerServiceServer(s *grpc.Server, srv StorageBrokerServiceServer) {
 	s.RegisterService(&_StorageBrokerService_serviceDesc, srv)
 }
 
-func _StorageBrokerService_GetStorageProvider_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetStorageProviderRequest)
+func _StorageBrokerService_Find_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(FindRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(StorageBrokerServiceServer).GetStorageProvider(ctx, in)
+		return srv.(StorageBrokerServiceServer).Find(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/cs3.storagebrokerv0alpha.StorageBrokerService/GetStorageProvider",
+		FullMethod: "/cs3.storagebrokerv0alpha.StorageBrokerService/Find",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(StorageBrokerServiceServer).GetStorageProvider(ctx, req.(*GetStorageProviderRequest))
+		return srv.(StorageBrokerServiceServer).Find(ctx, req.(*FindRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -216,8 +215,8 @@ var _StorageBrokerService_serviceDesc = grpc.ServiceDesc{
 	HandlerType: (*StorageBrokerServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "GetStorageProvider",
-			Handler:    _StorageBrokerService_GetStorageProvider_Handler,
+			MethodName: "Find",
+			Handler:    _StorageBrokerService_Find_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
