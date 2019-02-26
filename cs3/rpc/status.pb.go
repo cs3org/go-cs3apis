@@ -20,6 +20,10 @@ var _ = math.Inf
 // proto package needs to be updated.
 const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 
+// The `Status` message contains two pieces of data: error code and error message.
+// The error code should be an enum value of [cs3.rpc.code].
+// The error message should be a developer-facing English
+// message that helps developers *understand* and *resolve* the error.
 type Status struct {
 	// The status code, which should be an enum value of [cs3.rpc.code][cs3.rpc.code].
 	Code Code `protobuf:"varint,1,opt,name=code,proto3,enum=cs3.rpc.Code" json:"code,omitempty"`

@@ -20,8 +20,10 @@ var _ = math.Inf
 // proto package needs to be updated.
 const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 
-// The canonical error codes for CS3 APIs.
+// These are the canonical error codes used by CS3 APIs.
 //
+// Adapted from Google APIs:
+// https://github.com/googleapis/googleapis/
 //
 // Sometimes multiple error codes may apply.  Services should return
 // the most specific error code that applies.  For example, prefer
@@ -30,6 +32,11 @@ const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 type Code int32
 
 const (
+	// A programmer would not intentionally set the code to CODE_INVALID.
+	// This code exists to force service implementors to set
+	// a specific code for the API call and to not rely on defaults.
+	//
+	// HTTP Mapping: 500 Internal Server Error
 	Code_CODE_INVALID Code = 0
 	// Not an error; returned on success
 	//
