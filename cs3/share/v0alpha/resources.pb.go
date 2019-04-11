@@ -3,11 +3,9 @@
 
 package sharev0alphapb
 
-import (
-	fmt "fmt"
-	proto "github.com/golang/protobuf/proto"
-	math "math"
-)
+import proto "github.com/golang/protobuf/proto"
+import fmt "fmt"
+import math "math"
 
 // Reference imports to suppress errors if they are not otherwise used.
 var _ = proto.Marshal
@@ -18,7 +16,7 @@ var _ = math.Inf
 // is compatible with the proto package it is being compiled against.
 // A compilation error at this line likely means your copy of the
 // proto package needs to be updated.
-const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
+const _ = proto.ProtoPackageIsVersion2 // please upgrade the proto package
 
 type TargetType int32
 
@@ -33,7 +31,6 @@ var TargetType_name = map[int32]string{
 	1: "TARGET_TYPE_USER",
 	2: "TARGET_TYPE_GROUP",
 }
-
 var TargetType_value = map[string]int32{
 	"TARGET_TYPE_INVALID": 0,
 	"TARGET_TYPE_USER":    1,
@@ -43,9 +40,8 @@ var TargetType_value = map[string]int32{
 func (x TargetType) String() string {
 	return proto.EnumName(TargetType_name, int32(x))
 }
-
 func (TargetType) EnumDescriptor() ([]byte, []int) {
-	return fileDescriptor_e906321c3dd3cba0, []int{0}
+	return fileDescriptor_resources_d60097f3c062670e, []int{0}
 }
 
 type ReceivedShareState int32
@@ -63,7 +59,6 @@ var ReceivedShareState_name = map[int32]string{
 	2: "RECEIVED_SHARE_STATE_REJECTED",
 	3: "RECEIVED_SHARE_STATE_PENDING",
 }
-
 var ReceivedShareState_value = map[string]int32{
 	"RECEIVED_SHARE_STATE_INVALID":  0,
 	"RECEIVED_SHARE_STATE_ACCEPTED": 1,
@@ -74,9 +69,8 @@ var ReceivedShareState_value = map[string]int32{
 func (x ReceivedShareState) String() string {
 	return proto.EnumName(ReceivedShareState_name, int32(x))
 }
-
 func (ReceivedShareState) EnumDescriptor() ([]byte, []int) {
-	return fileDescriptor_e906321c3dd3cba0, []int{1}
+	return fileDescriptor_resources_d60097f3c062670e, []int{1}
 }
 
 type Permissions struct {
@@ -91,17 +85,16 @@ func (m *Permissions) Reset()         { *m = Permissions{} }
 func (m *Permissions) String() string { return proto.CompactTextString(m) }
 func (*Permissions) ProtoMessage()    {}
 func (*Permissions) Descriptor() ([]byte, []int) {
-	return fileDescriptor_e906321c3dd3cba0, []int{0}
+	return fileDescriptor_resources_d60097f3c062670e, []int{0}
 }
-
 func (m *Permissions) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_Permissions.Unmarshal(m, b)
 }
 func (m *Permissions) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_Permissions.Marshal(b, m, deterministic)
 }
-func (m *Permissions) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_Permissions.Merge(m, src)
+func (dst *Permissions) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Permissions.Merge(dst, src)
 }
 func (m *Permissions) XXX_Size() int {
 	return xxx_messageInfo_Permissions.Size(m)
@@ -145,17 +138,16 @@ func (m *Share) Reset()         { *m = Share{} }
 func (m *Share) String() string { return proto.CompactTextString(m) }
 func (*Share) ProtoMessage()    {}
 func (*Share) Descriptor() ([]byte, []int) {
-	return fileDescriptor_e906321c3dd3cba0, []int{1}
+	return fileDescriptor_resources_d60097f3c062670e, []int{1}
 }
-
 func (m *Share) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_Share.Unmarshal(m, b)
 }
 func (m *Share) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_Share.Marshal(b, m, deterministic)
 }
-func (m *Share) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_Share.Merge(m, src)
+func (dst *Share) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Share.Merge(dst, src)
 }
 func (m *Share) XXX_Size() int {
 	return xxx_messageInfo_Share.Size(m)
@@ -240,17 +232,16 @@ func (m *UpdatePolicy) Reset()         { *m = UpdatePolicy{} }
 func (m *UpdatePolicy) String() string { return proto.CompactTextString(m) }
 func (*UpdatePolicy) ProtoMessage()    {}
 func (*UpdatePolicy) Descriptor() ([]byte, []int) {
-	return fileDescriptor_e906321c3dd3cba0, []int{2}
+	return fileDescriptor_resources_d60097f3c062670e, []int{2}
 }
-
 func (m *UpdatePolicy) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_UpdatePolicy.Unmarshal(m, b)
 }
 func (m *UpdatePolicy) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_UpdatePolicy.Marshal(b, m, deterministic)
 }
-func (m *UpdatePolicy) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_UpdatePolicy.Merge(m, src)
+func (dst *UpdatePolicy) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_UpdatePolicy.Merge(dst, src)
 }
 func (m *UpdatePolicy) XXX_Size() int {
 	return xxx_messageInfo_UpdatePolicy.Size(m)
@@ -288,17 +279,16 @@ func (m *ReceivedShare) Reset()         { *m = ReceivedShare{} }
 func (m *ReceivedShare) String() string { return proto.CompactTextString(m) }
 func (*ReceivedShare) ProtoMessage()    {}
 func (*ReceivedShare) Descriptor() ([]byte, []int) {
-	return fileDescriptor_e906321c3dd3cba0, []int{3}
+	return fileDescriptor_resources_d60097f3c062670e, []int{3}
 }
-
 func (m *ReceivedShare) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_ReceivedShare.Unmarshal(m, b)
 }
 func (m *ReceivedShare) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_ReceivedShare.Marshal(b, m, deterministic)
 }
-func (m *ReceivedShare) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ReceivedShare.Merge(m, src)
+func (dst *ReceivedShare) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ReceivedShare.Merge(dst, src)
 }
 func (m *ReceivedShare) XXX_Size() int {
 	return xxx_messageInfo_ReceivedShare.Size(m)
@@ -380,17 +370,19 @@ func (m *ReceivedShare) GetState() ReceivedShareState {
 }
 
 func init() {
-	proto.RegisterEnum("cs3.sharev0alpha.TargetType", TargetType_name, TargetType_value)
-	proto.RegisterEnum("cs3.sharev0alpha.ReceivedShareState", ReceivedShareState_name, ReceivedShareState_value)
 	proto.RegisterType((*Permissions)(nil), "cs3.sharev0alpha.Permissions")
 	proto.RegisterType((*Share)(nil), "cs3.sharev0alpha.Share")
 	proto.RegisterType((*UpdatePolicy)(nil), "cs3.sharev0alpha.UpdatePolicy")
 	proto.RegisterType((*ReceivedShare)(nil), "cs3.sharev0alpha.ReceivedShare")
+	proto.RegisterEnum("cs3.sharev0alpha.TargetType", TargetType_name, TargetType_value)
+	proto.RegisterEnum("cs3.sharev0alpha.ReceivedShareState", ReceivedShareState_name, ReceivedShareState_value)
 }
 
-func init() { proto.RegisterFile("cs3/share/v0alpha/resources.proto", fileDescriptor_e906321c3dd3cba0) }
+func init() {
+	proto.RegisterFile("cs3/share/v0alpha/resources.proto", fileDescriptor_resources_d60097f3c062670e)
+}
 
-var fileDescriptor_e906321c3dd3cba0 = []byte{
+var fileDescriptor_resources_d60097f3c062670e = []byte{
 	// 520 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xec, 0x54, 0xcf, 0x6e, 0xd3, 0x30,
 	0x18, 0x27, 0x59, 0x5b, 0xda, 0xaf, 0xa3, 0xca, 0x4c, 0x81, 0x08, 0x6d, 0x52, 0x5a, 0x71, 0xa8,

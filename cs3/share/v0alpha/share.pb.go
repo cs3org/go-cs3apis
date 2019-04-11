@@ -3,13 +3,14 @@
 
 package sharev0alphapb
 
+import proto "github.com/golang/protobuf/proto"
+import fmt "fmt"
+import math "math"
+import rpc "github.com/cernbox/go-cs3apis/cs3/rpc"
+
 import (
-	context "context"
-	fmt "fmt"
-	rpc "github.com/cernbox/go-cs3apis/cs3/rpc"
-	proto "github.com/golang/protobuf/proto"
+	context "golang.org/x/net/context"
 	grpc "google.golang.org/grpc"
-	math "math"
 )
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -21,7 +22,7 @@ var _ = math.Inf
 // is compatible with the proto package it is being compiled against.
 // A compilation error at this line likely means your copy of the
 // proto package needs to be updated.
-const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
+const _ = proto.ProtoPackageIsVersion2 // please upgrade the proto package
 
 type CreateShareRequest struct {
 	Filename             string       `protobuf:"bytes,1,opt,name=filename,proto3" json:"filename,omitempty"`
@@ -37,17 +38,16 @@ func (m *CreateShareRequest) Reset()         { *m = CreateShareRequest{} }
 func (m *CreateShareRequest) String() string { return proto.CompactTextString(m) }
 func (*CreateShareRequest) ProtoMessage()    {}
 func (*CreateShareRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_ac32253d878ac24f, []int{0}
+	return fileDescriptor_share_facab82640a5522d, []int{0}
 }
-
 func (m *CreateShareRequest) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_CreateShareRequest.Unmarshal(m, b)
 }
 func (m *CreateShareRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_CreateShareRequest.Marshal(b, m, deterministic)
 }
-func (m *CreateShareRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_CreateShareRequest.Merge(m, src)
+func (dst *CreateShareRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CreateShareRequest.Merge(dst, src)
 }
 func (m *CreateShareRequest) XXX_Size() int {
 	return xxx_messageInfo_CreateShareRequest.Size(m)
@@ -98,17 +98,16 @@ func (m *CreateShareResponse) Reset()         { *m = CreateShareResponse{} }
 func (m *CreateShareResponse) String() string { return proto.CompactTextString(m) }
 func (*CreateShareResponse) ProtoMessage()    {}
 func (*CreateShareResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_ac32253d878ac24f, []int{1}
+	return fileDescriptor_share_facab82640a5522d, []int{1}
 }
-
 func (m *CreateShareResponse) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_CreateShareResponse.Unmarshal(m, b)
 }
 func (m *CreateShareResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_CreateShareResponse.Marshal(b, m, deterministic)
 }
-func (m *CreateShareResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_CreateShareResponse.Merge(m, src)
+func (dst *CreateShareResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CreateShareResponse.Merge(dst, src)
 }
 func (m *CreateShareResponse) XXX_Size() int {
 	return xxx_messageInfo_CreateShareResponse.Size(m)
@@ -146,17 +145,16 @@ func (m *UpdateShareRequest) Reset()         { *m = UpdateShareRequest{} }
 func (m *UpdateShareRequest) String() string { return proto.CompactTextString(m) }
 func (*UpdateShareRequest) ProtoMessage()    {}
 func (*UpdateShareRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_ac32253d878ac24f, []int{2}
+	return fileDescriptor_share_facab82640a5522d, []int{2}
 }
-
 func (m *UpdateShareRequest) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_UpdateShareRequest.Unmarshal(m, b)
 }
 func (m *UpdateShareRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_UpdateShareRequest.Marshal(b, m, deterministic)
 }
-func (m *UpdateShareRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_UpdateShareRequest.Merge(m, src)
+func (dst *UpdateShareRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_UpdateShareRequest.Merge(dst, src)
 }
 func (m *UpdateShareRequest) XXX_Size() int {
 	return xxx_messageInfo_UpdateShareRequest.Size(m)
@@ -200,17 +198,16 @@ func (m *UpdateShareResponse) Reset()         { *m = UpdateShareResponse{} }
 func (m *UpdateShareResponse) String() string { return proto.CompactTextString(m) }
 func (*UpdateShareResponse) ProtoMessage()    {}
 func (*UpdateShareResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_ac32253d878ac24f, []int{3}
+	return fileDescriptor_share_facab82640a5522d, []int{3}
 }
-
 func (m *UpdateShareResponse) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_UpdateShareResponse.Unmarshal(m, b)
 }
 func (m *UpdateShareResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_UpdateShareResponse.Marshal(b, m, deterministic)
 }
-func (m *UpdateShareResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_UpdateShareResponse.Merge(m, src)
+func (dst *UpdateShareResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_UpdateShareResponse.Merge(dst, src)
 }
 func (m *UpdateShareResponse) XXX_Size() int {
 	return xxx_messageInfo_UpdateShareResponse.Size(m)
@@ -246,17 +243,16 @@ func (m *ListSharesRequest) Reset()         { *m = ListSharesRequest{} }
 func (m *ListSharesRequest) String() string { return proto.CompactTextString(m) }
 func (*ListSharesRequest) ProtoMessage()    {}
 func (*ListSharesRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_ac32253d878ac24f, []int{4}
+	return fileDescriptor_share_facab82640a5522d, []int{4}
 }
-
 func (m *ListSharesRequest) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_ListSharesRequest.Unmarshal(m, b)
 }
 func (m *ListSharesRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_ListSharesRequest.Marshal(b, m, deterministic)
 }
-func (m *ListSharesRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ListSharesRequest.Merge(m, src)
+func (dst *ListSharesRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ListSharesRequest.Merge(dst, src)
 }
 func (m *ListSharesRequest) XXX_Size() int {
 	return xxx_messageInfo_ListSharesRequest.Size(m)
@@ -286,17 +282,16 @@ func (m *ListSharesResponse) Reset()         { *m = ListSharesResponse{} }
 func (m *ListSharesResponse) String() string { return proto.CompactTextString(m) }
 func (*ListSharesResponse) ProtoMessage()    {}
 func (*ListSharesResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_ac32253d878ac24f, []int{5}
+	return fileDescriptor_share_facab82640a5522d, []int{5}
 }
-
 func (m *ListSharesResponse) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_ListSharesResponse.Unmarshal(m, b)
 }
 func (m *ListSharesResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_ListSharesResponse.Marshal(b, m, deterministic)
 }
-func (m *ListSharesResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ListSharesResponse.Merge(m, src)
+func (dst *ListSharesResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ListSharesResponse.Merge(dst, src)
 }
 func (m *ListSharesResponse) XXX_Size() int {
 	return xxx_messageInfo_ListSharesResponse.Size(m)
@@ -332,17 +327,16 @@ func (m *UnshareRequest) Reset()         { *m = UnshareRequest{} }
 func (m *UnshareRequest) String() string { return proto.CompactTextString(m) }
 func (*UnshareRequest) ProtoMessage()    {}
 func (*UnshareRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_ac32253d878ac24f, []int{6}
+	return fileDescriptor_share_facab82640a5522d, []int{6}
 }
-
 func (m *UnshareRequest) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_UnshareRequest.Unmarshal(m, b)
 }
 func (m *UnshareRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_UnshareRequest.Marshal(b, m, deterministic)
 }
-func (m *UnshareRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_UnshareRequest.Merge(m, src)
+func (dst *UnshareRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_UnshareRequest.Merge(dst, src)
 }
 func (m *UnshareRequest) XXX_Size() int {
 	return xxx_messageInfo_UnshareRequest.Size(m)
@@ -371,17 +365,16 @@ func (m *UnshareResponse) Reset()         { *m = UnshareResponse{} }
 func (m *UnshareResponse) String() string { return proto.CompactTextString(m) }
 func (*UnshareResponse) ProtoMessage()    {}
 func (*UnshareResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_ac32253d878ac24f, []int{7}
+	return fileDescriptor_share_facab82640a5522d, []int{7}
 }
-
 func (m *UnshareResponse) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_UnshareResponse.Unmarshal(m, b)
 }
 func (m *UnshareResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_UnshareResponse.Marshal(b, m, deterministic)
 }
-func (m *UnshareResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_UnshareResponse.Merge(m, src)
+func (dst *UnshareResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_UnshareResponse.Merge(dst, src)
 }
 func (m *UnshareResponse) XXX_Size() int {
 	return xxx_messageInfo_UnshareResponse.Size(m)
@@ -410,17 +403,16 @@ func (m *GetShareRequest) Reset()         { *m = GetShareRequest{} }
 func (m *GetShareRequest) String() string { return proto.CompactTextString(m) }
 func (*GetShareRequest) ProtoMessage()    {}
 func (*GetShareRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_ac32253d878ac24f, []int{8}
+	return fileDescriptor_share_facab82640a5522d, []int{8}
 }
-
 func (m *GetShareRequest) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_GetShareRequest.Unmarshal(m, b)
 }
 func (m *GetShareRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_GetShareRequest.Marshal(b, m, deterministic)
 }
-func (m *GetShareRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_GetShareRequest.Merge(m, src)
+func (dst *GetShareRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_GetShareRequest.Merge(dst, src)
 }
 func (m *GetShareRequest) XXX_Size() int {
 	return xxx_messageInfo_GetShareRequest.Size(m)
@@ -450,17 +442,16 @@ func (m *GetShareResponse) Reset()         { *m = GetShareResponse{} }
 func (m *GetShareResponse) String() string { return proto.CompactTextString(m) }
 func (*GetShareResponse) ProtoMessage()    {}
 func (*GetShareResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_ac32253d878ac24f, []int{9}
+	return fileDescriptor_share_facab82640a5522d, []int{9}
 }
-
 func (m *GetShareResponse) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_GetShareResponse.Unmarshal(m, b)
 }
 func (m *GetShareResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_GetShareResponse.Marshal(b, m, deterministic)
 }
-func (m *GetShareResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_GetShareResponse.Merge(m, src)
+func (dst *GetShareResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_GetShareResponse.Merge(dst, src)
 }
 func (m *GetShareResponse) XXX_Size() int {
 	return xxx_messageInfo_GetShareResponse.Size(m)
@@ -495,17 +486,16 @@ func (m *ListReceivedSharesRequest) Reset()         { *m = ListReceivedSharesReq
 func (m *ListReceivedSharesRequest) String() string { return proto.CompactTextString(m) }
 func (*ListReceivedSharesRequest) ProtoMessage()    {}
 func (*ListReceivedSharesRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_ac32253d878ac24f, []int{10}
+	return fileDescriptor_share_facab82640a5522d, []int{10}
 }
-
 func (m *ListReceivedSharesRequest) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_ListReceivedSharesRequest.Unmarshal(m, b)
 }
 func (m *ListReceivedSharesRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_ListReceivedSharesRequest.Marshal(b, m, deterministic)
 }
-func (m *ListReceivedSharesRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ListReceivedSharesRequest.Merge(m, src)
+func (dst *ListReceivedSharesRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ListReceivedSharesRequest.Merge(dst, src)
 }
 func (m *ListReceivedSharesRequest) XXX_Size() int {
 	return xxx_messageInfo_ListReceivedSharesRequest.Size(m)
@@ -528,17 +518,16 @@ func (m *ListReceivedSharesResponse) Reset()         { *m = ListReceivedSharesRe
 func (m *ListReceivedSharesResponse) String() string { return proto.CompactTextString(m) }
 func (*ListReceivedSharesResponse) ProtoMessage()    {}
 func (*ListReceivedSharesResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_ac32253d878ac24f, []int{11}
+	return fileDescriptor_share_facab82640a5522d, []int{11}
 }
-
 func (m *ListReceivedSharesResponse) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_ListReceivedSharesResponse.Unmarshal(m, b)
 }
 func (m *ListReceivedSharesResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_ListReceivedSharesResponse.Marshal(b, m, deterministic)
 }
-func (m *ListReceivedSharesResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ListReceivedSharesResponse.Merge(m, src)
+func (dst *ListReceivedSharesResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ListReceivedSharesResponse.Merge(dst, src)
 }
 func (m *ListReceivedSharesResponse) XXX_Size() int {
 	return xxx_messageInfo_ListReceivedSharesResponse.Size(m)
@@ -574,17 +563,16 @@ func (m *AcceptReceivedShareRequest) Reset()         { *m = AcceptReceivedShareR
 func (m *AcceptReceivedShareRequest) String() string { return proto.CompactTextString(m) }
 func (*AcceptReceivedShareRequest) ProtoMessage()    {}
 func (*AcceptReceivedShareRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_ac32253d878ac24f, []int{12}
+	return fileDescriptor_share_facab82640a5522d, []int{12}
 }
-
 func (m *AcceptReceivedShareRequest) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_AcceptReceivedShareRequest.Unmarshal(m, b)
 }
 func (m *AcceptReceivedShareRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_AcceptReceivedShareRequest.Marshal(b, m, deterministic)
 }
-func (m *AcceptReceivedShareRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_AcceptReceivedShareRequest.Merge(m, src)
+func (dst *AcceptReceivedShareRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_AcceptReceivedShareRequest.Merge(dst, src)
 }
 func (m *AcceptReceivedShareRequest) XXX_Size() int {
 	return xxx_messageInfo_AcceptReceivedShareRequest.Size(m)
@@ -613,17 +601,16 @@ func (m *AcceptReceivedShareResponse) Reset()         { *m = AcceptReceivedShare
 func (m *AcceptReceivedShareResponse) String() string { return proto.CompactTextString(m) }
 func (*AcceptReceivedShareResponse) ProtoMessage()    {}
 func (*AcceptReceivedShareResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_ac32253d878ac24f, []int{13}
+	return fileDescriptor_share_facab82640a5522d, []int{13}
 }
-
 func (m *AcceptReceivedShareResponse) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_AcceptReceivedShareResponse.Unmarshal(m, b)
 }
 func (m *AcceptReceivedShareResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_AcceptReceivedShareResponse.Marshal(b, m, deterministic)
 }
-func (m *AcceptReceivedShareResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_AcceptReceivedShareResponse.Merge(m, src)
+func (dst *AcceptReceivedShareResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_AcceptReceivedShareResponse.Merge(dst, src)
 }
 func (m *AcceptReceivedShareResponse) XXX_Size() int {
 	return xxx_messageInfo_AcceptReceivedShareResponse.Size(m)
@@ -652,17 +639,16 @@ func (m *RejectReceivedShareRequest) Reset()         { *m = RejectReceivedShareR
 func (m *RejectReceivedShareRequest) String() string { return proto.CompactTextString(m) }
 func (*RejectReceivedShareRequest) ProtoMessage()    {}
 func (*RejectReceivedShareRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_ac32253d878ac24f, []int{14}
+	return fileDescriptor_share_facab82640a5522d, []int{14}
 }
-
 func (m *RejectReceivedShareRequest) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_RejectReceivedShareRequest.Unmarshal(m, b)
 }
 func (m *RejectReceivedShareRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_RejectReceivedShareRequest.Marshal(b, m, deterministic)
 }
-func (m *RejectReceivedShareRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_RejectReceivedShareRequest.Merge(m, src)
+func (dst *RejectReceivedShareRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_RejectReceivedShareRequest.Merge(dst, src)
 }
 func (m *RejectReceivedShareRequest) XXX_Size() int {
 	return xxx_messageInfo_RejectReceivedShareRequest.Size(m)
@@ -691,17 +677,16 @@ func (m *RejectReceivedShareResponse) Reset()         { *m = RejectReceivedShare
 func (m *RejectReceivedShareResponse) String() string { return proto.CompactTextString(m) }
 func (*RejectReceivedShareResponse) ProtoMessage()    {}
 func (*RejectReceivedShareResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_ac32253d878ac24f, []int{15}
+	return fileDescriptor_share_facab82640a5522d, []int{15}
 }
-
 func (m *RejectReceivedShareResponse) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_RejectReceivedShareResponse.Unmarshal(m, b)
 }
 func (m *RejectReceivedShareResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_RejectReceivedShareResponse.Marshal(b, m, deterministic)
 }
-func (m *RejectReceivedShareResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_RejectReceivedShareResponse.Merge(m, src)
+func (dst *RejectReceivedShareResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_RejectReceivedShareResponse.Merge(dst, src)
 }
 func (m *RejectReceivedShareResponse) XXX_Size() int {
 	return xxx_messageInfo_RejectReceivedShareResponse.Size(m)
@@ -736,54 +721,6 @@ func init() {
 	proto.RegisterType((*AcceptReceivedShareResponse)(nil), "cs3.sharev0alpha.AcceptReceivedShareResponse")
 	proto.RegisterType((*RejectReceivedShareRequest)(nil), "cs3.sharev0alpha.RejectReceivedShareRequest")
 	proto.RegisterType((*RejectReceivedShareResponse)(nil), "cs3.sharev0alpha.RejectReceivedShareResponse")
-}
-
-func init() { proto.RegisterFile("cs3/share/v0alpha/share.proto", fileDescriptor_ac32253d878ac24f) }
-
-var fileDescriptor_ac32253d878ac24f = []byte{
-	// 661 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xb4, 0x56, 0xd1, 0x6a, 0x13, 0x41,
-	0x14, 0x65, 0x5b, 0x4d, 0xeb, 0xdd, 0x36, 0xad, 0xd3, 0xa2, 0xe9, 0xd4, 0x6a, 0xba, 0x56, 0x2c,
-	0xb4, 0x4d, 0x4a, 0xf2, 0x50, 0x10, 0x44, 0x92, 0x40, 0x45, 0x10, 0x8d, 0x9b, 0x56, 0x34, 0x08,
-	0x61, 0x3b, 0x19, 0xed, 0x96, 0x24, 0x3b, 0x9d, 0xd9, 0x04, 0xf2, 0x11, 0x7e, 0x83, 0xe0, 0xa3,
-	0xef, 0xfe, 0x83, 0xf8, 0x55, 0xb2, 0xb3, 0x63, 0xb2, 0x9b, 0x9d, 0xc6, 0x8d, 0x90, 0xb7, 0xbd,
-	0x73, 0xcf, 0x3d, 0xf7, 0xcc, 0xd9, 0xbd, 0x97, 0x85, 0x1d, 0x22, 0xca, 0x45, 0x71, 0xe9, 0x70,
-	0x5a, 0x1c, 0x1c, 0x3b, 0x1d, 0x76, 0xe9, 0x84, 0x51, 0x81, 0x71, 0xcf, 0xf7, 0xd0, 0x3a, 0x11,
-	0xe5, 0x82, 0x3c, 0x50, 0x59, 0xbc, 0x19, 0x14, 0x70, 0x46, 0x8a, 0xc2, 0x77, 0xfc, 0xbe, 0x08,
-	0x71, 0x78, 0x37, 0x49, 0xc3, 0xa9, 0xf0, 0xfa, 0x9c, 0x50, 0x05, 0xb1, 0x7e, 0x19, 0x80, 0x6a,
-	0x9c, 0x3a, 0x3e, 0x6d, 0x04, 0x38, 0x9b, 0x5e, 0xf7, 0xa9, 0xf0, 0x11, 0x86, 0xe5, 0xcf, 0x6e,
-	0x87, 0xf6, 0x9c, 0x2e, 0xcd, 0x19, 0x79, 0x63, 0xff, 0x8e, 0x3d, 0x8a, 0xd1, 0x0b, 0x30, 0x19,
-	0xe5, 0x5d, 0x57, 0x08, 0xd7, 0xeb, 0x89, 0xdc, 0x42, 0xde, 0xd8, 0x37, 0x4b, 0x3b, 0x85, 0x49,
-	0x4d, 0x85, 0xfa, 0x18, 0x64, 0x47, 0x2b, 0xd0, 0x3d, 0xc8, 0xf8, 0x0e, 0xff, 0x42, 0xfd, 0xdc,
-	0xa2, 0xa4, 0x56, 0x11, 0x7a, 0x0e, 0x66, 0xf8, 0xd4, 0xf2, 0x87, 0x8c, 0xe6, 0x6e, 0xe5, 0x8d,
-	0xfd, 0x6c, 0xe9, 0x41, 0x92, 0xf8, 0x4c, 0x82, 0xce, 0x86, 0x8c, 0xda, 0xe0, 0x8f, 0x9e, 0xad,
-	0x2e, 0x6c, 0xc4, 0x6e, 0x22, 0x98, 0xd7, 0x13, 0x14, 0x3d, 0x85, 0x4c, 0x68, 0x8a, 0xbc, 0x88,
-	0x59, 0x5a, 0x93, 0x84, 0x9c, 0x91, 0x42, 0x43, 0x1e, 0xdb, 0x2a, 0x8d, 0x8e, 0xe0, 0xb6, 0x6c,
-	0xa3, 0x6e, 0x74, 0x3f, 0xd9, 0x38, 0x24, 0x0e, 0x51, 0xd6, 0x4f, 0x03, 0xd0, 0x39, 0x6b, 0x4f,
-	0x3a, 0xb7, 0x05, 0xcb, 0x32, 0xdf, 0x72, 0xdb, 0xca, 0xb9, 0x25, 0x19, 0xbf, 0x6a, 0xa3, 0x1a,
-	0xac, 0xf6, 0x65, 0x41, 0x8b, 0x79, 0x1d, 0x97, 0x0c, 0x55, 0xa3, 0x87, 0xc9, 0x46, 0x21, 0x6f,
-	0x5d, 0xa2, 0xec, 0x95, 0x7e, 0x24, 0x9a, 0x74, 0x7f, 0x71, 0x56, 0xf7, 0x03, 0x9b, 0x62, 0xb2,
-	0xe7, 0x6c, 0x53, 0x11, 0xee, 0xbe, 0x76, 0x85, 0x2f, 0xcf, 0x44, 0x8a, 0xcf, 0xcb, 0xea, 0x00,
-	0x8a, 0x16, 0xcc, 0x59, 0xde, 0x01, 0x64, 0xcf, 0x7b, 0x22, 0xdd, 0x0b, 0xb4, 0x9e, 0xc1, 0xda,
-	0x08, 0x3c, 0xa3, 0x2e, 0xeb, 0x10, 0xd6, 0x5e, 0x52, 0x3f, 0xe5, 0xa7, 0x62, 0x5d, 0xc1, 0xfa,
-	0x18, 0x3d, 0x67, 0x0b, 0xb6, 0x61, 0x2b, 0x30, 0xdc, 0xa6, 0x84, 0xba, 0x03, 0xda, 0x8e, 0xbd,
-	0x29, 0xeb, 0xab, 0x01, 0x58, 0x97, 0x9d, 0x55, 0xd3, 0x29, 0x64, 0xb9, 0xa2, 0x68, 0x45, 0xc5,
-	0x3d, 0x4a, 0x8a, 0x8b, 0xb5, 0xb2, 0x57, 0x79, 0x34, 0xb4, 0x4e, 0x00, 0x57, 0x08, 0xa1, 0x2c,
-	0x2e, 0x28, 0x85, 0xa3, 0xa7, 0xb0, 0xad, 0x2d, 0x9c, 0xf5, 0x3d, 0x9e, 0x00, 0xb6, 0xe9, 0x15,
-	0x25, 0xff, 0x23, 0x40, 0x5b, 0x38, 0xa3, 0x80, 0xd2, 0xb7, 0x0c, 0xac, 0xc8, 0xd2, 0x06, 0xe5,
-	0x03, 0x97, 0x50, 0xd4, 0x04, 0x33, 0xb2, 0xf7, 0xd0, 0x5e, 0xd2, 0xd1, 0xe4, 0x82, 0xc7, 0x4f,
-	0xfe, 0x81, 0x52, 0xaa, 0x9a, 0x60, 0x46, 0x96, 0x85, 0x8e, 0x3b, 0xb9, 0x02, 0x75, 0xdc, 0xba,
-	0x8d, 0xf3, 0x11, 0x60, 0x3c, 0xe8, 0xe8, 0x71, 0xb2, 0x28, 0xb1, 0x37, 0xf0, 0xde, 0x74, 0x50,
-	0x48, 0x7c, 0x6c, 0xa0, 0x37, 0xb0, 0xa4, 0x06, 0x15, 0xe5, 0x35, 0x62, 0x62, 0x03, 0x8f, 0x77,
-	0xa7, 0x20, 0x94, 0xd4, 0x77, 0xb0, 0xfc, 0x77, 0x1c, 0x91, 0x06, 0x3e, 0x31, 0xd8, 0xd8, 0x9a,
-	0x06, 0x51, 0x94, 0xd7, 0xe1, 0x9a, 0x8b, 0xcf, 0x15, 0x3a, 0xd0, 0x5f, 0x50, 0x3b, 0x9b, 0xf8,
-	0x30, 0x1d, 0x78, 0xe4, 0x0a, 0x87, 0x0d, 0xcd, 0x08, 0x20, 0x0d, 0xcd, 0xcd, 0x23, 0x86, 0x8f,
-	0x52, 0xa2, 0xd5, 0x35, 0x39, 0x6c, 0x68, 0xbe, 0x7a, 0x5d, 0xcf, 0x9b, 0xa7, 0x4a, 0xd7, 0x73,
-	0xca, 0x28, 0x55, 0x09, 0x6c, 0x12, 0xaf, 0x9b, 0xa8, 0xa9, 0x82, 0x84, 0xd5, 0x83, 0xff, 0x9e,
-	0xba, 0xd1, 0xcc, 0x46, 0x73, 0xec, 0xe2, 0xfb, 0x42, 0xa6, 0x56, 0x7d, 0xfb, 0xa1, 0x52, 0xfd,
-	0xb1, 0xb0, 0x5e, 0x6b, 0x94, 0xc3, 0x15, 0xf9, 0xfe, 0xb8, 0x12, 0x64, 0x7f, 0xcb, 0xa3, 0x4f,
-	0xd1, 0xa3, 0x8b, 0x8c, 0xfc, 0x7f, 0x2a, 0xff, 0x09, 0x00, 0x00, 0xff, 0xff, 0xdf, 0xa9, 0x9a,
-	0x47, 0xab, 0x09, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -1142,4 +1079,54 @@ var _ShareService_serviceDesc = grpc.ServiceDesc{
 		},
 	},
 	Metadata: "cs3/share/v0alpha/share.proto",
+}
+
+func init() {
+	proto.RegisterFile("cs3/share/v0alpha/share.proto", fileDescriptor_share_facab82640a5522d)
+}
+
+var fileDescriptor_share_facab82640a5522d = []byte{
+	// 661 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xb4, 0x56, 0xd1, 0x6a, 0x13, 0x41,
+	0x14, 0x65, 0x5b, 0x4d, 0xeb, 0xdd, 0x36, 0xad, 0xd3, 0xa2, 0xe9, 0xd4, 0x6a, 0xba, 0x56, 0x2c,
+	0xb4, 0x4d, 0x4a, 0xf2, 0x50, 0x10, 0x44, 0x92, 0x40, 0x45, 0x10, 0x8d, 0x9b, 0x56, 0x34, 0x08,
+	0x61, 0x3b, 0x19, 0xed, 0x96, 0x24, 0x3b, 0x9d, 0xd9, 0x04, 0xf2, 0x11, 0x7e, 0x83, 0xe0, 0xa3,
+	0xef, 0xfe, 0x83, 0xf8, 0x55, 0xb2, 0xb3, 0x63, 0xb2, 0x9b, 0x9d, 0xc6, 0x8d, 0x90, 0xb7, 0xbd,
+	0x73, 0xcf, 0x3d, 0xf7, 0xcc, 0xd9, 0xbd, 0x97, 0x85, 0x1d, 0x22, 0xca, 0x45, 0x71, 0xe9, 0x70,
+	0x5a, 0x1c, 0x1c, 0x3b, 0x1d, 0x76, 0xe9, 0x84, 0x51, 0x81, 0x71, 0xcf, 0xf7, 0xd0, 0x3a, 0x11,
+	0xe5, 0x82, 0x3c, 0x50, 0x59, 0xbc, 0x19, 0x14, 0x70, 0x46, 0x8a, 0xc2, 0x77, 0xfc, 0xbe, 0x08,
+	0x71, 0x78, 0x37, 0x49, 0xc3, 0xa9, 0xf0, 0xfa, 0x9c, 0x50, 0x05, 0xb1, 0x7e, 0x19, 0x80, 0x6a,
+	0x9c, 0x3a, 0x3e, 0x6d, 0x04, 0x38, 0x9b, 0x5e, 0xf7, 0xa9, 0xf0, 0x11, 0x86, 0xe5, 0xcf, 0x6e,
+	0x87, 0xf6, 0x9c, 0x2e, 0xcd, 0x19, 0x79, 0x63, 0xff, 0x8e, 0x3d, 0x8a, 0xd1, 0x0b, 0x30, 0x19,
+	0xe5, 0x5d, 0x57, 0x08, 0xd7, 0xeb, 0x89, 0xdc, 0x42, 0xde, 0xd8, 0x37, 0x4b, 0x3b, 0x85, 0x49,
+	0x4d, 0x85, 0xfa, 0x18, 0x64, 0x47, 0x2b, 0xd0, 0x3d, 0xc8, 0xf8, 0x0e, 0xff, 0x42, 0xfd, 0xdc,
+	0xa2, 0xa4, 0x56, 0x11, 0x7a, 0x0e, 0x66, 0xf8, 0xd4, 0xf2, 0x87, 0x8c, 0xe6, 0x6e, 0xe5, 0x8d,
+	0xfd, 0x6c, 0xe9, 0x41, 0x92, 0xf8, 0x4c, 0x82, 0xce, 0x86, 0x8c, 0xda, 0xe0, 0x8f, 0x9e, 0xad,
+	0x2e, 0x6c, 0xc4, 0x6e, 0x22, 0x98, 0xd7, 0x13, 0x14, 0x3d, 0x85, 0x4c, 0x68, 0x8a, 0xbc, 0x88,
+	0x59, 0x5a, 0x93, 0x84, 0x9c, 0x91, 0x42, 0x43, 0x1e, 0xdb, 0x2a, 0x8d, 0x8e, 0xe0, 0xb6, 0x6c,
+	0xa3, 0x6e, 0x74, 0x3f, 0xd9, 0x38, 0x24, 0x0e, 0x51, 0xd6, 0x4f, 0x03, 0xd0, 0x39, 0x6b, 0x4f,
+	0x3a, 0xb7, 0x05, 0xcb, 0x32, 0xdf, 0x72, 0xdb, 0xca, 0xb9, 0x25, 0x19, 0xbf, 0x6a, 0xa3, 0x1a,
+	0xac, 0xf6, 0x65, 0x41, 0x8b, 0x79, 0x1d, 0x97, 0x0c, 0x55, 0xa3, 0x87, 0xc9, 0x46, 0x21, 0x6f,
+	0x5d, 0xa2, 0xec, 0x95, 0x7e, 0x24, 0x9a, 0x74, 0x7f, 0x71, 0x56, 0xf7, 0x03, 0x9b, 0x62, 0xb2,
+	0xe7, 0x6c, 0x53, 0x11, 0xee, 0xbe, 0x76, 0x85, 0x2f, 0xcf, 0x44, 0x8a, 0xcf, 0xcb, 0xea, 0x00,
+	0x8a, 0x16, 0xcc, 0x59, 0xde, 0x01, 0x64, 0xcf, 0x7b, 0x22, 0xdd, 0x0b, 0xb4, 0x9e, 0xc1, 0xda,
+	0x08, 0x3c, 0xa3, 0x2e, 0xeb, 0x10, 0xd6, 0x5e, 0x52, 0x3f, 0xe5, 0xa7, 0x62, 0x5d, 0xc1, 0xfa,
+	0x18, 0x3d, 0x67, 0x0b, 0xb6, 0x61, 0x2b, 0x30, 0xdc, 0xa6, 0x84, 0xba, 0x03, 0xda, 0x8e, 0xbd,
+	0x29, 0xeb, 0xab, 0x01, 0x58, 0x97, 0x9d, 0x55, 0xd3, 0x29, 0x64, 0xb9, 0xa2, 0x68, 0x45, 0xc5,
+	0x3d, 0x4a, 0x8a, 0x8b, 0xb5, 0xb2, 0x57, 0x79, 0x34, 0xb4, 0x4e, 0x00, 0x57, 0x08, 0xa1, 0x2c,
+	0x2e, 0x28, 0x85, 0xa3, 0xa7, 0xb0, 0xad, 0x2d, 0x9c, 0xf5, 0x3d, 0x9e, 0x00, 0xb6, 0xe9, 0x15,
+	0x25, 0xff, 0x23, 0x40, 0x5b, 0x38, 0xa3, 0x80, 0xd2, 0xb7, 0x0c, 0xac, 0xc8, 0xd2, 0x06, 0xe5,
+	0x03, 0x97, 0x50, 0xd4, 0x04, 0x33, 0xb2, 0xf7, 0xd0, 0x5e, 0xd2, 0xd1, 0xe4, 0x82, 0xc7, 0x4f,
+	0xfe, 0x81, 0x52, 0xaa, 0x9a, 0x60, 0x46, 0x96, 0x85, 0x8e, 0x3b, 0xb9, 0x02, 0x75, 0xdc, 0xba,
+	0x8d, 0xf3, 0x11, 0x60, 0x3c, 0xe8, 0xe8, 0x71, 0xb2, 0x28, 0xb1, 0x37, 0xf0, 0xde, 0x74, 0x50,
+	0x48, 0x7c, 0x6c, 0xa0, 0x37, 0xb0, 0xa4, 0x06, 0x15, 0xe5, 0x35, 0x62, 0x62, 0x03, 0x8f, 0x77,
+	0xa7, 0x20, 0x94, 0xd4, 0x77, 0xb0, 0xfc, 0x77, 0x1c, 0x91, 0x06, 0x3e, 0x31, 0xd8, 0xd8, 0x9a,
+	0x06, 0x51, 0x94, 0xd7, 0xe1, 0x9a, 0x8b, 0xcf, 0x15, 0x3a, 0xd0, 0x5f, 0x50, 0x3b, 0x9b, 0xf8,
+	0x30, 0x1d, 0x78, 0xe4, 0x0a, 0x87, 0x0d, 0xcd, 0x08, 0x20, 0x0d, 0xcd, 0xcd, 0x23, 0x86, 0x8f,
+	0x52, 0xa2, 0xd5, 0x35, 0x39, 0x6c, 0x68, 0xbe, 0x7a, 0x5d, 0xcf, 0x9b, 0xa7, 0x4a, 0xd7, 0x73,
+	0xca, 0x28, 0x55, 0x09, 0x6c, 0x12, 0xaf, 0x9b, 0xa8, 0xa9, 0x82, 0x84, 0xd5, 0x83, 0xff, 0x9e,
+	0xba, 0xd1, 0xcc, 0x46, 0x73, 0xec, 0xe2, 0xfb, 0x42, 0xa6, 0x56, 0x7d, 0xfb, 0xa1, 0x52, 0xfd,
+	0xb1, 0xb0, 0x5e, 0x6b, 0x94, 0xc3, 0x15, 0xf9, 0xfe, 0xb8, 0x12, 0x64, 0x7f, 0xcb, 0xa3, 0x4f,
+	0xd1, 0xa3, 0x8b, 0x8c, 0xfc, 0x7f, 0x2a, 0xff, 0x09, 0x00, 0x00, 0xff, 0xff, 0xdf, 0xa9, 0x9a,
+	0x47, 0xab, 0x09, 0x00, 0x00,
 }

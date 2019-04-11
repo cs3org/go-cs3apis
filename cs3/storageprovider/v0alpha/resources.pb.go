@@ -26,30 +26,55 @@ type ResourceType int32
 
 const (
 	ResourceType_RESOURCE_TYPE_INVALID ResourceType = 0
-	// The container type represents a type
-	// that can contain another types.
-	// Service implementors usually map this type
-	// to folders (local filesystem) or buckets
-	// (Amazon S3).
-	ResourceType_RESOURCE_TYPE_CONTAINER ResourceType = 1
 	// The file type represents a type
 	// that holds arbitrary data.
 	// Service implementors usually map this type
 	// to files (local filesystem) or objects
 	// (Amazon S3).
-	ResourceType_RESOURCE_TYPE_FILE ResourceType = 2
+	ResourceType_RESOURCE_TYPE_FILE ResourceType = 1
+	// The container type represents a type
+	// that can contain another types.
+	// Service implementors usually map this type
+	// to folders (local filesystem) or buckets
+	// (Amazon S3).
+	ResourceType_RESOURCE_TYPE_CONTAINER ResourceType = 2
+	// This represents a reference type which points
+	// to another resource where client MAY be redirected.
+	// Client SHOULD use the ResourceInfo.target
+	// reference for a subsequent call.
+	ResourceType_RESOURCE_TYPE_REFERENCE ResourceType = 3
+	// This represents a symbolic link type if the underlying
+	// storage system supports it.
+	// Symlink target SHOULD NOT be interpreted by the clients.
+	ResourceType_RESOURCE_TYPE_SYMLINK ResourceType = 4
+	// Internal resource type for some specific resources inside
+	// a storage implementation.
+	// For example, this type could be used to represent
+	// a device file on a Linux filesystem.
+	// Another example could be to represent an ongoing upload,
+	// where an hypothetically user interface could show a loading icon
+	// on this type of resources until the upload operation is completed.
+	// Internal resources SHOULD NOT be moved to a different storage
+	// provider.
+	ResourceType_RESOURCE_TYPE_INTERNAL ResourceType = 5
 )
 
 var ResourceType_name = map[int32]string{
 	0: "RESOURCE_TYPE_INVALID",
-	1: "RESOURCE_TYPE_CONTAINER",
-	2: "RESOURCE_TYPE_FILE",
+	1: "RESOURCE_TYPE_FILE",
+	2: "RESOURCE_TYPE_CONTAINER",
+	3: "RESOURCE_TYPE_REFERENCE",
+	4: "RESOURCE_TYPE_SYMLINK",
+	5: "RESOURCE_TYPE_INTERNAL",
 }
 
 var ResourceType_value = map[string]int32{
 	"RESOURCE_TYPE_INVALID":   0,
-	"RESOURCE_TYPE_CONTAINER": 1,
-	"RESOURCE_TYPE_FILE":      2,
+	"RESOURCE_TYPE_FILE":      1,
+	"RESOURCE_TYPE_CONTAINER": 2,
+	"RESOURCE_TYPE_REFERENCE": 3,
+	"RESOURCE_TYPE_SYMLINK":   4,
+	"RESOURCE_TYPE_INTERNAL":  5,
 }
 
 func (x ResourceType) String() string {
@@ -92,42 +117,199 @@ func (GranteeType) EnumDescriptor() ([]byte, []int) {
 }
 
 // The type of checksum to use.
-type ResourceChecksum_ChecksumType int32
+type ResourceChecksum_Type int32
 
 const (
-	ResourceChecksum_CHECKSUM_TYPE_INVALID ResourceChecksum_ChecksumType = 0
+	ResourceChecksum_RESOURCE_CHECKSUM_TYPE_INVALID ResourceChecksum_Type = 0
 	// unset means no checksum is set.
-	ResourceChecksum_CHECKSUM_TYPE_UNSET ResourceChecksum_ChecksumType = 1
+	ResourceChecksum_RESOURCE_CHECKSUM_TYPE_UNSET ResourceChecksum_Type = 1
 	// Use Adler32 checksum.
-	ResourceChecksum_CHECKSUM_TYPE_ADLER32 ResourceChecksum_ChecksumType = 2
+	ResourceChecksum_RESOURCE_CHECKSUM_TYPE_ADLER32 ResourceChecksum_Type = 2
 	// Use MD5 checksum.
-	ResourceChecksum_CHECKSUM_TYPE_MD5 ResourceChecksum_ChecksumType = 3
+	ResourceChecksum_RESOURCE_CHECKSUM_TYPE_MD5 ResourceChecksum_Type = 3
+	// Use SHA-1 checksum.
+	ResourceChecksum_RESOURCE_CHECKSUM_TYPE_SHA1 ResourceChecksum_Type = 4
 )
 
-var ResourceChecksum_ChecksumType_name = map[int32]string{
-	0: "CHECKSUM_TYPE_INVALID",
-	1: "CHECKSUM_TYPE_UNSET",
-	2: "CHECKSUM_TYPE_ADLER32",
-	3: "CHECKSUM_TYPE_MD5",
+var ResourceChecksum_Type_name = map[int32]string{
+	0: "RESOURCE_CHECKSUM_TYPE_INVALID",
+	1: "RESOURCE_CHECKSUM_TYPE_UNSET",
+	2: "RESOURCE_CHECKSUM_TYPE_ADLER32",
+	3: "RESOURCE_CHECKSUM_TYPE_MD5",
+	4: "RESOURCE_CHECKSUM_TYPE_SHA1",
 }
 
-var ResourceChecksum_ChecksumType_value = map[string]int32{
-	"CHECKSUM_TYPE_INVALID": 0,
-	"CHECKSUM_TYPE_UNSET":   1,
-	"CHECKSUM_TYPE_ADLER32": 2,
-	"CHECKSUM_TYPE_MD5":     3,
+var ResourceChecksum_Type_value = map[string]int32{
+	"RESOURCE_CHECKSUM_TYPE_INVALID": 0,
+	"RESOURCE_CHECKSUM_TYPE_UNSET":   1,
+	"RESOURCE_CHECKSUM_TYPE_ADLER32": 2,
+	"RESOURCE_CHECKSUM_TYPE_MD5":     3,
+	"RESOURCE_CHECKSUM_TYPE_SHA1":    4,
 }
 
-func (x ResourceChecksum_ChecksumType) String() string {
-	return proto.EnumName(ResourceChecksum_ChecksumType_name, int32(x))
+func (x ResourceChecksum_Type) String() string {
+	return proto.EnumName(ResourceChecksum_Type_name, int32(x))
 }
 
-func (ResourceChecksum_ChecksumType) EnumDescriptor() ([]byte, []int) {
-	return fileDescriptor_d50b53118f99cc9e, []int{1, 0}
+func (ResourceChecksum_Type) EnumDescriptor() ([]byte, []int) {
+	return fileDescriptor_d50b53118f99cc9e, []int{3, 0}
+}
+
+// Represents the information of the storage provider.
+type ProviderInfo struct {
+	// OPTIONAL.
+	// Opaque information (containing storage-specific information).
+	// For example, additional metadata attached to the resource.
+	Opaque *types.Opaque `protobuf:"bytes,1,opt,name=opaque,proto3" json:"opaque,omitempty"`
+	// REQUIRED.
+	// The storage provider id that will become part of the
+	// resource id.
+	// For example, if the provider_id is "home", resources obtained
+	// from this storage provider will have a resource id like "home:1234".
+	ProviderId string `protobuf:"bytes,2,opt,name=provider_id,json=providerId,proto3" json:"provider_id,omitempty"`
+	// REQUIRED.
+	// The public path prefix this storage provider handles.
+	// In Unix literature, the mount path.
+	// For example, if the provider_path is "/home", resources obtained
+	// from this storage provier will have a resource path lik "/home/docs".
+	ProviderPath string `protobuf:"bytes,3,opt,name=provider_path,json=providerPath,proto3" json:"provider_path,omitempty"`
+	// REQUIRED.
+	// The address where the storage provider can be reached.
+	// For example, tcp://localhost:1099.
+	Address string `protobuf:"bytes,4,opt,name=address,proto3" json:"address,omitempty"`
+	// OPTIONAL.
+	// Information to describe the functionalities
+	// offered by the storage provider. Meant to be read
+	// by humans.
+	Description string `protobuf:"bytes,5,opt,name=description,proto3" json:"description,omitempty"`
+	// REQUIRED.
+	// List of available methods.
+	Features             *ProviderInfo_Features `protobuf:"bytes,6,opt,name=features,proto3" json:"features,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}               `json:"-"`
+	XXX_unrecognized     []byte                 `json:"-"`
+	XXX_sizecache        int32                  `json:"-"`
+}
+
+func (m *ProviderInfo) Reset()         { *m = ProviderInfo{} }
+func (m *ProviderInfo) String() string { return proto.CompactTextString(m) }
+func (*ProviderInfo) ProtoMessage()    {}
+func (*ProviderInfo) Descriptor() ([]byte, []int) {
+	return fileDescriptor_d50b53118f99cc9e, []int{0}
+}
+
+func (m *ProviderInfo) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ProviderInfo.Unmarshal(m, b)
+}
+func (m *ProviderInfo) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ProviderInfo.Marshal(b, m, deterministic)
+}
+func (m *ProviderInfo) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ProviderInfo.Merge(m, src)
+}
+func (m *ProviderInfo) XXX_Size() int {
+	return xxx_messageInfo_ProviderInfo.Size(m)
+}
+func (m *ProviderInfo) XXX_DiscardUnknown() {
+	xxx_messageInfo_ProviderInfo.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_ProviderInfo proto.InternalMessageInfo
+
+func (m *ProviderInfo) GetOpaque() *types.Opaque {
+	if m != nil {
+		return m.Opaque
+	}
+	return nil
+}
+
+func (m *ProviderInfo) GetProviderId() string {
+	if m != nil {
+		return m.ProviderId
+	}
+	return ""
+}
+
+func (m *ProviderInfo) GetProviderPath() string {
+	if m != nil {
+		return m.ProviderPath
+	}
+	return ""
+}
+
+func (m *ProviderInfo) GetAddress() string {
+	if m != nil {
+		return m.Address
+	}
+	return ""
+}
+
+func (m *ProviderInfo) GetDescription() string {
+	if m != nil {
+		return m.Description
+	}
+	return ""
+}
+
+func (m *ProviderInfo) GetFeatures() *ProviderInfo_Features {
+	if m != nil {
+		return m.Features
+	}
+	return nil
+}
+
+// REQUIRED.
+// Represents the list of features available
+// on this storage provider. If the feature is not supported,
+// the related service methods MUST return CODE_UNIMPLEMENTED.
+type ProviderInfo_Features struct {
+	Recycle              bool     `protobuf:"varint,1,opt,name=recycle,proto3" json:"recycle,omitempty"`
+	FileVersions         bool     `protobuf:"varint,2,opt,name=file_versions,json=fileVersions,proto3" json:"file_versions,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *ProviderInfo_Features) Reset()         { *m = ProviderInfo_Features{} }
+func (m *ProviderInfo_Features) String() string { return proto.CompactTextString(m) }
+func (*ProviderInfo_Features) ProtoMessage()    {}
+func (*ProviderInfo_Features) Descriptor() ([]byte, []int) {
+	return fileDescriptor_d50b53118f99cc9e, []int{0, 0}
+}
+
+func (m *ProviderInfo_Features) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ProviderInfo_Features.Unmarshal(m, b)
+}
+func (m *ProviderInfo_Features) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ProviderInfo_Features.Marshal(b, m, deterministic)
+}
+func (m *ProviderInfo_Features) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ProviderInfo_Features.Merge(m, src)
+}
+func (m *ProviderInfo_Features) XXX_Size() int {
+	return xxx_messageInfo_ProviderInfo_Features.Size(m)
+}
+func (m *ProviderInfo_Features) XXX_DiscardUnknown() {
+	xxx_messageInfo_ProviderInfo_Features.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_ProviderInfo_Features proto.InternalMessageInfo
+
+func (m *ProviderInfo_Features) GetRecycle() bool {
+	if m != nil {
+		return m.Recycle
+	}
+	return false
+}
+
+func (m *ProviderInfo_Features) GetFileVersions() bool {
+	if m != nil {
+		return m.FileVersions
+	}
+	return false
 }
 
 // Represents the information (metadata) about
-// a resource.
+// a storage resource organized in a hierarchical namespace (file, directory/container, reference, symlink, ...).
 type ResourceInfo struct {
 	// OPTIONAL.
 	// Opaque information.
@@ -136,42 +318,58 @@ type ResourceInfo struct {
 	// The type of the resource (container, file, ...)
 	// See the enum ResourceType for all possible types.
 	Type ResourceType `protobuf:"varint,2,opt,name=type,proto3,enum=cs3.storageproviderv0alpha.ResourceType" json:"type,omitempty"`
-	// OPTIONAL.
-	// Opaque information.
+	// REQUIRED.
+	// Opaque unique identifier of the resource.
 	Id *ResourceId `protobuf:"bytes,3,opt,name=id,proto3" json:"id,omitempty"`
 	// REQUIRED.
-	// The checksum for the resource.
+	// The data checksum for the file resource.
+	// For all other resources, the checksum is unset.
 	Checksum *ResourceChecksum `protobuf:"bytes,4,opt,name=checksum,proto3" json:"checksum,omitempty"`
 	// REQUIRED.
 	// As decribed in https://tools.ietf.org/html/rfc7232#section-2.3
+	// For file resources, the etag must change if data or metadata changes.
+	// For container types, the etag must change if etag of any of the (indirectly) contained resources change.
+	// For reference types, the etag must change if etag of the target changes and the target is on the same storage provider.
+	// In all other cases the etag does not change.
 	Etag string `protobuf:"bytes,5,opt,name=etag,proto3" json:"etag,omitempty"`
 	// REQUIRED.
-	// As described in https://tools.ietf.org/html/rfc2045#page-7
-	Mime string `protobuf:"bytes,6,opt,name=mime,proto3" json:"mime,omitempty"`
+	// As described in [RFC 2015](https://tools.ietf.org/html/rfc2045#page-7)
+	MimeType string `protobuf:"bytes,6,opt,name=mime_type,json=mimeType,proto3" json:"mime_type,omitempty"`
 	// REQUIRED.
-	// The start time range to query for recycle items.
-	// The value is the Unix Epoch timestamp in seconds.
-	Mtime uint64 `protobuf:"varint,7,opt,name=mtime,proto3" json:"mtime,omitempty"`
+	// Last modification time (mtime) of file or directory contents.
+	// For reference types this is NOT the mtime of the target.
+	Mtime *types.Timestamp `protobuf:"bytes,7,opt,name=mtime,proto3" json:"mtime,omitempty"`
 	// REQUIRED.
 	// The path for the resource.
 	// It MUST start with the slash character (/).
 	Path string `protobuf:"bytes,8,opt,name=path,proto3" json:"path,omitempty"`
 	// REQUIRED.
-	// The set of permissions for the resource.
-	PermissionSet *ResourcePermissionSet `protobuf:"bytes,9,opt,name=permission_set,json=permissionSet,proto3" json:"permission_set,omitempty"`
+	// The set of permissions for the resource effective for the authenticated user.
+	PermissionSet *ResourcePermissions `protobuf:"bytes,9,opt,name=permission_set,json=permissionSet,proto3" json:"permission_set,omitempty"`
 	// REQUIRED.
-	// The size of the resource in bytes.
-	Size                 uint64   `protobuf:"varint,10,opt,name=size,proto3" json:"size,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
+	// The size of the resource in bytes (file size)
+	// TODO(moscicki): This is undefined for container type.
+	// Is the accounting recursive?, could it be set to 0 for directories if recursive not supported? use another field?
+	// TODO(moscicki): This needs to be defined also for other types (such as a symlink to a directory or file)
+	Size uint64 `protobuf:"varint,10,opt,name=size,proto3" json:"size,omitempty"`
+	// REQUIRED:
+	// Identifier of the owner of the resource.
+	Owner string `protobuf:"bytes,11,opt,name=owner,proto3" json:"owner,omitempty"`
+	// OPTIONAL.
+	// Additional metadata attached to the resource.
+	// If resource type is RESOURCE_TYPE_REFERENCE it MUST
+	// be specified.
+	ExtraMetadata        *ExtraMetadata `protobuf:"bytes,13,opt,name=extra_metadata,json=extraMetadata,proto3" json:"extra_metadata,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}       `json:"-"`
+	XXX_unrecognized     []byte         `json:"-"`
+	XXX_sizecache        int32          `json:"-"`
 }
 
 func (m *ResourceInfo) Reset()         { *m = ResourceInfo{} }
 func (m *ResourceInfo) String() string { return proto.CompactTextString(m) }
 func (*ResourceInfo) ProtoMessage()    {}
 func (*ResourceInfo) Descriptor() ([]byte, []int) {
-	return fileDescriptor_d50b53118f99cc9e, []int{0}
+	return fileDescriptor_d50b53118f99cc9e, []int{1}
 }
 
 func (m *ResourceInfo) XXX_Unmarshal(b []byte) error {
@@ -227,18 +425,18 @@ func (m *ResourceInfo) GetEtag() string {
 	return ""
 }
 
-func (m *ResourceInfo) GetMime() string {
+func (m *ResourceInfo) GetMimeType() string {
 	if m != nil {
-		return m.Mime
+		return m.MimeType
 	}
 	return ""
 }
 
-func (m *ResourceInfo) GetMtime() uint64 {
+func (m *ResourceInfo) GetMtime() *types.Timestamp {
 	if m != nil {
 		return m.Mtime
 	}
-	return 0
+	return nil
 }
 
 func (m *ResourceInfo) GetPath() string {
@@ -248,7 +446,7 @@ func (m *ResourceInfo) GetPath() string {
 	return ""
 }
 
-func (m *ResourceInfo) GetPermissionSet() *ResourcePermissionSet {
+func (m *ResourceInfo) GetPermissionSet() *ResourcePermissions {
 	if m != nil {
 		return m.PermissionSet
 	}
@@ -262,18 +460,82 @@ func (m *ResourceInfo) GetSize() uint64 {
 	return 0
 }
 
-// The checksum to use to verify
+func (m *ResourceInfo) GetOwner() string {
+	if m != nil {
+		return m.Owner
+	}
+	return ""
+}
+
+func (m *ResourceInfo) GetExtraMetadata() *ExtraMetadata {
+	if m != nil {
+		return m.ExtraMetadata
+	}
+	return nil
+}
+
+// ExtraMetadata contains extra metadata
+// attached to a resource. This message and the Opaque
+// message differ in that Opaque allows service implementors
+// to include any extra metadata in any format and most clients
+// will ignore it. However, the ExtraMetadata message
+// contains well defined fileds that clients MUST understand if
+// they are specified.
+type ExtraMetadata struct {
+	// REQUIRED if resource type is RESOURCE_TYPE_REFERENCE.
+	// The target reference the resource points to.
+	Target               *Reference `protobuf:"bytes,1,opt,name=target,proto3" json:"target,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}   `json:"-"`
+	XXX_unrecognized     []byte     `json:"-"`
+	XXX_sizecache        int32      `json:"-"`
+}
+
+func (m *ExtraMetadata) Reset()         { *m = ExtraMetadata{} }
+func (m *ExtraMetadata) String() string { return proto.CompactTextString(m) }
+func (*ExtraMetadata) ProtoMessage()    {}
+func (*ExtraMetadata) Descriptor() ([]byte, []int) {
+	return fileDescriptor_d50b53118f99cc9e, []int{2}
+}
+
+func (m *ExtraMetadata) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ExtraMetadata.Unmarshal(m, b)
+}
+func (m *ExtraMetadata) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ExtraMetadata.Marshal(b, m, deterministic)
+}
+func (m *ExtraMetadata) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ExtraMetadata.Merge(m, src)
+}
+func (m *ExtraMetadata) XXX_Size() int {
+	return xxx_messageInfo_ExtraMetadata.Size(m)
+}
+func (m *ExtraMetadata) XXX_DiscardUnknown() {
+	xxx_messageInfo_ExtraMetadata.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_ExtraMetadata proto.InternalMessageInfo
+
+func (m *ExtraMetadata) GetTarget() *Reference {
+	if m != nil {
+		return m.Target
+	}
+	return nil
+}
+
+// The checksum to verify
 // the integrity of a resource.
 type ResourceChecksum struct {
 	// REQUIRED.
 	// The type of checksum to use.
 	// If no checksum is provided,
 	// type MUST be CHECKSUM_TYPE_UNSET.
-	Type ResourceChecksum_ChecksumType `protobuf:"varint,1,opt,name=type,proto3,enum=cs3.storageproviderv0alpha.ResourceChecksum_ChecksumType" json:"type,omitempty"`
+	Type ResourceChecksum_Type `protobuf:"varint,1,opt,name=type,proto3,enum=cs3.storageproviderv0alpha.ResourceChecksum_Type" json:"type,omitempty"`
 	// MUST be specified if type is not
 	// CHECKSUM_TYPE_UNSET or type is not
 	// CHECKSUM_TYPE_INVALID.
 	// MUST be the hexadecimal representation of the cheksum.
+	// The value is case-insensitive, so
+	// "1E603A8", "1e603a8" or "1e603A8" are the same.
 	Sum                  string   `protobuf:"bytes,2,opt,name=sum,proto3" json:"sum,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
@@ -284,7 +546,7 @@ func (m *ResourceChecksum) Reset()         { *m = ResourceChecksum{} }
 func (m *ResourceChecksum) String() string { return proto.CompactTextString(m) }
 func (*ResourceChecksum) ProtoMessage()    {}
 func (*ResourceChecksum) Descriptor() ([]byte, []int) {
-	return fileDescriptor_d50b53118f99cc9e, []int{1}
+	return fileDescriptor_d50b53118f99cc9e, []int{3}
 }
 
 func (m *ResourceChecksum) XXX_Unmarshal(b []byte) error {
@@ -305,11 +567,11 @@ func (m *ResourceChecksum) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_ResourceChecksum proto.InternalMessageInfo
 
-func (m *ResourceChecksum) GetType() ResourceChecksum_ChecksumType {
+func (m *ResourceChecksum) GetType() ResourceChecksum_Type {
 	if m != nil {
 		return m.Type
 	}
-	return ResourceChecksum_CHECKSUM_TYPE_INVALID
+	return ResourceChecksum_RESOURCE_CHECKSUM_TYPE_INVALID
 }
 
 func (m *ResourceChecksum) GetSum() string {
@@ -322,6 +584,7 @@ func (m *ResourceChecksum) GetSum() string {
 // The mechanism to identify a resource
 // in the storage provider namespace.
 type Reference struct {
+	// REQUIRED.
 	// One of the specifications MUST be specified.
 	//
 	// Types that are valid to be assigned to Spec:
@@ -337,7 +600,7 @@ func (m *Reference) Reset()         { *m = Reference{} }
 func (m *Reference) String() string { return proto.CompactTextString(m) }
 func (*Reference) ProtoMessage()    {}
 func (*Reference) Descriptor() ([]byte, []int) {
-	return fileDescriptor_d50b53118f99cc9e, []int{2}
+	return fileDescriptor_d50b53118f99cc9e, []int{4}
 }
 
 func (m *Reference) XXX_Unmarshal(b []byte) error {
@@ -424,7 +687,7 @@ func (m *ResourceId) Reset()         { *m = ResourceId{} }
 func (m *ResourceId) String() string { return proto.CompactTextString(m) }
 func (*ResourceId) ProtoMessage()    {}
 func (*ResourceId) Descriptor() ([]byte, []int) {
-	return fileDescriptor_d50b53118f99cc9e, []int{3}
+	return fileDescriptor_d50b53118f99cc9e, []int{5}
 }
 
 func (m *ResourceId) XXX_Unmarshal(b []byte) error {
@@ -460,57 +723,177 @@ func (m *ResourceId) GetOpaqueId() string {
 }
 
 // The representation of permissions attached to a resource.
-type ResourcePermissionSet struct {
-	ListContainer        bool     `protobuf:"varint,1,opt,name=list_container,json=listContainer,proto3" json:"list_container,omitempty"`
+type ResourcePermissions struct {
+	AddGrant             bool     `protobuf:"varint,1,opt,name=add_grant,json=addGrant,proto3" json:"add_grant,omitempty"`
 	CreateContainer      bool     `protobuf:"varint,2,opt,name=create_container,json=createContainer,proto3" json:"create_container,omitempty"`
 	Delete               bool     `protobuf:"varint,3,opt,name=delete,proto3" json:"delete,omitempty"`
+	GetPath              bool     `protobuf:"varint,5,opt,name=get_path,json=getPath,proto3" json:"get_path,omitempty"`
+	GetQuota             bool     `protobuf:"varint,6,opt,name=get_quota,json=getQuota,proto3" json:"get_quota,omitempty"`
+	InitiateFileDownload bool     `protobuf:"varint,7,opt,name=initiate_file_download,json=initiateFileDownload,proto3" json:"initiate_file_download,omitempty"`
+	InitiateFileUpload   bool     `protobuf:"varint,8,opt,name=initiate_file_upload,json=initiateFileUpload,proto3" json:"initiate_file_upload,omitempty"`
+	ListGrants           bool     `protobuf:"varint,9,opt,name=list_grants,json=listGrants,proto3" json:"list_grants,omitempty"`
+	ListContainer        bool     `protobuf:"varint,10,opt,name=list_container,json=listContainer,proto3" json:"list_container,omitempty"`
+	ListFileVersions     bool     `protobuf:"varint,11,opt,name=list_file_versions,json=listFileVersions,proto3" json:"list_file_versions,omitempty"`
+	ListRecycle          bool     `protobuf:"varint,12,opt,name=list_recycle,json=listRecycle,proto3" json:"list_recycle,omitempty"`
+	Move                 bool     `protobuf:"varint,13,opt,name=move,proto3" json:"move,omitempty"`
+	RemoveGrant          bool     `protobuf:"varint,14,opt,name=remove_grant,json=removeGrant,proto3" json:"remove_grant,omitempty"`
+	PurgeRecycle         bool     `protobuf:"varint,15,opt,name=purge_recycle,json=purgeRecycle,proto3" json:"purge_recycle,omitempty"`
+	RestoreFileVersion   bool     `protobuf:"varint,16,opt,name=restore_file_version,json=restoreFileVersion,proto3" json:"restore_file_version,omitempty"`
+	RestoreRecycleItem   bool     `protobuf:"varint,17,opt,name=restore_recycle_item,json=restoreRecycleItem,proto3" json:"restore_recycle_item,omitempty"`
+	Stat                 bool     `protobuf:"varint,18,opt,name=stat,proto3" json:"stat,omitempty"`
+	UpdateGrant          bool     `protobuf:"varint,19,opt,name=update_grant,json=updateGrant,proto3" json:"update_grant,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *ResourcePermissionSet) Reset()         { *m = ResourcePermissionSet{} }
-func (m *ResourcePermissionSet) String() string { return proto.CompactTextString(m) }
-func (*ResourcePermissionSet) ProtoMessage()    {}
-func (*ResourcePermissionSet) Descriptor() ([]byte, []int) {
-	return fileDescriptor_d50b53118f99cc9e, []int{4}
+func (m *ResourcePermissions) Reset()         { *m = ResourcePermissions{} }
+func (m *ResourcePermissions) String() string { return proto.CompactTextString(m) }
+func (*ResourcePermissions) ProtoMessage()    {}
+func (*ResourcePermissions) Descriptor() ([]byte, []int) {
+	return fileDescriptor_d50b53118f99cc9e, []int{6}
 }
 
-func (m *ResourcePermissionSet) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_ResourcePermissionSet.Unmarshal(m, b)
+func (m *ResourcePermissions) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ResourcePermissions.Unmarshal(m, b)
 }
-func (m *ResourcePermissionSet) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_ResourcePermissionSet.Marshal(b, m, deterministic)
+func (m *ResourcePermissions) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ResourcePermissions.Marshal(b, m, deterministic)
 }
-func (m *ResourcePermissionSet) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ResourcePermissionSet.Merge(m, src)
+func (m *ResourcePermissions) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ResourcePermissions.Merge(m, src)
 }
-func (m *ResourcePermissionSet) XXX_Size() int {
-	return xxx_messageInfo_ResourcePermissionSet.Size(m)
+func (m *ResourcePermissions) XXX_Size() int {
+	return xxx_messageInfo_ResourcePermissions.Size(m)
 }
-func (m *ResourcePermissionSet) XXX_DiscardUnknown() {
-	xxx_messageInfo_ResourcePermissionSet.DiscardUnknown(m)
+func (m *ResourcePermissions) XXX_DiscardUnknown() {
+	xxx_messageInfo_ResourcePermissions.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_ResourcePermissionSet proto.InternalMessageInfo
+var xxx_messageInfo_ResourcePermissions proto.InternalMessageInfo
 
-func (m *ResourcePermissionSet) GetListContainer() bool {
+func (m *ResourcePermissions) GetAddGrant() bool {
 	if m != nil {
-		return m.ListContainer
+		return m.AddGrant
 	}
 	return false
 }
 
-func (m *ResourcePermissionSet) GetCreateContainer() bool {
+func (m *ResourcePermissions) GetCreateContainer() bool {
 	if m != nil {
 		return m.CreateContainer
 	}
 	return false
 }
 
-func (m *ResourcePermissionSet) GetDelete() bool {
+func (m *ResourcePermissions) GetDelete() bool {
 	if m != nil {
 		return m.Delete
+	}
+	return false
+}
+
+func (m *ResourcePermissions) GetGetPath() bool {
+	if m != nil {
+		return m.GetPath
+	}
+	return false
+}
+
+func (m *ResourcePermissions) GetGetQuota() bool {
+	if m != nil {
+		return m.GetQuota
+	}
+	return false
+}
+
+func (m *ResourcePermissions) GetInitiateFileDownload() bool {
+	if m != nil {
+		return m.InitiateFileDownload
+	}
+	return false
+}
+
+func (m *ResourcePermissions) GetInitiateFileUpload() bool {
+	if m != nil {
+		return m.InitiateFileUpload
+	}
+	return false
+}
+
+func (m *ResourcePermissions) GetListGrants() bool {
+	if m != nil {
+		return m.ListGrants
+	}
+	return false
+}
+
+func (m *ResourcePermissions) GetListContainer() bool {
+	if m != nil {
+		return m.ListContainer
+	}
+	return false
+}
+
+func (m *ResourcePermissions) GetListFileVersions() bool {
+	if m != nil {
+		return m.ListFileVersions
+	}
+	return false
+}
+
+func (m *ResourcePermissions) GetListRecycle() bool {
+	if m != nil {
+		return m.ListRecycle
+	}
+	return false
+}
+
+func (m *ResourcePermissions) GetMove() bool {
+	if m != nil {
+		return m.Move
+	}
+	return false
+}
+
+func (m *ResourcePermissions) GetRemoveGrant() bool {
+	if m != nil {
+		return m.RemoveGrant
+	}
+	return false
+}
+
+func (m *ResourcePermissions) GetPurgeRecycle() bool {
+	if m != nil {
+		return m.PurgeRecycle
+	}
+	return false
+}
+
+func (m *ResourcePermissions) GetRestoreFileVersion() bool {
+	if m != nil {
+		return m.RestoreFileVersion
+	}
+	return false
+}
+
+func (m *ResourcePermissions) GetRestoreRecycleItem() bool {
+	if m != nil {
+		return m.RestoreRecycleItem
+	}
+	return false
+}
+
+func (m *ResourcePermissions) GetStat() bool {
+	if m != nil {
+		return m.Stat
+	}
+	return false
+}
+
+func (m *ResourcePermissions) GetUpdateGrant() bool {
+	if m != nil {
+		return m.UpdateGrant
 	}
 	return false
 }
@@ -523,17 +906,17 @@ type Grant struct {
 	Grantee *Grantee `protobuf:"bytes,1,opt,name=grantee,proto3" json:"grantee,omitempty"`
 	// REQUIRED.
 	// The permissions for the grant.
-	ResourcePermissionSet *ResourcePermissionSet `protobuf:"bytes,2,opt,name=resource_permission_set,json=resourcePermissionSet,proto3" json:"resource_permission_set,omitempty"`
-	XXX_NoUnkeyedLiteral  struct{}               `json:"-"`
-	XXX_unrecognized      []byte                 `json:"-"`
-	XXX_sizecache         int32                  `json:"-"`
+	Permissions          *ResourcePermissions `protobuf:"bytes,2,opt,name=permissions,proto3" json:"permissions,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
+	XXX_unrecognized     []byte               `json:"-"`
+	XXX_sizecache        int32                `json:"-"`
 }
 
 func (m *Grant) Reset()         { *m = Grant{} }
 func (m *Grant) String() string { return proto.CompactTextString(m) }
 func (*Grant) ProtoMessage()    {}
 func (*Grant) Descriptor() ([]byte, []int) {
-	return fileDescriptor_d50b53118f99cc9e, []int{5}
+	return fileDescriptor_d50b53118f99cc9e, []int{7}
 }
 
 func (m *Grant) XXX_Unmarshal(b []byte) error {
@@ -561,30 +944,31 @@ func (m *Grant) GetGrantee() *Grantee {
 	return nil
 }
 
-func (m *Grant) GetResourcePermissionSet() *ResourcePermissionSet {
+func (m *Grant) GetPermissions() *ResourcePermissions {
 	if m != nil {
-		return m.ResourcePermissionSet
+		return m.Permissions
 	}
 	return nil
 }
 
-// A grantee is the received of grant.
+// A grantee is the receiver of a grant.
 type Grantee struct {
 	// REQUIRED.
 	// The type of the grantee.
 	Type GranteeType `protobuf:"varint,1,opt,name=type,proto3,enum=cs3.storageproviderv0alpha.GranteeType" json:"type,omitempty"`
 	// The unique id for the grantee.
-	Id                   string   `protobuf:"bytes,2,opt,name=id,proto3" json:"id,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
+	// For example, a group name, user name or uuid.
+	Id                   *types.UserId `protobuf:"bytes,2,opt,name=id,proto3" json:"id,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}      `json:"-"`
+	XXX_unrecognized     []byte        `json:"-"`
+	XXX_sizecache        int32         `json:"-"`
 }
 
 func (m *Grantee) Reset()         { *m = Grantee{} }
 func (m *Grantee) String() string { return proto.CompactTextString(m) }
 func (*Grantee) ProtoMessage()    {}
 func (*Grantee) Descriptor() ([]byte, []int) {
-	return fileDescriptor_d50b53118f99cc9e, []int{6}
+	return fileDescriptor_d50b53118f99cc9e, []int{8}
 }
 
 func (m *Grantee) XXX_Unmarshal(b []byte) error {
@@ -612,15 +996,15 @@ func (m *Grantee) GetType() GranteeType {
 	return GranteeType_GRANTEE_TYPE_INVALID
 }
 
-func (m *Grantee) GetId() string {
+func (m *Grantee) GetId() *types.UserId {
 	if m != nil {
 		return m.Id
 	}
-	return ""
+	return nil
 }
 
 // The information for a file version.
-// TODO: make size and mtime OPTIONAL?
+// TODO(labkode): make size and mtime OPTIONAL?
 type FileVersion struct {
 	// OPTIONAL.
 	// Opaque information.
@@ -643,7 +1027,7 @@ func (m *FileVersion) Reset()         { *m = FileVersion{} }
 func (m *FileVersion) String() string { return proto.CompactTextString(m) }
 func (*FileVersion) ProtoMessage()    {}
 func (*FileVersion) Descriptor() ([]byte, []int) {
-	return fileDescriptor_d50b53118f99cc9e, []int{7}
+	return fileDescriptor_d50b53118f99cc9e, []int{9}
 }
 
 func (m *FileVersion) XXX_Unmarshal(b []byte) error {
@@ -692,7 +1076,7 @@ func (m *FileVersion) GetMtime() uint64 {
 	return 0
 }
 
-// A recycle items represents the information
+// A recycle item represents the information
 // of a deleted resource.
 type RecycleItem struct {
 	// OPTIONAL.
@@ -713,17 +1097,17 @@ type RecycleItem struct {
 	// REQUIRED.
 	// The deletion time of the resource
 	// in Unix Epoch timestamp in seconds.
-	DeletionTs           uint64   `protobuf:"varint,6,opt,name=deletion_ts,json=deletionTs,proto3" json:"deletion_ts,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
+	DeletionTime         *types.Timestamp `protobuf:"bytes,6,opt,name=deletion_time,json=deletionTime,proto3" json:"deletion_time,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}         `json:"-"`
+	XXX_unrecognized     []byte           `json:"-"`
+	XXX_sizecache        int32            `json:"-"`
 }
 
 func (m *RecycleItem) Reset()         { *m = RecycleItem{} }
 func (m *RecycleItem) String() string { return proto.CompactTextString(m) }
 func (*RecycleItem) ProtoMessage()    {}
 func (*RecycleItem) Descriptor() ([]byte, []int) {
-	return fileDescriptor_d50b53118f99cc9e, []int{8}
+	return fileDescriptor_d50b53118f99cc9e, []int{10}
 }
 
 func (m *RecycleItem) XXX_Unmarshal(b []byte) error {
@@ -779,22 +1163,25 @@ func (m *RecycleItem) GetSize() uint64 {
 	return 0
 }
 
-func (m *RecycleItem) GetDeletionTs() uint64 {
+func (m *RecycleItem) GetDeletionTime() *types.Timestamp {
 	if m != nil {
-		return m.DeletionTs
+		return m.DeletionTime
 	}
-	return 0
+	return nil
 }
 
 func init() {
 	proto.RegisterEnum("cs3.storageproviderv0alpha.ResourceType", ResourceType_name, ResourceType_value)
 	proto.RegisterEnum("cs3.storageproviderv0alpha.GranteeType", GranteeType_name, GranteeType_value)
-	proto.RegisterEnum("cs3.storageproviderv0alpha.ResourceChecksum_ChecksumType", ResourceChecksum_ChecksumType_name, ResourceChecksum_ChecksumType_value)
+	proto.RegisterEnum("cs3.storageproviderv0alpha.ResourceChecksum_Type", ResourceChecksum_Type_name, ResourceChecksum_Type_value)
+	proto.RegisterType((*ProviderInfo)(nil), "cs3.storageproviderv0alpha.ProviderInfo")
+	proto.RegisterType((*ProviderInfo_Features)(nil), "cs3.storageproviderv0alpha.ProviderInfo.Features")
 	proto.RegisterType((*ResourceInfo)(nil), "cs3.storageproviderv0alpha.ResourceInfo")
+	proto.RegisterType((*ExtraMetadata)(nil), "cs3.storageproviderv0alpha.ExtraMetadata")
 	proto.RegisterType((*ResourceChecksum)(nil), "cs3.storageproviderv0alpha.ResourceChecksum")
 	proto.RegisterType((*Reference)(nil), "cs3.storageproviderv0alpha.Reference")
 	proto.RegisterType((*ResourceId)(nil), "cs3.storageproviderv0alpha.ResourceId")
-	proto.RegisterType((*ResourcePermissionSet)(nil), "cs3.storageproviderv0alpha.ResourcePermissionSet")
+	proto.RegisterType((*ResourcePermissions)(nil), "cs3.storageproviderv0alpha.ResourcePermissions")
 	proto.RegisterType((*Grant)(nil), "cs3.storageproviderv0alpha.Grant")
 	proto.RegisterType((*Grantee)(nil), "cs3.storageproviderv0alpha.Grantee")
 	proto.RegisterType((*FileVersion)(nil), "cs3.storageproviderv0alpha.FileVersion")
@@ -806,57 +1193,88 @@ func init() {
 }
 
 var fileDescriptor_d50b53118f99cc9e = []byte{
-	// 824 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xbc, 0x55, 0xdd, 0x6e, 0xe3, 0x44,
-	0x14, 0xae, 0x1d, 0x27, 0x8d, 0x4f, 0x76, 0x83, 0x3b, 0x6c, 0xb6, 0xa6, 0x2b, 0x20, 0x32, 0x02,
-	0xb2, 0x0b, 0x4a, 0x97, 0x46, 0x20, 0x10, 0x70, 0x91, 0xb8, 0xde, 0xc4, 0xa2, 0x4d, 0xa2, 0xc9,
-	0x8f, 0x16, 0x84, 0x88, 0xbc, 0xf6, 0x6c, 0x6b, 0x35, 0x89, 0x8d, 0x67, 0x5a, 0x29, 0xdc, 0xf1,
-	0x04, 0xbc, 0x03, 0x97, 0xdc, 0x71, 0xc9, 0x2b, 0x70, 0xc7, 0x63, 0xf0, 0x16, 0x68, 0xc6, 0x76,
-	0xe2, 0xa4, 0xa1, 0x4a, 0xb9, 0xe0, 0xc6, 0x3a, 0xfe, 0xce, 0x77, 0xce, 0x99, 0x39, 0x7f, 0x03,
-	0x1f, 0xb9, 0xb4, 0x71, 0x4c, 0x59, 0x10, 0x39, 0x17, 0x24, 0x8c, 0x82, 0x1b, 0xdf, 0x23, 0xd1,
-	0xf1, 0xcd, 0x73, 0x67, 0x1a, 0x5e, 0x3a, 0xc7, 0x11, 0xa1, 0xc1, 0x75, 0xe4, 0x12, 0x5a, 0x0f,
-	0xa3, 0x80, 0x05, 0xe8, 0xc8, 0xa5, 0x8d, 0xfa, 0x06, 0x39, 0xe1, 0x1e, 0x55, 0xb8, 0x23, 0xb6,
-	0x08, 0x09, 0x8d, 0xbf, 0xb1, 0x89, 0xf1, 0x47, 0x0e, 0x1e, 0xe0, 0xc4, 0x8d, 0x3d, 0x7f, 0x1d,
-	0xa0, 0xa7, 0x50, 0x08, 0x42, 0xe7, 0xc7, 0x6b, 0xa2, 0x4b, 0x55, 0xa9, 0x56, 0x3a, 0x39, 0xa8,
-	0x73, 0xa7, 0xb1, 0x49, 0x4f, 0x28, 0x70, 0x42, 0x40, 0x5f, 0x81, 0xc2, 0x71, 0x5d, 0xae, 0x4a,
-	0xb5, 0xf2, 0x49, 0xad, 0xfe, 0xef, 0xd1, 0xeb, 0x69, 0x88, 0xe1, 0x22, 0x24, 0x58, 0x58, 0xa1,
-	0xcf, 0x40, 0xf6, 0x3d, 0x3d, 0x27, 0x82, 0x7c, 0xb0, 0x8b, 0xad, 0xed, 0x61, 0xd9, 0xf7, 0x50,
-	0x07, 0x8a, 0xee, 0x25, 0x71, 0xaf, 0xe8, 0xf5, 0x4c, 0x57, 0x84, 0xf5, 0xc7, 0xbb, 0x58, 0x9b,
-	0x89, 0x0d, 0x5e, 0x5a, 0x23, 0x04, 0x0a, 0x61, 0xce, 0x85, 0x9e, 0xaf, 0x4a, 0x35, 0x15, 0x0b,
-	0x99, 0x63, 0x33, 0x7f, 0x46, 0xf4, 0x42, 0x8c, 0x71, 0x19, 0x3d, 0x82, 0xfc, 0x8c, 0x71, 0x70,
-	0xbf, 0x2a, 0xd5, 0x14, 0x1c, 0xff, 0x70, 0x66, 0xe8, 0xb0, 0x4b, 0xbd, 0x18, 0x33, 0xb9, 0x8c,
-	0x5e, 0x42, 0x39, 0x24, 0xd1, 0xcc, 0xa7, 0xd4, 0x0f, 0xe6, 0x13, 0x4a, 0x98, 0xae, 0x8a, 0x13,
-	0x7e, 0xb2, 0xcb, 0x09, 0xfb, 0x4b, 0xcb, 0x01, 0x61, 0xf8, 0x61, 0x98, 0xfd, 0xe5, 0xd1, 0xa8,
-	0xff, 0x13, 0xd1, 0x41, 0x1c, 0x41, 0xc8, 0xc6, 0xdf, 0x12, 0x68, 0x9b, 0xd7, 0x43, 0xe7, 0x49,
-	0x51, 0x24, 0x51, 0x94, 0x2f, 0xee, 0x93, 0x9a, 0x7a, 0x2a, 0x64, 0xaa, 0xa4, 0x41, 0x8e, 0x27,
-	0x5a, 0x16, 0x97, 0xe4, 0xa2, 0xc1, 0xe0, 0x41, 0x96, 0x87, 0xde, 0x82, 0x8a, 0xd9, 0xb1, 0xcc,
-	0x6f, 0x06, 0xa3, 0xf3, 0xc9, 0xf0, 0xdb, 0xbe, 0x35, 0xb1, 0xbb, 0xe3, 0xe6, 0x99, 0x7d, 0xaa,
-	0xed, 0xa1, 0x43, 0x78, 0x73, 0x5d, 0x35, 0xea, 0x0e, 0xac, 0xa1, 0x26, 0xdd, 0xb6, 0x69, 0x9e,
-	0x9e, 0x59, 0xb8, 0x71, 0xa2, 0xc9, 0xa8, 0x02, 0x07, 0xeb, 0xaa, 0xf3, 0xd3, 0x4f, 0xb5, 0x9c,
-	0xe1, 0x82, 0x8a, 0xc9, 0x6b, 0x12, 0x91, 0xb9, 0xcb, 0x0b, 0x12, 0xa7, 0x9e, 0xdf, 0x51, 0xed,
-	0xec, 0x25, 0xc9, 0xff, 0x5c, 0x34, 0x94, 0x7c, 0x9f, 0x86, 0xea, 0xec, 0xf1, 0x96, 0x6a, 0x15,
-	0x40, 0xa1, 0x21, 0x71, 0x8d, 0x0e, 0xc0, 0x4a, 0x87, 0xde, 0x06, 0x48, 0x1c, 0x4c, 0x7c, 0x2f,
-	0x8e, 0x85, 0xd5, 0x04, 0xb1, 0x3d, 0xf4, 0x04, 0xd4, 0x78, 0x0e, 0x26, 0x49, 0x54, 0x15, 0x17,
-	0x63, 0xc0, 0xf6, 0x8c, 0x9f, 0x25, 0xa8, 0x6c, 0xad, 0x2b, 0x7a, 0x1f, 0xca, 0x53, 0x9f, 0xb2,
-	0x89, 0x1b, 0xcc, 0x99, 0xe3, 0xcf, 0x49, 0x24, 0x3c, 0x17, 0xf1, 0x43, 0x8e, 0x9a, 0x29, 0x88,
-	0x9e, 0x82, 0xe6, 0x46, 0xc4, 0x61, 0x24, 0x43, 0x94, 0x05, 0xf1, 0x8d, 0x18, 0x5f, 0x51, 0x1f,
-	0x43, 0xc1, 0x23, 0x53, 0xc2, 0x88, 0x18, 0xa6, 0x22, 0x4e, 0xfe, 0x8c, 0xdf, 0x25, 0xc8, 0xb7,
-	0x23, 0x67, 0xce, 0xd0, 0xd7, 0xb0, 0x7f, 0xc1, 0x05, 0x92, 0x0e, 0xf5, 0x7b, 0x77, 0xa5, 0xa7,
-	0x1d, 0x53, 0x71, 0x6a, 0x83, 0x7c, 0x38, 0x4c, 0x37, 0xcd, 0x64, 0xa3, 0xbd, 0xe5, 0xff, 0xda,
-	0xde, 0x95, 0x68, 0x1b, 0x6c, 0x8c, 0x61, 0x3f, 0x09, 0x8f, 0xbe, 0x5c, 0x6b, 0xe4, 0x0f, 0x77,
-	0x38, 0x71, 0xa6, 0x6d, 0xcb, 0xcb, 0x5e, 0x50, 0x79, 0x85, 0x0d, 0x06, 0xa5, 0x17, 0xfe, 0x94,
-	0x8c, 0x49, 0xc4, 0x23, 0xdd, 0x67, 0xc9, 0x69, 0x90, 0xbb, 0x22, 0x0b, 0x91, 0x5a, 0x15, 0x73,
-	0x71, 0x39, 0x8a, 0xca, 0x6a, 0x14, 0x57, 0x2b, 0x22, 0x9f, 0x59, 0x11, 0xc6, 0x5f, 0x12, 0x94,
-	0x30, 0x71, 0x17, 0xee, 0x94, 0xd8, 0x8c, 0xcc, 0xfe, 0xbf, 0xdd, 0xba, 0xf5, 0xd0, 0x62, 0x64,
-	0x94, 0xcc, 0xb6, 0x4a, 0x2f, 0x92, 0xcf, 0x5c, 0xe4, 0x5d, 0x28, 0x89, 0xf6, 0xe1, 0x05, 0x66,
-	0x54, 0xac, 0x41, 0x05, 0x43, 0x0a, 0x0d, 0xe9, 0xb3, 0x1f, 0x56, 0xef, 0x45, 0x3a, 0xfe, 0xd8,
-	0x1a, 0xf4, 0x46, 0xd8, 0xb4, 0x36, 0xc7, 0xff, 0x09, 0x1c, 0xae, 0xab, 0xcc, 0x5e, 0x77, 0xd8,
-	0xb4, 0xbb, 0x16, 0xd6, 0x24, 0xf4, 0x18, 0xd0, 0xba, 0xf2, 0x85, 0x7d, 0x66, 0x69, 0xf2, 0xb3,
-	0x31, 0x94, 0x32, 0xe5, 0x44, 0x3a, 0x3c, 0x6a, 0xe3, 0x66, 0x77, 0x68, 0xdd, 0xf2, 0x5e, 0x81,
-	0x83, 0x35, 0xcd, 0x68, 0x90, 0xfa, 0x5d, 0x83, 0xdb, 0xb8, 0x37, 0xea, 0x6b, 0x72, 0xeb, 0x17,
-	0x09, 0xde, 0x71, 0x83, 0xd9, 0x1d, 0x89, 0x6c, 0x95, 0xd3, 0x8b, 0xd1, 0x3e, 0x7f, 0x1b, 0xfb,
-	0xd2, 0x77, 0xfa, 0x76, 0x66, 0xf8, 0xea, 0x57, 0xb9, 0x60, 0xb6, 0x7a, 0x2f, 0x9b, 0xad, 0xdf,
-	0xe4, 0x23, 0x73, 0xd0, 0xa8, 0x0f, 0x62, 0x5e, 0x3f, 0xe1, 0x8d, 0x9f, 0x37, 0x39, 0xef, 0x4f,
-	0xa1, 0xfc, 0x7e, 0xbb, 0xf2, 0x55, 0x41, 0xbc, 0xc0, 0x8d, 0x7f, 0x02, 0x00, 0x00, 0xff, 0xff,
-	0xa8, 0x5d, 0xa2, 0x33, 0xe3, 0x07, 0x00, 0x00,
+	// 1314 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xbc, 0x57, 0x51, 0x6f, 0x1b, 0x45,
+	0x10, 0xee, 0x39, 0xb6, 0x73, 0x1e, 0xdb, 0xe9, 0x75, 0xeb, 0x86, 0x6b, 0x02, 0x6d, 0xea, 0xaa,
+	0x90, 0x96, 0xca, 0x49, 0x13, 0x40, 0x20, 0xe8, 0x83, 0xe3, 0x5c, 0x12, 0xab, 0x89, 0xe3, 0xae,
+	0xed, 0x88, 0x22, 0x24, 0xeb, 0x7a, 0xb7, 0x71, 0x4e, 0xb5, 0x7d, 0xd7, 0xbb, 0x75, 0x4a, 0xf8,
+	0x13, 0x3c, 0xf3, 0x84, 0x84, 0xc4, 0x0b, 0x6f, 0xf0, 0x03, 0xf8, 0x01, 0xbc, 0xf3, 0x2b, 0xf8,
+	0x13, 0x68, 0x67, 0xf7, 0xec, 0x73, 0x9a, 0x58, 0xc9, 0x0b, 0x2f, 0xd6, 0xee, 0xcc, 0x7c, 0xb3,
+	0x33, 0xb3, 0xb3, 0xdf, 0x9c, 0xe1, 0x53, 0x27, 0xda, 0x5c, 0x8b, 0xb8, 0x1f, 0xda, 0x3d, 0x16,
+	0x84, 0xfe, 0xa9, 0xe7, 0xb2, 0x70, 0xed, 0x74, 0xdd, 0xee, 0x07, 0x27, 0xf6, 0x5a, 0xc8, 0x22,
+	0x7f, 0x14, 0x3a, 0x2c, 0xaa, 0x04, 0xa1, 0xcf, 0x7d, 0xb2, 0xe4, 0x44, 0x9b, 0x95, 0x73, 0xc6,
+	0xca, 0x76, 0xe9, 0x8e, 0x70, 0xc4, 0xcf, 0x02, 0x16, 0xc9, 0x5f, 0x09, 0x29, 0xff, 0x93, 0x82,
+	0x42, 0x53, 0x99, 0xd6, 0x87, 0xc7, 0x3e, 0x79, 0x0c, 0x59, 0x3f, 0xb0, 0xdf, 0x8e, 0x98, 0xa9,
+	0xad, 0x68, 0xab, 0xf9, 0x8d, 0x5b, 0x15, 0xe1, 0x54, 0x42, 0x0e, 0x51, 0x41, 0x95, 0x01, 0xb9,
+	0x0f, 0xf9, 0xf8, 0x94, 0xae, 0xe7, 0x9a, 0xa9, 0x15, 0x6d, 0x35, 0x47, 0x21, 0x16, 0xd5, 0x5d,
+	0xf2, 0x10, 0x8a, 0x63, 0x83, 0xc0, 0xe6, 0x27, 0xe6, 0x1c, 0x9a, 0x14, 0x62, 0x61, 0xd3, 0xe6,
+	0x27, 0xc4, 0x84, 0x79, 0xdb, 0x75, 0x43, 0x16, 0x45, 0x66, 0x1a, 0xd5, 0xf1, 0x96, 0xac, 0x40,
+	0xde, 0x65, 0x91, 0x13, 0x7a, 0x01, 0xf7, 0xfc, 0xa1, 0x99, 0x41, 0x6d, 0x52, 0x44, 0x0e, 0x40,
+	0x3f, 0x66, 0x36, 0x1f, 0x85, 0x2c, 0x32, 0xb3, 0x18, 0xee, 0xb3, 0xca, 0xe5, 0x35, 0xa8, 0x24,
+	0x13, 0xad, 0xec, 0x28, 0x20, 0x1d, 0xbb, 0x58, 0xaa, 0x83, 0x1e, 0x4b, 0x45, 0x58, 0x21, 0x73,
+	0xce, 0x9c, 0xbe, 0x2c, 0x84, 0x4e, 0xe3, 0xad, 0xc8, 0xea, 0xd8, 0xeb, 0xb3, 0xee, 0x29, 0x0b,
+	0x23, 0xcf, 0x1f, 0x46, 0x98, 0xb8, 0x4e, 0x0b, 0x42, 0x78, 0xa4, 0x64, 0xe5, 0xbf, 0xd2, 0x50,
+	0xa0, 0xea, 0x7a, 0xae, 0x5b, 0xd7, 0x6f, 0x20, 0x2d, 0xe4, 0xe8, 0x77, 0x61, 0x63, 0x75, 0x56,
+	0x46, 0xf1, 0x11, 0xed, 0xb3, 0x80, 0x51, 0x44, 0x91, 0x2f, 0x20, 0xe5, 0xb9, 0x58, 0xe9, 0xfc,
+	0xc6, 0xc7, 0x57, 0xc1, 0xd6, 0x5d, 0x9a, 0xf2, 0x5c, 0xb2, 0x07, 0xba, 0x73, 0xc2, 0x9c, 0x37,
+	0xd1, 0x68, 0x80, 0x17, 0x91, 0xdf, 0x78, 0x7a, 0x15, 0x74, 0x4d, 0x61, 0xe8, 0x18, 0x4d, 0x08,
+	0xa4, 0x19, 0xb7, 0x7b, 0xea, 0xc2, 0x70, 0x4d, 0x96, 0x21, 0x37, 0xf0, 0x06, 0xac, 0x8b, 0x89,
+	0x65, 0x51, 0xa1, 0x0b, 0x81, 0x08, 0x9c, 0x3c, 0x81, 0xcc, 0x80, 0x7b, 0x03, 0x66, 0xce, 0xe3,
+	0xb9, 0xa5, 0x44, 0x69, 0xda, 0xde, 0x80, 0x45, 0xdc, 0x1e, 0x04, 0x54, 0x9a, 0x08, 0xe7, 0xd8,
+	0x4a, 0xba, 0x74, 0x2e, 0xd6, 0xe4, 0x08, 0x16, 0x02, 0x16, 0x0e, 0xbc, 0x48, 0xd4, 0xbe, 0x1b,
+	0x31, 0x6e, 0xe6, 0xd0, 0xd1, 0xda, 0x55, 0x12, 0x68, 0x8e, 0x91, 0x11, 0x2d, 0x4e, 0xdc, 0xb4,
+	0x18, 0x17, 0x67, 0x45, 0xde, 0x8f, 0xcc, 0x84, 0x15, 0x6d, 0x35, 0x4d, 0x71, 0x4d, 0x4a, 0x90,
+	0xf1, 0xdf, 0x0d, 0x59, 0x68, 0xe6, 0x31, 0x00, 0xb9, 0x21, 0x4d, 0x58, 0x60, 0x3f, 0xf0, 0xd0,
+	0xee, 0x0e, 0x18, 0xb7, 0x5d, 0x9b, 0xdb, 0x66, 0x11, 0x23, 0x78, 0x3c, 0x2b, 0x02, 0x4b, 0x20,
+	0x0e, 0x14, 0x80, 0x16, 0x59, 0x72, 0x5b, 0x6e, 0x40, 0x71, 0x4a, 0x4f, 0x9e, 0x43, 0x96, 0xdb,
+	0x61, 0x8f, 0x71, 0xd5, 0x40, 0x8f, 0x66, 0x27, 0x77, 0xcc, 0x42, 0x36, 0x74, 0x18, 0x55, 0xa0,
+	0xf2, 0x2f, 0x29, 0x30, 0xce, 0xdf, 0x19, 0xb1, 0x54, 0xa7, 0x69, 0xd8, 0x69, 0xcf, 0xae, 0x73,
+	0xdf, 0x95, 0x44, 0xcb, 0x19, 0x30, 0x27, 0xba, 0x46, 0x12, 0x80, 0x58, 0x96, 0xff, 0xd0, 0x20,
+	0x8d, 0x57, 0x5b, 0x86, 0x7b, 0xd4, 0x6a, 0x1d, 0x76, 0x68, 0xcd, 0xea, 0xd6, 0xf6, 0xac, 0xda,
+	0x8b, 0x56, 0xe7, 0xa0, 0xdb, 0x7e, 0xd5, 0xb4, 0xba, 0xf5, 0xc6, 0x51, 0x75, 0xbf, 0xbe, 0x6d,
+	0xdc, 0x20, 0x2b, 0xf0, 0xe1, 0x25, 0x36, 0x9d, 0x46, 0xcb, 0x6a, 0x1b, 0xda, 0x0c, 0x2f, 0xd5,
+	0xed, 0x7d, 0x8b, 0x6e, 0x6e, 0x18, 0x29, 0x72, 0x0f, 0x96, 0x2e, 0xb1, 0x39, 0xd8, 0xfe, 0xdc,
+	0x98, 0x23, 0xf7, 0x61, 0xf9, 0x12, 0x7d, 0x6b, 0xaf, 0xfa, 0xcc, 0x48, 0x97, 0x1d, 0xc8, 0x8d,
+	0xcb, 0x46, 0x4a, 0xaa, 0xcd, 0x44, 0x65, 0x72, 0x7b, 0x37, 0x54, 0xa3, 0x7d, 0x89, 0x6f, 0x2b,
+	0x75, 0x9d, 0xb7, 0xb5, 0x77, 0x43, 0xbc, 0xae, 0xad, 0x2c, 0xa4, 0xa3, 0x80, 0x39, 0xe5, 0x3d,
+	0x80, 0x89, 0x8e, 0x7c, 0x04, 0xa0, 0x1c, 0x08, 0x02, 0xc5, 0xb3, 0x68, 0x4e, 0x49, 0xea, 0xae,
+	0x78, 0x34, 0x92, 0x12, 0x26, 0xf4, 0xaa, 0x4b, 0x41, 0xdd, 0x2d, 0xff, 0x96, 0x81, 0xdb, 0x17,
+	0xf4, 0xb0, 0x00, 0xd9, 0xae, 0xdb, 0xed, 0x85, 0xf6, 0x90, 0x2b, 0xea, 0xd2, 0x6d, 0xd7, 0xdd,
+	0x15, 0x7b, 0xf2, 0x18, 0x0c, 0x27, 0x64, 0x36, 0x67, 0x5d, 0xc7, 0x1f, 0x72, 0xdb, 0x13, 0x8d,
+	0x2c, 0xe9, 0xeb, 0xa6, 0x94, 0xd7, 0x62, 0x31, 0x59, 0x84, 0xac, 0xcb, 0xfa, 0x8c, 0x33, 0xe4,
+	0x12, 0x9d, 0xaa, 0x1d, 0xb9, 0x0b, 0x7a, 0x8f, 0x71, 0xc9, 0xe7, 0x19, 0xc9, 0x8c, 0x3d, 0xc6,
+	0x91, 0xca, 0x97, 0x21, 0x27, 0x54, 0x6f, 0x47, 0x3e, 0xb7, 0xf1, 0x91, 0xeb, 0x54, 0xd8, 0xbe,
+	0x14, 0x7b, 0xf2, 0x19, 0x2c, 0x7a, 0x43, 0x8f, 0x7b, 0xe2, 0x70, 0xe4, 0x4f, 0xd7, 0x7f, 0x37,
+	0xec, 0xfb, 0xb6, 0x8b, 0xaf, 0x5e, 0xa7, 0xa5, 0x58, 0xbb, 0xe3, 0xf5, 0xd9, 0xb6, 0xd2, 0x91,
+	0x75, 0x28, 0x4d, 0xa3, 0x46, 0x01, 0x62, 0x74, 0xc4, 0x90, 0x24, 0xa6, 0x83, 0x1a, 0x31, 0x95,
+	0xfa, 0x5e, 0xc4, 0x65, 0x01, 0x22, 0x64, 0x02, 0x9d, 0x82, 0x10, 0x61, 0x09, 0x22, 0xf2, 0x08,
+	0x16, 0xd0, 0x60, 0x52, 0x01, 0x40, 0x9b, 0xa2, 0x90, 0x4e, 0xf2, 0x7f, 0x0a, 0x04, 0xcd, 0xa6,
+	0xb9, 0x3e, 0x8f, 0xa6, 0x86, 0xd0, 0xec, 0x24, 0xf8, 0x9e, 0x3c, 0x80, 0x02, 0x5a, 0xc7, 0x33,
+	0xa3, 0x80, 0x76, 0x18, 0x09, 0x55, 0x73, 0x83, 0x40, 0x7a, 0xe0, 0x9f, 0x32, 0x64, 0x06, 0x9d,
+	0xe2, 0x5a, 0xc0, 0x42, 0x26, 0x56, 0xea, 0xbe, 0x16, 0x24, 0x4c, 0xca, 0xe4, 0x95, 0x89, 0x21,
+	0x3a, 0x0a, 0x7b, 0x6c, 0xec, 0xfa, 0xa6, 0x1c, 0x37, 0x28, 0x8c, 0x7d, 0xaf, 0x43, 0x29, 0x64,
+	0xa2, 0x71, 0xd8, 0x54, 0xbc, 0xa6, 0x21, 0xcb, 0xa4, 0x74, 0x89, 0x88, 0x93, 0x08, 0xe5, 0xb8,
+	0xeb, 0x71, 0x36, 0x30, 0x6f, 0x4d, 0x21, 0x94, 0xff, 0x3a, 0x67, 0x48, 0xeb, 0x11, 0xb7, 0xb9,
+	0x49, 0x64, 0xfc, 0x62, 0x2d, 0xe2, 0x1f, 0x05, 0xae, 0xb8, 0x1c, 0x19, 0xff, 0x6d, 0x19, 0xbf,
+	0x94, 0x61, 0xfc, 0xe5, 0x9f, 0x35, 0xc8, 0xc8, 0x4c, 0x9e, 0xc3, 0x3c, 0x5a, 0xb1, 0x78, 0x06,
+	0x3e, 0x9c, 0xf5, 0x84, 0x76, 0xa5, 0x29, 0x8d, 0x31, 0xe4, 0x25, 0xe4, 0x27, 0xf4, 0x1c, 0xa9,
+	0x57, 0x78, 0x6d, 0x8a, 0x4f, 0xfa, 0x28, 0x7b, 0x30, 0xaf, 0x8e, 0x21, 0x5f, 0x4f, 0x51, 0xe1,
+	0x27, 0x57, 0x88, 0x2c, 0x41, 0x80, 0x0f, 0x12, 0xbc, 0x90, 0x1c, 0xec, 0x9d, 0x48, 0x7c, 0x07,
+	0x09, 0x02, 0x28, 0x73, 0xc8, 0x27, 0xcb, 0x7f, 0x8d, 0xcf, 0x01, 0x03, 0xe6, 0xde, 0xb0, 0x33,
+	0xf5, 0xed, 0x24, 0x96, 0xe3, 0xb9, 0x94, 0x9e, 0x9e, 0x4b, 0x72, 0x86, 0x66, 0x50, 0x28, 0x37,
+	0xe5, 0x7f, 0x35, 0xc8, 0x27, 0xef, 0xf0, 0x7f, 0xfb, 0x0a, 0xb9, 0x30, 0x68, 0xe4, 0x8c, 0x74,
+	0x62, 0x70, 0xc7, 0x89, 0x64, 0x12, 0x89, 0x7c, 0x05, 0x45, 0x64, 0x1a, 0x31, 0xca, 0x31, 0xa1,
+	0xec, 0x8c, 0x8f, 0x82, 0x42, 0x6c, 0x2a, 0x44, 0x4f, 0xfe, 0xd4, 0x26, 0x1f, 0x5d, 0x38, 0x7d,
+	0xee, 0xc2, 0x9d, 0x31, 0xe7, 0x9f, 0x1b, 0x3a, 0x8b, 0x40, 0xa6, 0x55, 0x3b, 0xf5, 0x7d, 0xcb,
+	0xd0, 0xc8, 0x32, 0x7c, 0x30, 0x2d, 0xaf, 0x1d, 0x36, 0xda, 0xd5, 0x7a, 0xc3, 0xa2, 0x46, 0xea,
+	0x7d, 0x25, 0xb5, 0x76, 0x2c, 0x6a, 0x35, 0x6a, 0x96, 0x31, 0xf7, 0xfe, 0x61, 0xad, 0x57, 0x07,
+	0xfb, 0xf5, 0xc6, 0x0b, 0x23, 0x4d, 0x96, 0x60, 0xf1, 0x7c, 0x1c, 0x6d, 0x8b, 0x36, 0xaa, 0xfb,
+	0x46, 0xe6, 0xc9, 0x11, 0xe4, 0x13, 0x0d, 0x45, 0x4c, 0x28, 0xed, 0xd2, 0x6a, 0xa3, 0x6d, 0xbd,
+	0x17, 0xf1, 0x1d, 0xb8, 0x35, 0xa5, 0xe9, 0xb4, 0x2c, 0x6a, 0x68, 0x22, 0x91, 0x29, 0xf1, 0x2e,
+	0x3d, 0xec, 0x34, 0x8d, 0xd4, 0xd6, 0x4f, 0x1a, 0xdc, 0x73, 0xfc, 0xc1, 0x8c, 0x7b, 0xdb, 0x5a,
+	0x88, 0x8b, 0x15, 0x35, 0xc5, 0x9f, 0x81, 0xa6, 0xf6, 0x9d, 0x79, 0xb1, 0x65, 0xf0, 0xfa, 0xd7,
+	0x54, 0xb6, 0xb6, 0x75, 0xf8, 0x6d, 0x75, 0xeb, 0xf7, 0xd4, 0x52, 0xad, 0xb5, 0x59, 0x69, 0x49,
+	0xbb, 0xf8, 0x8b, 0xfa, 0x68, 0xbd, 0x2a, 0xec, 0xfe, 0x46, 0xe5, 0xf7, 0x17, 0x2b, 0x5f, 0x67,
+	0xf1, 0x2f, 0xc7, 0xe6, 0x7f, 0x01, 0x00, 0x00, 0xff, 0xff, 0xe8, 0x8d, 0x67, 0xac, 0xd4, 0x0c,
+	0x00, 0x00,
 }

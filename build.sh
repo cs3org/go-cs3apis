@@ -11,4 +11,4 @@ cd build && prototool generate && cd ..
 rm -rf build
 
 # change import paths
-egrep -lR 'github.com/cernbox/cs3/' ./cs3 | xargs sed -i '' 's|github.com/cernbox/cs3/|github.com/cernbox/go-cs3apis/cs3/|g'
+egrep -lR 'github.com/cernbox/cs3/' ./cs3 | xargs sed -i 's|github.com/cernbox/cs3/|github.com/cernbox/go-cs3apis/cs3/|g'

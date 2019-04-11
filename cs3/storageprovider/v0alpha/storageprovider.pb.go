@@ -340,6 +340,108 @@ func (m *DeleteResponse) GetOpaque() *types.Opaque {
 	return nil
 }
 
+type GetProviderRequest struct {
+	// OPTIONAL.
+	// Opaque information.
+	Opaque               *types.Opaque `protobuf:"bytes,1,opt,name=opaque,proto3" json:"opaque,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}      `json:"-"`
+	XXX_unrecognized     []byte        `json:"-"`
+	XXX_sizecache        int32         `json:"-"`
+}
+
+func (m *GetProviderRequest) Reset()         { *m = GetProviderRequest{} }
+func (m *GetProviderRequest) String() string { return proto.CompactTextString(m) }
+func (*GetProviderRequest) ProtoMessage()    {}
+func (*GetProviderRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_7cff0ddf029bf7f4, []int{6}
+}
+
+func (m *GetProviderRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_GetProviderRequest.Unmarshal(m, b)
+}
+func (m *GetProviderRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_GetProviderRequest.Marshal(b, m, deterministic)
+}
+func (m *GetProviderRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_GetProviderRequest.Merge(m, src)
+}
+func (m *GetProviderRequest) XXX_Size() int {
+	return xxx_messageInfo_GetProviderRequest.Size(m)
+}
+func (m *GetProviderRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_GetProviderRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_GetProviderRequest proto.InternalMessageInfo
+
+func (m *GetProviderRequest) GetOpaque() *types.Opaque {
+	if m != nil {
+		return m.Opaque
+	}
+	return nil
+}
+
+type GetProviderResponse struct {
+	// REQUIRED.
+	// The response status.
+	Status *rpc.Status `protobuf:"bytes,1,opt,name=status,proto3" json:"status,omitempty"`
+	// OPTIONAL.
+	// Opaque information.
+	Opaque *types.Opaque `protobuf:"bytes,2,opt,name=opaque,proto3" json:"opaque,omitempty"`
+	// REQUIRED.
+	// The information for the storage provider.
+	Info                 *ProviderInfo `protobuf:"bytes,3,opt,name=info,proto3" json:"info,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}      `json:"-"`
+	XXX_unrecognized     []byte        `json:"-"`
+	XXX_sizecache        int32         `json:"-"`
+}
+
+func (m *GetProviderResponse) Reset()         { *m = GetProviderResponse{} }
+func (m *GetProviderResponse) String() string { return proto.CompactTextString(m) }
+func (*GetProviderResponse) ProtoMessage()    {}
+func (*GetProviderResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_7cff0ddf029bf7f4, []int{7}
+}
+
+func (m *GetProviderResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_GetProviderResponse.Unmarshal(m, b)
+}
+func (m *GetProviderResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_GetProviderResponse.Marshal(b, m, deterministic)
+}
+func (m *GetProviderResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_GetProviderResponse.Merge(m, src)
+}
+func (m *GetProviderResponse) XXX_Size() int {
+	return xxx_messageInfo_GetProviderResponse.Size(m)
+}
+func (m *GetProviderResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_GetProviderResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_GetProviderResponse proto.InternalMessageInfo
+
+func (m *GetProviderResponse) GetStatus() *rpc.Status {
+	if m != nil {
+		return m.Status
+	}
+	return nil
+}
+
+func (m *GetProviderResponse) GetOpaque() *types.Opaque {
+	if m != nil {
+		return m.Opaque
+	}
+	return nil
+}
+
+func (m *GetProviderResponse) GetInfo() *ProviderInfo {
+	if m != nil {
+		return m.Info
+	}
+	return nil
+}
+
 type GetPathRequest struct {
 	// OPTIONAL.
 	// Opaque information.
@@ -356,7 +458,7 @@ func (m *GetPathRequest) Reset()         { *m = GetPathRequest{} }
 func (m *GetPathRequest) String() string { return proto.CompactTextString(m) }
 func (*GetPathRequest) ProtoMessage()    {}
 func (*GetPathRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_7cff0ddf029bf7f4, []int{6}
+	return fileDescriptor_7cff0ddf029bf7f4, []int{8}
 }
 
 func (m *GetPathRequest) XXX_Unmarshal(b []byte) error {
@@ -407,7 +509,7 @@ func (m *GetPathResponse) Reset()         { *m = GetPathResponse{} }
 func (m *GetPathResponse) String() string { return proto.CompactTextString(m) }
 func (*GetPathResponse) ProtoMessage()    {}
 func (*GetPathResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_7cff0ddf029bf7f4, []int{7}
+	return fileDescriptor_7cff0ddf029bf7f4, []int{9}
 }
 
 func (m *GetPathResponse) XXX_Unmarshal(b []byte) error {
@@ -445,20 +547,17 @@ func (m *GetPathResponse) GetOpaque() *types.Opaque {
 type GetQuotaRequest struct {
 	// OPTIONAL.
 	// Opaque information.
-	Opaque *types.Opaque `protobuf:"bytes,1,opt,name=opaque,proto3" json:"opaque,omitempty"`
-	// REQUIRED.
-	// The reference to which the action should be performed.
-	Ref                  *Reference `protobuf:"bytes,2,opt,name=ref,proto3" json:"ref,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}   `json:"-"`
-	XXX_unrecognized     []byte     `json:"-"`
-	XXX_sizecache        int32      `json:"-"`
+	Opaque               *types.Opaque `protobuf:"bytes,1,opt,name=opaque,proto3" json:"opaque,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}      `json:"-"`
+	XXX_unrecognized     []byte        `json:"-"`
+	XXX_sizecache        int32         `json:"-"`
 }
 
 func (m *GetQuotaRequest) Reset()         { *m = GetQuotaRequest{} }
 func (m *GetQuotaRequest) String() string { return proto.CompactTextString(m) }
 func (*GetQuotaRequest) ProtoMessage()    {}
 func (*GetQuotaRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_7cff0ddf029bf7f4, []int{8}
+	return fileDescriptor_7cff0ddf029bf7f4, []int{10}
 }
 
 func (m *GetQuotaRequest) XXX_Unmarshal(b []byte) error {
@@ -486,13 +585,6 @@ func (m *GetQuotaRequest) GetOpaque() *types.Opaque {
 	return nil
 }
 
-func (m *GetQuotaRequest) GetRef() *Reference {
-	if m != nil {
-		return m.Ref
-	}
-	return nil
-}
-
 type GetQuotaResponse struct {
 	// REQUIRED.
 	// The response status.
@@ -515,7 +607,7 @@ func (m *GetQuotaResponse) Reset()         { *m = GetQuotaResponse{} }
 func (m *GetQuotaResponse) String() string { return proto.CompactTextString(m) }
 func (*GetQuotaResponse) ProtoMessage()    {}
 func (*GetQuotaResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_7cff0ddf029bf7f4, []int{9}
+	return fileDescriptor_7cff0ddf029bf7f4, []int{11}
 }
 
 func (m *GetQuotaResponse) XXX_Unmarshal(b []byte) error {
@@ -564,6 +656,234 @@ func (m *GetQuotaResponse) GetUsedBytes() uint64 {
 	return 0
 }
 
+type InitiateFileUploadRequest struct {
+	// OPTIONAL.
+	// Opaque information.
+	Opaque *types.Opaque `protobuf:"bytes,1,opt,name=opaque,proto3" json:"opaque,omitempty"`
+	// REQUIRED.
+	// The reference to which the action should be performed.
+	Ref                  *Reference `protobuf:"bytes,2,opt,name=ref,proto3" json:"ref,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}   `json:"-"`
+	XXX_unrecognized     []byte     `json:"-"`
+	XXX_sizecache        int32      `json:"-"`
+}
+
+func (m *InitiateFileUploadRequest) Reset()         { *m = InitiateFileUploadRequest{} }
+func (m *InitiateFileUploadRequest) String() string { return proto.CompactTextString(m) }
+func (*InitiateFileUploadRequest) ProtoMessage()    {}
+func (*InitiateFileUploadRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_7cff0ddf029bf7f4, []int{12}
+}
+
+func (m *InitiateFileUploadRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_InitiateFileUploadRequest.Unmarshal(m, b)
+}
+func (m *InitiateFileUploadRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_InitiateFileUploadRequest.Marshal(b, m, deterministic)
+}
+func (m *InitiateFileUploadRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_InitiateFileUploadRequest.Merge(m, src)
+}
+func (m *InitiateFileUploadRequest) XXX_Size() int {
+	return xxx_messageInfo_InitiateFileUploadRequest.Size(m)
+}
+func (m *InitiateFileUploadRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_InitiateFileUploadRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_InitiateFileUploadRequest proto.InternalMessageInfo
+
+func (m *InitiateFileUploadRequest) GetOpaque() *types.Opaque {
+	if m != nil {
+		return m.Opaque
+	}
+	return nil
+}
+
+func (m *InitiateFileUploadRequest) GetRef() *Reference {
+	if m != nil {
+		return m.Ref
+	}
+	return nil
+}
+
+type InitiateFileUploadResponse struct {
+	// REQUIRED.
+	// The response status.
+	Status *rpc.Status `protobuf:"bytes,1,opt,name=status,proto3" json:"status,omitempty"`
+	// OPTIONAL.
+	// Opaque information.
+	Opaque *types.Opaque `protobuf:"bytes,2,opt,name=opaque,proto3" json:"opaque,omitempty"`
+	// REQUIRED.
+	// The endpoint where to upload the data.
+	// The value MUST be a Uniform Resource Identifier (URI)
+	// as specified in RFC 3986.
+	UploadEndpoint       string   `protobuf:"bytes,3,opt,name=upload_endpoint,json=uploadEndpoint,proto3" json:"upload_endpoint,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *InitiateFileUploadResponse) Reset()         { *m = InitiateFileUploadResponse{} }
+func (m *InitiateFileUploadResponse) String() string { return proto.CompactTextString(m) }
+func (*InitiateFileUploadResponse) ProtoMessage()    {}
+func (*InitiateFileUploadResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_7cff0ddf029bf7f4, []int{13}
+}
+
+func (m *InitiateFileUploadResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_InitiateFileUploadResponse.Unmarshal(m, b)
+}
+func (m *InitiateFileUploadResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_InitiateFileUploadResponse.Marshal(b, m, deterministic)
+}
+func (m *InitiateFileUploadResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_InitiateFileUploadResponse.Merge(m, src)
+}
+func (m *InitiateFileUploadResponse) XXX_Size() int {
+	return xxx_messageInfo_InitiateFileUploadResponse.Size(m)
+}
+func (m *InitiateFileUploadResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_InitiateFileUploadResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_InitiateFileUploadResponse proto.InternalMessageInfo
+
+func (m *InitiateFileUploadResponse) GetStatus() *rpc.Status {
+	if m != nil {
+		return m.Status
+	}
+	return nil
+}
+
+func (m *InitiateFileUploadResponse) GetOpaque() *types.Opaque {
+	if m != nil {
+		return m.Opaque
+	}
+	return nil
+}
+
+func (m *InitiateFileUploadResponse) GetUploadEndpoint() string {
+	if m != nil {
+		return m.UploadEndpoint
+	}
+	return ""
+}
+
+type InitiateFileDownloadRequest struct {
+	// OPTIONAL.
+	// Opaque information.
+	Opaque *types.Opaque `protobuf:"bytes,1,opt,name=opaque,proto3" json:"opaque,omitempty"`
+	// REQUIRED.
+	// The reference to which the action should be performed.
+	Ref                  *Reference `protobuf:"bytes,2,opt,name=ref,proto3" json:"ref,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}   `json:"-"`
+	XXX_unrecognized     []byte     `json:"-"`
+	XXX_sizecache        int32      `json:"-"`
+}
+
+func (m *InitiateFileDownloadRequest) Reset()         { *m = InitiateFileDownloadRequest{} }
+func (m *InitiateFileDownloadRequest) String() string { return proto.CompactTextString(m) }
+func (*InitiateFileDownloadRequest) ProtoMessage()    {}
+func (*InitiateFileDownloadRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_7cff0ddf029bf7f4, []int{14}
+}
+
+func (m *InitiateFileDownloadRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_InitiateFileDownloadRequest.Unmarshal(m, b)
+}
+func (m *InitiateFileDownloadRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_InitiateFileDownloadRequest.Marshal(b, m, deterministic)
+}
+func (m *InitiateFileDownloadRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_InitiateFileDownloadRequest.Merge(m, src)
+}
+func (m *InitiateFileDownloadRequest) XXX_Size() int {
+	return xxx_messageInfo_InitiateFileDownloadRequest.Size(m)
+}
+func (m *InitiateFileDownloadRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_InitiateFileDownloadRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_InitiateFileDownloadRequest proto.InternalMessageInfo
+
+func (m *InitiateFileDownloadRequest) GetOpaque() *types.Opaque {
+	if m != nil {
+		return m.Opaque
+	}
+	return nil
+}
+
+func (m *InitiateFileDownloadRequest) GetRef() *Reference {
+	if m != nil {
+		return m.Ref
+	}
+	return nil
+}
+
+type InitiateFileDownloadResponse struct {
+	// REQUIRED.
+	// The response status.
+	Status *rpc.Status `protobuf:"bytes,1,opt,name=status,proto3" json:"status,omitempty"`
+	// OPTIONAL.
+	// Opaque information.
+	Opaque *types.Opaque `protobuf:"bytes,2,opt,name=opaque,proto3" json:"opaque,omitempty"`
+	// REQUIRED.
+	// The endpoint where to downooad the data.
+	// The value MUST be a Uniform Resource Identifier (URI)
+	// as specified in RFC 3986.
+	DownloadEndpoint     string   `protobuf:"bytes,3,opt,name=download_endpoint,json=downloadEndpoint,proto3" json:"download_endpoint,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *InitiateFileDownloadResponse) Reset()         { *m = InitiateFileDownloadResponse{} }
+func (m *InitiateFileDownloadResponse) String() string { return proto.CompactTextString(m) }
+func (*InitiateFileDownloadResponse) ProtoMessage()    {}
+func (*InitiateFileDownloadResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_7cff0ddf029bf7f4, []int{15}
+}
+
+func (m *InitiateFileDownloadResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_InitiateFileDownloadResponse.Unmarshal(m, b)
+}
+func (m *InitiateFileDownloadResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_InitiateFileDownloadResponse.Marshal(b, m, deterministic)
+}
+func (m *InitiateFileDownloadResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_InitiateFileDownloadResponse.Merge(m, src)
+}
+func (m *InitiateFileDownloadResponse) XXX_Size() int {
+	return xxx_messageInfo_InitiateFileDownloadResponse.Size(m)
+}
+func (m *InitiateFileDownloadResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_InitiateFileDownloadResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_InitiateFileDownloadResponse proto.InternalMessageInfo
+
+func (m *InitiateFileDownloadResponse) GetStatus() *rpc.Status {
+	if m != nil {
+		return m.Status
+	}
+	return nil
+}
+
+func (m *InitiateFileDownloadResponse) GetOpaque() *types.Opaque {
+	if m != nil {
+		return m.Opaque
+	}
+	return nil
+}
+
+func (m *InitiateFileDownloadResponse) GetDownloadEndpoint() string {
+	if m != nil {
+		return m.DownloadEndpoint
+	}
+	return ""
+}
+
 type ListGrantsRequest struct {
 	// OPTIONAL.
 	// Opaque information.
@@ -580,7 +900,7 @@ func (m *ListGrantsRequest) Reset()         { *m = ListGrantsRequest{} }
 func (m *ListGrantsRequest) String() string { return proto.CompactTextString(m) }
 func (*ListGrantsRequest) ProtoMessage()    {}
 func (*ListGrantsRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_7cff0ddf029bf7f4, []int{10}
+	return fileDescriptor_7cff0ddf029bf7f4, []int{16}
 }
 
 func (m *ListGrantsRequest) XXX_Unmarshal(b []byte) error {
@@ -634,7 +954,7 @@ func (m *ListGrantsResponse) Reset()         { *m = ListGrantsResponse{} }
 func (m *ListGrantsResponse) String() string { return proto.CompactTextString(m) }
 func (*ListGrantsResponse) ProtoMessage()    {}
 func (*ListGrantsResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_7cff0ddf029bf7f4, []int{11}
+	return fileDescriptor_7cff0ddf029bf7f4, []int{17}
 }
 
 func (m *ListGrantsResponse) XXX_Unmarshal(b []byte) error {
@@ -676,6 +996,118 @@ func (m *ListGrantsResponse) GetGrants() []*Grant {
 	return nil
 }
 
+type ListContainerStreamRequest struct {
+	// OPTIONAL.
+	// Opaque information.
+	Opaque *types.Opaque `protobuf:"bytes,1,opt,name=opaque,proto3" json:"opaque,omitempty"`
+	// REQUIRED.
+	// The reference to which the action should be performed.
+	Ref                  *Reference `protobuf:"bytes,2,opt,name=ref,proto3" json:"ref,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}   `json:"-"`
+	XXX_unrecognized     []byte     `json:"-"`
+	XXX_sizecache        int32      `json:"-"`
+}
+
+func (m *ListContainerStreamRequest) Reset()         { *m = ListContainerStreamRequest{} }
+func (m *ListContainerStreamRequest) String() string { return proto.CompactTextString(m) }
+func (*ListContainerStreamRequest) ProtoMessage()    {}
+func (*ListContainerStreamRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_7cff0ddf029bf7f4, []int{18}
+}
+
+func (m *ListContainerStreamRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ListContainerStreamRequest.Unmarshal(m, b)
+}
+func (m *ListContainerStreamRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ListContainerStreamRequest.Marshal(b, m, deterministic)
+}
+func (m *ListContainerStreamRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ListContainerStreamRequest.Merge(m, src)
+}
+func (m *ListContainerStreamRequest) XXX_Size() int {
+	return xxx_messageInfo_ListContainerStreamRequest.Size(m)
+}
+func (m *ListContainerStreamRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_ListContainerStreamRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_ListContainerStreamRequest proto.InternalMessageInfo
+
+func (m *ListContainerStreamRequest) GetOpaque() *types.Opaque {
+	if m != nil {
+		return m.Opaque
+	}
+	return nil
+}
+
+func (m *ListContainerStreamRequest) GetRef() *Reference {
+	if m != nil {
+		return m.Ref
+	}
+	return nil
+}
+
+type ListContainerStreamResponse struct {
+	// REQUIRED.
+	// The response status.
+	Status *rpc.Status `protobuf:"bytes,1,opt,name=status,proto3" json:"status,omitempty"`
+	// OPTIONAL.
+	// Opaque information.
+	Opaque *types.Opaque `protobuf:"bytes,2,opt,name=opaque,proto3" json:"opaque,omitempty"`
+	// REQUIRED.
+	// The resource information.
+	Info                 *ResourceInfo `protobuf:"bytes,3,opt,name=info,proto3" json:"info,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}      `json:"-"`
+	XXX_unrecognized     []byte        `json:"-"`
+	XXX_sizecache        int32         `json:"-"`
+}
+
+func (m *ListContainerStreamResponse) Reset()         { *m = ListContainerStreamResponse{} }
+func (m *ListContainerStreamResponse) String() string { return proto.CompactTextString(m) }
+func (*ListContainerStreamResponse) ProtoMessage()    {}
+func (*ListContainerStreamResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_7cff0ddf029bf7f4, []int{19}
+}
+
+func (m *ListContainerStreamResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ListContainerStreamResponse.Unmarshal(m, b)
+}
+func (m *ListContainerStreamResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ListContainerStreamResponse.Marshal(b, m, deterministic)
+}
+func (m *ListContainerStreamResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ListContainerStreamResponse.Merge(m, src)
+}
+func (m *ListContainerStreamResponse) XXX_Size() int {
+	return xxx_messageInfo_ListContainerStreamResponse.Size(m)
+}
+func (m *ListContainerStreamResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_ListContainerStreamResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_ListContainerStreamResponse proto.InternalMessageInfo
+
+func (m *ListContainerStreamResponse) GetStatus() *rpc.Status {
+	if m != nil {
+		return m.Status
+	}
+	return nil
+}
+
+func (m *ListContainerStreamResponse) GetOpaque() *types.Opaque {
+	if m != nil {
+		return m.Opaque
+	}
+	return nil
+}
+
+func (m *ListContainerStreamResponse) GetInfo() *ResourceInfo {
+	if m != nil {
+		return m.Info
+	}
+	return nil
+}
+
 type ListContainerRequest struct {
 	// OPTIONAL.
 	// Opaque information.
@@ -692,7 +1124,7 @@ func (m *ListContainerRequest) Reset()         { *m = ListContainerRequest{} }
 func (m *ListContainerRequest) String() string { return proto.CompactTextString(m) }
 func (*ListContainerRequest) ProtoMessage()    {}
 func (*ListContainerRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_7cff0ddf029bf7f4, []int{12}
+	return fileDescriptor_7cff0ddf029bf7f4, []int{20}
 }
 
 func (m *ListContainerRequest) XXX_Unmarshal(b []byte) error {
@@ -746,7 +1178,7 @@ func (m *ListContainerResponse) Reset()         { *m = ListContainerResponse{} }
 func (m *ListContainerResponse) String() string { return proto.CompactTextString(m) }
 func (*ListContainerResponse) ProtoMessage()    {}
 func (*ListContainerResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_7cff0ddf029bf7f4, []int{13}
+	return fileDescriptor_7cff0ddf029bf7f4, []int{21}
 }
 
 func (m *ListContainerResponse) XXX_Unmarshal(b []byte) error {
@@ -804,7 +1236,7 @@ func (m *ListFileVersionsRequest) Reset()         { *m = ListFileVersionsRequest
 func (m *ListFileVersionsRequest) String() string { return proto.CompactTextString(m) }
 func (*ListFileVersionsRequest) ProtoMessage()    {}
 func (*ListFileVersionsRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_7cff0ddf029bf7f4, []int{14}
+	return fileDescriptor_7cff0ddf029bf7f4, []int{22}
 }
 
 func (m *ListFileVersionsRequest) XXX_Unmarshal(b []byte) error {
@@ -858,7 +1290,7 @@ func (m *ListFileVersionsResponse) Reset()         { *m = ListFileVersionsRespon
 func (m *ListFileVersionsResponse) String() string { return proto.CompactTextString(m) }
 func (*ListFileVersionsResponse) ProtoMessage()    {}
 func (*ListFileVersionsResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_7cff0ddf029bf7f4, []int{15}
+	return fileDescriptor_7cff0ddf029bf7f4, []int{23}
 }
 
 func (m *ListFileVersionsResponse) XXX_Unmarshal(b []byte) error {
@@ -908,22 +1340,22 @@ type ListRecycleRequest struct {
 	// SHOULD be specified.
 	// The start time range to query for recycle items.
 	// The value is the Unix Epoch timestamp in seconds.
-	FromTs uint64 `protobuf:"varint,2,opt,name=from_ts,json=fromTs,proto3" json:"from_ts,omitempty"`
+	FromTs *types.Timestamp `protobuf:"bytes,2,opt,name=from_ts,json=fromTs,proto3" json:"from_ts,omitempty"`
 	// OPTIONAL.
 	// SHOULD be specified.
 	// The end time range to query for recycle items.
 	// The value is Unix Epoch timestamp in seconds.
-	ToTs                 uint64   `protobuf:"varint,3,opt,name=to_ts,json=toTs,proto3" json:"to_ts,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
+	ToTs                 *types.Timestamp `protobuf:"bytes,3,opt,name=to_ts,json=toTs,proto3" json:"to_ts,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}         `json:"-"`
+	XXX_unrecognized     []byte           `json:"-"`
+	XXX_sizecache        int32            `json:"-"`
 }
 
 func (m *ListRecycleRequest) Reset()         { *m = ListRecycleRequest{} }
 func (m *ListRecycleRequest) String() string { return proto.CompactTextString(m) }
 func (*ListRecycleRequest) ProtoMessage()    {}
 func (*ListRecycleRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_7cff0ddf029bf7f4, []int{16}
+	return fileDescriptor_7cff0ddf029bf7f4, []int{24}
 }
 
 func (m *ListRecycleRequest) XXX_Unmarshal(b []byte) error {
@@ -951,18 +1383,18 @@ func (m *ListRecycleRequest) GetOpaque() *types.Opaque {
 	return nil
 }
 
-func (m *ListRecycleRequest) GetFromTs() uint64 {
+func (m *ListRecycleRequest) GetFromTs() *types.Timestamp {
 	if m != nil {
 		return m.FromTs
 	}
-	return 0
+	return nil
 }
 
-func (m *ListRecycleRequest) GetToTs() uint64 {
+func (m *ListRecycleRequest) GetToTs() *types.Timestamp {
 	if m != nil {
 		return m.ToTs
 	}
-	return 0
+	return nil
 }
 
 type ListRecycleResponse struct {
@@ -984,7 +1416,7 @@ func (m *ListRecycleResponse) Reset()         { *m = ListRecycleResponse{} }
 func (m *ListRecycleResponse) String() string { return proto.CompactTextString(m) }
 func (*ListRecycleResponse) ProtoMessage()    {}
 func (*ListRecycleResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_7cff0ddf029bf7f4, []int{17}
+	return fileDescriptor_7cff0ddf029bf7f4, []int{25}
 }
 
 func (m *ListRecycleResponse) XXX_Unmarshal(b []byte) error {
@@ -1026,6 +1458,132 @@ func (m *ListRecycleResponse) GetRecycleItems() []*RecycleItem {
 	return nil
 }
 
+type ListRecycleStreamRequest struct {
+	// OPTIONAL.
+	// Opaque information.
+	Opaque *types.Opaque `protobuf:"bytes,1,opt,name=opaque,proto3" json:"opaque,omitempty"`
+	// OPTIONAL.
+	// SHOULD be specified.
+	// The start time range to query for recycle items.
+	// The value is the Unix Epoch timestamp in seconds.
+	FromTs *types.Timestamp `protobuf:"bytes,2,opt,name=from_ts,json=fromTs,proto3" json:"from_ts,omitempty"`
+	// OPTIONAL.
+	// SHOULD be specified.
+	// The end time range to query for recycle items.
+	// The value is Unix Epoch timestamp in seconds.
+	ToTs                 *types.Timestamp `protobuf:"bytes,3,opt,name=to_ts,json=toTs,proto3" json:"to_ts,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}         `json:"-"`
+	XXX_unrecognized     []byte           `json:"-"`
+	XXX_sizecache        int32            `json:"-"`
+}
+
+func (m *ListRecycleStreamRequest) Reset()         { *m = ListRecycleStreamRequest{} }
+func (m *ListRecycleStreamRequest) String() string { return proto.CompactTextString(m) }
+func (*ListRecycleStreamRequest) ProtoMessage()    {}
+func (*ListRecycleStreamRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_7cff0ddf029bf7f4, []int{26}
+}
+
+func (m *ListRecycleStreamRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ListRecycleStreamRequest.Unmarshal(m, b)
+}
+func (m *ListRecycleStreamRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ListRecycleStreamRequest.Marshal(b, m, deterministic)
+}
+func (m *ListRecycleStreamRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ListRecycleStreamRequest.Merge(m, src)
+}
+func (m *ListRecycleStreamRequest) XXX_Size() int {
+	return xxx_messageInfo_ListRecycleStreamRequest.Size(m)
+}
+func (m *ListRecycleStreamRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_ListRecycleStreamRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_ListRecycleStreamRequest proto.InternalMessageInfo
+
+func (m *ListRecycleStreamRequest) GetOpaque() *types.Opaque {
+	if m != nil {
+		return m.Opaque
+	}
+	return nil
+}
+
+func (m *ListRecycleStreamRequest) GetFromTs() *types.Timestamp {
+	if m != nil {
+		return m.FromTs
+	}
+	return nil
+}
+
+func (m *ListRecycleStreamRequest) GetToTs() *types.Timestamp {
+	if m != nil {
+		return m.ToTs
+	}
+	return nil
+}
+
+type ListRecycleStreamResponse struct {
+	// REQUIRED.
+	// The response status.
+	Status *rpc.Status `protobuf:"bytes,1,opt,name=status,proto3" json:"status,omitempty"`
+	// OPTIONAL.
+	// Opaque information.
+	Opaque *types.Opaque `protobuf:"bytes,2,opt,name=opaque,proto3" json:"opaque,omitempty"`
+	// REQUIRED.
+	// The recycle items.
+	RecycleItem          *RecycleItem `protobuf:"bytes,3,opt,name=recycle_item,json=recycleItem,proto3" json:"recycle_item,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}     `json:"-"`
+	XXX_unrecognized     []byte       `json:"-"`
+	XXX_sizecache        int32        `json:"-"`
+}
+
+func (m *ListRecycleStreamResponse) Reset()         { *m = ListRecycleStreamResponse{} }
+func (m *ListRecycleStreamResponse) String() string { return proto.CompactTextString(m) }
+func (*ListRecycleStreamResponse) ProtoMessage()    {}
+func (*ListRecycleStreamResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_7cff0ddf029bf7f4, []int{27}
+}
+
+func (m *ListRecycleStreamResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ListRecycleStreamResponse.Unmarshal(m, b)
+}
+func (m *ListRecycleStreamResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ListRecycleStreamResponse.Marshal(b, m, deterministic)
+}
+func (m *ListRecycleStreamResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ListRecycleStreamResponse.Merge(m, src)
+}
+func (m *ListRecycleStreamResponse) XXX_Size() int {
+	return xxx_messageInfo_ListRecycleStreamResponse.Size(m)
+}
+func (m *ListRecycleStreamResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_ListRecycleStreamResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_ListRecycleStreamResponse proto.InternalMessageInfo
+
+func (m *ListRecycleStreamResponse) GetStatus() *rpc.Status {
+	if m != nil {
+		return m.Status
+	}
+	return nil
+}
+
+func (m *ListRecycleStreamResponse) GetOpaque() *types.Opaque {
+	if m != nil {
+		return m.Opaque
+	}
+	return nil
+}
+
+func (m *ListRecycleStreamResponse) GetRecycleItem() *RecycleItem {
+	if m != nil {
+		return m.RecycleItem
+	}
+	return nil
+}
+
 type MoveRequest struct {
 	// OPTIONAL.
 	// Opaque information.
@@ -1045,7 +1603,7 @@ func (m *MoveRequest) Reset()         { *m = MoveRequest{} }
 func (m *MoveRequest) String() string { return proto.CompactTextString(m) }
 func (*MoveRequest) ProtoMessage()    {}
 func (*MoveRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_7cff0ddf029bf7f4, []int{18}
+	return fileDescriptor_7cff0ddf029bf7f4, []int{28}
 }
 
 func (m *MoveRequest) XXX_Unmarshal(b []byte) error {
@@ -1103,7 +1661,7 @@ func (m *MoveResponse) Reset()         { *m = MoveResponse{} }
 func (m *MoveResponse) String() string { return proto.CompactTextString(m) }
 func (*MoveResponse) ProtoMessage()    {}
 func (*MoveResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_7cff0ddf029bf7f4, []int{19}
+	return fileDescriptor_7cff0ddf029bf7f4, []int{29}
 }
 
 func (m *MoveResponse) XXX_Unmarshal(b []byte) error {
@@ -1154,7 +1712,7 @@ func (m *PurgeRecycleRequest) Reset()         { *m = PurgeRecycleRequest{} }
 func (m *PurgeRecycleRequest) String() string { return proto.CompactTextString(m) }
 func (*PurgeRecycleRequest) ProtoMessage()    {}
 func (*PurgeRecycleRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_7cff0ddf029bf7f4, []int{20}
+	return fileDescriptor_7cff0ddf029bf7f4, []int{30}
 }
 
 func (m *PurgeRecycleRequest) XXX_Unmarshal(b []byte) error {
@@ -1205,7 +1763,7 @@ func (m *PurgeRecycleResponse) Reset()         { *m = PurgeRecycleResponse{} }
 func (m *PurgeRecycleResponse) String() string { return proto.CompactTextString(m) }
 func (*PurgeRecycleResponse) ProtoMessage()    {}
 func (*PurgeRecycleResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_7cff0ddf029bf7f4, []int{21}
+	return fileDescriptor_7cff0ddf029bf7f4, []int{31}
 }
 
 func (m *PurgeRecycleResponse) XXX_Unmarshal(b []byte) error {
@@ -1259,7 +1817,7 @@ func (m *RestoreFileVersionRequest) Reset()         { *m = RestoreFileVersionReq
 func (m *RestoreFileVersionRequest) String() string { return proto.CompactTextString(m) }
 func (*RestoreFileVersionRequest) ProtoMessage()    {}
 func (*RestoreFileVersionRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_7cff0ddf029bf7f4, []int{22}
+	return fileDescriptor_7cff0ddf029bf7f4, []int{32}
 }
 
 func (m *RestoreFileVersionRequest) XXX_Unmarshal(b []byte) error {
@@ -1317,7 +1875,7 @@ func (m *RestoreFileVersionResponse) Reset()         { *m = RestoreFileVersionRe
 func (m *RestoreFileVersionResponse) String() string { return proto.CompactTextString(m) }
 func (*RestoreFileVersionResponse) ProtoMessage()    {}
 func (*RestoreFileVersionResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_7cff0ddf029bf7f4, []int{23}
+	return fileDescriptor_7cff0ddf029bf7f4, []int{33}
 }
 
 func (m *RestoreFileVersionResponse) XXX_Unmarshal(b []byte) error {
@@ -1379,7 +1937,7 @@ func (m *RestoreRecycleItemRequest) Reset()         { *m = RestoreRecycleItemReq
 func (m *RestoreRecycleItemRequest) String() string { return proto.CompactTextString(m) }
 func (*RestoreRecycleItemRequest) ProtoMessage()    {}
 func (*RestoreRecycleItemRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_7cff0ddf029bf7f4, []int{24}
+	return fileDescriptor_7cff0ddf029bf7f4, []int{34}
 }
 
 func (m *RestoreRecycleItemRequest) XXX_Unmarshal(b []byte) error {
@@ -1444,7 +2002,7 @@ func (m *RestoreRecycleItemResponse) Reset()         { *m = RestoreRecycleItemRe
 func (m *RestoreRecycleItemResponse) String() string { return proto.CompactTextString(m) }
 func (*RestoreRecycleItemResponse) ProtoMessage()    {}
 func (*RestoreRecycleItemResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_7cff0ddf029bf7f4, []int{25}
+	return fileDescriptor_7cff0ddf029bf7f4, []int{35}
 }
 
 func (m *RestoreRecycleItemResponse) XXX_Unmarshal(b []byte) error {
@@ -1487,7 +2045,7 @@ type RemoveGrantRequest struct {
 	// The reference to which the action should be performed.
 	Ref *Reference `protobuf:"bytes,2,opt,name=ref,proto3" json:"ref,omitempty"`
 	// REQUIRED.
-	// The grant to add.
+	// The grant to remove.
 	Grant                *Grant   `protobuf:"bytes,3,opt,name=grant,proto3" json:"grant,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
@@ -1498,7 +2056,7 @@ func (m *RemoveGrantRequest) Reset()         { *m = RemoveGrantRequest{} }
 func (m *RemoveGrantRequest) String() string { return proto.CompactTextString(m) }
 func (*RemoveGrantRequest) ProtoMessage()    {}
 func (*RemoveGrantRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_7cff0ddf029bf7f4, []int{26}
+	return fileDescriptor_7cff0ddf029bf7f4, []int{36}
 }
 
 func (m *RemoveGrantRequest) XXX_Unmarshal(b []byte) error {
@@ -1556,7 +2114,7 @@ func (m *RemoveGrantResponse) Reset()         { *m = RemoveGrantResponse{} }
 func (m *RemoveGrantResponse) String() string { return proto.CompactTextString(m) }
 func (*RemoveGrantResponse) ProtoMessage()    {}
 func (*RemoveGrantResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_7cff0ddf029bf7f4, []int{27}
+	return fileDescriptor_7cff0ddf029bf7f4, []int{37}
 }
 
 func (m *RemoveGrantResponse) XXX_Unmarshal(b []byte) error {
@@ -1607,7 +2165,7 @@ func (m *StatRequest) Reset()         { *m = StatRequest{} }
 func (m *StatRequest) String() string { return proto.CompactTextString(m) }
 func (*StatRequest) ProtoMessage()    {}
 func (*StatRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_7cff0ddf029bf7f4, []int{28}
+	return fileDescriptor_7cff0ddf029bf7f4, []int{38}
 }
 
 func (m *StatRequest) XXX_Unmarshal(b []byte) error {
@@ -1661,7 +2219,7 @@ func (m *StatResponse) Reset()         { *m = StatResponse{} }
 func (m *StatResponse) String() string { return proto.CompactTextString(m) }
 func (*StatResponse) ProtoMessage()    {}
 func (*StatResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_7cff0ddf029bf7f4, []int{29}
+	return fileDescriptor_7cff0ddf029bf7f4, []int{39}
 }
 
 func (m *StatResponse) XXX_Unmarshal(b []byte) error {
@@ -1722,7 +2280,7 @@ func (m *UpdateGrantRequest) Reset()         { *m = UpdateGrantRequest{} }
 func (m *UpdateGrantRequest) String() string { return proto.CompactTextString(m) }
 func (*UpdateGrantRequest) ProtoMessage()    {}
 func (*UpdateGrantRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_7cff0ddf029bf7f4, []int{30}
+	return fileDescriptor_7cff0ddf029bf7f4, []int{40}
 }
 
 func (m *UpdateGrantRequest) XXX_Unmarshal(b []byte) error {
@@ -1780,7 +2338,7 @@ func (m *UpdateGrantResponse) Reset()         { *m = UpdateGrantResponse{} }
 func (m *UpdateGrantResponse) String() string { return proto.CompactTextString(m) }
 func (*UpdateGrantResponse) ProtoMessage()    {}
 func (*UpdateGrantResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_7cff0ddf029bf7f4, []int{31}
+	return fileDescriptor_7cff0ddf029bf7f4, []int{41}
 }
 
 func (m *UpdateGrantResponse) XXX_Unmarshal(b []byte) error {
@@ -1822,18 +2380,28 @@ func init() {
 	proto.RegisterType((*CreateContainerResponse)(nil), "cs3.storageproviderv0alpha.CreateContainerResponse")
 	proto.RegisterType((*DeleteRequest)(nil), "cs3.storageproviderv0alpha.DeleteRequest")
 	proto.RegisterType((*DeleteResponse)(nil), "cs3.storageproviderv0alpha.DeleteResponse")
+	proto.RegisterType((*GetProviderRequest)(nil), "cs3.storageproviderv0alpha.GetProviderRequest")
+	proto.RegisterType((*GetProviderResponse)(nil), "cs3.storageproviderv0alpha.GetProviderResponse")
 	proto.RegisterType((*GetPathRequest)(nil), "cs3.storageproviderv0alpha.GetPathRequest")
 	proto.RegisterType((*GetPathResponse)(nil), "cs3.storageproviderv0alpha.GetPathResponse")
 	proto.RegisterType((*GetQuotaRequest)(nil), "cs3.storageproviderv0alpha.GetQuotaRequest")
 	proto.RegisterType((*GetQuotaResponse)(nil), "cs3.storageproviderv0alpha.GetQuotaResponse")
+	proto.RegisterType((*InitiateFileUploadRequest)(nil), "cs3.storageproviderv0alpha.InitiateFileUploadRequest")
+	proto.RegisterType((*InitiateFileUploadResponse)(nil), "cs3.storageproviderv0alpha.InitiateFileUploadResponse")
+	proto.RegisterType((*InitiateFileDownloadRequest)(nil), "cs3.storageproviderv0alpha.InitiateFileDownloadRequest")
+	proto.RegisterType((*InitiateFileDownloadResponse)(nil), "cs3.storageproviderv0alpha.InitiateFileDownloadResponse")
 	proto.RegisterType((*ListGrantsRequest)(nil), "cs3.storageproviderv0alpha.ListGrantsRequest")
 	proto.RegisterType((*ListGrantsResponse)(nil), "cs3.storageproviderv0alpha.ListGrantsResponse")
+	proto.RegisterType((*ListContainerStreamRequest)(nil), "cs3.storageproviderv0alpha.ListContainerStreamRequest")
+	proto.RegisterType((*ListContainerStreamResponse)(nil), "cs3.storageproviderv0alpha.ListContainerStreamResponse")
 	proto.RegisterType((*ListContainerRequest)(nil), "cs3.storageproviderv0alpha.ListContainerRequest")
 	proto.RegisterType((*ListContainerResponse)(nil), "cs3.storageproviderv0alpha.ListContainerResponse")
 	proto.RegisterType((*ListFileVersionsRequest)(nil), "cs3.storageproviderv0alpha.ListFileVersionsRequest")
 	proto.RegisterType((*ListFileVersionsResponse)(nil), "cs3.storageproviderv0alpha.ListFileVersionsResponse")
 	proto.RegisterType((*ListRecycleRequest)(nil), "cs3.storageproviderv0alpha.ListRecycleRequest")
 	proto.RegisterType((*ListRecycleResponse)(nil), "cs3.storageproviderv0alpha.ListRecycleResponse")
+	proto.RegisterType((*ListRecycleStreamRequest)(nil), "cs3.storageproviderv0alpha.ListRecycleStreamRequest")
+	proto.RegisterType((*ListRecycleStreamResponse)(nil), "cs3.storageproviderv0alpha.ListRecycleStreamResponse")
 	proto.RegisterType((*MoveRequest)(nil), "cs3.storageproviderv0alpha.MoveRequest")
 	proto.RegisterType((*MoveResponse)(nil), "cs3.storageproviderv0alpha.MoveResponse")
 	proto.RegisterType((*PurgeRecycleRequest)(nil), "cs3.storageproviderv0alpha.PurgeRecycleRequest")
@@ -1855,78 +2423,95 @@ func init() {
 }
 
 var fileDescriptor_7cff0ddf029bf7f4 = []byte{
-	// 1124 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xd4, 0x59, 0xdf, 0x6f, 0x1b, 0x45,
-	0x10, 0xd6, 0x25, 0x8e, 0x9b, 0x8c, 0xf3, 0xab, 0x9b, 0xb4, 0x09, 0x27, 0xf1, 0xa3, 0x27, 0x41,
-	0x53, 0x02, 0x4e, 0x1a, 0x03, 0x15, 0x12, 0x20, 0x25, 0x41, 0x44, 0x95, 0x8a, 0x6a, 0x2e, 0xa5,
-	0xa2, 0x08, 0xc9, 0x3a, 0x9f, 0xc7, 0xc9, 0x51, 0xfb, 0xf6, 0xb2, 0xbb, 0x36, 0x72, 0x45, 0x9f,
-	0xe0, 0x19, 0x89, 0x07, 0xde, 0x11, 0x48, 0x3c, 0x80, 0x84, 0x84, 0x40, 0xe2, 0x95, 0x67, 0xfe,
-	0x2a, 0xb4, 0x7b, 0xeb, 0xf8, 0xce, 0x3e, 0xce, 0x67, 0x4b, 0xe7, 0xaa, 0x2f, 0x91, 0xbd, 0x3b,
-	0xdf, 0x7e, 0xdf, 0x8c, 0xe7, 0x76, 0x66, 0x2e, 0x70, 0xdb, 0xe5, 0x95, 0x3d, 0x2e, 0x28, 0x73,
-	0xce, 0x30, 0x60, 0xb4, 0xeb, 0x35, 0x90, 0xed, 0x75, 0xf7, 0x9d, 0x56, 0x70, 0xee, 0x0c, 0xaf,
-	0x97, 0x03, 0x46, 0x05, 0x25, 0xa6, 0xcb, 0x2b, 0xe5, 0xa1, 0x2d, 0x8d, 0x30, 0x37, 0xe5, 0x71,
-	0x2c, 0x70, 0xf7, 0xb8, 0x70, 0x44, 0x87, 0x87, 0x08, 0x73, 0x37, 0x8d, 0x84, 0x21, 0xa7, 0x1d,
-	0xe6, 0x62, 0xdf, 0xf8, 0x9a, 0x34, 0x16, 0xbd, 0x00, 0x79, 0xf8, 0x37, 0x5c, 0xb6, 0x7e, 0x37,
-	0x60, 0xed, 0xb0, 0xd1, 0x38, 0x61, 0x8e, 0x2f, 0x6c, 0xbc, 0xe8, 0x20, 0x17, 0xe4, 0x16, 0x14,
-	0x69, 0xe0, 0x5c, 0x74, 0x70, 0xdb, 0x78, 0xc5, 0xd8, 0x29, 0x1d, 0x5c, 0x2d, 0x4b, 0x69, 0x21,
-	0xea, 0xbe, 0xda, 0xb0, 0xb5, 0x01, 0xb9, 0x03, 0xf3, 0x0c, 0x9b, 0xdb, 0x73, 0xca, 0xee, 0xd5,
-	0xf2, 0xff, 0xbb, 0x50, 0xb6, 0xb1, 0x89, 0x0c, 0x7d, 0x17, 0x6d, 0x89, 0x20, 0x77, 0x60, 0xe1,
-	0x4c, 0x72, 0x6e, 0xcf, 0x2b, 0xe8, 0x8d, 0x34, 0x68, 0x28, 0x2e, 0xb4, 0xb7, 0x9a, 0xb0, 0x3e,
-	0xd0, 0xcb, 0x03, 0xea, 0x73, 0x24, 0x37, 0xa1, 0x18, 0x06, 0x46, 0x0b, 0x5e, 0x53, 0xa7, 0xb1,
-	0xc0, 0x2d, 0x9f, 0xaa, 0x65, 0x5b, 0x6f, 0x47, 0x3c, 0x9b, 0x1b, 0xe3, 0x99, 0xf5, 0x35, 0x5c,
-	0x3f, 0x66, 0xe8, 0x08, 0x3c, 0xa6, 0xbe, 0x70, 0x3c, 0x1f, 0xd9, 0x0c, 0xc3, 0x63, 0xb5, 0x61,
-	0x6b, 0x84, 0x3d, 0x47, 0x67, 0x39, 0xac, 0x7c, 0x88, 0x2d, 0x14, 0x38, 0x4b, 0x1f, 0x1b, 0xb0,
-	0xda, 0x27, 0xcd, 0xd1, 0xb5, 0x6f, 0x0d, 0x58, 0x3d, 0x41, 0x51, 0x75, 0xc4, 0xf9, 0x14, 0xce,
-	0x9d, 0x40, 0xa9, 0xff, 0x20, 0xd5, 0xbc, 0x86, 0x66, 0x7b, 0x2d, 0xdd, 0xc9, 0xd0, 0xfc, 0x6e,
-	0xc3, 0x06, 0x76, 0xf9, 0xd9, 0x42, 0x58, 0xbb, 0x54, 0x91, 0xa3, 0xb7, 0x1d, 0x45, 0xf3, 0x49,
-	0x87, 0x0a, 0x67, 0x96, 0x3f, 0xe5, 0x2f, 0x06, 0xac, 0x0f, 0x78, 0xf3, 0xf3, 0x8f, 0xbc, 0x0c,
-	0x25, 0x41, 0x85, 0xd3, 0xaa, 0xd5, 0x7b, 0x02, 0xb9, 0xba, 0x3c, 0x0a, 0x36, 0xa8, 0xa5, 0x23,
-	0xb9, 0x42, 0x5e, 0x04, 0xe8, 0x70, 0x6c, 0xe8, 0xfd, 0x82, 0xda, 0x5f, 0x92, 0x2b, 0x6a, 0xdb,
-	0xfa, 0x0a, 0xae, 0xde, 0xf3, 0xb8, 0x50, 0xd7, 0x07, 0x9f, 0x65, 0x84, 0x7e, 0x36, 0x80, 0x44,
-	0x99, 0x73, 0x8c, 0xd1, 0xbb, 0x50, 0x54, 0x57, 0xa5, 0x0c, 0xcf, 0x7c, 0xb6, 0xbb, 0x55, 0x03,
-	0xac, 0x27, 0xb0, 0x29, 0x45, 0x3e, 0x93, 0x2b, 0xef, 0x37, 0x03, 0xae, 0x0d, 0x91, 0xe7, 0x18,
-	0xa4, 0x0f, 0x60, 0xc1, 0xf3, 0x9b, 0xb4, 0x1f, 0xa3, 0x9d, 0x4c, 0x8f, 0xb4, 0xdf, 0xa4, 0x76,
-	0x08, 0xb3, 0x9e, 0xc2, 0x96, 0x14, 0xfb, 0x91, 0xd7, 0xc2, 0x87, 0xc8, 0xb8, 0x47, 0xfd, 0x99,
-	0xa6, 0xd3, 0x9f, 0x06, 0x6c, 0x8f, 0xf2, 0xe7, 0x18, 0xaf, 0x63, 0x58, 0xec, 0x6a, 0x1e, 0x1d,
-	0xb2, 0x9b, 0x69, 0x72, 0x23, 0xba, 0xec, 0x4b, 0xa0, 0xd5, 0x0e, 0x9f, 0x01, 0x1b, 0xdd, 0x9e,
-	0xdb, 0x9a, 0xa6, 0xd6, 0x6c, 0xc1, 0x95, 0x26, 0xa3, 0xed, 0x9a, 0xe0, 0x4a, 0x71, 0xc1, 0x2e,
-	0xca, 0xaf, 0x0f, 0x38, 0xd9, 0x80, 0x05, 0x41, 0x6b, 0xa2, 0x7f, 0x23, 0x14, 0x04, 0x7d, 0xc0,
-	0xad, 0xbf, 0x0d, 0xd8, 0x88, 0xf1, 0xe5, 0x18, 0x9f, 0x7b, 0xb0, 0xc2, 0x42, 0x9a, 0x9a, 0x27,
-	0xb0, 0x9d, 0x29, 0x48, 0x5a, 0xd7, 0x5d, 0x81, 0x6d, 0x7b, 0x99, 0x0d, 0xbe, 0x70, 0xeb, 0x1f,
-	0x03, 0x4a, 0x1f, 0xd3, 0xee, 0x34, 0x21, 0x7a, 0x1f, 0x8a, 0x61, 0xb6, 0x4e, 0x96, 0x55, 0x1a,
-	0x24, 0x0b, 0x5e, 0x03, 0xb9, 0xf0, 0x7c, 0x47, 0x78, 0xd4, 0xd7, 0xdd, 0x59, 0xc6, 0x33, 0xa2,
-	0x48, 0xab, 0x0e, 0xcb, 0xa1, 0x07, 0x39, 0x56, 0xbb, 0x1e, 0x6c, 0x54, 0x3b, 0xec, 0x0c, 0xa7,
-	0x4f, 0xa8, 0xa9, 0x1f, 0xc0, 0x2f, 0x61, 0x33, 0x4e, 0x9d, 0xa3, 0x9b, 0xdf, 0x1b, 0xf0, 0x82,
-	0x8d, 0x52, 0x17, 0x46, 0x9f, 0xab, 0x19, 0x76, 0xeb, 0xeb, 0x30, 0xff, 0x18, 0x7b, 0x2a, 0x1b,
-	0x96, 0x6c, 0xf9, 0xd1, 0x0a, 0xc0, 0x4c, 0x92, 0x94, 0x63, 0x14, 0xfe, 0x1a, 0x44, 0x21, 0xfa,
-	0xe0, 0x3c, 0xcb, 0x28, 0x90, 0x1b, 0xb0, 0xcc, 0x42, 0x49, 0xb5, 0xc0, 0x11, 0xe7, 0xaa, 0xdf,
-	0x58, 0xb2, 0x4b, 0x7a, 0x4d, 0x76, 0x7b, 0x91, 0x40, 0xc5, 0x54, 0xe7, 0x18, 0xa8, 0x3f, 0x0c,
-	0x20, 0x36, 0xb6, 0x69, 0x17, 0x9f, 0x9f, 0xa9, 0xce, 0x83, 0x8d, 0x98, 0xe4, 0x1c, 0xc3, 0x73,
-	0x01, 0x25, 0x09, 0x9e, 0xe5, 0x65, 0xf1, 0xa3, 0x01, 0xcb, 0x21, 0x67, 0x8e, 0x15, 0xe8, 0x3d,
-	0x28, 0xc8, 0xd6, 0x44, 0x87, 0x3e, 0x7b, 0x43, 0xa3, 0x50, 0x2a, 0x69, 0x3e, 0x0d, 0x1a, 0x8e,
-	0x78, 0xbe, 0x92, 0x26, 0x26, 0x39, 0xbf, 0xe0, 0x1e, 0x7c, 0xb7, 0x0a, 0xd7, 0x4f, 0x43, 0x49,
-	0x55, 0x2d, 0xe9, 0x14, 0x59, 0xd7, 0x73, 0x91, 0x20, 0x2c, 0xf6, 0x5f, 0x48, 0x90, 0xdd, 0x34,
-	0xed, 0x43, 0xaf, 0x59, 0xcc, 0x37, 0xb2, 0x19, 0x6b, 0xaf, 0x9e, 0xc0, 0xda, 0xd0, 0x1b, 0x01,
-	0x72, 0x90, 0x76, 0x40, 0xf2, 0xcb, 0x0b, 0xb3, 0x32, 0x11, 0x46, 0x73, 0xd7, 0xa0, 0x18, 0x4e,
-	0xea, 0xe4, 0x56, 0x1a, 0x3c, 0xf6, 0x0a, 0xc1, 0x7c, 0x3d, 0x8b, 0xa9, 0x26, 0xa8, 0xc3, 0x15,
-	0x3d, 0x1d, 0x93, 0x54, 0x58, 0x7c, 0x90, 0x37, 0x77, 0x33, 0xd9, 0x6a, 0x0e, 0x84, 0xc5, 0xfe,
-	0x88, 0x4a, 0xc6, 0x01, 0xa3, 0x03, 0x74, 0xfa, 0xef, 0x34, 0x32, 0xf5, 0x3e, 0x06, 0x18, 0xcc,
-	0x79, 0xe4, 0xcd, 0x34, 0xec, 0xc8, 0x24, 0x6a, 0x96, 0xb3, 0x9a, 0x6b, 0x32, 0x01, 0x2b, 0xb1,
-	0x91, 0x89, 0xec, 0x8f, 0x3b, 0x60, 0x24, 0x21, 0x6e, 0x4f, 0x80, 0xd0, 0xac, 0x4f, 0x61, 0x7d,
-	0x78, 0xf6, 0x20, 0x95, 0x71, 0xc7, 0x24, 0x4c, 0x4a, 0xe6, 0x5b, 0x93, 0x81, 0x34, 0xbd, 0x0f,
-	0xa5, 0x48, 0x57, 0x4f, 0xc6, 0xc6, 0x2c, 0xde, 0x1d, 0x9a, 0x7b, 0x99, 0xed, 0x35, 0xdf, 0x23,
-	0x28, 0xc8, 0x4e, 0x96, 0xa4, 0xf6, 0xf2, 0x91, 0x6e, 0xdd, 0xdc, 0x19, 0x6f, 0x38, 0x70, 0x25,
-	0x52, 0xf6, 0xd2, 0x5d, 0x19, 0x2d, 0xe9, 0xe9, 0xae, 0x24, 0xd5, 0xd3, 0x0b, 0x58, 0x8e, 0x76,
-	0xad, 0x24, 0xf5, 0x80, 0x84, 0xd6, 0xda, 0xdc, 0xcf, 0x0e, 0xd0, 0x94, 0xdf, 0xa8, 0x6e, 0x64,
-	0xb8, 0x53, 0x24, 0x6f, 0x8f, 0xa9, 0x4f, 0xc9, 0xcd, 0xae, 0xf9, 0xce, 0xa4, 0xb0, 0x51, 0x15,
-	0x91, 0x36, 0x2c, 0x93, 0x8a, 0xd1, 0x66, 0x33, 0x93, 0x8a, 0xa4, 0x6e, 0xef, 0x11, 0x14, 0x64,
-	0x09, 0x4a, 0xcf, 0xa4, 0x48, 0x73, 0x92, 0x9e, 0x49, 0xb1, 0x8e, 0xc2, 0x87, 0x52, 0xa4, 0x16,
-	0xa6, 0x67, 0xd2, 0x68, 0x9d, 0x4f, 0xcf, 0xa4, 0x84, 0x22, 0x7b, 0xf4, 0x83, 0x01, 0x2f, 0xb9,
-	0xb4, 0x9d, 0x02, 0x3b, 0xda, 0x1c, 0x2a, 0x98, 0x55, 0x46, 0x05, 0xad, 0x1a, 0x9f, 0x6f, 0x27,
-	0xdb, 0x07, 0xf5, 0x9f, 0xe6, 0x8a, 0xc7, 0x47, 0xf7, 0x3f, 0x3b, 0x3c, 0xfa, 0x75, 0xce, 0x3c,
-	0x3e, 0xad, 0x94, 0x87, 0xf0, 0x0f, 0xf7, 0x0f, 0xa5, 0xdd, 0xbf, 0x6a, 0xf3, 0x8b, 0xe4, 0xcd,
-	0x7a, 0x51, 0xfd, 0x5b, 0xa3, 0xf2, 0x5f, 0x00, 0x00, 0x00, 0xff, 0xff, 0x13, 0x84, 0x8d, 0x4e,
-	0x81, 0x19, 0x00, 0x00,
+	// 1400 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xd4, 0x5a, 0xcf, 0x6f, 0x1b, 0xc5,
+	0x17, 0xd7, 0x24, 0xae, 0xdb, 0x3e, 0xa7, 0x4d, 0x32, 0x71, 0x5b, 0x67, 0xfb, 0xfd, 0x02, 0x5d,
+	0x09, 0x92, 0x36, 0xd4, 0x49, 0x63, 0xda, 0x80, 0x54, 0x40, 0x49, 0x0a, 0x51, 0x50, 0x51, 0xc3,
+	0x3a, 0xad, 0x28, 0x42, 0xb2, 0x36, 0xde, 0x71, 0xb2, 0xd4, 0xde, 0xd9, 0xec, 0x8e, 0x5d, 0xa5,
+	0xa2, 0xe2, 0xe7, 0x01, 0x8e, 0x1c, 0x38, 0x70, 0xa2, 0x02, 0x09, 0x24, 0x90, 0x40, 0x08, 0x24,
+	0x0e, 0x5c, 0x38, 0xf3, 0x57, 0xa1, 0xd9, 0x1d, 0xdb, 0xb3, 0xf6, 0x76, 0xbc, 0xb6, 0xb4, 0xa6,
+	0xbd, 0x54, 0xee, 0xcc, 0x7b, 0xf3, 0x3e, 0xef, 0xb3, 0xf3, 0xe3, 0xbd, 0x8f, 0x02, 0x57, 0xaa,
+	0x7e, 0x69, 0xd9, 0x67, 0xd4, 0x33, 0xf7, 0x89, 0xeb, 0xd1, 0x96, 0x6d, 0x11, 0x6f, 0xb9, 0xb5,
+	0x62, 0xd6, 0xdd, 0x03, 0xb3, 0x77, 0xbc, 0xe8, 0x7a, 0x94, 0x51, 0xac, 0x55, 0xfd, 0x52, 0xb1,
+	0x67, 0x4a, 0x78, 0x68, 0x79, 0xbe, 0x9c, 0xe7, 0x56, 0x97, 0x7d, 0x66, 0xb2, 0xa6, 0x1f, 0x7a,
+	0x68, 0x4b, 0xaa, 0x20, 0x1e, 0xf1, 0x69, 0xd3, 0xab, 0x92, 0xb6, 0xf1, 0x19, 0x6e, 0xcc, 0x8e,
+	0x5c, 0xe2, 0x87, 0xff, 0x86, 0xc3, 0xfa, 0x2f, 0x08, 0xa6, 0xd7, 0x2d, 0x6b, 0xcb, 0x33, 0x1d,
+	0x66, 0x90, 0xc3, 0x26, 0xf1, 0x19, 0xbe, 0x08, 0x59, 0xea, 0x9a, 0x87, 0x4d, 0x52, 0x40, 0xcf,
+	0xa1, 0xc5, 0xdc, 0xea, 0x6c, 0x91, 0x43, 0x0b, 0xbd, 0x6e, 0x05, 0x13, 0x86, 0x30, 0xc0, 0x6b,
+	0x30, 0xe9, 0x91, 0x5a, 0x61, 0x22, 0xb0, 0x7b, 0xbe, 0xf8, 0xf8, 0x14, 0x8a, 0x06, 0xa9, 0x11,
+	0x8f, 0x38, 0x55, 0x62, 0x70, 0x0f, 0xbc, 0x06, 0xc7, 0xf6, 0x79, 0xcc, 0xc2, 0x64, 0xe0, 0x7a,
+	0x41, 0xe5, 0x1a, 0x82, 0x0b, 0xed, 0xf5, 0x1a, 0xcc, 0x74, 0xf1, 0xfa, 0x2e, 0x75, 0x7c, 0x82,
+	0x17, 0x20, 0x1b, 0x12, 0x23, 0x00, 0x4f, 0x07, 0xab, 0x79, 0x6e, 0xb5, 0x58, 0x0e, 0x86, 0x0d,
+	0x31, 0x2d, 0x65, 0x36, 0x31, 0x20, 0x33, 0xfd, 0x43, 0x38, 0xbb, 0xe9, 0x11, 0x93, 0x91, 0x4d,
+	0xea, 0x30, 0xd3, 0x76, 0x88, 0x37, 0x46, 0x7a, 0xf4, 0x06, 0x9c, 0xeb, 0x8b, 0x9e, 0x62, 0xb2,
+	0x3e, 0x9c, 0xba, 0x41, 0xea, 0x84, 0x91, 0x71, 0xe6, 0x68, 0xc1, 0xe9, 0x76, 0xd0, 0x14, 0x53,
+	0x7b, 0x1d, 0xf0, 0x16, 0x61, 0x3b, 0x02, 0xca, 0xf0, 0xf9, 0xe9, 0x3f, 0x22, 0x98, 0x8b, 0xac,
+	0x90, 0x1e, 0x58, 0x7c, 0x1d, 0x32, 0xb6, 0x53, 0xa3, 0xe2, 0x50, 0x2c, 0xaa, 0xc8, 0x6c, 0xe3,
+	0xd9, 0x76, 0x6a, 0xd4, 0x08, 0xbc, 0xf4, 0xcf, 0x11, 0x9c, 0xe6, 0x48, 0x4d, 0x76, 0x30, 0xc2,
+	0x77, 0xdc, 0x82, 0x5c, 0xfb, 0xce, 0xa8, 0xd8, 0x96, 0xc0, 0xfa, 0x82, 0xfa, 0x7b, 0x86, 0xe6,
+	0xdb, 0x96, 0x01, 0x5e, 0xe7, 0xb7, 0x4e, 0x60, 0xba, 0x83, 0x22, 0xc5, 0x0f, 0x7b, 0x3d, 0x08,
+	0xf3, 0x4e, 0x93, 0x32, 0x73, 0x84, 0xaf, 0xfa, 0x03, 0x82, 0x99, 0xae, 0x7b, 0x8a, 0x9f, 0xf4,
+	0x59, 0xc8, 0x31, 0xca, 0xcc, 0x7a, 0x65, 0xef, 0x88, 0x11, 0x3f, 0xf8, 0xb2, 0x19, 0x03, 0x82,
+	0xa1, 0x0d, 0x3e, 0x82, 0xff, 0x0f, 0xd0, 0xf4, 0x89, 0x25, 0xe6, 0x33, 0xc1, 0xfc, 0x49, 0x3e,
+	0x12, 0x4c, 0xeb, 0x1f, 0xc1, 0xfc, 0xb6, 0x63, 0x33, 0xdb, 0x64, 0xe4, 0x4d, 0xbb, 0x4e, 0x6e,
+	0xbb, 0x75, 0x6a, 0x5a, 0xe3, 0x3c, 0xa6, 0xdf, 0x20, 0xd0, 0xe2, 0x10, 0xa4, 0xc8, 0xd9, 0x02,
+	0x4c, 0x37, 0x83, 0x28, 0x15, 0xe2, 0x58, 0x2e, 0xb5, 0xc5, 0x33, 0x71, 0xd2, 0x38, 0x1d, 0x0e,
+	0xbf, 0x21, 0x46, 0xf5, 0x4f, 0x10, 0x9c, 0x97, 0xb1, 0xdd, 0xa0, 0xf7, 0x9d, 0x71, 0xf3, 0xf3,
+	0x2d, 0x82, 0xff, 0xc5, 0x63, 0x48, 0x91, 0xa1, 0x25, 0x98, 0xb5, 0x44, 0x9c, 0x5e, 0x8e, 0x66,
+	0xda, 0x13, 0x1d, 0x96, 0xee, 0xc3, 0xec, 0x4d, 0xdb, 0x67, 0xc1, 0x9b, 0xe9, 0x8f, 0x93, 0x9a,
+	0xef, 0x11, 0x60, 0x39, 0x72, 0x8a, 0x84, 0xbc, 0x02, 0xd9, 0xa0, 0x3e, 0xe0, 0x27, 0x6c, 0x32,
+	0x59, 0x41, 0x21, 0x1c, 0xf4, 0x8f, 0x11, 0x68, 0x1c, 0x65, 0xe7, 0xa9, 0x2d, 0x33, 0x8f, 0x98,
+	0x8d, 0x71, 0x12, 0xf5, 0x2b, 0x82, 0xf3, 0xb1, 0x10, 0x9e, 0x8c, 0xb7, 0xa6, 0x73, 0xd1, 0x77,
+	0xdf, 0x9a, 0x07, 0x90, 0x8f, 0x00, 0x1e, 0x27, 0x5b, 0x3f, 0x23, 0x38, 0xd3, 0x13, 0x3c, 0x45,
+	0x9e, 0x5e, 0x83, 0x63, 0x3c, 0xe3, 0xf6, 0xc6, 0x4a, 0x4e, 0x54, 0xe8, 0xa6, 0x3f, 0x84, 0x73,
+	0x1c, 0x2c, 0xbf, 0x1a, 0xee, 0x10, 0xcf, 0xb7, 0xa9, 0x33, 0xd6, 0x33, 0xf8, 0x3b, 0x82, 0x42,
+	0x7f, 0xfc, 0x14, 0xf9, 0xda, 0x84, 0x13, 0x2d, 0x11, 0x47, 0x50, 0xb6, 0xa0, 0x82, 0x2b, 0xe1,
+	0x32, 0x3a, 0x8e, 0xfc, 0xd1, 0x09, 0x6e, 0x0e, 0x83, 0x54, 0x8f, 0xaa, 0xf5, 0x51, 0xca, 0xd2,
+	0xcb, 0x70, 0xbc, 0xe6, 0xd1, 0x46, 0x85, 0xf9, 0x02, 0x72, 0x5e, 0xb2, 0xdd, 0xb5, 0x1b, 0xc4,
+	0x67, 0x66, 0xc3, 0x35, 0xb2, 0xdc, 0x68, 0x97, 0x27, 0x78, 0x8c, 0xd1, 0x0a, 0xf3, 0xc5, 0x71,
+	0x88, 0x37, 0xce, 0x30, 0xba, 0xeb, 0xeb, 0x7f, 0x22, 0x98, 0x8b, 0x60, 0x4b, 0x91, 0xcc, 0x9b,
+	0x70, 0xca, 0x0b, 0xc3, 0x54, 0x6c, 0x46, 0x1a, 0x89, 0x18, 0x15, 0xb8, 0xb6, 0x19, 0x69, 0x18,
+	0x53, 0x5e, 0xf7, 0x3f, 0x3e, 0x7f, 0xaa, 0x0a, 0x12, 0xf2, 0x91, 0xef, 0xb9, 0xf4, 0xb8, 0xfd,
+	0x0b, 0xc1, 0x7c, 0x0c, 0xc2, 0x14, 0x19, 0x7e, 0x0b, 0xa6, 0x64, 0x86, 0x05, 0xc6, 0xc4, 0x04,
+	0xe7, 0x24, 0x82, 0xf5, 0xbf, 0x11, 0xe4, 0xde, 0xa6, 0xad, 0x51, 0xb6, 0xeb, 0xab, 0x90, 0x0d,
+	0xaf, 0x8e, 0xe1, 0x8e, 0xb8, 0x70, 0xe2, 0xc5, 0xbb, 0x45, 0x7c, 0x66, 0x3b, 0x26, 0xb3, 0xa9,
+	0x23, 0x92, 0x48, 0xb8, 0x86, 0xec, 0xa9, 0xef, 0xc1, 0x54, 0x98, 0x41, 0x8a, 0x95, 0xfb, 0x11,
+	0xcc, 0xed, 0x34, 0xbd, 0x7d, 0x32, 0xfa, 0xe1, 0x1e, 0xf9, 0x36, 0xfc, 0x00, 0xf2, 0xd1, 0xd0,
+	0x29, 0xa6, 0xf9, 0x15, 0x82, 0x79, 0x83, 0x70, 0x5c, 0x44, 0xbe, 0xe4, 0xc6, 0x28, 0xb2, 0xcc,
+	0xc0, 0xe4, 0x3d, 0x72, 0x24, 0xea, 0x42, 0xfe, 0x53, 0x77, 0x41, 0x8b, 0x83, 0x94, 0x22, 0x0b,
+	0x7f, 0x74, 0x59, 0x90, 0xcf, 0xcd, 0x7f, 0xc9, 0x02, 0xbe, 0xc0, 0xcf, 0x7c, 0x00, 0xa9, 0xe2,
+	0x9a, 0xec, 0x20, 0x68, 0xba, 0x4e, 0xf2, 0xa3, 0x1c, 0x8c, 0xf1, 0xce, 0x55, 0x22, 0x2a, 0x82,
+	0x3a, 0x45, 0xa2, 0x7e, 0x43, 0x80, 0x0d, 0xd2, 0xa0, 0x2d, 0xf2, 0xf4, 0x88, 0x71, 0x36, 0xcc,
+	0x45, 0x20, 0xa7, 0x48, 0xcf, 0x21, 0xe4, 0xb8, 0xf3, 0x38, 0x2f, 0x8b, 0x47, 0x08, 0xa6, 0xc2,
+	0x98, 0x4f, 0x6c, 0x19, 0xce, 0x37, 0xcd, 0x6d, 0xd7, 0x32, 0xd9, 0xd3, 0xb5, 0x69, 0x22, 0x90,
+	0xd3, 0x23, 0x77, 0xf5, 0xd1, 0x1c, 0x9c, 0x2d, 0x87, 0x90, 0xda, 0x7a, 0x59, 0x99, 0x78, 0x2d,
+	0xbb, 0x4a, 0x30, 0x81, 0x13, 0x6d, 0x1d, 0x19, 0x2f, 0xa9, 0xb0, 0xf7, 0xa8, 0xe3, 0xda, 0x8b,
+	0xc9, 0x8c, 0x45, 0x56, 0x0f, 0x60, 0xba, 0x47, 0xc8, 0xc5, 0xab, 0xaa, 0x05, 0xe2, 0x35, 0x67,
+	0xad, 0x34, 0x94, 0x8f, 0x88, 0x5d, 0x81, 0x6c, 0x28, 0xb0, 0xe2, 0x8b, 0x2a, 0xf7, 0x88, 0xf2,
+	0xab, 0x5d, 0x4a, 0x62, 0x2a, 0x02, 0x38, 0x90, 0x93, 0x94, 0x51, 0x5c, 0x54, 0x6e, 0x81, 0x3e,
+	0x11, 0x56, 0x5b, 0x4e, 0x6c, 0x2f, 0xe2, 0xed, 0xc1, 0x71, 0xa1, 0x2c, 0xe2, 0x4b, 0x83, 0x7c,
+	0xbb, 0x22, 0xa8, 0xb6, 0x94, 0xc8, 0x56, 0xc4, 0x20, 0x70, 0xa2, 0xad, 0x0b, 0xe2, 0x41, 0x8e,
+	0xb2, 0xf8, 0xa8, 0xde, 0x17, 0x7d, 0x52, 0xe3, 0x97, 0x08, 0xf2, 0x71, 0xaa, 0x11, 0x5e, 0x53,
+	0x2d, 0xa3, 0xd0, 0xba, 0xb4, 0x97, 0x87, 0x77, 0x14, 0x58, 0x3e, 0x43, 0x80, 0xfb, 0x15, 0x3e,
+	0x7c, 0x35, 0xe9, 0x82, 0x11, 0x4d, 0x52, 0xbb, 0x36, 0xac, 0x9b, 0x40, 0x71, 0x0f, 0xa0, 0xab,
+	0x15, 0xe1, 0xcb, 0xaa, 0x55, 0xfa, 0xd4, 0x2c, 0xad, 0x98, 0xd4, 0x5c, 0x04, 0xfb, 0x42, 0xf4,
+	0x70, 0x3d, 0x82, 0x0b, 0xbe, 0x36, 0x68, 0x9d, 0x78, 0x91, 0x48, 0x5b, 0x1b, 0xda, 0x2f, 0x04,
+	0xb2, 0x82, 0x30, 0x83, 0x53, 0x11, 0x03, 0xbc, 0x92, 0x78, 0xad, 0x76, 0xf4, 0x2b, 0x43, 0x78,
+	0x08, 0x02, 0x1e, 0xc2, 0x4c, 0xaf, 0x2a, 0x80, 0x4b, 0x83, 0x96, 0x89, 0xd1, 0x30, 0xb4, 0x97,
+	0x86, 0x73, 0x12, 0xe1, 0x3f, 0x45, 0xa1, 0x26, 0x19, 0xe9, 0xf3, 0xf0, 0xc0, 0xb5, 0xe2, 0x1a,
+	0x57, 0xed, 0xea, 0x90, 0x5e, 0x1d, 0xe6, 0x1d, 0xc8, 0x49, 0xd3, 0xb8, 0x98, 0x70, 0x9d, 0x44,
+	0xd7, 0x57, 0x9c, 0x40, 0x70, 0x17, 0x32, 0xbc, 0xb7, 0xc2, 0xca, 0xe6, 0x52, 0xea, 0x1f, 0xb5,
+	0xc5, 0xc1, 0x86, 0xdd, 0x9b, 0x58, 0x2a, 0xc4, 0xd4, 0xa9, 0xf4, 0x17, 0x99, 0xea, 0x54, 0xe2,
+	0x2a, 0xbc, 0x43, 0x98, 0x92, 0xfb, 0x28, 0xac, 0x5c, 0x20, 0xa6, 0xd9, 0xd3, 0x56, 0x92, 0x3b,
+	0x48, 0xb7, 0x54, 0x7f, 0xef, 0xa2, 0xbe, 0xa5, 0x1e, 0xdb, 0x7e, 0xa9, 0x6f, 0x29, 0x45, 0x8b,
+	0x24, 0xa1, 0x90, 0x1a, 0x83, 0x44, 0x28, 0xfa, 0xdb, 0x9f, 0x44, 0x28, 0xe2, 0xfa, 0x8f, 0xbb,
+	0x90, 0xe1, 0x45, 0x91, 0x7a, 0x27, 0x49, 0xe5, 0xb2, 0x7a, 0x27, 0x45, 0x6a, 0x5c, 0x07, 0x72,
+	0x52, 0x75, 0xa6, 0xde, 0x49, 0xfd, 0x95, 0xa7, 0x7a, 0x27, 0xc5, 0x94, 0x7d, 0x1b, 0x5f, 0x23,
+	0x78, 0xa6, 0x4a, 0x1b, 0x0a, 0xb7, 0x8d, 0x7c, 0x39, 0x3a, 0xbe, 0xe3, 0x51, 0x46, 0x77, 0xd0,
+	0x7b, 0x85, 0x78, 0x7b, 0x77, 0xef, 0xbb, 0x89, 0xec, 0xe6, 0xc6, 0xad, 0x77, 0xd7, 0x37, 0x7e,
+	0x9a, 0xd0, 0x36, 0xcb, 0xa5, 0x62, 0x4f, 0x09, 0x78, 0x67, 0x65, 0x9d, 0xdb, 0xfd, 0x13, 0x4c,
+	0xbe, 0x1f, 0x3f, 0xb9, 0x97, 0x0d, 0xfe, 0x3e, 0xa2, 0xf4, 0x6f, 0x00, 0x00, 0x00, 0xff, 0xff,
+	0x2e, 0x60, 0xc7, 0xc5, 0xca, 0x21, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -1942,67 +2527,86 @@ const _ = grpc.SupportPackageIsVersion4
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type StorageProviderServiceClient interface {
 	// Adds a new grant for the provided reference.
-	// MUST return `NOT_FOUND` if the reference does not exist
+	// MUST return CODE_NOT_FOUND if the reference does not exist
 	AddGrant(ctx context.Context, in *AddGrantRequest, opts ...grpc.CallOption) (*AddGrantResponse, error)
 	// Creates a new resource of type container.
-	// MUST return `PRECONDITION_FAILED` if the container
+	// MUST return CODE_PRECONDITION_FAILED if the container
 	// cannot be created at the specified reference.
 	CreateContainer(ctx context.Context, in *CreateContainerRequest, opts ...grpc.CallOption) (*CreateContainerResponse, error)
 	// Deletes a resource.
-	// MUST return `NOT_FOUND` if the reference does not exist
+	// If a resource specifies the non-empty container (directory, ...),
+	// then the entire directory is deleted recursively.
+	// If a resource specifies a reference or symlink type, only the reference is removed (not the target).
+	// MUST return CODE_NOT_FOUND if the reference does not exist.
 	Delete(ctx context.Context, in *DeleteRequest, opts ...grpc.CallOption) (*DeleteResponse, error)
+	// Returns the information for this provider.
+	GetProvider(ctx context.Context, in *GetProviderRequest, opts ...grpc.CallOption) (*GetProviderResponse, error)
 	// Returns the path reference for
 	// the provided resource id reference.
-	// MUST return `NOT_FOUND` if the reference does not exist
+	// MUST return CODE_NOT_FOUND if the reference does not exist
 	GetPath(ctx context.Context, in *GetPathRequest, opts ...grpc.CallOption) (*GetPathResponse, error)
 	// Returns the quota available under the provided
 	// reference.
-	// MUST return `NOT_FOUND` if the reference does not exist
-	// MUST return `RESOURCE_EXHAUSTED` on exceeded quota limits.
+	// MUST return CODE_NOT_FOUND if the reference does not exist
+	// MUST return CODE_RESOURCE_EXHAUSTED on exceeded quota limits.
 	GetQuota(ctx context.Context, in *GetQuotaRequest, opts ...grpc.CallOption) (*GetQuotaResponse, error)
+	// Initiates the download of a file using an
+	// out-of-band data transfer mechanism.
+	InitiateFileDownload(ctx context.Context, in *InitiateFileDownloadRequest, opts ...grpc.CallOption) (*InitiateFileDownloadResponse, error)
+	// Initiates the upload of a file using an
+	// out-of-band data transfer mechanism.
+	InitiateFileUpload(ctx context.Context, in *InitiateFileUploadRequest, opts ...grpc.CallOption) (*InitiateFileUploadResponse, error)
 	// Returns the list of grants for the provided reference.
-	// MUST return `NOT_FOUND` if the reference does not exists.
+	// MUST return CODE_NOT_FOUND if the reference does not exists.
 	ListGrants(ctx context.Context, in *ListGrantsRequest, opts ...grpc.CallOption) (*ListGrantsResponse, error)
+	// Returns a stream of resource informations
+	// for the provided reference.
+	// MUST return CODE_NOT_FOUND if the reference does not exists.
+	ListContainerStream(ctx context.Context, in *ListContainerStreamRequest, opts ...grpc.CallOption) (StorageProviderService_ListContainerStreamClient, error)
 	// Returns a list of resource information
 	// for the provided reference.
-	// MUST return `NOT_FOUND` if the reference does not exists.
+	// MUST return CODE_NOT_FOUND if the reference does not exists.
 	ListContainer(ctx context.Context, in *ListContainerRequest, opts ...grpc.CallOption) (*ListContainerResponse, error)
 	// Returns a list of the versions for a resource of
 	// type file at the provided reference.
-	// MUST return `NOT_FOUND` if the reference does not exist.
-	// MUST return `OK` and MUST return an empty list if no versions are available.
+	// MUST return CODE_NOT_FOUND if the reference does not exist.
+	// MUST return CODE_OK and MUST return an empty list if no versions are available.
+	// TODO: What code if resource not of type file?
 	ListFileVersions(ctx context.Context, in *ListFileVersionsRequest, opts ...grpc.CallOption) (*ListFileVersionsResponse, error)
+	// Returns a stream of recycle items for this storage provider.
+	ListRecycleStream(ctx context.Context, in *ListRecycleStreamRequest, opts ...grpc.CallOption) (StorageProviderService_ListRecycleStreamClient, error)
 	// Returns a list of recycle items for this storage provider.
-	// MUST return `OK` and MUST return an empty list if no recycle items are available.
+	// MUST return CODE_OK and MUST return an empty list if no recycle items are available.
 	ListRecycle(ctx context.Context, in *ListRecycleRequest, opts ...grpc.CallOption) (*ListRecycleResponse, error)
 	// Moves a resource from one reference to another.
-	// MUST return `NOT_FOUND` if any of the references do not exist.
-	// MUST return `PRECONDITION_FAILED` if the source reference
+	// MUST return CODE_NOT_FOUND if any of the references do not exist.
+	// MUST return CODE_PRECONDITION_FAILED if the source reference
 	// cannot be moved to the destination reference.
 	Move(ctx context.Context, in *MoveRequest, opts ...grpc.CallOption) (*MoveResponse, error)
 	// Removes a grant for the provided reference.
-	// MUST return `NOT_FOUND` if the reference does not exist.
-	// MUST return `NOT_FOUND` if grant does not exist.
+	// This is recursive and atomic for directories. Does not follow references.
+	// MUST return CODE_NOT_FOUND if the reference does not exist.
+	// MUST return CODE_NOT_FOUND if grant does not exist.
 	RemoveGrant(ctx context.Context, in *RemoveGrantRequest, opts ...grpc.CallOption) (*RemoveGrantResponse, error)
 	// Permanently removes a recycle item from the recycle.
 	// This operation is irrevocable.
-	// MUST return `NOT_FOUND` if the recycle item id does not exist.
+	// MUST return CODE_NOT_FOUND if the recycle item id does not exist.
 	PurgeRecycle(ctx context.Context, in *PurgeRecycleRequest, opts ...grpc.CallOption) (*PurgeRecycleResponse, error)
 	// Restores a file version for the provided reference.
-	// MUST return `NOT_FOUND` if the reference does not exist.
-	// MUST return `NOT_FOUND` if the version does not exist.
+	// MUST return CODE_NOT_FOUND if the reference does not exist.
+	// MUST return CODE_NOT_FOUND if the version does not exist.
 	RestoreFileVersion(ctx context.Context, in *RestoreFileVersionRequest, opts ...grpc.CallOption) (*RestoreFileVersionResponse, error)
 	// Restores a recycle item from the recycle.
-	// MUST return `NOT_FOUND` if the recycle item id does not exist.
-	// MUST return `PRECONDITION_FAILED` if the restore_path is non-empty
+	// MUST return CODE_NOT_FOUND if the recycle item id does not exist.
+	// MUST return CODE_PRECONDITION_FAILED if the restore_path is non-empty
 	// and the recycle item cannot be restored to the restore_path.
 	RestoreRecycleItem(ctx context.Context, in *RestoreRecycleItemRequest, opts ...grpc.CallOption) (*RestoreRecycleItemResponse, error)
 	// Returns the resource information at the provided reference.
-	// MUST return `NOT_FOUND` if the reference does not exist.
+	// MUST return CODE_NOT_FOUND if the reference does not exist.
 	Stat(ctx context.Context, in *StatRequest, opts ...grpc.CallOption) (*StatResponse, error)
 	// Updates an ACL for the provided reference.
-	// MUST return `NOT_FOUND` if the reference does not exist.
-	// MUST return `PRECONDITION_FAILED` if the acl does not exist.
+	// MUST return CODE_NOT_FOUND if the reference does not exist.
+	// MUST return CODE_PRECONDITION_FAILED if the acl does not exist.
 	UpdateGrant(ctx context.Context, in *UpdateGrantRequest, opts ...grpc.CallOption) (*UpdateGrantResponse, error)
 }
 
@@ -2041,6 +2645,15 @@ func (c *storageProviderServiceClient) Delete(ctx context.Context, in *DeleteReq
 	return out, nil
 }
 
+func (c *storageProviderServiceClient) GetProvider(ctx context.Context, in *GetProviderRequest, opts ...grpc.CallOption) (*GetProviderResponse, error) {
+	out := new(GetProviderResponse)
+	err := c.cc.Invoke(ctx, "/cs3.storageproviderv0alpha.StorageProviderService/GetProvider", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *storageProviderServiceClient) GetPath(ctx context.Context, in *GetPathRequest, opts ...grpc.CallOption) (*GetPathResponse, error) {
 	out := new(GetPathResponse)
 	err := c.cc.Invoke(ctx, "/cs3.storageproviderv0alpha.StorageProviderService/GetPath", in, out, opts...)
@@ -2059,6 +2672,24 @@ func (c *storageProviderServiceClient) GetQuota(ctx context.Context, in *GetQuot
 	return out, nil
 }
 
+func (c *storageProviderServiceClient) InitiateFileDownload(ctx context.Context, in *InitiateFileDownloadRequest, opts ...grpc.CallOption) (*InitiateFileDownloadResponse, error) {
+	out := new(InitiateFileDownloadResponse)
+	err := c.cc.Invoke(ctx, "/cs3.storageproviderv0alpha.StorageProviderService/InitiateFileDownload", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *storageProviderServiceClient) InitiateFileUpload(ctx context.Context, in *InitiateFileUploadRequest, opts ...grpc.CallOption) (*InitiateFileUploadResponse, error) {
+	out := new(InitiateFileUploadResponse)
+	err := c.cc.Invoke(ctx, "/cs3.storageproviderv0alpha.StorageProviderService/InitiateFileUpload", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *storageProviderServiceClient) ListGrants(ctx context.Context, in *ListGrantsRequest, opts ...grpc.CallOption) (*ListGrantsResponse, error) {
 	out := new(ListGrantsResponse)
 	err := c.cc.Invoke(ctx, "/cs3.storageproviderv0alpha.StorageProviderService/ListGrants", in, out, opts...)
@@ -2066,6 +2697,38 @@ func (c *storageProviderServiceClient) ListGrants(ctx context.Context, in *ListG
 		return nil, err
 	}
 	return out, nil
+}
+
+func (c *storageProviderServiceClient) ListContainerStream(ctx context.Context, in *ListContainerStreamRequest, opts ...grpc.CallOption) (StorageProviderService_ListContainerStreamClient, error) {
+	stream, err := c.cc.NewStream(ctx, &_StorageProviderService_serviceDesc.Streams[0], "/cs3.storageproviderv0alpha.StorageProviderService/ListContainerStream", opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &storageProviderServiceListContainerStreamClient{stream}
+	if err := x.ClientStream.SendMsg(in); err != nil {
+		return nil, err
+	}
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	return x, nil
+}
+
+type StorageProviderService_ListContainerStreamClient interface {
+	Recv() (*ListContainerStreamResponse, error)
+	grpc.ClientStream
+}
+
+type storageProviderServiceListContainerStreamClient struct {
+	grpc.ClientStream
+}
+
+func (x *storageProviderServiceListContainerStreamClient) Recv() (*ListContainerStreamResponse, error) {
+	m := new(ListContainerStreamResponse)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
 }
 
 func (c *storageProviderServiceClient) ListContainer(ctx context.Context, in *ListContainerRequest, opts ...grpc.CallOption) (*ListContainerResponse, error) {
@@ -2084,6 +2747,38 @@ func (c *storageProviderServiceClient) ListFileVersions(ctx context.Context, in 
 		return nil, err
 	}
 	return out, nil
+}
+
+func (c *storageProviderServiceClient) ListRecycleStream(ctx context.Context, in *ListRecycleStreamRequest, opts ...grpc.CallOption) (StorageProviderService_ListRecycleStreamClient, error) {
+	stream, err := c.cc.NewStream(ctx, &_StorageProviderService_serviceDesc.Streams[1], "/cs3.storageproviderv0alpha.StorageProviderService/ListRecycleStream", opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &storageProviderServiceListRecycleStreamClient{stream}
+	if err := x.ClientStream.SendMsg(in); err != nil {
+		return nil, err
+	}
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	return x, nil
+}
+
+type StorageProviderService_ListRecycleStreamClient interface {
+	Recv() (*ListRecycleStreamResponse, error)
+	grpc.ClientStream
+}
+
+type storageProviderServiceListRecycleStreamClient struct {
+	grpc.ClientStream
+}
+
+func (x *storageProviderServiceListRecycleStreamClient) Recv() (*ListRecycleStreamResponse, error) {
+	m := new(ListRecycleStreamResponse)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
 }
 
 func (c *storageProviderServiceClient) ListRecycle(ctx context.Context, in *ListRecycleRequest, opts ...grpc.CallOption) (*ListRecycleResponse, error) {
@@ -2161,67 +2856,86 @@ func (c *storageProviderServiceClient) UpdateGrant(ctx context.Context, in *Upda
 // StorageProviderServiceServer is the server API for StorageProviderService service.
 type StorageProviderServiceServer interface {
 	// Adds a new grant for the provided reference.
-	// MUST return `NOT_FOUND` if the reference does not exist
+	// MUST return CODE_NOT_FOUND if the reference does not exist
 	AddGrant(context.Context, *AddGrantRequest) (*AddGrantResponse, error)
 	// Creates a new resource of type container.
-	// MUST return `PRECONDITION_FAILED` if the container
+	// MUST return CODE_PRECONDITION_FAILED if the container
 	// cannot be created at the specified reference.
 	CreateContainer(context.Context, *CreateContainerRequest) (*CreateContainerResponse, error)
 	// Deletes a resource.
-	// MUST return `NOT_FOUND` if the reference does not exist
+	// If a resource specifies the non-empty container (directory, ...),
+	// then the entire directory is deleted recursively.
+	// If a resource specifies a reference or symlink type, only the reference is removed (not the target).
+	// MUST return CODE_NOT_FOUND if the reference does not exist.
 	Delete(context.Context, *DeleteRequest) (*DeleteResponse, error)
+	// Returns the information for this provider.
+	GetProvider(context.Context, *GetProviderRequest) (*GetProviderResponse, error)
 	// Returns the path reference for
 	// the provided resource id reference.
-	// MUST return `NOT_FOUND` if the reference does not exist
+	// MUST return CODE_NOT_FOUND if the reference does not exist
 	GetPath(context.Context, *GetPathRequest) (*GetPathResponse, error)
 	// Returns the quota available under the provided
 	// reference.
-	// MUST return `NOT_FOUND` if the reference does not exist
-	// MUST return `RESOURCE_EXHAUSTED` on exceeded quota limits.
+	// MUST return CODE_NOT_FOUND if the reference does not exist
+	// MUST return CODE_RESOURCE_EXHAUSTED on exceeded quota limits.
 	GetQuota(context.Context, *GetQuotaRequest) (*GetQuotaResponse, error)
+	// Initiates the download of a file using an
+	// out-of-band data transfer mechanism.
+	InitiateFileDownload(context.Context, *InitiateFileDownloadRequest) (*InitiateFileDownloadResponse, error)
+	// Initiates the upload of a file using an
+	// out-of-band data transfer mechanism.
+	InitiateFileUpload(context.Context, *InitiateFileUploadRequest) (*InitiateFileUploadResponse, error)
 	// Returns the list of grants for the provided reference.
-	// MUST return `NOT_FOUND` if the reference does not exists.
+	// MUST return CODE_NOT_FOUND if the reference does not exists.
 	ListGrants(context.Context, *ListGrantsRequest) (*ListGrantsResponse, error)
+	// Returns a stream of resource informations
+	// for the provided reference.
+	// MUST return CODE_NOT_FOUND if the reference does not exists.
+	ListContainerStream(*ListContainerStreamRequest, StorageProviderService_ListContainerStreamServer) error
 	// Returns a list of resource information
 	// for the provided reference.
-	// MUST return `NOT_FOUND` if the reference does not exists.
+	// MUST return CODE_NOT_FOUND if the reference does not exists.
 	ListContainer(context.Context, *ListContainerRequest) (*ListContainerResponse, error)
 	// Returns a list of the versions for a resource of
 	// type file at the provided reference.
-	// MUST return `NOT_FOUND` if the reference does not exist.
-	// MUST return `OK` and MUST return an empty list if no versions are available.
+	// MUST return CODE_NOT_FOUND if the reference does not exist.
+	// MUST return CODE_OK and MUST return an empty list if no versions are available.
+	// TODO: What code if resource not of type file?
 	ListFileVersions(context.Context, *ListFileVersionsRequest) (*ListFileVersionsResponse, error)
+	// Returns a stream of recycle items for this storage provider.
+	ListRecycleStream(*ListRecycleStreamRequest, StorageProviderService_ListRecycleStreamServer) error
 	// Returns a list of recycle items for this storage provider.
-	// MUST return `OK` and MUST return an empty list if no recycle items are available.
+	// MUST return CODE_OK and MUST return an empty list if no recycle items are available.
 	ListRecycle(context.Context, *ListRecycleRequest) (*ListRecycleResponse, error)
 	// Moves a resource from one reference to another.
-	// MUST return `NOT_FOUND` if any of the references do not exist.
-	// MUST return `PRECONDITION_FAILED` if the source reference
+	// MUST return CODE_NOT_FOUND if any of the references do not exist.
+	// MUST return CODE_PRECONDITION_FAILED if the source reference
 	// cannot be moved to the destination reference.
 	Move(context.Context, *MoveRequest) (*MoveResponse, error)
 	// Removes a grant for the provided reference.
-	// MUST return `NOT_FOUND` if the reference does not exist.
-	// MUST return `NOT_FOUND` if grant does not exist.
+	// This is recursive and atomic for directories. Does not follow references.
+	// MUST return CODE_NOT_FOUND if the reference does not exist.
+	// MUST return CODE_NOT_FOUND if grant does not exist.
 	RemoveGrant(context.Context, *RemoveGrantRequest) (*RemoveGrantResponse, error)
 	// Permanently removes a recycle item from the recycle.
 	// This operation is irrevocable.
-	// MUST return `NOT_FOUND` if the recycle item id does not exist.
+	// MUST return CODE_NOT_FOUND if the recycle item id does not exist.
 	PurgeRecycle(context.Context, *PurgeRecycleRequest) (*PurgeRecycleResponse, error)
 	// Restores a file version for the provided reference.
-	// MUST return `NOT_FOUND` if the reference does not exist.
-	// MUST return `NOT_FOUND` if the version does not exist.
+	// MUST return CODE_NOT_FOUND if the reference does not exist.
+	// MUST return CODE_NOT_FOUND if the version does not exist.
 	RestoreFileVersion(context.Context, *RestoreFileVersionRequest) (*RestoreFileVersionResponse, error)
 	// Restores a recycle item from the recycle.
-	// MUST return `NOT_FOUND` if the recycle item id does not exist.
-	// MUST return `PRECONDITION_FAILED` if the restore_path is non-empty
+	// MUST return CODE_NOT_FOUND if the recycle item id does not exist.
+	// MUST return CODE_PRECONDITION_FAILED if the restore_path is non-empty
 	// and the recycle item cannot be restored to the restore_path.
 	RestoreRecycleItem(context.Context, *RestoreRecycleItemRequest) (*RestoreRecycleItemResponse, error)
 	// Returns the resource information at the provided reference.
-	// MUST return `NOT_FOUND` if the reference does not exist.
+	// MUST return CODE_NOT_FOUND if the reference does not exist.
 	Stat(context.Context, *StatRequest) (*StatResponse, error)
 	// Updates an ACL for the provided reference.
-	// MUST return `NOT_FOUND` if the reference does not exist.
-	// MUST return `PRECONDITION_FAILED` if the acl does not exist.
+	// MUST return CODE_NOT_FOUND if the reference does not exist.
+	// MUST return CODE_PRECONDITION_FAILED if the acl does not exist.
 	UpdateGrant(context.Context, *UpdateGrantRequest) (*UpdateGrantResponse, error)
 }
 
@@ -2283,6 +2997,24 @@ func _StorageProviderService_Delete_Handler(srv interface{}, ctx context.Context
 	return interceptor(ctx, in, info, handler)
 }
 
+func _StorageProviderService_GetProvider_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetProviderRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(StorageProviderServiceServer).GetProvider(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/cs3.storageproviderv0alpha.StorageProviderService/GetProvider",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(StorageProviderServiceServer).GetProvider(ctx, req.(*GetProviderRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _StorageProviderService_GetPath_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetPathRequest)
 	if err := dec(in); err != nil {
@@ -2319,6 +3051,42 @@ func _StorageProviderService_GetQuota_Handler(srv interface{}, ctx context.Conte
 	return interceptor(ctx, in, info, handler)
 }
 
+func _StorageProviderService_InitiateFileDownload_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(InitiateFileDownloadRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(StorageProviderServiceServer).InitiateFileDownload(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/cs3.storageproviderv0alpha.StorageProviderService/InitiateFileDownload",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(StorageProviderServiceServer).InitiateFileDownload(ctx, req.(*InitiateFileDownloadRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _StorageProviderService_InitiateFileUpload_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(InitiateFileUploadRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(StorageProviderServiceServer).InitiateFileUpload(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/cs3.storageproviderv0alpha.StorageProviderService/InitiateFileUpload",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(StorageProviderServiceServer).InitiateFileUpload(ctx, req.(*InitiateFileUploadRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _StorageProviderService_ListGrants_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ListGrantsRequest)
 	if err := dec(in); err != nil {
@@ -2335,6 +3103,27 @@ func _StorageProviderService_ListGrants_Handler(srv interface{}, ctx context.Con
 		return srv.(StorageProviderServiceServer).ListGrants(ctx, req.(*ListGrantsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
+}
+
+func _StorageProviderService_ListContainerStream_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(ListContainerStreamRequest)
+	if err := stream.RecvMsg(m); err != nil {
+		return err
+	}
+	return srv.(StorageProviderServiceServer).ListContainerStream(m, &storageProviderServiceListContainerStreamServer{stream})
+}
+
+type StorageProviderService_ListContainerStreamServer interface {
+	Send(*ListContainerStreamResponse) error
+	grpc.ServerStream
+}
+
+type storageProviderServiceListContainerStreamServer struct {
+	grpc.ServerStream
+}
+
+func (x *storageProviderServiceListContainerStreamServer) Send(m *ListContainerStreamResponse) error {
+	return x.ServerStream.SendMsg(m)
 }
 
 func _StorageProviderService_ListContainer_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -2371,6 +3160,27 @@ func _StorageProviderService_ListFileVersions_Handler(srv interface{}, ctx conte
 		return srv.(StorageProviderServiceServer).ListFileVersions(ctx, req.(*ListFileVersionsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
+}
+
+func _StorageProviderService_ListRecycleStream_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(ListRecycleStreamRequest)
+	if err := stream.RecvMsg(m); err != nil {
+		return err
+	}
+	return srv.(StorageProviderServiceServer).ListRecycleStream(m, &storageProviderServiceListRecycleStreamServer{stream})
+}
+
+type StorageProviderService_ListRecycleStreamServer interface {
+	Send(*ListRecycleStreamResponse) error
+	grpc.ServerStream
+}
+
+type storageProviderServiceListRecycleStreamServer struct {
+	grpc.ServerStream
+}
+
+func (x *storageProviderServiceListRecycleStreamServer) Send(m *ListRecycleStreamResponse) error {
+	return x.ServerStream.SendMsg(m)
 }
 
 func _StorageProviderService_ListRecycle_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -2534,12 +3344,24 @@ var _StorageProviderService_serviceDesc = grpc.ServiceDesc{
 			Handler:    _StorageProviderService_Delete_Handler,
 		},
 		{
+			MethodName: "GetProvider",
+			Handler:    _StorageProviderService_GetProvider_Handler,
+		},
+		{
 			MethodName: "GetPath",
 			Handler:    _StorageProviderService_GetPath_Handler,
 		},
 		{
 			MethodName: "GetQuota",
 			Handler:    _StorageProviderService_GetQuota_Handler,
+		},
+		{
+			MethodName: "InitiateFileDownload",
+			Handler:    _StorageProviderService_InitiateFileDownload_Handler,
+		},
+		{
+			MethodName: "InitiateFileUpload",
+			Handler:    _StorageProviderService_InitiateFileUpload_Handler,
 		},
 		{
 			MethodName: "ListGrants",
@@ -2586,6 +3408,17 @@ var _StorageProviderService_serviceDesc = grpc.ServiceDesc{
 			Handler:    _StorageProviderService_UpdateGrant_Handler,
 		},
 	},
-	Streams:  []grpc.StreamDesc{},
+	Streams: []grpc.StreamDesc{
+		{
+			StreamName:    "ListContainerStream",
+			Handler:       _StorageProviderService_ListContainerStream_Handler,
+			ServerStreams: true,
+		},
+		{
+			StreamName:    "ListRecycleStream",
+			Handler:       _StorageProviderService_ListRecycleStream_Handler,
+			ServerStreams: true,
+		},
+	},
 	Metadata: "cs3/storageprovider/v0alpha/storageprovider.proto",
 }

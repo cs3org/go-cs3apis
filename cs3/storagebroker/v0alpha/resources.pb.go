@@ -3,11 +3,9 @@
 
 package storagebrokerv0alphapb
 
-import (
-	fmt "fmt"
-	proto "github.com/golang/protobuf/proto"
-	math "math"
-)
+import proto "github.com/golang/protobuf/proto"
+import fmt "fmt"
+import math "math"
 
 // Reference imports to suppress errors if they are not otherwise used.
 var _ = proto.Marshal
@@ -18,7 +16,7 @@ var _ = math.Inf
 // is compatible with the proto package it is being compiled against.
 // A compilation error at this line likely means your copy of the
 // proto package needs to be updated.
-const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
+const _ = proto.ProtoPackageIsVersion2 // please upgrade the proto package
 
 type StorageProvider struct {
 	Endpoint             string   `protobuf:"bytes,1,opt,name=endpoint,proto3" json:"endpoint,omitempty"`
@@ -32,17 +30,16 @@ func (m *StorageProvider) Reset()         { *m = StorageProvider{} }
 func (m *StorageProvider) String() string { return proto.CompactTextString(m) }
 func (*StorageProvider) ProtoMessage()    {}
 func (*StorageProvider) Descriptor() ([]byte, []int) {
-	return fileDescriptor_09d00d8e2bdc177e, []int{0}
+	return fileDescriptor_resources_d5f66e6a54354b1d, []int{0}
 }
-
 func (m *StorageProvider) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_StorageProvider.Unmarshal(m, b)
 }
 func (m *StorageProvider) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_StorageProvider.Marshal(b, m, deterministic)
 }
-func (m *StorageProvider) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_StorageProvider.Merge(m, src)
+func (dst *StorageProvider) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_StorageProvider.Merge(dst, src)
 }
 func (m *StorageProvider) XXX_Size() int {
 	return xxx_messageInfo_StorageProvider.Size(m)
@@ -72,10 +69,10 @@ func init() {
 }
 
 func init() {
-	proto.RegisterFile("cs3/storagebroker/v0alpha/resources.proto", fileDescriptor_09d00d8e2bdc177e)
+	proto.RegisterFile("cs3/storagebroker/v0alpha/resources.proto", fileDescriptor_resources_d5f66e6a54354b1d)
 }
 
-var fileDescriptor_09d00d8e2bdc177e = []byte{
+var fileDescriptor_resources_d5f66e6a54354b1d = []byte{
 	// 204 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0xd2, 0x4c, 0x2e, 0x36, 0xd6,
 	0x2f, 0x2e, 0xc9, 0x2f, 0x4a, 0x4c, 0x4f, 0x4d, 0x2a, 0xca, 0xcf, 0x4e, 0x2d, 0xd2, 0x2f, 0x33,

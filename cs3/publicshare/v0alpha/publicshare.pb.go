@@ -7,6 +7,8 @@ import (
 	context "context"
 	fmt "fmt"
 	rpc "github.com/cernbox/go-cs3apis/cs3/rpc"
+	v0alpha "github.com/cernbox/go-cs3apis/cs3/storageprovider/v0alpha"
+	types "github.com/cernbox/go-cs3apis/cs3/types"
 	proto "github.com/golang/protobuf/proto"
 	grpc "google.golang.org/grpc"
 	math "math"
@@ -23,21 +25,165 @@ var _ = math.Inf
 // proto package needs to be updated.
 const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 
+type ListPublicSharesRequest_Filter_Type int32
+
+const (
+	ListPublicSharesRequest_Filter_TYPE_INVALID     ListPublicSharesRequest_Filter_Type = 0
+	ListPublicSharesRequest_Filter_TYPE_RESOURCE_ID ListPublicSharesRequest_Filter_Type = 1
+	ListPublicSharesRequest_Filter_TYPE_OWNER       ListPublicSharesRequest_Filter_Type = 2
+	ListPublicSharesRequest_Filter_TYPE_CREATOR     ListPublicSharesRequest_Filter_Type = 3
+)
+
+var ListPublicSharesRequest_Filter_Type_name = map[int32]string{
+	0: "TYPE_INVALID",
+	1: "TYPE_RESOURCE_ID",
+	2: "TYPE_OWNER",
+	3: "TYPE_CREATOR",
+}
+
+var ListPublicSharesRequest_Filter_Type_value = map[string]int32{
+	"TYPE_INVALID":     0,
+	"TYPE_RESOURCE_ID": 1,
+	"TYPE_OWNER":       2,
+	"TYPE_CREATOR":     3,
+}
+
+func (x ListPublicSharesRequest_Filter_Type) String() string {
+	return proto.EnumName(ListPublicSharesRequest_Filter_Type_name, int32(x))
+}
+
+func (ListPublicSharesRequest_Filter_Type) EnumDescriptor() ([]byte, []int) {
+	return fileDescriptor_ce037002abb23640, []int{6, 0, 0}
+}
+
+type GetProviderRequest struct {
+	// OPTIONAL.
+	// Opaque information.
+	Opaque               *types.Opaque `protobuf:"bytes,1,opt,name=opaque,proto3" json:"opaque,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}      `json:"-"`
+	XXX_unrecognized     []byte        `json:"-"`
+	XXX_sizecache        int32         `json:"-"`
+}
+
+func (m *GetProviderRequest) Reset()         { *m = GetProviderRequest{} }
+func (m *GetProviderRequest) String() string { return proto.CompactTextString(m) }
+func (*GetProviderRequest) ProtoMessage()    {}
+func (*GetProviderRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_ce037002abb23640, []int{0}
+}
+
+func (m *GetProviderRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_GetProviderRequest.Unmarshal(m, b)
+}
+func (m *GetProviderRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_GetProviderRequest.Marshal(b, m, deterministic)
+}
+func (m *GetProviderRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_GetProviderRequest.Merge(m, src)
+}
+func (m *GetProviderRequest) XXX_Size() int {
+	return xxx_messageInfo_GetProviderRequest.Size(m)
+}
+func (m *GetProviderRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_GetProviderRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_GetProviderRequest proto.InternalMessageInfo
+
+func (m *GetProviderRequest) GetOpaque() *types.Opaque {
+	if m != nil {
+		return m.Opaque
+	}
+	return nil
+}
+
+type GetProviderResponse struct {
+	// REQUIRED.
+	// The response status.
+	Status *rpc.Status `protobuf:"bytes,1,opt,name=status,proto3" json:"status,omitempty"`
+	// OPTIONAL.
+	// Opaque information.
+	Opaque *types.Opaque `protobuf:"bytes,2,opt,name=opaque,proto3" json:"opaque,omitempty"`
+	// REQUIRED.
+	// The information for the share provider.
+	Info                 *ProviderInfo `protobuf:"bytes,3,opt,name=info,proto3" json:"info,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}      `json:"-"`
+	XXX_unrecognized     []byte        `json:"-"`
+	XXX_sizecache        int32         `json:"-"`
+}
+
+func (m *GetProviderResponse) Reset()         { *m = GetProviderResponse{} }
+func (m *GetProviderResponse) String() string { return proto.CompactTextString(m) }
+func (*GetProviderResponse) ProtoMessage()    {}
+func (*GetProviderResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_ce037002abb23640, []int{1}
+}
+
+func (m *GetProviderResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_GetProviderResponse.Unmarshal(m, b)
+}
+func (m *GetProviderResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_GetProviderResponse.Marshal(b, m, deterministic)
+}
+func (m *GetProviderResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_GetProviderResponse.Merge(m, src)
+}
+func (m *GetProviderResponse) XXX_Size() int {
+	return xxx_messageInfo_GetProviderResponse.Size(m)
+}
+func (m *GetProviderResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_GetProviderResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_GetProviderResponse proto.InternalMessageInfo
+
+func (m *GetProviderResponse) GetStatus() *rpc.Status {
+	if m != nil {
+		return m.Status
+	}
+	return nil
+}
+
+func (m *GetProviderResponse) GetOpaque() *types.Opaque {
+	if m != nil {
+		return m.Opaque
+	}
+	return nil
+}
+
+func (m *GetProviderResponse) GetInfo() *ProviderInfo {
+	if m != nil {
+		return m.Info
+	}
+	return nil
+}
+
 type CreatePublicShareRequest struct {
-	Filename             string     `protobuf:"bytes,1,opt,name=filename,proto3" json:"filename,omitempty"`
-	Permission           Permission `protobuf:"varint,2,opt,name=permission,proto3,enum=cs3.publicsharev0alpha.Permission" json:"permission,omitempty"`
-	Password             string     `protobuf:"bytes,3,opt,name=password,proto3" json:"password,omitempty"`
-	Expiration           uint64     `protobuf:"varint,4,opt,name=expiration,proto3" json:"expiration,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}   `json:"-"`
-	XXX_unrecognized     []byte     `json:"-"`
-	XXX_sizecache        int32      `json:"-"`
+	// OPTIONAL.
+	// Opaque information.
+	Opaque *types.Opaque `protobuf:"bytes,1,opt,name=opaque,proto3" json:"opaque,omitempty"`
+	// REQUIRED.
+	// The unique identifier for the shared storage resource.
+	ResourceId *v0alpha.ResourceId `protobuf:"bytes,2,opt,name=resource_id,json=resourceId,proto3" json:"resource_id,omitempty"`
+	// REQUIRED.
+	// The permissions for the share.
+	Permissions *PublicSharePermissions `protobuf:"bytes,3,opt,name=permissions,proto3" json:"permissions,omitempty"`
+	// OPTIONAL.
+	// A password to protect the access to the public share.
+	Password string `protobuf:"bytes,4,opt,name=password,proto3" json:"password,omitempty"`
+	// OPTIONAL.
+	// An expiration date to protect the access to the public share.
+	Expiration           *types.Timestamp `protobuf:"bytes,5,opt,name=expiration,proto3" json:"expiration,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}         `json:"-"`
+	XXX_unrecognized     []byte           `json:"-"`
+	XXX_sizecache        int32            `json:"-"`
 }
 
 func (m *CreatePublicShareRequest) Reset()         { *m = CreatePublicShareRequest{} }
 func (m *CreatePublicShareRequest) String() string { return proto.CompactTextString(m) }
 func (*CreatePublicShareRequest) ProtoMessage()    {}
 func (*CreatePublicShareRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_ce037002abb23640, []int{0}
+	return fileDescriptor_ce037002abb23640, []int{2}
 }
 
 func (m *CreatePublicShareRequest) XXX_Unmarshal(b []byte) error {
@@ -58,18 +204,25 @@ func (m *CreatePublicShareRequest) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_CreatePublicShareRequest proto.InternalMessageInfo
 
-func (m *CreatePublicShareRequest) GetFilename() string {
+func (m *CreatePublicShareRequest) GetOpaque() *types.Opaque {
 	if m != nil {
-		return m.Filename
+		return m.Opaque
 	}
-	return ""
+	return nil
 }
 
-func (m *CreatePublicShareRequest) GetPermission() Permission {
+func (m *CreatePublicShareRequest) GetResourceId() *v0alpha.ResourceId {
 	if m != nil {
-		return m.Permission
+		return m.ResourceId
 	}
-	return Permission_PERMISSION_INVALID
+	return nil
+}
+
+func (m *CreatePublicShareRequest) GetPermissions() *PublicSharePermissions {
+	if m != nil {
+		return m.Permissions
+	}
+	return nil
 }
 
 func (m *CreatePublicShareRequest) GetPassword() string {
@@ -79,16 +232,23 @@ func (m *CreatePublicShareRequest) GetPassword() string {
 	return ""
 }
 
-func (m *CreatePublicShareRequest) GetExpiration() uint64 {
+func (m *CreatePublicShareRequest) GetExpiration() *types.Timestamp {
 	if m != nil {
 		return m.Expiration
 	}
-	return 0
+	return nil
 }
 
 type CreatePublicShareResponse struct {
-	Status               *rpc.Status  `protobuf:"bytes,1,opt,name=status,proto3" json:"status,omitempty"`
-	PublicShare          *PublicShare `protobuf:"bytes,2,opt,name=public_share,json=publicShare,proto3" json:"public_share,omitempty"`
+	// REQUIRED.
+	// The response status.
+	Status *rpc.Status `protobuf:"bytes,1,opt,name=status,proto3" json:"status,omitempty"`
+	// OPTIONAL.
+	// Opaque information.
+	Opaque *types.Opaque `protobuf:"bytes,2,opt,name=opaque,proto3" json:"opaque,omitempty"`
+	// REQUIRED.
+	// The created share.
+	Share                *PublicShare `protobuf:"bytes,3,opt,name=share,proto3" json:"share,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}     `json:"-"`
 	XXX_unrecognized     []byte       `json:"-"`
 	XXX_sizecache        int32        `json:"-"`
@@ -98,7 +258,7 @@ func (m *CreatePublicShareResponse) Reset()         { *m = CreatePublicShareResp
 func (m *CreatePublicShareResponse) String() string { return proto.CompactTextString(m) }
 func (*CreatePublicShareResponse) ProtoMessage()    {}
 func (*CreatePublicShareResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_ce037002abb23640, []int{1}
+	return fileDescriptor_ce037002abb23640, []int{3}
 }
 
 func (m *CreatePublicShareResponse) XXX_Unmarshal(b []byte) error {
@@ -126,29 +286,40 @@ func (m *CreatePublicShareResponse) GetStatus() *rpc.Status {
 	return nil
 }
 
-func (m *CreatePublicShareResponse) GetPublicShare() *PublicShare {
+func (m *CreatePublicShareResponse) GetOpaque() *types.Opaque {
 	if m != nil {
-		return m.PublicShare
+		return m.Opaque
+	}
+	return nil
+}
+
+func (m *CreatePublicShareResponse) GetShare() *PublicShare {
+	if m != nil {
+		return m.Share
 	}
 	return nil
 }
 
 type UpdatePublicShareRequest struct {
-	PublicShareId        string        `protobuf:"bytes,1,opt,name=public_share_id,json=publicShareId,proto3" json:"public_share_id,omitempty"`
-	Policy               *UpdatePolicy `protobuf:"bytes,2,opt,name=policy,proto3" json:"policy,omitempty"`
-	Password             string        `protobuf:"bytes,3,opt,name=password,proto3" json:"password,omitempty"`
-	Expiration           string        `protobuf:"bytes,4,opt,name=expiration,proto3" json:"expiration,omitempty"`
-	Permission           Permission    `protobuf:"varint,5,opt,name=permission,proto3,enum=cs3.publicsharev0alpha.Permission" json:"permission,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}      `json:"-"`
-	XXX_unrecognized     []byte        `json:"-"`
-	XXX_sizecache        int32         `json:"-"`
+	// OPTIONAL.
+	// Opaque information.
+	Opaque *types.Opaque `protobuf:"bytes,1,opt,name=opaque,proto3" json:"opaque,omitempty"`
+	// REQUIRED.
+	// The reference to the public share.
+	Ref *PublicShareReference `protobuf:"bytes,2,opt,name=ref,proto3" json:"ref,omitempty"`
+	// REQUIRED.
+	// The field to be updated.
+	Field                *UpdatePublicShareRequest_UpdateField `protobuf:"bytes,5,opt,name=field,proto3" json:"field,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}                              `json:"-"`
+	XXX_unrecognized     []byte                                `json:"-"`
+	XXX_sizecache        int32                                 `json:"-"`
 }
 
 func (m *UpdatePublicShareRequest) Reset()         { *m = UpdatePublicShareRequest{} }
 func (m *UpdatePublicShareRequest) String() string { return proto.CompactTextString(m) }
 func (*UpdatePublicShareRequest) ProtoMessage()    {}
 func (*UpdatePublicShareRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_ce037002abb23640, []int{2}
+	return fileDescriptor_ce037002abb23640, []int{4}
 }
 
 func (m *UpdatePublicShareRequest) XXX_Unmarshal(b []byte) error {
@@ -169,44 +340,137 @@ func (m *UpdatePublicShareRequest) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_UpdatePublicShareRequest proto.InternalMessageInfo
 
-func (m *UpdatePublicShareRequest) GetPublicShareId() string {
+func (m *UpdatePublicShareRequest) GetOpaque() *types.Opaque {
 	if m != nil {
-		return m.PublicShareId
-	}
-	return ""
-}
-
-func (m *UpdatePublicShareRequest) GetPolicy() *UpdatePolicy {
-	if m != nil {
-		return m.Policy
+		return m.Opaque
 	}
 	return nil
 }
 
-func (m *UpdatePublicShareRequest) GetPassword() string {
+func (m *UpdatePublicShareRequest) GetRef() *PublicShareReference {
 	if m != nil {
-		return m.Password
+		return m.Ref
+	}
+	return nil
+}
+
+func (m *UpdatePublicShareRequest) GetField() *UpdatePublicShareRequest_UpdateField {
+	if m != nil {
+		return m.Field
+	}
+	return nil
+}
+
+// Available fields to update.
+type UpdatePublicShareRequest_UpdateField struct {
+	// One of the update fields MUST be specified.
+	//
+	// Types that are valid to be assigned to Field:
+	//	*UpdatePublicShareRequest_UpdateField_Permissions
+	//	*UpdatePublicShareRequest_UpdateField_Password
+	//	*UpdatePublicShareRequest_UpdateField_Expiration
+	Field                isUpdatePublicShareRequest_UpdateField_Field `protobuf_oneof:"field"`
+	XXX_NoUnkeyedLiteral struct{}                                     `json:"-"`
+	XXX_unrecognized     []byte                                       `json:"-"`
+	XXX_sizecache        int32                                        `json:"-"`
+}
+
+func (m *UpdatePublicShareRequest_UpdateField) Reset()         { *m = UpdatePublicShareRequest_UpdateField{} }
+func (m *UpdatePublicShareRequest_UpdateField) String() string { return proto.CompactTextString(m) }
+func (*UpdatePublicShareRequest_UpdateField) ProtoMessage()    {}
+func (*UpdatePublicShareRequest_UpdateField) Descriptor() ([]byte, []int) {
+	return fileDescriptor_ce037002abb23640, []int{4, 0}
+}
+
+func (m *UpdatePublicShareRequest_UpdateField) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_UpdatePublicShareRequest_UpdateField.Unmarshal(m, b)
+}
+func (m *UpdatePublicShareRequest_UpdateField) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_UpdatePublicShareRequest_UpdateField.Marshal(b, m, deterministic)
+}
+func (m *UpdatePublicShareRequest_UpdateField) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_UpdatePublicShareRequest_UpdateField.Merge(m, src)
+}
+func (m *UpdatePublicShareRequest_UpdateField) XXX_Size() int {
+	return xxx_messageInfo_UpdatePublicShareRequest_UpdateField.Size(m)
+}
+func (m *UpdatePublicShareRequest_UpdateField) XXX_DiscardUnknown() {
+	xxx_messageInfo_UpdatePublicShareRequest_UpdateField.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_UpdatePublicShareRequest_UpdateField proto.InternalMessageInfo
+
+type isUpdatePublicShareRequest_UpdateField_Field interface {
+	isUpdatePublicShareRequest_UpdateField_Field()
+}
+
+type UpdatePublicShareRequest_UpdateField_Permissions struct {
+	Permissions *PublicSharePermissions `protobuf:"bytes,2,opt,name=permissions,proto3,oneof"`
+}
+
+type UpdatePublicShareRequest_UpdateField_Password struct {
+	Password string `protobuf:"bytes,3,opt,name=password,proto3,oneof"`
+}
+
+type UpdatePublicShareRequest_UpdateField_Expiration struct {
+	Expiration *types.Timestamp `protobuf:"bytes,4,opt,name=expiration,proto3,oneof"`
+}
+
+func (*UpdatePublicShareRequest_UpdateField_Permissions) isUpdatePublicShareRequest_UpdateField_Field() {
+}
+
+func (*UpdatePublicShareRequest_UpdateField_Password) isUpdatePublicShareRequest_UpdateField_Field() {}
+
+func (*UpdatePublicShareRequest_UpdateField_Expiration) isUpdatePublicShareRequest_UpdateField_Field() {
+}
+
+func (m *UpdatePublicShareRequest_UpdateField) GetField() isUpdatePublicShareRequest_UpdateField_Field {
+	if m != nil {
+		return m.Field
+	}
+	return nil
+}
+
+func (m *UpdatePublicShareRequest_UpdateField) GetPermissions() *PublicSharePermissions {
+	if x, ok := m.GetField().(*UpdatePublicShareRequest_UpdateField_Permissions); ok {
+		return x.Permissions
+	}
+	return nil
+}
+
+func (m *UpdatePublicShareRequest_UpdateField) GetPassword() string {
+	if x, ok := m.GetField().(*UpdatePublicShareRequest_UpdateField_Password); ok {
+		return x.Password
 	}
 	return ""
 }
 
-func (m *UpdatePublicShareRequest) GetExpiration() string {
-	if m != nil {
-		return m.Expiration
+func (m *UpdatePublicShareRequest_UpdateField) GetExpiration() *types.Timestamp {
+	if x, ok := m.GetField().(*UpdatePublicShareRequest_UpdateField_Expiration); ok {
+		return x.Expiration
 	}
-	return ""
+	return nil
 }
 
-func (m *UpdatePublicShareRequest) GetPermission() Permission {
-	if m != nil {
-		return m.Permission
+// XXX_OneofWrappers is for the internal use of the proto package.
+func (*UpdatePublicShareRequest_UpdateField) XXX_OneofWrappers() []interface{} {
+	return []interface{}{
+		(*UpdatePublicShareRequest_UpdateField_Permissions)(nil),
+		(*UpdatePublicShareRequest_UpdateField_Password)(nil),
+		(*UpdatePublicShareRequest_UpdateField_Expiration)(nil),
 	}
-	return Permission_PERMISSION_INVALID
 }
 
 type UpdatePublicShareResponse struct {
-	Status               *rpc.Status  `protobuf:"bytes,1,opt,name=status,proto3" json:"status,omitempty"`
-	PublicShare          *PublicShare `protobuf:"bytes,2,opt,name=public_share,json=publicShare,proto3" json:"public_share,omitempty"`
+	// REQUIRED.
+	// The response status.
+	Status *rpc.Status `protobuf:"bytes,1,opt,name=status,proto3" json:"status,omitempty"`
+	// OPTIONAL.
+	// Opaque information.
+	Opaque *types.Opaque `protobuf:"bytes,2,opt,name=opaque,proto3" json:"opaque,omitempty"`
+	// REQUIRED.
+	// The updated public share.
+	Share                *PublicShare `protobuf:"bytes,3,opt,name=share,proto3" json:"share,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}     `json:"-"`
 	XXX_unrecognized     []byte       `json:"-"`
 	XXX_sizecache        int32        `json:"-"`
@@ -216,7 +480,7 @@ func (m *UpdatePublicShareResponse) Reset()         { *m = UpdatePublicShareResp
 func (m *UpdatePublicShareResponse) String() string { return proto.CompactTextString(m) }
 func (*UpdatePublicShareResponse) ProtoMessage()    {}
 func (*UpdatePublicShareResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_ce037002abb23640, []int{3}
+	return fileDescriptor_ce037002abb23640, []int{5}
 }
 
 func (m *UpdatePublicShareResponse) XXX_Unmarshal(b []byte) error {
@@ -244,25 +508,37 @@ func (m *UpdatePublicShareResponse) GetStatus() *rpc.Status {
 	return nil
 }
 
-func (m *UpdatePublicShareResponse) GetPublicShare() *PublicShare {
+func (m *UpdatePublicShareResponse) GetOpaque() *types.Opaque {
 	if m != nil {
-		return m.PublicShare
+		return m.Opaque
+	}
+	return nil
+}
+
+func (m *UpdatePublicShareResponse) GetShare() *PublicShare {
+	if m != nil {
+		return m.Share
 	}
 	return nil
 }
 
 type ListPublicSharesRequest struct {
-	Filename             string   `protobuf:"bytes,1,opt,name=filename,proto3" json:"filename,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
+	// OPTIONAL.
+	// Opaque information.
+	Opaque *types.Opaque `protobuf:"bytes,1,opt,name=opaque,proto3" json:"opaque,omitempty"`
+	// OPTIONAL.
+	// The list of filters to apply if any.
+	Filters              []*ListPublicSharesRequest_Filter `protobuf:"bytes,2,rep,name=filters,proto3" json:"filters,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}                          `json:"-"`
+	XXX_unrecognized     []byte                            `json:"-"`
+	XXX_sizecache        int32                             `json:"-"`
 }
 
 func (m *ListPublicSharesRequest) Reset()         { *m = ListPublicSharesRequest{} }
 func (m *ListPublicSharesRequest) String() string { return proto.CompactTextString(m) }
 func (*ListPublicSharesRequest) ProtoMessage()    {}
 func (*ListPublicSharesRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_ce037002abb23640, []int{4}
+	return fileDescriptor_ce037002abb23640, []int{6}
 }
 
 func (m *ListPublicSharesRequest) XXX_Unmarshal(b []byte) error {
@@ -283,26 +559,144 @@ func (m *ListPublicSharesRequest) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_ListPublicSharesRequest proto.InternalMessageInfo
 
-func (m *ListPublicSharesRequest) GetFilename() string {
+func (m *ListPublicSharesRequest) GetOpaque() *types.Opaque {
 	if m != nil {
-		return m.Filename
+		return m.Opaque
 	}
-	return ""
+	return nil
+}
+
+func (m *ListPublicSharesRequest) GetFilters() []*ListPublicSharesRequest_Filter {
+	if m != nil {
+		return m.Filters
+	}
+	return nil
+}
+
+// represents a filter to apply to the request.
+type ListPublicSharesRequest_Filter struct {
+	Type ListPublicSharesRequest_Filter_Type `protobuf:"varint,2,opt,name=type,proto3,enum=cs3.publicsharev0alpha.ListPublicSharesRequest_Filter_Type" json:"type,omitempty"`
+	// Types that are valid to be assigned to Term:
+	//	*ListPublicSharesRequest_Filter_ResourceId
+	//	*ListPublicSharesRequest_Filter_Owner
+	//	*ListPublicSharesRequest_Filter_Creator
+	Term                 isListPublicSharesRequest_Filter_Term `protobuf_oneof:"Term"`
+	XXX_NoUnkeyedLiteral struct{}                              `json:"-"`
+	XXX_unrecognized     []byte                                `json:"-"`
+	XXX_sizecache        int32                                 `json:"-"`
+}
+
+func (m *ListPublicSharesRequest_Filter) Reset()         { *m = ListPublicSharesRequest_Filter{} }
+func (m *ListPublicSharesRequest_Filter) String() string { return proto.CompactTextString(m) }
+func (*ListPublicSharesRequest_Filter) ProtoMessage()    {}
+func (*ListPublicSharesRequest_Filter) Descriptor() ([]byte, []int) {
+	return fileDescriptor_ce037002abb23640, []int{6, 0}
+}
+
+func (m *ListPublicSharesRequest_Filter) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ListPublicSharesRequest_Filter.Unmarshal(m, b)
+}
+func (m *ListPublicSharesRequest_Filter) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ListPublicSharesRequest_Filter.Marshal(b, m, deterministic)
+}
+func (m *ListPublicSharesRequest_Filter) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ListPublicSharesRequest_Filter.Merge(m, src)
+}
+func (m *ListPublicSharesRequest_Filter) XXX_Size() int {
+	return xxx_messageInfo_ListPublicSharesRequest_Filter.Size(m)
+}
+func (m *ListPublicSharesRequest_Filter) XXX_DiscardUnknown() {
+	xxx_messageInfo_ListPublicSharesRequest_Filter.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_ListPublicSharesRequest_Filter proto.InternalMessageInfo
+
+func (m *ListPublicSharesRequest_Filter) GetType() ListPublicSharesRequest_Filter_Type {
+	if m != nil {
+		return m.Type
+	}
+	return ListPublicSharesRequest_Filter_TYPE_INVALID
+}
+
+type isListPublicSharesRequest_Filter_Term interface {
+	isListPublicSharesRequest_Filter_Term()
+}
+
+type ListPublicSharesRequest_Filter_ResourceId struct {
+	ResourceId *v0alpha.ResourceId `protobuf:"bytes,3,opt,name=resource_id,json=resourceId,proto3,oneof"`
+}
+
+type ListPublicSharesRequest_Filter_Owner struct {
+	Owner *types.UserId `protobuf:"bytes,4,opt,name=owner,proto3,oneof"`
+}
+
+type ListPublicSharesRequest_Filter_Creator struct {
+	Creator *types.UserId `protobuf:"bytes,5,opt,name=creator,proto3,oneof"`
+}
+
+func (*ListPublicSharesRequest_Filter_ResourceId) isListPublicSharesRequest_Filter_Term() {}
+
+func (*ListPublicSharesRequest_Filter_Owner) isListPublicSharesRequest_Filter_Term() {}
+
+func (*ListPublicSharesRequest_Filter_Creator) isListPublicSharesRequest_Filter_Term() {}
+
+func (m *ListPublicSharesRequest_Filter) GetTerm() isListPublicSharesRequest_Filter_Term {
+	if m != nil {
+		return m.Term
+	}
+	return nil
+}
+
+func (m *ListPublicSharesRequest_Filter) GetResourceId() *v0alpha.ResourceId {
+	if x, ok := m.GetTerm().(*ListPublicSharesRequest_Filter_ResourceId); ok {
+		return x.ResourceId
+	}
+	return nil
+}
+
+func (m *ListPublicSharesRequest_Filter) GetOwner() *types.UserId {
+	if x, ok := m.GetTerm().(*ListPublicSharesRequest_Filter_Owner); ok {
+		return x.Owner
+	}
+	return nil
+}
+
+func (m *ListPublicSharesRequest_Filter) GetCreator() *types.UserId {
+	if x, ok := m.GetTerm().(*ListPublicSharesRequest_Filter_Creator); ok {
+		return x.Creator
+	}
+	return nil
+}
+
+// XXX_OneofWrappers is for the internal use of the proto package.
+func (*ListPublicSharesRequest_Filter) XXX_OneofWrappers() []interface{} {
+	return []interface{}{
+		(*ListPublicSharesRequest_Filter_ResourceId)(nil),
+		(*ListPublicSharesRequest_Filter_Owner)(nil),
+		(*ListPublicSharesRequest_Filter_Creator)(nil),
+	}
 }
 
 type ListPublicSharesResponse struct {
-	Status               *rpc.Status  `protobuf:"bytes,1,opt,name=status,proto3" json:"status,omitempty"`
-	PublicShare          *PublicShare `protobuf:"bytes,2,opt,name=public_share,json=publicShare,proto3" json:"public_share,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}     `json:"-"`
-	XXX_unrecognized     []byte       `json:"-"`
-	XXX_sizecache        int32        `json:"-"`
+	// REQUIRED.
+	// The response status.
+	Status *rpc.Status `protobuf:"bytes,1,opt,name=status,proto3" json:"status,omitempty"`
+	// OPTIONAL.
+	// Opaque information.
+	Opaque *types.Opaque `protobuf:"bytes,2,opt,name=opaque,proto3" json:"opaque,omitempty"`
+	// REQUIRED.
+	// The list of shares.
+	Share                []*PublicShare `protobuf:"bytes,3,rep,name=share,proto3" json:"share,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}       `json:"-"`
+	XXX_unrecognized     []byte         `json:"-"`
+	XXX_sizecache        int32          `json:"-"`
 }
 
 func (m *ListPublicSharesResponse) Reset()         { *m = ListPublicSharesResponse{} }
 func (m *ListPublicSharesResponse) String() string { return proto.CompactTextString(m) }
 func (*ListPublicSharesResponse) ProtoMessage()    {}
 func (*ListPublicSharesResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_ce037002abb23640, []int{5}
+	return fileDescriptor_ce037002abb23640, []int{7}
 }
 
 func (m *ListPublicSharesResponse) XXX_Unmarshal(b []byte) error {
@@ -330,103 +724,139 @@ func (m *ListPublicSharesResponse) GetStatus() *rpc.Status {
 	return nil
 }
 
-func (m *ListPublicSharesResponse) GetPublicShare() *PublicShare {
+func (m *ListPublicSharesResponse) GetOpaque() *types.Opaque {
 	if m != nil {
-		return m.PublicShare
+		return m.Opaque
 	}
 	return nil
 }
 
-type RevokePublicShareRequest struct {
-	PublicShareId        string   `protobuf:"bytes,1,opt,name=public_share_id,json=publicShareId,proto3" json:"public_share_id,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *RevokePublicShareRequest) Reset()         { *m = RevokePublicShareRequest{} }
-func (m *RevokePublicShareRequest) String() string { return proto.CompactTextString(m) }
-func (*RevokePublicShareRequest) ProtoMessage()    {}
-func (*RevokePublicShareRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_ce037002abb23640, []int{6}
-}
-
-func (m *RevokePublicShareRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_RevokePublicShareRequest.Unmarshal(m, b)
-}
-func (m *RevokePublicShareRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_RevokePublicShareRequest.Marshal(b, m, deterministic)
-}
-func (m *RevokePublicShareRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_RevokePublicShareRequest.Merge(m, src)
-}
-func (m *RevokePublicShareRequest) XXX_Size() int {
-	return xxx_messageInfo_RevokePublicShareRequest.Size(m)
-}
-func (m *RevokePublicShareRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_RevokePublicShareRequest.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_RevokePublicShareRequest proto.InternalMessageInfo
-
-func (m *RevokePublicShareRequest) GetPublicShareId() string {
+func (m *ListPublicSharesResponse) GetShare() []*PublicShare {
 	if m != nil {
-		return m.PublicShareId
+		return m.Share
 	}
-	return ""
+	return nil
 }
 
-type RevokePublicShareResponse struct {
-	Status               *rpc.Status `protobuf:"bytes,1,opt,name=status,proto3" json:"status,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}    `json:"-"`
-	XXX_unrecognized     []byte      `json:"-"`
-	XXX_sizecache        int32       `json:"-"`
+type RemovePublicShareRequest struct {
+	// OPTIONAL.
+	// Opaque information.
+	Opaque *types.Opaque `protobuf:"bytes,1,opt,name=opaque,proto3" json:"opaque,omitempty"`
+	// REQUIRED.
+	// The reference to which the action should be performed.
+	Ref                  *PublicShareReference `protobuf:"bytes,2,opt,name=ref,proto3" json:"ref,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}              `json:"-"`
+	XXX_unrecognized     []byte                `json:"-"`
+	XXX_sizecache        int32                 `json:"-"`
 }
 
-func (m *RevokePublicShareResponse) Reset()         { *m = RevokePublicShareResponse{} }
-func (m *RevokePublicShareResponse) String() string { return proto.CompactTextString(m) }
-func (*RevokePublicShareResponse) ProtoMessage()    {}
-func (*RevokePublicShareResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_ce037002abb23640, []int{7}
+func (m *RemovePublicShareRequest) Reset()         { *m = RemovePublicShareRequest{} }
+func (m *RemovePublicShareRequest) String() string { return proto.CompactTextString(m) }
+func (*RemovePublicShareRequest) ProtoMessage()    {}
+func (*RemovePublicShareRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_ce037002abb23640, []int{8}
 }
 
-func (m *RevokePublicShareResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_RevokePublicShareResponse.Unmarshal(m, b)
+func (m *RemovePublicShareRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_RemovePublicShareRequest.Unmarshal(m, b)
 }
-func (m *RevokePublicShareResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_RevokePublicShareResponse.Marshal(b, m, deterministic)
+func (m *RemovePublicShareRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_RemovePublicShareRequest.Marshal(b, m, deterministic)
 }
-func (m *RevokePublicShareResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_RevokePublicShareResponse.Merge(m, src)
+func (m *RemovePublicShareRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_RemovePublicShareRequest.Merge(m, src)
 }
-func (m *RevokePublicShareResponse) XXX_Size() int {
-	return xxx_messageInfo_RevokePublicShareResponse.Size(m)
+func (m *RemovePublicShareRequest) XXX_Size() int {
+	return xxx_messageInfo_RemovePublicShareRequest.Size(m)
 }
-func (m *RevokePublicShareResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_RevokePublicShareResponse.DiscardUnknown(m)
+func (m *RemovePublicShareRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_RemovePublicShareRequest.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_RevokePublicShareResponse proto.InternalMessageInfo
+var xxx_messageInfo_RemovePublicShareRequest proto.InternalMessageInfo
 
-func (m *RevokePublicShareResponse) GetStatus() *rpc.Status {
+func (m *RemovePublicShareRequest) GetOpaque() *types.Opaque {
+	if m != nil {
+		return m.Opaque
+	}
+	return nil
+}
+
+func (m *RemovePublicShareRequest) GetRef() *PublicShareReference {
+	if m != nil {
+		return m.Ref
+	}
+	return nil
+}
+
+type RemovePublicShareResponse struct {
+	// REQUIRED.
+	// The response status.
+	Status *rpc.Status `protobuf:"bytes,1,opt,name=status,proto3" json:"status,omitempty"`
+	// OPTIONAL.
+	// Opaque information.
+	Opaque               *types.Opaque `protobuf:"bytes,2,opt,name=opaque,proto3" json:"opaque,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}      `json:"-"`
+	XXX_unrecognized     []byte        `json:"-"`
+	XXX_sizecache        int32         `json:"-"`
+}
+
+func (m *RemovePublicShareResponse) Reset()         { *m = RemovePublicShareResponse{} }
+func (m *RemovePublicShareResponse) String() string { return proto.CompactTextString(m) }
+func (*RemovePublicShareResponse) ProtoMessage()    {}
+func (*RemovePublicShareResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_ce037002abb23640, []int{9}
+}
+
+func (m *RemovePublicShareResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_RemovePublicShareResponse.Unmarshal(m, b)
+}
+func (m *RemovePublicShareResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_RemovePublicShareResponse.Marshal(b, m, deterministic)
+}
+func (m *RemovePublicShareResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_RemovePublicShareResponse.Merge(m, src)
+}
+func (m *RemovePublicShareResponse) XXX_Size() int {
+	return xxx_messageInfo_RemovePublicShareResponse.Size(m)
+}
+func (m *RemovePublicShareResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_RemovePublicShareResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_RemovePublicShareResponse proto.InternalMessageInfo
+
+func (m *RemovePublicShareResponse) GetStatus() *rpc.Status {
 	if m != nil {
 		return m.Status
 	}
 	return nil
 }
 
+func (m *RemovePublicShareResponse) GetOpaque() *types.Opaque {
+	if m != nil {
+		return m.Opaque
+	}
+	return nil
+}
+
 type GetPublicShareRequest struct {
-	PublicShareId        string   `protobuf:"bytes,1,opt,name=public_share_id,json=publicShareId,proto3" json:"public_share_id,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
+	// OPTIONAL.
+	// Opaque information.
+	Opaque *types.Opaque `protobuf:"bytes,1,opt,name=opaque,proto3" json:"opaque,omitempty"`
+	// REQUIRED.
+	// The reference to which the action should be performed.
+	Ref                  *PublicShareReference `protobuf:"bytes,2,opt,name=ref,proto3" json:"ref,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}              `json:"-"`
+	XXX_unrecognized     []byte                `json:"-"`
+	XXX_sizecache        int32                 `json:"-"`
 }
 
 func (m *GetPublicShareRequest) Reset()         { *m = GetPublicShareRequest{} }
 func (m *GetPublicShareRequest) String() string { return proto.CompactTextString(m) }
 func (*GetPublicShareRequest) ProtoMessage()    {}
 func (*GetPublicShareRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_ce037002abb23640, []int{8}
+	return fileDescriptor_ce037002abb23640, []int{10}
 }
 
 func (m *GetPublicShareRequest) XXX_Unmarshal(b []byte) error {
@@ -447,16 +877,30 @@ func (m *GetPublicShareRequest) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_GetPublicShareRequest proto.InternalMessageInfo
 
-func (m *GetPublicShareRequest) GetPublicShareId() string {
+func (m *GetPublicShareRequest) GetOpaque() *types.Opaque {
 	if m != nil {
-		return m.PublicShareId
+		return m.Opaque
 	}
-	return ""
+	return nil
+}
+
+func (m *GetPublicShareRequest) GetRef() *PublicShareReference {
+	if m != nil {
+		return m.Ref
+	}
+	return nil
 }
 
 type GetPublicShareResponse struct {
-	Status               *rpc.Status  `protobuf:"bytes,1,opt,name=status,proto3" json:"status,omitempty"`
-	PublicShare          *PublicShare `protobuf:"bytes,2,opt,name=public_share,json=publicShare,proto3" json:"public_share,omitempty"`
+	// REQUIRED.
+	// The response status.
+	Status *rpc.Status `protobuf:"bytes,1,opt,name=status,proto3" json:"status,omitempty"`
+	// OPTIONAL.
+	// Opaque information.
+	Opaque *types.Opaque `protobuf:"bytes,2,opt,name=opaque,proto3" json:"opaque,omitempty"`
+	// REQUIRED.
+	// The share.
+	Share                *PublicShare `protobuf:"bytes,3,opt,name=share,proto3" json:"share,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}     `json:"-"`
 	XXX_unrecognized     []byte       `json:"-"`
 	XXX_sizecache        int32        `json:"-"`
@@ -466,7 +910,7 @@ func (m *GetPublicShareResponse) Reset()         { *m = GetPublicShareResponse{}
 func (m *GetPublicShareResponse) String() string { return proto.CompactTextString(m) }
 func (*GetPublicShareResponse) ProtoMessage()    {}
 func (*GetPublicShareResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_ce037002abb23640, []int{9}
+	return fileDescriptor_ce037002abb23640, []int{11}
 }
 
 func (m *GetPublicShareResponse) XXX_Unmarshal(b []byte) error {
@@ -494,15 +938,27 @@ func (m *GetPublicShareResponse) GetStatus() *rpc.Status {
 	return nil
 }
 
-func (m *GetPublicShareResponse) GetPublicShare() *PublicShare {
+func (m *GetPublicShareResponse) GetOpaque() *types.Opaque {
 	if m != nil {
-		return m.PublicShare
+		return m.Opaque
+	}
+	return nil
+}
+
+func (m *GetPublicShareResponse) GetShare() *PublicShare {
+	if m != nil {
+		return m.Share
 	}
 	return nil
 }
 
 type GetPublicShareByTokenRequest struct {
-	Token                string   `protobuf:"bytes,1,opt,name=token,proto3" json:"token,omitempty"`
+	// OPTIONAL.
+	// Opaque information.
+	Opaque *types.Opaque `protobuf:"bytes,1,opt,name=opaque,proto3" json:"opaque,omitempty"`
+	// REQUIRED.
+	// The unlisted token to identify the public share.
+	Token                string   `protobuf:"bytes,2,opt,name=token,proto3" json:"token,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
@@ -512,7 +968,7 @@ func (m *GetPublicShareByTokenRequest) Reset()         { *m = GetPublicShareByTo
 func (m *GetPublicShareByTokenRequest) String() string { return proto.CompactTextString(m) }
 func (*GetPublicShareByTokenRequest) ProtoMessage()    {}
 func (*GetPublicShareByTokenRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_ce037002abb23640, []int{10}
+	return fileDescriptor_ce037002abb23640, []int{12}
 }
 
 func (m *GetPublicShareByTokenRequest) XXX_Unmarshal(b []byte) error {
@@ -533,6 +989,13 @@ func (m *GetPublicShareByTokenRequest) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_GetPublicShareByTokenRequest proto.InternalMessageInfo
 
+func (m *GetPublicShareByTokenRequest) GetOpaque() *types.Opaque {
+	if m != nil {
+		return m.Opaque
+	}
+	return nil
+}
+
 func (m *GetPublicShareByTokenRequest) GetToken() string {
 	if m != nil {
 		return m.Token
@@ -541,8 +1004,15 @@ func (m *GetPublicShareByTokenRequest) GetToken() string {
 }
 
 type GetPublicShareByTokenResponse struct {
-	Status               *rpc.Status  `protobuf:"bytes,1,opt,name=status,proto3" json:"status,omitempty"`
-	PublicShare          *PublicShare `protobuf:"bytes,2,opt,name=public_share,json=publicShare,proto3" json:"public_share,omitempty"`
+	// REQUIRED.
+	// The response status.
+	Status *rpc.Status `protobuf:"bytes,1,opt,name=status,proto3" json:"status,omitempty"`
+	// OPTIONAL.
+	// Opaque information.
+	Opaque *types.Opaque `protobuf:"bytes,2,opt,name=opaque,proto3" json:"opaque,omitempty"`
+	// REQUIRED.
+	// The share.
+	Share                *PublicShare `protobuf:"bytes,3,opt,name=share,proto3" json:"share,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}     `json:"-"`
 	XXX_unrecognized     []byte       `json:"-"`
 	XXX_sizecache        int32        `json:"-"`
@@ -552,7 +1022,7 @@ func (m *GetPublicShareByTokenResponse) Reset()         { *m = GetPublicShareByT
 func (m *GetPublicShareByTokenResponse) String() string { return proto.CompactTextString(m) }
 func (*GetPublicShareByTokenResponse) ProtoMessage()    {}
 func (*GetPublicShareByTokenResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_ce037002abb23640, []int{11}
+	return fileDescriptor_ce037002abb23640, []int{13}
 }
 
 func (m *GetPublicShareByTokenResponse) XXX_Unmarshal(b []byte) error {
@@ -580,22 +1050,34 @@ func (m *GetPublicShareByTokenResponse) GetStatus() *rpc.Status {
 	return nil
 }
 
-func (m *GetPublicShareByTokenResponse) GetPublicShare() *PublicShare {
+func (m *GetPublicShareByTokenResponse) GetOpaque() *types.Opaque {
 	if m != nil {
-		return m.PublicShare
+		return m.Opaque
+	}
+	return nil
+}
+
+func (m *GetPublicShareByTokenResponse) GetShare() *PublicShare {
+	if m != nil {
+		return m.Share
 	}
 	return nil
 }
 
 func init() {
+	proto.RegisterEnum("cs3.publicsharev0alpha.ListPublicSharesRequest_Filter_Type", ListPublicSharesRequest_Filter_Type_name, ListPublicSharesRequest_Filter_Type_value)
+	proto.RegisterType((*GetProviderRequest)(nil), "cs3.publicsharev0alpha.GetProviderRequest")
+	proto.RegisterType((*GetProviderResponse)(nil), "cs3.publicsharev0alpha.GetProviderResponse")
 	proto.RegisterType((*CreatePublicShareRequest)(nil), "cs3.publicsharev0alpha.CreatePublicShareRequest")
 	proto.RegisterType((*CreatePublicShareResponse)(nil), "cs3.publicsharev0alpha.CreatePublicShareResponse")
 	proto.RegisterType((*UpdatePublicShareRequest)(nil), "cs3.publicsharev0alpha.UpdatePublicShareRequest")
+	proto.RegisterType((*UpdatePublicShareRequest_UpdateField)(nil), "cs3.publicsharev0alpha.UpdatePublicShareRequest.UpdateField")
 	proto.RegisterType((*UpdatePublicShareResponse)(nil), "cs3.publicsharev0alpha.UpdatePublicShareResponse")
 	proto.RegisterType((*ListPublicSharesRequest)(nil), "cs3.publicsharev0alpha.ListPublicSharesRequest")
+	proto.RegisterType((*ListPublicSharesRequest_Filter)(nil), "cs3.publicsharev0alpha.ListPublicSharesRequest.Filter")
 	proto.RegisterType((*ListPublicSharesResponse)(nil), "cs3.publicsharev0alpha.ListPublicSharesResponse")
-	proto.RegisterType((*RevokePublicShareRequest)(nil), "cs3.publicsharev0alpha.RevokePublicShareRequest")
-	proto.RegisterType((*RevokePublicShareResponse)(nil), "cs3.publicsharev0alpha.RevokePublicShareResponse")
+	proto.RegisterType((*RemovePublicShareRequest)(nil), "cs3.publicsharev0alpha.RemovePublicShareRequest")
+	proto.RegisterType((*RemovePublicShareResponse)(nil), "cs3.publicsharev0alpha.RemovePublicShareResponse")
 	proto.RegisterType((*GetPublicShareRequest)(nil), "cs3.publicsharev0alpha.GetPublicShareRequest")
 	proto.RegisterType((*GetPublicShareResponse)(nil), "cs3.publicsharev0alpha.GetPublicShareResponse")
 	proto.RegisterType((*GetPublicShareByTokenRequest)(nil), "cs3.publicsharev0alpha.GetPublicShareByTokenRequest")
@@ -607,45 +1089,67 @@ func init() {
 }
 
 var fileDescriptor_ce037002abb23640 = []byte{
-	// 608 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xc4, 0x56, 0x51, 0x6b, 0x13, 0x41,
-	0x10, 0x66, 0x63, 0x1b, 0xec, 0x44, 0xdb, 0x66, 0x89, 0xf1, 0x7a, 0xa8, 0x84, 0x53, 0x6c, 0x7c,
-	0xf0, 0x12, 0x93, 0xf6, 0x4d, 0x90, 0x5e, 0x44, 0x11, 0x04, 0xc3, 0x45, 0x45, 0x44, 0x28, 0x97,
-	0xcb, 0x4a, 0x8f, 0x26, 0xd9, 0x75, 0xf7, 0x2e, 0x4d, 0xdf, 0x14, 0x7c, 0x11, 0x7d, 0xf0, 0x37,
-	0xf8, 0xe8, 0x0f, 0xf0, 0x47, 0xf8, 0x73, 0xfc, 0x05, 0x72, 0x77, 0xdb, 0xba, 0xc9, 0xdd, 0x42,
-	0x62, 0x1f, 0xf2, 0x38, 0xb3, 0x33, 0xdf, 0x7c, 0xdf, 0xec, 0xce, 0xb0, 0x70, 0xcf, 0x17, 0xed,
-	0x06, 0x8b, 0xfa, 0xc3, 0xc0, 0x17, 0x47, 0x1e, 0x27, 0x8d, 0x49, 0xd3, 0x1b, 0xb2, 0x23, 0x4f,
-	0xf5, 0xd9, 0x8c, 0xd3, 0x90, 0xe2, 0xaa, 0x2f, 0xda, 0xb6, 0xe2, 0x96, 0x91, 0xe6, 0xae, 0x0e,
-	0x82, 0x13, 0x41, 0x23, 0xee, 0x13, 0x91, 0x02, 0x98, 0x95, 0x38, 0x90, 0x33, 0xbf, 0x21, 0x42,
-	0x2f, 0x8c, 0xa4, 0xd7, 0xfa, 0x85, 0xc0, 0xe8, 0x70, 0xe2, 0x85, 0xa4, 0x9b, 0x60, 0xf4, 0x62,
-	0x0c, 0x97, 0x7c, 0x88, 0x88, 0x08, 0xb1, 0x09, 0x97, 0xdf, 0x07, 0x43, 0x32, 0xf6, 0x46, 0xc4,
-	0x40, 0x35, 0x54, 0xdf, 0x70, 0xcf, 0x6d, 0xec, 0x00, 0x30, 0xc2, 0x47, 0x81, 0x10, 0x01, 0x1d,
-	0x1b, 0x85, 0x1a, 0xaa, 0x6f, 0xb6, 0x2c, 0x3b, 0x9f, 0xa4, 0xdd, 0x3d, 0x8f, 0x74, 0x95, 0xac,
-	0x18, 0x9f, 0x79, 0x42, 0x9c, 0x50, 0x3e, 0x30, 0x2e, 0xa5, 0xf8, 0x67, 0x36, 0xbe, 0x05, 0x40,
-	0xa6, 0x2c, 0xe0, 0x5e, 0x18, 0xe3, 0xaf, 0xd5, 0x50, 0x7d, 0xcd, 0x55, 0x3c, 0xd6, 0x37, 0x04,
-	0x3b, 0x39, 0xc4, 0x05, 0xa3, 0x63, 0x41, 0xf0, 0x2e, 0x14, 0x53, 0x99, 0x09, 0xef, 0x52, 0x6b,
-	0x2b, 0x61, 0xc6, 0x99, 0x6f, 0xf7, 0x12, 0xb7, 0x2b, 0x8f, 0xf1, 0x13, 0xb8, 0x92, 0xf2, 0x3d,
-	0x4c, 0x08, 0x27, 0x42, 0x4a, 0xad, 0xdb, 0x5a, 0x21, 0x4a, 0xad, 0x12, 0xfb, 0x67, 0x58, 0x1f,
-	0x0b, 0x60, 0xbc, 0x62, 0x83, 0xfc, 0x3e, 0xde, 0x85, 0x2d, 0xb5, 0xc8, 0x61, 0x30, 0x90, 0xed,
-	0xbc, 0xaa, 0x40, 0x3c, 0x1b, 0xe0, 0x87, 0x50, 0x64, 0x74, 0x18, 0xf8, 0xa7, 0x92, 0xc6, 0x1d,
-	0x1d, 0x0d, 0x59, 0x29, 0x89, 0x75, 0x65, 0xce, 0x92, 0xdd, 0xdc, 0x50, 0xbb, 0x39, 0x77, 0x9b,
-	0xeb, 0xff, 0x73, 0x9b, 0xc9, 0x8d, 0xe4, 0xb4, 0x60, 0x55, 0x37, 0xb2, 0x0f, 0xd7, 0x9f, 0x07,
-	0x22, 0x54, 0xce, 0xc5, 0x02, 0xef, 0xda, 0xfa, 0x8a, 0xc0, 0xc8, 0xe6, 0xad, 0x4a, 0x84, 0x03,
-	0x86, 0x4b, 0x26, 0xf4, 0xf8, 0x02, 0xaf, 0xca, 0x7a, 0x0c, 0x3b, 0x39, 0x18, 0x4b, 0x2a, 0xb2,
-	0x1e, 0xc1, 0xb5, 0xa7, 0x24, 0xbc, 0x00, 0x8d, 0x2f, 0x08, 0xaa, 0xf3, 0x08, 0xab, 0x6a, 0xeb,
-	0x1e, 0xdc, 0x98, 0xa5, 0xe2, 0x9c, 0xbe, 0xa4, 0xc7, 0x64, 0x7c, 0xa6, 0xa9, 0x02, 0xeb, 0x61,
-	0x6c, 0x4b, 0x25, 0xa9, 0x61, 0x7d, 0x47, 0x70, 0x53, 0x93, 0xb6, 0x22, 0x21, 0xad, 0x3f, 0xeb,
-	0x50, 0xee, 0x46, 0x7d, 0x69, 0xf6, 0x08, 0x9f, 0x04, 0x3e, 0xc1, 0x53, 0x28, 0x67, 0x56, 0x23,
-	0x6e, 0xea, 0xc0, 0x75, 0xeb, 0xdf, 0x7c, 0xb0, 0x44, 0x86, 0x6c, 0xc0, 0x14, 0xca, 0x99, 0x15,
-	0xa0, 0xaf, 0xac, 0x5b, 0x98, 0xfa, 0xca, 0xfa, 0xfd, 0x72, 0x02, 0xdb, 0xf3, 0x63, 0x8b, 0x1b,
-	0x3a, 0x18, 0xcd, 0x62, 0x30, 0x9b, 0x8b, 0x27, 0xa4, 0x65, 0x9b, 0x28, 0x96, 0x9c, 0x19, 0x2f,
-	0xbd, 0x64, 0xdd, 0x34, 0xeb, 0x25, 0xeb, 0x67, 0x97, 0xc2, 0xe6, 0xec, 0x73, 0xc4, 0xf7, 0x75,
-	0x20, 0xb9, 0xa3, 0x6b, 0xda, 0x8b, 0x86, 0xcb, 0x82, 0x9f, 0xd1, 0xfc, 0x12, 0x90, 0x03, 0x80,
-	0xf7, 0x16, 0x43, 0x9a, 0x1d, 0x33, 0x73, 0x7f, 0xc9, 0xac, 0x94, 0x86, 0xf3, 0x09, 0x81, 0xe9,
-	0xd3, 0x91, 0x26, 0xd9, 0xd9, 0x56, 0x52, 0xbb, 0xf1, 0x27, 0xa7, 0x8b, 0xde, 0x56, 0xb2, 0x71,
-	0xac, 0xff, 0xa3, 0x50, 0xec, 0x38, 0x2f, 0xde, 0x1c, 0x38, 0x3f, 0x0b, 0xd5, 0x4e, 0xaf, 0xad,
-	0x4e, 0xd9, 0xeb, 0xe6, 0x41, 0x1c, 0xf3, 0x3b, 0x39, 0x78, 0x97, 0x3d, 0xe8, 0x17, 0x93, 0xef,
-	0x53, 0xfb, 0x6f, 0x00, 0x00, 0x00, 0xff, 0xff, 0xbe, 0xc0, 0x69, 0xee, 0xc2, 0x09, 0x00, 0x00,
+	// 952 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xcc, 0x57, 0xdd, 0x6e, 0x1b, 0x45,
+	0x14, 0xce, 0xfa, 0x2f, 0xe4, 0x18, 0x05, 0x77, 0x70, 0x83, 0xbb, 0x2a, 0x52, 0xb5, 0x20, 0x9a,
+	0x50, 0xba, 0x09, 0x49, 0xa9, 0x40, 0x20, 0x50, 0xec, 0xba, 0x8d, 0xa5, 0xaa, 0x5e, 0x8d, 0x9d,
+	0xf2, 0x23, 0xa4, 0x68, 0xb3, 0x1e, 0xd3, 0x15, 0xb1, 0x67, 0x3b, 0xb3, 0x4e, 0x9b, 0x4b, 0x10,
+	0xbc, 0x05, 0x57, 0x70, 0x81, 0xe8, 0x05, 0x17, 0x3c, 0x01, 0xd7, 0x3c, 0x01, 0xb7, 0x3c, 0x02,
+	0x6f, 0x80, 0x66, 0x76, 0x1c, 0xcf, 0x66, 0x3d, 0x60, 0x1b, 0xb5, 0xc9, 0x4d, 0x14, 0x9f, 0xf9,
+	0xce, 0x77, 0xce, 0x7c, 0xf3, 0xed, 0xd9, 0x59, 0xd8, 0x08, 0xf8, 0xce, 0x66, 0x34, 0x3a, 0x3c,
+	0x0a, 0x03, 0xfe, 0xc8, 0x67, 0x64, 0xf3, 0x78, 0xcb, 0x3f, 0x8a, 0x1e, 0xf9, 0x7a, 0xcc, 0x8d,
+	0x18, 0x8d, 0x29, 0x5a, 0x0b, 0xf8, 0x8e, 0xab, 0x85, 0x15, 0xd2, 0xbe, 0x6e, 0xa2, 0x60, 0x84,
+	0xd3, 0x11, 0x0b, 0x08, 0x4f, 0x08, 0xec, 0xaa, 0x00, 0xb2, 0x28, 0xd8, 0xe4, 0xb1, 0x1f, 0x8f,
+	0xc6, 0xd1, 0xcb, 0x22, 0x1a, 0x9f, 0x44, 0x84, 0x27, 0x7f, 0x55, 0xf8, 0x86, 0x08, 0xf3, 0x98,
+	0x32, 0xff, 0x2b, 0x12, 0x31, 0x7a, 0x1c, 0xf6, 0x08, 0x33, 0x31, 0x3b, 0x9f, 0x00, 0xba, 0x47,
+	0x62, 0x4f, 0xc1, 0x30, 0x79, 0x3c, 0x22, 0x3c, 0x46, 0x1b, 0x50, 0xa2, 0x91, 0xff, 0x78, 0x44,
+	0x6a, 0xd6, 0x35, 0x6b, 0xbd, 0xbc, 0x7d, 0xc9, 0x15, 0x3b, 0x48, 0x8a, 0xb4, 0xe5, 0x02, 0x56,
+	0x00, 0xe7, 0x27, 0x0b, 0x5e, 0x4d, 0x31, 0xf0, 0x88, 0x0e, 0x39, 0x41, 0xd7, 0xa1, 0x94, 0x34,
+	0xab, 0x28, 0x5e, 0x91, 0x14, 0x2c, 0x0a, 0xdc, 0x8e, 0x0c, 0x63, 0xb5, 0xac, 0xd5, 0xca, 0xfd,
+	0x47, 0x2d, 0xf4, 0x3e, 0x14, 0xc2, 0x61, 0x9f, 0xd6, 0xf2, 0x12, 0xf8, 0xa6, 0x3b, 0x5d, 0x56,
+	0x77, 0xdc, 0x4b, 0x6b, 0xd8, 0xa7, 0x58, 0x66, 0x38, 0xbf, 0xe5, 0xa0, 0xd6, 0x60, 0xc4, 0x8f,
+	0x89, 0x27, 0xf1, 0x1d, 0x81, 0x9f, 0x7f, 0xb7, 0xe8, 0x1e, 0x94, 0xc7, 0x0a, 0x1e, 0x84, 0x3d,
+	0xd5, 0xf1, 0x5b, 0x12, 0x7f, 0x46, 0xf1, 0x71, 0x33, 0x58, 0xc1, 0x5b, 0x3d, 0x0c, 0xec, 0xf4,
+	0x7f, 0xe4, 0x41, 0x39, 0x22, 0x6c, 0x10, 0x72, 0x1e, 0xd2, 0x21, 0x57, 0x3b, 0x72, 0x8d, 0x3b,
+	0x9a, 0x34, 0xed, 0x4d, 0xb2, 0xb0, 0x4e, 0x81, 0x6c, 0x78, 0x29, 0xf2, 0x39, 0x7f, 0x42, 0x59,
+	0xaf, 0x56, 0xb8, 0x66, 0xad, 0xaf, 0xe0, 0xd3, 0xdf, 0xe8, 0x16, 0x00, 0x79, 0x1a, 0x85, 0xcc,
+	0x8f, 0x43, 0x3a, 0xac, 0x15, 0x65, 0xb1, 0xaa, 0xb6, 0xcb, 0x6e, 0x38, 0x20, 0x3c, 0xf6, 0x07,
+	0x11, 0xd6, 0x70, 0xce, 0x33, 0x0b, 0xae, 0x4c, 0x11, 0xed, 0x39, 0x1e, 0xf0, 0x07, 0x50, 0x94,
+	0xfb, 0x56, 0x7a, 0xbc, 0x31, 0x83, 0x1e, 0x38, 0xc9, 0x70, 0x7e, 0xc8, 0x43, 0x6d, 0x3f, 0xea,
+	0xfd, 0xef, 0x13, 0xfe, 0x18, 0xf2, 0x8c, 0xf4, 0x55, 0xab, 0xef, 0xcc, 0xd2, 0x00, 0xe9, 0x13,
+	0x46, 0x86, 0x01, 0xc1, 0x22, 0x11, 0x61, 0x28, 0xf6, 0x43, 0x72, 0xd4, 0x53, 0x2a, 0x7f, 0x64,
+	0x62, 0x30, 0xf5, 0xaa, 0x16, 0xee, 0x0a, 0x0e, 0x9c, 0x50, 0xd9, 0xbf, 0x5b, 0x50, 0xd6, 0xc2,
+	0x08, 0xa7, 0xcd, 0x93, 0x5b, 0xc4, 0x3c, 0x7b, 0x4b, 0x69, 0xfb, 0x5c, 0xd5, 0xec, 0x23, 0xd4,
+	0x5f, 0xd9, 0x5b, 0xd2, 0x0c, 0x74, 0x3b, 0x65, 0xa0, 0x82, 0xd9, 0x40, 0x7b, 0x4b, 0xba, 0x85,
+	0xea, 0xcb, 0x4a, 0x0d, 0xe9, 0xa5, 0x29, 0x5b, 0xbe, 0x98, 0x5e, 0xfa, 0x3b, 0x0f, 0xaf, 0xdd,
+	0x0f, 0x79, 0xac, 0x2d, 0xf1, 0x05, 0xac, 0xe4, 0xc1, 0x72, 0x3f, 0x3c, 0x8a, 0x09, 0x13, 0x47,
+	0x94, 0x5f, 0x2f, 0x6f, 0xdf, 0x36, 0xf5, 0x60, 0x28, 0xe6, 0xde, 0x95, 0xe9, 0x78, 0x4c, 0x63,
+	0xff, 0x99, 0x83, 0x52, 0x12, 0x43, 0x6d, 0x28, 0x88, 0xa2, 0x52, 0x87, 0xd5, 0xed, 0x0f, 0x17,
+	0x63, 0x76, 0xbb, 0x27, 0x11, 0xc1, 0x92, 0x08, 0xb5, 0xd2, 0xa3, 0x2d, 0x3f, 0xcf, 0x68, 0x13,
+	0xa7, 0xae, 0x0d, 0xb7, 0x0d, 0x28, 0xd2, 0x27, 0x43, 0xc2, 0x94, 0x51, 0x74, 0x89, 0xf6, 0x39,
+	0x61, 0x12, 0x9f, 0x20, 0xd0, 0x4d, 0x58, 0x0e, 0xc4, 0x88, 0xa1, 0x4c, 0x3d, 0x30, 0x53, 0xc1,
+	0x63, 0x8c, 0xe3, 0x41, 0x41, 0xb4, 0x8c, 0x2a, 0xf0, 0x72, 0xf7, 0x73, 0xaf, 0x79, 0xd0, 0x7a,
+	0xf0, 0x70, 0xf7, 0x7e, 0xeb, 0x4e, 0x65, 0x09, 0x55, 0xa1, 0x22, 0x23, 0xb8, 0xd9, 0x69, 0xef,
+	0xe3, 0x46, 0xf3, 0xa0, 0x75, 0xa7, 0x62, 0xa1, 0x55, 0x00, 0x19, 0x6d, 0x7f, 0xfa, 0xa0, 0x89,
+	0x2b, 0xb9, 0xd3, 0xbc, 0x06, 0x6e, 0xee, 0x76, 0xdb, 0xb8, 0x92, 0xaf, 0x97, 0xa0, 0xd0, 0x25,
+	0x6c, 0xe0, 0xfc, 0x62, 0x41, 0x2d, 0x2b, 0xd6, 0x8b, 0xf1, 0x67, 0x7e, 0x4e, 0x7f, 0x7e, 0x6f,
+	0x41, 0x0d, 0x93, 0x01, 0x3d, 0x3e, 0xdf, 0x59, 0xe7, 0x50, 0xb8, 0x32, 0xa5, 0x8d, 0xe7, 0xa7,
+	0x99, 0xf3, 0xad, 0x05, 0x97, 0xc5, 0x65, 0xe3, 0x5c, 0x77, 0xfd, 0xb3, 0x05, 0x6b, 0x67, 0x9b,
+	0xb8, 0x98, 0x73, 0xec, 0x00, 0xae, 0xa6, 0x1b, 0xad, 0x9f, 0x74, 0xe9, 0xd7, 0x64, 0xb8, 0x80,
+	0x68, 0x55, 0x28, 0xc6, 0x22, 0x55, 0xf6, 0xbb, 0x82, 0x93, 0x1f, 0xce, 0xaf, 0x16, 0xbc, 0x6e,
+	0xa8, 0x70, 0x21, 0x15, 0xd9, 0xfe, 0xab, 0x04, 0xb6, 0xfe, 0x3e, 0x54, 0x13, 0xad, 0x43, 0xd8,
+	0x71, 0x18, 0x10, 0xd4, 0x87, 0xb2, 0x76, 0x97, 0x45, 0x6f, 0x9b, 0x98, 0xb3, 0x57, 0x66, 0xfb,
+	0xc6, 0x4c, 0x58, 0xa5, 0xca, 0x53, 0xb8, 0x94, 0xb9, 0x58, 0xa1, 0x2d, 0x13, 0x83, 0xe9, 0xe2,
+	0x6a, 0xbf, 0x3b, 0x47, 0xc6, 0xa4, 0x72, 0xe6, 0x91, 0x35, 0x57, 0x36, 0x0d, 0x19, 0x73, 0x65,
+	0xf3, 0x3c, 0xa0, 0xb0, 0x9a, 0xb6, 0x0a, 0xba, 0xf9, 0x6f, 0x92, 0x65, 0x6b, 0xba, 0xb3, 0xc2,
+	0x55, 0xc1, 0xef, 0x32, 0xc3, 0x42, 0x99, 0x13, 0xdd, 0x9a, 0x8d, 0x29, 0xfd, 0xb4, 0xd8, 0xef,
+	0xcd, 0x99, 0xa5, 0xda, 0x18, 0x41, 0xe5, 0xec, 0x7b, 0x05, 0x6d, 0xce, 0xf9, 0xba, 0xb6, 0xb7,
+	0x66, 0x4f, 0x98, 0x1c, 0x74, 0xe6, 0xbe, 0x65, 0x3e, 0x68, 0xd3, 0x6d, 0xd4, 0x7c, 0xd0, 0xc6,
+	0xcb, 0x5c, 0xfd, 0x1b, 0x0b, 0xec, 0x80, 0x0e, 0x0c, 0x89, 0xf5, 0x8a, 0x37, 0x89, 0x79, 0xe2,
+	0x1b, 0xd4, 0xb3, 0xbe, 0xa8, 0x66, 0x71, 0xd1, 0xe1, 0x8f, 0xb9, 0x52, 0xa3, 0xde, 0xfe, 0x6c,
+	0xb7, 0xfe, 0x2c, 0xb7, 0xd6, 0xe8, 0xec, 0xe8, 0x8f, 0xf3, 0xc3, 0xad, 0x5d, 0x81, 0xf9, 0x43,
+	0x2e, 0x7c, 0x99, 0x5d, 0x38, 0x2c, 0xc9, 0xaf, 0xdb, 0x9d, 0x7f, 0x02, 0x00, 0x00, 0xff, 0xff,
+	0x2a, 0x40, 0x8b, 0x66, 0xa5, 0x0f, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -656,259 +1160,298 @@ var _ grpc.ClientConn
 // is compatible with the grpc package it is being compiled against.
 const _ = grpc.SupportPackageIsVersion4
 
-// PubicShareServiceClient is the client API for PubicShareService service.
+// PublicShareProviderServiceClient is the client API for PublicShareProviderService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
-type PubicShareServiceClient interface {
+type PublicShareProviderServiceClient interface {
+	// Returns the information for this provider.
+	GetProvider(ctx context.Context, in *GetProviderRequest, opts ...grpc.CallOption) (*GetProviderResponse, error)
+	// Creates a new share.
+	// MUST return CODE_NOT_FOUND if the resource reference does not exist.
+	// MUST return CODE_ALREADY_EXISTS if the share already exists for the 4-tuple consisting of
+	// (owner, shared_resource, grantee).
+	// New shares MUST be created in the state SHARE_STATE_PENDING.
 	CreatePublicShare(ctx context.Context, in *CreatePublicShareRequest, opts ...grpc.CallOption) (*CreatePublicShareResponse, error)
-	UpdatePublicShare(ctx context.Context, in *UpdatePublicShareRequest, opts ...grpc.CallOption) (*UpdatePublicShareResponse, error)
-	ListPublicShares(ctx context.Context, in *ListPublicSharesRequest, opts ...grpc.CallOption) (PubicShareService_ListPublicSharesClient, error)
-	RevokePublicShare(ctx context.Context, in *RevokePublicShareRequest, opts ...grpc.CallOption) (*RevokePublicShareResponse, error)
+	// Removes a share.
+	// MUST return CODE_NOT_FOUND if the share reference does not exist.
+	RemovePublicShare(ctx context.Context, in *RemovePublicShareRequest, opts ...grpc.CallOption) (*RemovePublicShareResponse, error)
+	// Gets share information for a single share.
+	// MUST return CODE_NOT_FOUND if the share reference does not exist.
 	GetPublicShare(ctx context.Context, in *GetPublicShareRequest, opts ...grpc.CallOption) (*GetPublicShareResponse, error)
+	// Gets share information for a single share by its unlisted token.
+	// MUST return CODE_NOT_FOUND if the share does not exist.
 	GetPublicShareByToken(ctx context.Context, in *GetPublicShareByTokenRequest, opts ...grpc.CallOption) (*GetPublicShareByTokenResponse, error)
+	// List the shares the authenticated principal has created,
+	// both as owner and creator. If a filter is specified, only
+	// shares satisfying the filter MUST be returned.
+	ListPublicShares(ctx context.Context, in *ListPublicSharesRequest, opts ...grpc.CallOption) (*ListPublicSharesResponse, error)
+	// Updates a share.
+	// MUST return CODE_NOT_FOUND if the share reference does not exist.
+	UpdatePublicShare(ctx context.Context, in *UpdatePublicShareRequest, opts ...grpc.CallOption) (*UpdatePublicShareResponse, error)
 }
 
-type pubicShareServiceClient struct {
+type publicShareProviderServiceClient struct {
 	cc *grpc.ClientConn
 }
 
-func NewPubicShareServiceClient(cc *grpc.ClientConn) PubicShareServiceClient {
-	return &pubicShareServiceClient{cc}
+func NewPublicShareProviderServiceClient(cc *grpc.ClientConn) PublicShareProviderServiceClient {
+	return &publicShareProviderServiceClient{cc}
 }
 
-func (c *pubicShareServiceClient) CreatePublicShare(ctx context.Context, in *CreatePublicShareRequest, opts ...grpc.CallOption) (*CreatePublicShareResponse, error) {
+func (c *publicShareProviderServiceClient) GetProvider(ctx context.Context, in *GetProviderRequest, opts ...grpc.CallOption) (*GetProviderResponse, error) {
+	out := new(GetProviderResponse)
+	err := c.cc.Invoke(ctx, "/cs3.publicsharev0alpha.PublicShareProviderService/GetProvider", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *publicShareProviderServiceClient) CreatePublicShare(ctx context.Context, in *CreatePublicShareRequest, opts ...grpc.CallOption) (*CreatePublicShareResponse, error) {
 	out := new(CreatePublicShareResponse)
-	err := c.cc.Invoke(ctx, "/cs3.publicsharev0alpha.PubicShareService/CreatePublicShare", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/cs3.publicsharev0alpha.PublicShareProviderService/CreatePublicShare", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *pubicShareServiceClient) UpdatePublicShare(ctx context.Context, in *UpdatePublicShareRequest, opts ...grpc.CallOption) (*UpdatePublicShareResponse, error) {
-	out := new(UpdatePublicShareResponse)
-	err := c.cc.Invoke(ctx, "/cs3.publicsharev0alpha.PubicShareService/UpdatePublicShare", in, out, opts...)
+func (c *publicShareProviderServiceClient) RemovePublicShare(ctx context.Context, in *RemovePublicShareRequest, opts ...grpc.CallOption) (*RemovePublicShareResponse, error) {
+	out := new(RemovePublicShareResponse)
+	err := c.cc.Invoke(ctx, "/cs3.publicsharev0alpha.PublicShareProviderService/RemovePublicShare", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *pubicShareServiceClient) ListPublicShares(ctx context.Context, in *ListPublicSharesRequest, opts ...grpc.CallOption) (PubicShareService_ListPublicSharesClient, error) {
-	stream, err := c.cc.NewStream(ctx, &_PubicShareService_serviceDesc.Streams[0], "/cs3.publicsharev0alpha.PubicShareService/ListPublicShares", opts...)
-	if err != nil {
-		return nil, err
-	}
-	x := &pubicShareServiceListPublicSharesClient{stream}
-	if err := x.ClientStream.SendMsg(in); err != nil {
-		return nil, err
-	}
-	if err := x.ClientStream.CloseSend(); err != nil {
-		return nil, err
-	}
-	return x, nil
-}
-
-type PubicShareService_ListPublicSharesClient interface {
-	Recv() (*ListPublicSharesResponse, error)
-	grpc.ClientStream
-}
-
-type pubicShareServiceListPublicSharesClient struct {
-	grpc.ClientStream
-}
-
-func (x *pubicShareServiceListPublicSharesClient) Recv() (*ListPublicSharesResponse, error) {
-	m := new(ListPublicSharesResponse)
-	if err := x.ClientStream.RecvMsg(m); err != nil {
-		return nil, err
-	}
-	return m, nil
-}
-
-func (c *pubicShareServiceClient) RevokePublicShare(ctx context.Context, in *RevokePublicShareRequest, opts ...grpc.CallOption) (*RevokePublicShareResponse, error) {
-	out := new(RevokePublicShareResponse)
-	err := c.cc.Invoke(ctx, "/cs3.publicsharev0alpha.PubicShareService/RevokePublicShare", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *pubicShareServiceClient) GetPublicShare(ctx context.Context, in *GetPublicShareRequest, opts ...grpc.CallOption) (*GetPublicShareResponse, error) {
+func (c *publicShareProviderServiceClient) GetPublicShare(ctx context.Context, in *GetPublicShareRequest, opts ...grpc.CallOption) (*GetPublicShareResponse, error) {
 	out := new(GetPublicShareResponse)
-	err := c.cc.Invoke(ctx, "/cs3.publicsharev0alpha.PubicShareService/GetPublicShare", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/cs3.publicsharev0alpha.PublicShareProviderService/GetPublicShare", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *pubicShareServiceClient) GetPublicShareByToken(ctx context.Context, in *GetPublicShareByTokenRequest, opts ...grpc.CallOption) (*GetPublicShareByTokenResponse, error) {
+func (c *publicShareProviderServiceClient) GetPublicShareByToken(ctx context.Context, in *GetPublicShareByTokenRequest, opts ...grpc.CallOption) (*GetPublicShareByTokenResponse, error) {
 	out := new(GetPublicShareByTokenResponse)
-	err := c.cc.Invoke(ctx, "/cs3.publicsharev0alpha.PubicShareService/GetPublicShareByToken", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/cs3.publicsharev0alpha.PublicShareProviderService/GetPublicShareByToken", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// PubicShareServiceServer is the server API for PubicShareService service.
-type PubicShareServiceServer interface {
+func (c *publicShareProviderServiceClient) ListPublicShares(ctx context.Context, in *ListPublicSharesRequest, opts ...grpc.CallOption) (*ListPublicSharesResponse, error) {
+	out := new(ListPublicSharesResponse)
+	err := c.cc.Invoke(ctx, "/cs3.publicsharev0alpha.PublicShareProviderService/ListPublicShares", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *publicShareProviderServiceClient) UpdatePublicShare(ctx context.Context, in *UpdatePublicShareRequest, opts ...grpc.CallOption) (*UpdatePublicShareResponse, error) {
+	out := new(UpdatePublicShareResponse)
+	err := c.cc.Invoke(ctx, "/cs3.publicsharev0alpha.PublicShareProviderService/UpdatePublicShare", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// PublicShareProviderServiceServer is the server API for PublicShareProviderService service.
+type PublicShareProviderServiceServer interface {
+	// Returns the information for this provider.
+	GetProvider(context.Context, *GetProviderRequest) (*GetProviderResponse, error)
+	// Creates a new share.
+	// MUST return CODE_NOT_FOUND if the resource reference does not exist.
+	// MUST return CODE_ALREADY_EXISTS if the share already exists for the 4-tuple consisting of
+	// (owner, shared_resource, grantee).
+	// New shares MUST be created in the state SHARE_STATE_PENDING.
 	CreatePublicShare(context.Context, *CreatePublicShareRequest) (*CreatePublicShareResponse, error)
-	UpdatePublicShare(context.Context, *UpdatePublicShareRequest) (*UpdatePublicShareResponse, error)
-	ListPublicShares(*ListPublicSharesRequest, PubicShareService_ListPublicSharesServer) error
-	RevokePublicShare(context.Context, *RevokePublicShareRequest) (*RevokePublicShareResponse, error)
+	// Removes a share.
+	// MUST return CODE_NOT_FOUND if the share reference does not exist.
+	RemovePublicShare(context.Context, *RemovePublicShareRequest) (*RemovePublicShareResponse, error)
+	// Gets share information for a single share.
+	// MUST return CODE_NOT_FOUND if the share reference does not exist.
 	GetPublicShare(context.Context, *GetPublicShareRequest) (*GetPublicShareResponse, error)
+	// Gets share information for a single share by its unlisted token.
+	// MUST return CODE_NOT_FOUND if the share does not exist.
 	GetPublicShareByToken(context.Context, *GetPublicShareByTokenRequest) (*GetPublicShareByTokenResponse, error)
+	// List the shares the authenticated principal has created,
+	// both as owner and creator. If a filter is specified, only
+	// shares satisfying the filter MUST be returned.
+	ListPublicShares(context.Context, *ListPublicSharesRequest) (*ListPublicSharesResponse, error)
+	// Updates a share.
+	// MUST return CODE_NOT_FOUND if the share reference does not exist.
+	UpdatePublicShare(context.Context, *UpdatePublicShareRequest) (*UpdatePublicShareResponse, error)
 }
 
-func RegisterPubicShareServiceServer(s *grpc.Server, srv PubicShareServiceServer) {
-	s.RegisterService(&_PubicShareService_serviceDesc, srv)
+func RegisterPublicShareProviderServiceServer(s *grpc.Server, srv PublicShareProviderServiceServer) {
+	s.RegisterService(&_PublicShareProviderService_serviceDesc, srv)
 }
 
-func _PubicShareService_CreatePublicShare_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _PublicShareProviderService_GetProvider_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetProviderRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PublicShareProviderServiceServer).GetProvider(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/cs3.publicsharev0alpha.PublicShareProviderService/GetProvider",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PublicShareProviderServiceServer).GetProvider(ctx, req.(*GetProviderRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PublicShareProviderService_CreatePublicShare_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(CreatePublicShareRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(PubicShareServiceServer).CreatePublicShare(ctx, in)
+		return srv.(PublicShareProviderServiceServer).CreatePublicShare(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/cs3.publicsharev0alpha.PubicShareService/CreatePublicShare",
+		FullMethod: "/cs3.publicsharev0alpha.PublicShareProviderService/CreatePublicShare",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PubicShareServiceServer).CreatePublicShare(ctx, req.(*CreatePublicShareRequest))
+		return srv.(PublicShareProviderServiceServer).CreatePublicShare(ctx, req.(*CreatePublicShareRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _PubicShareService_UpdatePublicShare_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdatePublicShareRequest)
+func _PublicShareProviderService_RemovePublicShare_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RemovePublicShareRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(PubicShareServiceServer).UpdatePublicShare(ctx, in)
+		return srv.(PublicShareProviderServiceServer).RemovePublicShare(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/cs3.publicsharev0alpha.PubicShareService/UpdatePublicShare",
+		FullMethod: "/cs3.publicsharev0alpha.PublicShareProviderService/RemovePublicShare",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PubicShareServiceServer).UpdatePublicShare(ctx, req.(*UpdatePublicShareRequest))
+		return srv.(PublicShareProviderServiceServer).RemovePublicShare(ctx, req.(*RemovePublicShareRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _PubicShareService_ListPublicShares_Handler(srv interface{}, stream grpc.ServerStream) error {
-	m := new(ListPublicSharesRequest)
-	if err := stream.RecvMsg(m); err != nil {
-		return err
-	}
-	return srv.(PubicShareServiceServer).ListPublicShares(m, &pubicShareServiceListPublicSharesServer{stream})
-}
-
-type PubicShareService_ListPublicSharesServer interface {
-	Send(*ListPublicSharesResponse) error
-	grpc.ServerStream
-}
-
-type pubicShareServiceListPublicSharesServer struct {
-	grpc.ServerStream
-}
-
-func (x *pubicShareServiceListPublicSharesServer) Send(m *ListPublicSharesResponse) error {
-	return x.ServerStream.SendMsg(m)
-}
-
-func _PubicShareService_RevokePublicShare_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(RevokePublicShareRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(PubicShareServiceServer).RevokePublicShare(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/cs3.publicsharev0alpha.PubicShareService/RevokePublicShare",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PubicShareServiceServer).RevokePublicShare(ctx, req.(*RevokePublicShareRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _PubicShareService_GetPublicShare_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _PublicShareProviderService_GetPublicShare_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetPublicShareRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(PubicShareServiceServer).GetPublicShare(ctx, in)
+		return srv.(PublicShareProviderServiceServer).GetPublicShare(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/cs3.publicsharev0alpha.PubicShareService/GetPublicShare",
+		FullMethod: "/cs3.publicsharev0alpha.PublicShareProviderService/GetPublicShare",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PubicShareServiceServer).GetPublicShare(ctx, req.(*GetPublicShareRequest))
+		return srv.(PublicShareProviderServiceServer).GetPublicShare(ctx, req.(*GetPublicShareRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _PubicShareService_GetPublicShareByToken_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _PublicShareProviderService_GetPublicShareByToken_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetPublicShareByTokenRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(PubicShareServiceServer).GetPublicShareByToken(ctx, in)
+		return srv.(PublicShareProviderServiceServer).GetPublicShareByToken(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/cs3.publicsharev0alpha.PubicShareService/GetPublicShareByToken",
+		FullMethod: "/cs3.publicsharev0alpha.PublicShareProviderService/GetPublicShareByToken",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PubicShareServiceServer).GetPublicShareByToken(ctx, req.(*GetPublicShareByTokenRequest))
+		return srv.(PublicShareProviderServiceServer).GetPublicShareByToken(ctx, req.(*GetPublicShareByTokenRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-var _PubicShareService_serviceDesc = grpc.ServiceDesc{
-	ServiceName: "cs3.publicsharev0alpha.PubicShareService",
-	HandlerType: (*PubicShareServiceServer)(nil),
+func _PublicShareProviderService_ListPublicShares_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListPublicSharesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PublicShareProviderServiceServer).ListPublicShares(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/cs3.publicsharev0alpha.PublicShareProviderService/ListPublicShares",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PublicShareProviderServiceServer).ListPublicShares(ctx, req.(*ListPublicSharesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PublicShareProviderService_UpdatePublicShare_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdatePublicShareRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PublicShareProviderServiceServer).UpdatePublicShare(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/cs3.publicsharev0alpha.PublicShareProviderService/UpdatePublicShare",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PublicShareProviderServiceServer).UpdatePublicShare(ctx, req.(*UpdatePublicShareRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+var _PublicShareProviderService_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "cs3.publicsharev0alpha.PublicShareProviderService",
+	HandlerType: (*PublicShareProviderServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
+			MethodName: "GetProvider",
+			Handler:    _PublicShareProviderService_GetProvider_Handler,
+		},
+		{
 			MethodName: "CreatePublicShare",
-			Handler:    _PubicShareService_CreatePublicShare_Handler,
+			Handler:    _PublicShareProviderService_CreatePublicShare_Handler,
 		},
 		{
-			MethodName: "UpdatePublicShare",
-			Handler:    _PubicShareService_UpdatePublicShare_Handler,
-		},
-		{
-			MethodName: "RevokePublicShare",
-			Handler:    _PubicShareService_RevokePublicShare_Handler,
+			MethodName: "RemovePublicShare",
+			Handler:    _PublicShareProviderService_RemovePublicShare_Handler,
 		},
 		{
 			MethodName: "GetPublicShare",
-			Handler:    _PubicShareService_GetPublicShare_Handler,
+			Handler:    _PublicShareProviderService_GetPublicShare_Handler,
 		},
 		{
 			MethodName: "GetPublicShareByToken",
-			Handler:    _PubicShareService_GetPublicShareByToken_Handler,
+			Handler:    _PublicShareProviderService_GetPublicShareByToken_Handler,
 		},
-	},
-	Streams: []grpc.StreamDesc{
 		{
-			StreamName:    "ListPublicShares",
-			Handler:       _PubicShareService_ListPublicShares_Handler,
-			ServerStreams: true,
+			MethodName: "ListPublicShares",
+			Handler:    _PublicShareProviderService_ListPublicShares_Handler,
+		},
+		{
+			MethodName: "UpdatePublicShare",
+			Handler:    _PublicShareProviderService_UpdatePublicShare_Handler,
 		},
 	},
+	Streams:  []grpc.StreamDesc{},
 	Metadata: "cs3/publicshare/v0alpha/publicshare.proto",
 }
