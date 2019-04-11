@@ -40,5 +40,5 @@ require (
 	google.golang.org/appengine v1.5.0 // indirect
 	google.golang.org/grpc v1.20.0
 	gopkg.in/yaml.v2 v2.2.2 // indirect
-	honnef.co/go/tools v0.0.0-20190410220842-0e5f7e4d3779 // indirect
+	honnef.co/go/tools v0.0.0-20190411094629-747de16c19d0 // indirect
 )

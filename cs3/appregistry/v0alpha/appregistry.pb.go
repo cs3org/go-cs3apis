@@ -7,6 +7,7 @@ import (
 	context "context"
 	fmt "fmt"
 	rpc "github.com/cernbox/go-cs3apis/cs3/rpc"
+	types "github.com/cernbox/go-cs3apis/cs3/types"
 	proto "github.com/golang/protobuf/proto"
 	grpc "google.golang.org/grpc"
 	math "math"
@@ -23,103 +24,227 @@ var _ = math.Inf
 // proto package needs to be updated.
 const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 
-type FindRequest struct {
-	FilenameExtension    string   `protobuf:"bytes,1,opt,name=filename_extension,json=filenameExtension,proto3" json:"filename_extension,omitempty"`
-	FilenameMimetype     string   `protobuf:"bytes,2,opt,name=filename_mimetype,json=filenameMimetype,proto3" json:"filename_mimetype,omitempty"`
+type GetAppProviderRequest struct {
+	// OPTIONAL.
+	// Opaque information.
+	Opaque *types.Opaque `protobuf:"bytes,1,opt,name=opaque,proto3" json:"opaque,omitempty"`
+	// REQUIRED.
+	// The mimetype of the resource.
+	// For example, application/text or
+	// image/png.
+	MimeType             string   `protobuf:"bytes,3,opt,name=mime_type,json=mimeType,proto3" json:"mime_type,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *FindRequest) Reset()         { *m = FindRequest{} }
-func (m *FindRequest) String() string { return proto.CompactTextString(m) }
-func (*FindRequest) ProtoMessage()    {}
-func (*FindRequest) Descriptor() ([]byte, []int) {
+func (m *GetAppProviderRequest) Reset()         { *m = GetAppProviderRequest{} }
+func (m *GetAppProviderRequest) String() string { return proto.CompactTextString(m) }
+func (*GetAppProviderRequest) ProtoMessage()    {}
+func (*GetAppProviderRequest) Descriptor() ([]byte, []int) {
 	return fileDescriptor_a621a334fc05539a, []int{0}
 }
 
-func (m *FindRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_FindRequest.Unmarshal(m, b)
+func (m *GetAppProviderRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_GetAppProviderRequest.Unmarshal(m, b)
 }
-func (m *FindRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_FindRequest.Marshal(b, m, deterministic)
+func (m *GetAppProviderRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_GetAppProviderRequest.Marshal(b, m, deterministic)
 }
-func (m *FindRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_FindRequest.Merge(m, src)
+func (m *GetAppProviderRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_GetAppProviderRequest.Merge(m, src)
 }
-func (m *FindRequest) XXX_Size() int {
-	return xxx_messageInfo_FindRequest.Size(m)
+func (m *GetAppProviderRequest) XXX_Size() int {
+	return xxx_messageInfo_GetAppProviderRequest.Size(m)
 }
-func (m *FindRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_FindRequest.DiscardUnknown(m)
+func (m *GetAppProviderRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_GetAppProviderRequest.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_FindRequest proto.InternalMessageInfo
+var xxx_messageInfo_GetAppProviderRequest proto.InternalMessageInfo
 
-func (m *FindRequest) GetFilenameExtension() string {
+func (m *GetAppProviderRequest) GetOpaque() *types.Opaque {
 	if m != nil {
-		return m.FilenameExtension
+		return m.Opaque
+	}
+	return nil
+}
+
+func (m *GetAppProviderRequest) GetMimeType() string {
+	if m != nil {
+		return m.MimeType
 	}
 	return ""
 }
 
-func (m *FindRequest) GetFilenameMimetype() string {
-	if m != nil {
-		return m.FilenameMimetype
-	}
-	return ""
+type GetAppProviderResponse struct {
+	// REQUIRED.
+	// The response status.
+	Status *rpc.Status `protobuf:"bytes,1,opt,name=status,proto3" json:"status,omitempty"`
+	// OPTIONAL.
+	// Opaque information.
+	Opaque *types.Opaque `protobuf:"bytes,2,opt,name=opaque,proto3" json:"opaque,omitempty"`
+	// REQUIRED.
+	// The app provider for the given extension and mimetype.
+	Provider             *ProviderInfo `protobuf:"bytes,3,opt,name=provider,proto3" json:"provider,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}      `json:"-"`
+	XXX_unrecognized     []byte        `json:"-"`
+	XXX_sizecache        int32         `json:"-"`
 }
 
-type FindResponse struct {
-	Status               *rpc.Status      `protobuf:"bytes,1,opt,name=status,proto3" json:"status,omitempty"`
-	AppProviderInfo      *AppProviderInfo `protobuf:"bytes,2,opt,name=app_provider_info,json=appProviderInfo,proto3" json:"app_provider_info,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}         `json:"-"`
-	XXX_unrecognized     []byte           `json:"-"`
-	XXX_sizecache        int32            `json:"-"`
-}
-
-func (m *FindResponse) Reset()         { *m = FindResponse{} }
-func (m *FindResponse) String() string { return proto.CompactTextString(m) }
-func (*FindResponse) ProtoMessage()    {}
-func (*FindResponse) Descriptor() ([]byte, []int) {
+func (m *GetAppProviderResponse) Reset()         { *m = GetAppProviderResponse{} }
+func (m *GetAppProviderResponse) String() string { return proto.CompactTextString(m) }
+func (*GetAppProviderResponse) ProtoMessage()    {}
+func (*GetAppProviderResponse) Descriptor() ([]byte, []int) {
 	return fileDescriptor_a621a334fc05539a, []int{1}
 }
 
-func (m *FindResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_FindResponse.Unmarshal(m, b)
+func (m *GetAppProviderResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_GetAppProviderResponse.Unmarshal(m, b)
 }
-func (m *FindResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_FindResponse.Marshal(b, m, deterministic)
+func (m *GetAppProviderResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_GetAppProviderResponse.Marshal(b, m, deterministic)
 }
-func (m *FindResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_FindResponse.Merge(m, src)
+func (m *GetAppProviderResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_GetAppProviderResponse.Merge(m, src)
 }
-func (m *FindResponse) XXX_Size() int {
-	return xxx_messageInfo_FindResponse.Size(m)
+func (m *GetAppProviderResponse) XXX_Size() int {
+	return xxx_messageInfo_GetAppProviderResponse.Size(m)
 }
-func (m *FindResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_FindResponse.DiscardUnknown(m)
+func (m *GetAppProviderResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_GetAppProviderResponse.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_FindResponse proto.InternalMessageInfo
+var xxx_messageInfo_GetAppProviderResponse proto.InternalMessageInfo
 
-func (m *FindResponse) GetStatus() *rpc.Status {
+func (m *GetAppProviderResponse) GetStatus() *rpc.Status {
 	if m != nil {
 		return m.Status
 	}
 	return nil
 }
 
-func (m *FindResponse) GetAppProviderInfo() *AppProviderInfo {
+func (m *GetAppProviderResponse) GetOpaque() *types.Opaque {
 	if m != nil {
-		return m.AppProviderInfo
+		return m.Opaque
+	}
+	return nil
+}
+
+func (m *GetAppProviderResponse) GetProvider() *ProviderInfo {
+	if m != nil {
+		return m.Provider
+	}
+	return nil
+}
+
+type ListAppProvidersRequest struct {
+	// OPTIONAL.
+	// Opaque information.
+	Opaque               *types.Opaque `protobuf:"bytes,1,opt,name=opaque,proto3" json:"opaque,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}      `json:"-"`
+	XXX_unrecognized     []byte        `json:"-"`
+	XXX_sizecache        int32         `json:"-"`
+}
+
+func (m *ListAppProvidersRequest) Reset()         { *m = ListAppProvidersRequest{} }
+func (m *ListAppProvidersRequest) String() string { return proto.CompactTextString(m) }
+func (*ListAppProvidersRequest) ProtoMessage()    {}
+func (*ListAppProvidersRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_a621a334fc05539a, []int{2}
+}
+
+func (m *ListAppProvidersRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ListAppProvidersRequest.Unmarshal(m, b)
+}
+func (m *ListAppProvidersRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ListAppProvidersRequest.Marshal(b, m, deterministic)
+}
+func (m *ListAppProvidersRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ListAppProvidersRequest.Merge(m, src)
+}
+func (m *ListAppProvidersRequest) XXX_Size() int {
+	return xxx_messageInfo_ListAppProvidersRequest.Size(m)
+}
+func (m *ListAppProvidersRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_ListAppProvidersRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_ListAppProvidersRequest proto.InternalMessageInfo
+
+func (m *ListAppProvidersRequest) GetOpaque() *types.Opaque {
+	if m != nil {
+		return m.Opaque
+	}
+	return nil
+}
+
+type ListAppProvidersResponse struct {
+	// REQUIRED.
+	// The response status.
+	Status *rpc.Status `protobuf:"bytes,1,opt,name=status,proto3" json:"status,omitempty"`
+	// OPTIONAL.
+	// Opaque information.
+	Opaque *types.Opaque `protobuf:"bytes,2,opt,name=opaque,proto3" json:"opaque,omitempty"`
+	// REQUIRED.
+	// The list of app providers this registry knows about.
+	Providers            []*ProviderInfo `protobuf:"bytes,3,rep,name=providers,proto3" json:"providers,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}        `json:"-"`
+	XXX_unrecognized     []byte          `json:"-"`
+	XXX_sizecache        int32           `json:"-"`
+}
+
+func (m *ListAppProvidersResponse) Reset()         { *m = ListAppProvidersResponse{} }
+func (m *ListAppProvidersResponse) String() string { return proto.CompactTextString(m) }
+func (*ListAppProvidersResponse) ProtoMessage()    {}
+func (*ListAppProvidersResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_a621a334fc05539a, []int{3}
+}
+
+func (m *ListAppProvidersResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ListAppProvidersResponse.Unmarshal(m, b)
+}
+func (m *ListAppProvidersResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ListAppProvidersResponse.Marshal(b, m, deterministic)
+}
+func (m *ListAppProvidersResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ListAppProvidersResponse.Merge(m, src)
+}
+func (m *ListAppProvidersResponse) XXX_Size() int {
+	return xxx_messageInfo_ListAppProvidersResponse.Size(m)
+}
+func (m *ListAppProvidersResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_ListAppProvidersResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_ListAppProvidersResponse proto.InternalMessageInfo
+
+func (m *ListAppProvidersResponse) GetStatus() *rpc.Status {
+	if m != nil {
+		return m.Status
+	}
+	return nil
+}
+
+func (m *ListAppProvidersResponse) GetOpaque() *types.Opaque {
+	if m != nil {
+		return m.Opaque
+	}
+	return nil
+}
+
+func (m *ListAppProvidersResponse) GetProviders() []*ProviderInfo {
+	if m != nil {
+		return m.Providers
 	}
 	return nil
 }
 
 func init() {
-	proto.RegisterType((*FindRequest)(nil), "cs3.appregistryv0alpha.FindRequest")
-	proto.RegisterType((*FindResponse)(nil), "cs3.appregistryv0alpha.FindResponse")
+	proto.RegisterType((*GetAppProviderRequest)(nil), "cs3.appregistryv0alpha.GetAppProviderRequest")
+	proto.RegisterType((*GetAppProviderResponse)(nil), "cs3.appregistryv0alpha.GetAppProviderResponse")
+	proto.RegisterType((*ListAppProvidersRequest)(nil), "cs3.appregistryv0alpha.ListAppProvidersRequest")
+	proto.RegisterType((*ListAppProvidersResponse)(nil), "cs3.appregistryv0alpha.ListAppProvidersResponse")
 }
 
 func init() {
@@ -127,29 +252,33 @@ func init() {
 }
 
 var fileDescriptor_a621a334fc05539a = []byte{
-	// 339 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x7c, 0x91, 0xdf, 0x4a, 0x02, 0x41,
-	0x14, 0x87, 0x59, 0x09, 0xa1, 0x31, 0x50, 0x07, 0x11, 0xd9, 0xab, 0xb0, 0xc0, 0x22, 0x5a, 0xc5,
-	0x7d, 0x82, 0x5d, 0x29, 0xe8, 0x22, 0xb2, 0x5d, 0x88, 0x88, 0x60, 0x59, 0xc7, 0xa3, 0x0d, 0xb8,
-	0x33, 0xa7, 0x99, 0x51, 0xf2, 0xb2, 0xfb, 0x9e, 0xa2, 0xcb, 0x1e, 0xa5, 0xa7, 0x8a, 0xfd, 0x63,
-	0x6d, 0x98, 0xdd, 0x7e, 0xbf, 0x6f, 0xce, 0x39, 0x73, 0x0e, 0x39, 0x65, 0xda, 0xed, 0xc7, 0x88,
-	0x0a, 0xe6, 0x5c, 0x1b, 0xb5, 0xee, 0xaf, 0x06, 0xf1, 0x02, 0x9f, 0xe2, 0x32, 0x73, 0x50, 0x49,
-	0x23, 0x69, 0x9b, 0x69, 0xd7, 0x29, 0xe1, 0xc2, 0xb4, 0x7b, 0xbb, 0x4a, 0x28, 0xd0, 0x72, 0xa9,
-	0x18, 0xe8, 0xbc, 0x80, 0xdd, 0x4a, 0x45, 0x85, 0xac, 0xaf, 0x4d, 0x6c, 0x96, 0x05, 0xed, 0x72,
-	0x52, 0xbb, 0xe4, 0x62, 0x1a, 0xc0, 0xf3, 0x12, 0xb4, 0xa1, 0xe7, 0x84, 0xce, 0xf8, 0x02, 0x44,
-	0x9c, 0x40, 0x04, 0x2f, 0x06, 0x84, 0xe6, 0x52, 0x74, 0xac, 0x43, 0xeb, 0x64, 0x3f, 0x68, 0x6e,
-	0x92, 0x8b, 0x4d, 0x40, 0xcf, 0xc8, 0x37, 0x8c, 0x12, 0x9e, 0x80, 0x59, 0x23, 0x74, 0x2a, 0x99,
-	0xdd, 0xd8, 0x04, 0xd7, 0x05, 0xef, 0xbe, 0x59, 0xe4, 0x20, 0xef, 0xa5, 0x51, 0x0a, 0x0d, 0xb4,
-	0x47, 0xaa, 0xf9, 0x2c, 0x59, 0x83, 0xda, 0xb0, 0xee, 0xa4, 0x7f, 0x54, 0xc8, 0x9c, 0x30, 0xc3,
-	0x41, 0x11, 0xd3, 0x90, 0x34, 0x63, 0xc4, 0x08, 0x95, 0x5c, 0xf1, 0x29, 0xa8, 0x88, 0x8b, 0x99,
-	0xcc, 0xda, 0xd4, 0x86, 0x3d, 0xe7, 0xef, 0xbd, 0x38, 0x1e, 0xe2, 0xb8, 0xf0, 0xaf, 0xc4, 0x4c,
-	0x06, 0xf5, 0xf8, 0x37, 0x18, 0xce, 0x09, 0xf5, 0x10, 0x83, 0xe2, 0x59, 0x08, 0x6a, 0xc5, 0x19,
-	0xd0, 0x5b, 0xb2, 0x97, 0xce, 0x48, 0x8f, 0x76, 0xd5, 0x2d, 0x6d, 0xcb, 0x3e, 0xfe, 0x5f, 0xca,
-	0xbf, 0xe9, 0xbf, 0x5a, 0xc4, 0x66, 0x32, 0xd9, 0xe1, 0xfa, 0x0d, 0xef, 0x87, 0x8d, 0xd3, 0x9b,
-	0x8c, 0xad, 0x87, 0xd6, 0xb6, 0x87, 0x93, 0xf7, 0x4a, 0x75, 0xe4, 0xdf, 0xdc, 0x7b, 0xfe, 0x47,
-	0xa5, 0x3d, 0x0a, 0x5d, 0xa7, 0x34, 0xfd, 0xdd, 0xc0, 0x4b, 0x9d, 0xcf, 0x2c, 0x78, 0xdc, 0x0e,
-	0x26, 0xd5, 0xec, 0xda, 0xee, 0x57, 0x00, 0x00, 0x00, 0xff, 0xff, 0x9c, 0xb3, 0x40, 0x98, 0x71,
-	0x02, 0x00, 0x00,
+	// 413 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xb4, 0x53, 0xcd, 0xaa, 0xda, 0x40,
+	0x18, 0x65, 0x14, 0x44, 0x47, 0xa8, 0x76, 0x50, 0x1b, 0xd2, 0x8d, 0x84, 0x82, 0xba, 0xe8, 0x44,
+	0xcc, 0x0b, 0x34, 0xb1, 0x45, 0x84, 0x82, 0x61, 0x22, 0xa5, 0x2d, 0x05, 0x89, 0xe9, 0xb4, 0x0d,
+	0x54, 0xe7, 0x73, 0x26, 0x11, 0x7c, 0x85, 0x3e, 0x46, 0x97, 0x5d, 0x74, 0xd1, 0xc7, 0xe8, 0x33,
+	0x75, 0x51, 0xf2, 0x63, 0x4d, 0xd5, 0x70, 0xbd, 0x8b, 0xbb, 0xc9, 0xe2, 0x7c, 0xe7, 0x3b, 0xe7,
+	0xcc, 0x99, 0x0c, 0x1e, 0x05, 0xca, 0x32, 0x7d, 0x00, 0xc9, 0x3f, 0x87, 0x2a, 0x92, 0x07, 0x73,
+	0x3f, 0xf6, 0xbf, 0xc2, 0x17, 0xbf, 0x88, 0x51, 0x90, 0x22, 0x12, 0xa4, 0x17, 0x28, 0x8b, 0x16,
+	0xe0, 0x9c, 0xa9, 0x0f, 0xca, 0x24, 0x24, 0x57, 0x22, 0x96, 0x01, 0x57, 0x99, 0x80, 0xde, 0x49,
+	0x88, 0x12, 0x02, 0x53, 0x45, 0x7e, 0x14, 0x1f, 0xd1, 0x6e, 0x82, 0x46, 0x07, 0xe0, 0x2a, 0xfb,
+	0x66, 0xb0, 0xb1, 0xc2, 0xdd, 0x19, 0x8f, 0x6c, 0x00, 0x57, 0x8a, 0x7d, 0xf8, 0x91, 0x4b, 0xc6,
+	0x77, 0x31, 0x57, 0x11, 0x19, 0xe1, 0x9a, 0x00, 0x7f, 0x17, 0x73, 0x0d, 0xf5, 0xd1, 0xb0, 0x39,
+	0x79, 0x4c, 0x93, 0x5c, 0xd9, 0xea, 0x22, 0x1d, 0xb0, 0x9c, 0x40, 0x9e, 0xe2, 0xc6, 0x26, 0xdc,
+	0xf0, 0x55, 0x32, 0xd4, 0xaa, 0x7d, 0x34, 0x6c, 0xb0, 0x7a, 0x02, 0x2c, 0x0f, 0xc0, 0x8d, 0x9f,
+	0x08, 0xf7, 0xce, 0x1d, 0x14, 0x88, 0xad, 0xe2, 0x64, 0x80, 0x6b, 0x59, 0xc4, 0xdc, 0xa2, 0x95,
+	0x5a, 0x48, 0x08, 0xa8, 0x97, 0xc2, 0x2c, 0x1f, 0x17, 0xb2, 0x54, 0xee, 0xca, 0xf2, 0x02, 0xd7,
+	0x21, 0xf7, 0x49, 0xa3, 0x34, 0x27, 0xcf, 0xe8, 0xf5, 0x42, 0xe9, 0x31, 0xcf, 0x7c, 0xfb, 0x49,
+	0xb0, 0x7f, 0x5b, 0xc6, 0x4b, 0xfc, 0xe4, 0x75, 0xa8, 0x8a, 0x81, 0xd5, 0xfd, 0x3b, 0x31, 0x7e,
+	0x21, 0xac, 0x5d, 0xca, 0x3c, 0xe0, 0xc1, 0x1d, 0xdc, 0x38, 0x1e, 0x41, 0x69, 0xd5, 0x7e, 0xf5,
+	0xe6, 0x93, 0x9f, 0xd6, 0x26, 0x7f, 0x10, 0x26, 0x36, 0x00, 0xcb, 0xe9, 0x1e, 0x97, 0xfb, 0x30,
+	0xe0, 0x44, 0xe0, 0x47, 0xff, 0xdf, 0x20, 0x79, 0x5e, 0xa6, 0x7c, 0xf5, 0x5f, 0xd2, 0xe9, 0xad,
+	0xf4, 0xbc, 0x9f, 0x18, 0xb7, 0xcf, 0xbb, 0x23, 0x66, 0x99, 0x46, 0xc9, 0x65, 0xe9, 0xe3, 0xdb,
+	0x17, 0x32, 0x5b, 0xe7, 0x1b, 0xc2, 0x7a, 0x20, 0x36, 0x25, 0x7b, 0x4e, 0xdb, 0x3e, 0x61, 0x6e,
+	0xf2, 0x78, 0x5c, 0xf4, 0xbe, 0x73, 0xc9, 0x83, 0xf5, 0xf7, 0x4a, 0x6b, 0xea, 0x2c, 0xde, 0xda,
+	0xae, 0xcb, 0x5e, 0xcd, 0xe6, 0xde, 0x92, 0xbd, 0xfb, 0x51, 0xe9, 0x4d, 0x3d, 0x8b, 0x16, 0xba,
+	0x7d, 0x33, 0xb6, 0x13, 0xf2, 0xef, 0x74, 0xf0, 0xe1, 0x72, 0xb0, 0xae, 0xa5, 0xef, 0xd3, 0xfa,
+	0x1b, 0x00, 0x00, 0xff, 0xff, 0x17, 0x3c, 0xe0, 0x10, 0x3a, 0x04, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -164,7 +293,12 @@ const _ = grpc.SupportPackageIsVersion4
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type AppRegistryServiceClient interface {
-	Find(ctx context.Context, in *FindRequest, opts ...grpc.CallOption) (*FindResponse, error)
+	// Returns the app provider that is reponsible for the given
+	// resource reference.
+	// MUST return CODE_NOT_FOUND if the reference does not exist.
+	GetAppProvider(ctx context.Context, in *GetAppProviderRequest, opts ...grpc.CallOption) (*GetAppProviderResponse, error)
+	// Returns a list of the available app providers known by this registry.
+	ListAppProviders(ctx context.Context, in *ListAppProvidersRequest, opts ...grpc.CallOption) (*ListAppProvidersResponse, error)
 }
 
 type appRegistryServiceClient struct {
@@ -175,9 +309,18 @@ func NewAppRegistryServiceClient(cc *grpc.ClientConn) AppRegistryServiceClient {
 	return &appRegistryServiceClient{cc}
 }
 
-func (c *appRegistryServiceClient) Find(ctx context.Context, in *FindRequest, opts ...grpc.CallOption) (*FindResponse, error) {
-	out := new(FindResponse)
-	err := c.cc.Invoke(ctx, "/cs3.appregistryv0alpha.AppRegistryService/Find", in, out, opts...)
+func (c *appRegistryServiceClient) GetAppProvider(ctx context.Context, in *GetAppProviderRequest, opts ...grpc.CallOption) (*GetAppProviderResponse, error) {
+	out := new(GetAppProviderResponse)
+	err := c.cc.Invoke(ctx, "/cs3.appregistryv0alpha.AppRegistryService/GetAppProvider", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appRegistryServiceClient) ListAppProviders(ctx context.Context, in *ListAppProvidersRequest, opts ...grpc.CallOption) (*ListAppProvidersResponse, error) {
+	out := new(ListAppProvidersResponse)
+	err := c.cc.Invoke(ctx, "/cs3.appregistryv0alpha.AppRegistryService/ListAppProviders", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -186,27 +329,50 @@ func (c *appRegistryServiceClient) Find(ctx context.Context, in *FindRequest, op
 
 // AppRegistryServiceServer is the server API for AppRegistryService service.
 type AppRegistryServiceServer interface {
-	Find(context.Context, *FindRequest) (*FindResponse, error)
+	// Returns the app provider that is reponsible for the given
+	// resource reference.
+	// MUST return CODE_NOT_FOUND if the reference does not exist.
+	GetAppProvider(context.Context, *GetAppProviderRequest) (*GetAppProviderResponse, error)
+	// Returns a list of the available app providers known by this registry.
+	ListAppProviders(context.Context, *ListAppProvidersRequest) (*ListAppProvidersResponse, error)
 }
 
 func RegisterAppRegistryServiceServer(s *grpc.Server, srv AppRegistryServiceServer) {
 	s.RegisterService(&_AppRegistryService_serviceDesc, srv)
 }
 
-func _AppRegistryService_Find_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(FindRequest)
+func _AppRegistryService_GetAppProvider_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetAppProviderRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AppRegistryServiceServer).Find(ctx, in)
+		return srv.(AppRegistryServiceServer).GetAppProvider(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/cs3.appregistryv0alpha.AppRegistryService/Find",
+		FullMethod: "/cs3.appregistryv0alpha.AppRegistryService/GetAppProvider",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AppRegistryServiceServer).Find(ctx, req.(*FindRequest))
+		return srv.(AppRegistryServiceServer).GetAppProvider(ctx, req.(*GetAppProviderRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppRegistryService_ListAppProviders_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListAppProvidersRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppRegistryServiceServer).ListAppProviders(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/cs3.appregistryv0alpha.AppRegistryService/ListAppProviders",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppRegistryServiceServer).ListAppProviders(ctx, req.(*ListAppProvidersRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -216,8 +382,12 @@ var _AppRegistryService_serviceDesc = grpc.ServiceDesc{
 	HandlerType: (*AppRegistryServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "Find",
-			Handler:    _AppRegistryService_Find_Handler,
+			MethodName: "GetAppProvider",
+			Handler:    _AppRegistryService_GetAppProvider_Handler,
+		},
+		{
+			MethodName: "ListAppProviders",
+			Handler:    _AppRegistryService_ListAppProviders_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

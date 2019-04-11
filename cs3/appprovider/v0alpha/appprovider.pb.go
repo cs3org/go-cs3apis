@@ -7,6 +7,8 @@ import (
 	context "context"
 	fmt "fmt"
 	rpc "github.com/cernbox/go-cs3apis/cs3/rpc"
+	v0alpha "github.com/cernbox/go-cs3apis/cs3/storageprovider/v0alpha"
+	types "github.com/cernbox/go-cs3apis/cs3/types"
 	proto "github.com/golang/protobuf/proto"
 	grpc "google.golang.org/grpc"
 	math "math"
@@ -23,111 +25,124 @@ var _ = math.Inf
 // proto package needs to be updated.
 const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 
-type GetIFrameRequest struct {
-	Filename             string   `protobuf:"bytes,1,opt,name=filename,proto3" json:"filename,omitempty"`
-	Miemtype             string   `protobuf:"bytes,2,opt,name=miemtype,proto3" json:"miemtype,omitempty"`
+type OpenRequest struct {
+	// REQUIRED.
+	// The id of the resource to be opened.
+	ResourceId *v0alpha.ResourceId `protobuf:"bytes,1,opt,name=resource_id,json=resourceId,proto3" json:"resource_id,omitempty"`
+	// REQUIRED.
+	// The access token the application provider will use when contacting
+	// the storage provider storing the resource pointed by resource_id.
+	// Service implementors MUST make sure that the access token only grants
+	// access to the resource the open request is made.
 	AccessToken          string   `protobuf:"bytes,3,opt,name=access_token,json=accessToken,proto3" json:"access_token,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *GetIFrameRequest) Reset()         { *m = GetIFrameRequest{} }
-func (m *GetIFrameRequest) String() string { return proto.CompactTextString(m) }
-func (*GetIFrameRequest) ProtoMessage()    {}
-func (*GetIFrameRequest) Descriptor() ([]byte, []int) {
+func (m *OpenRequest) Reset()         { *m = OpenRequest{} }
+func (m *OpenRequest) String() string { return proto.CompactTextString(m) }
+func (*OpenRequest) ProtoMessage()    {}
+func (*OpenRequest) Descriptor() ([]byte, []int) {
 	return fileDescriptor_f74a8f301591c1e7, []int{0}
 }
 
-func (m *GetIFrameRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_GetIFrameRequest.Unmarshal(m, b)
+func (m *OpenRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_OpenRequest.Unmarshal(m, b)
 }
-func (m *GetIFrameRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_GetIFrameRequest.Marshal(b, m, deterministic)
+func (m *OpenRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_OpenRequest.Marshal(b, m, deterministic)
 }
-func (m *GetIFrameRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_GetIFrameRequest.Merge(m, src)
+func (m *OpenRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_OpenRequest.Merge(m, src)
 }
-func (m *GetIFrameRequest) XXX_Size() int {
-	return xxx_messageInfo_GetIFrameRequest.Size(m)
+func (m *OpenRequest) XXX_Size() int {
+	return xxx_messageInfo_OpenRequest.Size(m)
 }
-func (m *GetIFrameRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_GetIFrameRequest.DiscardUnknown(m)
+func (m *OpenRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_OpenRequest.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_GetIFrameRequest proto.InternalMessageInfo
+var xxx_messageInfo_OpenRequest proto.InternalMessageInfo
 
-func (m *GetIFrameRequest) GetFilename() string {
+func (m *OpenRequest) GetResourceId() *v0alpha.ResourceId {
 	if m != nil {
-		return m.Filename
+		return m.ResourceId
 	}
-	return ""
+	return nil
 }
 
-func (m *GetIFrameRequest) GetMiemtype() string {
-	if m != nil {
-		return m.Miemtype
-	}
-	return ""
-}
-
-func (m *GetIFrameRequest) GetAccessToken() string {
+func (m *OpenRequest) GetAccessToken() string {
 	if m != nil {
 		return m.AccessToken
 	}
 	return ""
 }
 
-type GetIFrameResponse struct {
-	Status               *rpc.Status `protobuf:"bytes,1,opt,name=status,proto3" json:"status,omitempty"`
-	IframeLocation       string      `protobuf:"bytes,2,opt,name=iframe_location,json=iframeLocation,proto3" json:"iframe_location,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}    `json:"-"`
-	XXX_unrecognized     []byte      `json:"-"`
-	XXX_sizecache        int32       `json:"-"`
+type OpenResponse struct {
+	// REQUIRED.
+	// The response status.
+	Status *rpc.Status `protobuf:"bytes,1,opt,name=status,proto3" json:"status,omitempty"`
+	// OPTIONAL.
+	// Opaque information.
+	Opaque *types.Opaque `protobuf:"bytes,2,opt,name=opaque,proto3" json:"opaque,omitempty"`
+	// REQUIRED.
+	// The url to render, usually inside an IFrame in the client.
+	IframeUrl            string   `protobuf:"bytes,3,opt,name=iframe_url,json=iframeUrl,proto3" json:"iframe_url,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *GetIFrameResponse) Reset()         { *m = GetIFrameResponse{} }
-func (m *GetIFrameResponse) String() string { return proto.CompactTextString(m) }
-func (*GetIFrameResponse) ProtoMessage()    {}
-func (*GetIFrameResponse) Descriptor() ([]byte, []int) {
+func (m *OpenResponse) Reset()         { *m = OpenResponse{} }
+func (m *OpenResponse) String() string { return proto.CompactTextString(m) }
+func (*OpenResponse) ProtoMessage()    {}
+func (*OpenResponse) Descriptor() ([]byte, []int) {
 	return fileDescriptor_f74a8f301591c1e7, []int{1}
 }
 
-func (m *GetIFrameResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_GetIFrameResponse.Unmarshal(m, b)
+func (m *OpenResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_OpenResponse.Unmarshal(m, b)
 }
-func (m *GetIFrameResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_GetIFrameResponse.Marshal(b, m, deterministic)
+func (m *OpenResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_OpenResponse.Marshal(b, m, deterministic)
 }
-func (m *GetIFrameResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_GetIFrameResponse.Merge(m, src)
+func (m *OpenResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_OpenResponse.Merge(m, src)
 }
-func (m *GetIFrameResponse) XXX_Size() int {
-	return xxx_messageInfo_GetIFrameResponse.Size(m)
+func (m *OpenResponse) XXX_Size() int {
+	return xxx_messageInfo_OpenResponse.Size(m)
 }
-func (m *GetIFrameResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_GetIFrameResponse.DiscardUnknown(m)
+func (m *OpenResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_OpenResponse.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_GetIFrameResponse proto.InternalMessageInfo
+var xxx_messageInfo_OpenResponse proto.InternalMessageInfo
 
-func (m *GetIFrameResponse) GetStatus() *rpc.Status {
+func (m *OpenResponse) GetStatus() *rpc.Status {
 	if m != nil {
 		return m.Status
 	}
 	return nil
 }
 
-func (m *GetIFrameResponse) GetIframeLocation() string {
+func (m *OpenResponse) GetOpaque() *types.Opaque {
 	if m != nil {
-		return m.IframeLocation
+		return m.Opaque
+	}
+	return nil
+}
+
+func (m *OpenResponse) GetIframeUrl() string {
+	if m != nil {
+		return m.IframeUrl
 	}
 	return ""
 }
 
 func init() {
-	proto.RegisterType((*GetIFrameRequest)(nil), "cs3.appproviderv0alpha.GetIFrameRequest")
-	proto.RegisterType((*GetIFrameResponse)(nil), "cs3.appproviderv0alpha.GetIFrameResponse")
+	proto.RegisterType((*OpenRequest)(nil), "cs3.appproviderv0alpha.OpenRequest")
+	proto.RegisterType((*OpenResponse)(nil), "cs3.appproviderv0alpha.OpenResponse")
 }
 
 func init() {
@@ -135,27 +150,30 @@ func init() {
 }
 
 var fileDescriptor_f74a8f301591c1e7 = []byte{
-	// 319 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x8c, 0x91, 0xd1, 0x4a, 0x02, 0x41,
-	0x14, 0x86, 0x59, 0x03, 0xc9, 0x31, 0xd2, 0x06, 0x11, 0xd9, 0xab, 0xf2, 0x46, 0xbd, 0x19, 0xc5,
-	0x7d, 0x82, 0x5d, 0xa1, 0x08, 0x82, 0x44, 0x23, 0x22, 0x02, 0x1b, 0xa7, 0x23, 0x2d, 0xb9, 0x3b,
-	0xa7, 0x99, 0x71, 0xa1, 0xcb, 0x5e, 0xa5, 0xcb, 0x1e, 0xa5, 0xa7, 0x8a, 0xd9, 0xd9, 0x6c, 0xc9,
-	0x82, 0x2e, 0xcf, 0xf7, 0xff, 0x67, 0xce, 0x39, 0xff, 0x90, 0x81, 0xd0, 0xc1, 0x90, 0x23, 0xa2,
-	0x92, 0x59, 0xfc, 0x00, 0x6a, 0x98, 0x8d, 0xf8, 0x1a, 0x1f, 0x79, 0x99, 0x31, 0x54, 0xd2, 0x48,
-	0xda, 0x16, 0x3a, 0x60, 0x25, 0x5c, 0x38, 0xfd, 0x96, 0x7d, 0x42, 0xa1, 0x18, 0x6a, 0xc3, 0xcd,
-	0x46, 0x3b, 0x77, 0x37, 0x21, 0xcd, 0x33, 0x30, 0xe7, 0xa7, 0x8a, 0x27, 0x30, 0x83, 0xe7, 0x0d,
-	0x68, 0x43, 0x7d, 0xb2, 0xbf, 0x8a, 0xd7, 0x90, 0xf2, 0x04, 0x3a, 0xde, 0xb1, 0xd7, 0xaf, 0xcd,
-	0xb6, 0xb5, 0xd5, 0x92, 0x18, 0x12, 0xf3, 0x82, 0xd0, 0xa9, 0x38, 0xed, 0xab, 0xa6, 0x27, 0xe4,
-	0x80, 0x0b, 0x01, 0x5a, 0x2f, 0x8c, 0x7c, 0x82, 0xb4, 0xb3, 0x97, 0xeb, 0x75, 0xc7, 0xae, 0x2c,
-	0xea, 0x02, 0x39, 0x2a, 0x8d, 0xd3, 0x28, 0x53, 0x0d, 0xb4, 0x47, 0xaa, 0x6e, 0xa7, 0x7c, 0x5a,
-	0x7d, 0xdc, 0x60, 0xf6, 0x04, 0x85, 0x82, 0xcd, 0x73, 0x3c, 0x2b, 0x64, 0xda, 0x23, 0x8d, 0x78,
-	0x65, 0x5b, 0x17, 0x6b, 0x29, 0xb8, 0x89, 0x65, 0x5a, 0xec, 0x70, 0xe8, 0xf0, 0x45, 0x41, 0xc7,
-	0x19, 0xa1, 0x21, 0xe2, 0xb4, 0x48, 0x60, 0x0e, 0x2a, 0x8b, 0x05, 0xd0, 0x7b, 0x52, 0xdb, 0x0e,
-	0xa7, 0x7d, 0xf6, 0x7b, 0x4e, 0xec, 0x67, 0x1c, 0xfe, 0xe0, 0x1f, 0x4e, 0x77, 0x49, 0xf4, 0xea,
-	0x11, 0x5f, 0xc8, 0xe4, 0x8f, 0x86, 0xa8, 0x19, 0x7e, 0xb3, 0xa9, 0x8d, 0x7f, 0xea, 0xdd, 0xb6,
-	0x76, 0x7d, 0xb8, 0x7c, 0xab, 0x54, 0x27, 0xd1, 0xe5, 0x4d, 0x18, 0xbd, 0x57, 0xda, 0x93, 0x79,
-	0xc0, 0x4a, 0xc7, 0x5c, 0x8f, 0x42, 0xeb, 0xf9, 0xc8, 0x85, 0xbb, 0x5d, 0x61, 0x59, 0xcd, 0x3f,
-	0x36, 0xf8, 0x0c, 0x00, 0x00, 0xff, 0xff, 0x26, 0x48, 0x54, 0xed, 0x33, 0x02, 0x00, 0x00,
+	// 363 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x7c, 0x91, 0x51, 0x4b, 0x2a, 0x41,
+	0x14, 0xc7, 0x59, 0xef, 0x65, 0xc1, 0x59, 0xe1, 0xde, 0x3b, 0x78, 0x45, 0x16, 0x02, 0xb3, 0x28,
+	0x25, 0x18, 0xc5, 0xfd, 0x04, 0xbb, 0x3e, 0x44, 0x4f, 0xda, 0x5a, 0x11, 0x11, 0xc8, 0x38, 0x4e,
+	0xb6, 0xa4, 0xce, 0x71, 0x66, 0x57, 0xf0, 0xd1, 0xaf, 0xd2, 0x63, 0x1f, 0xa5, 0x4f, 0x15, 0xb3,
+	0x33, 0xd6, 0x92, 0xd5, 0xcb, 0xb2, 0xfc, 0xce, 0x8f, 0x73, 0xfe, 0x67, 0x0e, 0x6a, 0x33, 0x15,
+	0x74, 0x28, 0x00, 0x48, 0xb1, 0x4e, 0xa6, 0x5c, 0x76, 0xd6, 0x5d, 0x3a, 0x87, 0x47, 0x5a, 0x64,
+	0x04, 0xa4, 0x48, 0x05, 0xae, 0x31, 0x15, 0x90, 0x02, 0xb6, 0xa6, 0x5f, 0xd5, 0x2d, 0x24, 0xb0,
+	0x8e, 0x4a, 0x69, 0x9a, 0x29, 0x63, 0xfb, 0xff, 0x35, 0x4d, 0x37, 0xc0, 0x95, 0xf9, 0x5a, 0x7c,
+	0xa6, 0xb1, 0x4a, 0x85, 0xa4, 0x33, 0xbe, 0x37, 0x53, 0x72, 0x25, 0x32, 0xc9, 0x76, 0x72, 0x73,
+	0x83, 0xbc, 0x01, 0xf0, 0x65, 0xcc, 0x57, 0x19, 0x57, 0x29, 0x3e, 0x47, 0xde, 0xce, 0x18, 0x27,
+	0xd3, 0xba, 0xd3, 0x70, 0x5a, 0x5e, 0xef, 0x84, 0xe8, 0x58, 0x9f, 0x3a, 0xda, 0x86, 0x24, 0xb6,
+	0xfa, 0xc5, 0x34, 0x46, 0xf2, 0xfd, 0x1f, 0x1f, 0xa2, 0x0a, 0x65, 0x8c, 0x2b, 0x35, 0x4e, 0xc5,
+	0x13, 0x5f, 0xd6, 0x7f, 0x35, 0x9c, 0x56, 0x39, 0xf6, 0x0c, 0xbb, 0xd2, 0xa8, 0xb9, 0x75, 0x50,
+	0xc5, 0xcc, 0x56, 0x20, 0x96, 0x8a, 0xe3, 0x53, 0xe4, 0x9a, 0xfd, 0xec, 0xdc, 0x3f, 0xf9, 0x5c,
+	0x09, 0x8c, 0x8c, 0x72, 0x1c, 0xdb, 0x32, 0x6e, 0x23, 0x57, 0x00, 0x5d, 0x65, 0xbc, 0x5e, 0xca,
+	0xc5, 0x7f, 0xb9, 0x68, 0xde, 0x60, 0x90, 0x17, 0x62, 0x2b, 0xe0, 0x03, 0x84, 0x92, 0x07, 0x49,
+	0x17, 0x7c, 0x9c, 0xc9, 0xb9, 0x4d, 0x51, 0x36, 0xe4, 0x5a, 0xce, 0x7b, 0x33, 0x84, 0x43, 0x80,
+	0xa1, 0xdd, 0x69, 0xc4, 0xe5, 0x3a, 0x61, 0x1c, 0x5f, 0xa2, 0xdf, 0x3a, 0x18, 0x3e, 0x22, 0x5f,
+	0xdf, 0x83, 0x14, 0x9e, 0xcc, 0x3f, 0xfe, 0x59, 0x32, 0xbb, 0x45, 0x5b, 0x07, 0xf9, 0x4c, 0x2c,
+	0xbe, 0x71, 0xa3, 0xbf, 0xe1, 0x07, 0x1b, 0xea, 0xc3, 0x0c, 0x9d, 0xbb, 0xea, 0xbe, 0x07, 0x93,
+	0xe7, 0x92, 0xdb, 0x8f, 0x06, 0xb7, 0x61, 0xf4, 0x52, 0xaa, 0xf5, 0x47, 0x01, 0x29, 0xa4, 0xbf,
+	0xe9, 0x86, 0xda, 0x79, 0xcd, 0x0b, 0xf7, 0xfb, 0x85, 0x89, 0x9b, 0x9f, 0x3c, 0x78, 0x0b, 0x00,
+	0x00, 0xff, 0xff, 0x04, 0x8d, 0x06, 0x10, 0x91, 0x02, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -170,7 +188,9 @@ const _ = grpc.SupportPackageIsVersion4
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type AppProviderServiceClient interface {
-	GetIFrame(ctx context.Context, in *GetIFrameRequest, opts ...grpc.CallOption) (*GetIFrameResponse, error)
+	// Returns the iframe url
+	// MUST return CODE_NOT_FOUND if the resource does not exist.
+	Open(ctx context.Context, in *OpenRequest, opts ...grpc.CallOption) (*OpenResponse, error)
 }
 
 type appProviderServiceClient struct {
@@ -181,9 +201,9 @@ func NewAppProviderServiceClient(cc *grpc.ClientConn) AppProviderServiceClient {
 	return &appProviderServiceClient{cc}
 }
 
-func (c *appProviderServiceClient) GetIFrame(ctx context.Context, in *GetIFrameRequest, opts ...grpc.CallOption) (*GetIFrameResponse, error) {
-	out := new(GetIFrameResponse)
-	err := c.cc.Invoke(ctx, "/cs3.appproviderv0alpha.AppProviderService/GetIFrame", in, out, opts...)
+func (c *appProviderServiceClient) Open(ctx context.Context, in *OpenRequest, opts ...grpc.CallOption) (*OpenResponse, error) {
+	out := new(OpenResponse)
+	err := c.cc.Invoke(ctx, "/cs3.appproviderv0alpha.AppProviderService/Open", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -192,27 +212,29 @@ func (c *appProviderServiceClient) GetIFrame(ctx context.Context, in *GetIFrameR
 
 // AppProviderServiceServer is the server API for AppProviderService service.
 type AppProviderServiceServer interface {
-	GetIFrame(context.Context, *GetIFrameRequest) (*GetIFrameResponse, error)
+	// Returns the iframe url
+	// MUST return CODE_NOT_FOUND if the resource does not exist.
+	Open(context.Context, *OpenRequest) (*OpenResponse, error)
 }
 
 func RegisterAppProviderServiceServer(s *grpc.Server, srv AppProviderServiceServer) {
 	s.RegisterService(&_AppProviderService_serviceDesc, srv)
 }
 
-func _AppProviderService_GetIFrame_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetIFrameRequest)
+func _AppProviderService_Open_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(OpenRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AppProviderServiceServer).GetIFrame(ctx, in)
+		return srv.(AppProviderServiceServer).Open(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/cs3.appproviderv0alpha.AppProviderService/GetIFrame",
+		FullMethod: "/cs3.appproviderv0alpha.AppProviderService/Open",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AppProviderServiceServer).GetIFrame(ctx, req.(*GetIFrameRequest))
+		return srv.(AppProviderServiceServer).Open(ctx, req.(*OpenRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -222,8 +244,8 @@ var _AppProviderService_serviceDesc = grpc.ServiceDesc{
 	HandlerType: (*AppProviderServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "GetIFrame",
-			Handler:    _AppProviderService_GetIFrame_Handler,
+			MethodName: "Open",
+			Handler:    _AppProviderService_Open_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
