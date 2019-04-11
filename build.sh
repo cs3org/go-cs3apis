@@ -2,6 +2,8 @@
 
 GOPATH=`go env GOPATH`
 PATH=$PATH:$GOPATH/bin
+rm -rf cs3/*
+rm -rf build
 git clone --branch review https://github.com/cernbox/cs3apis build && cd build && make && cd ..
 cat prototool_gen_go.yaml >> build/prototool.yaml
 go get -u github.com/grpc-ecosystem/grpc-gateway/protoc-gen-grpc-gateway
