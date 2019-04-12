@@ -28,17 +28,18 @@ require (
 	github.com/sirupsen/logrus v1.4.1 // indirect
 	github.com/stretchr/objx v0.2.0 // indirect
 	go.opencensus.io v0.20.2 // indirect
-	golang.org/x/exp v0.0.0-20190409044807-56b785ea58b2 // indirect
+	golang.org/x/crypto v0.0.0-20190411191339-88737f569e3a // indirect
+	golang.org/x/exp v0.0.0-20190411193353-0480eff6dd7c // indirect
 	golang.org/x/image v0.0.0-20190321063152-3fc05d484e9f // indirect
 	golang.org/x/lint v0.0.0-20190409202823-959b441ac422 // indirect
 	golang.org/x/mobile v0.0.0-20190327163128-167ebed0ec6d // indirect
 	golang.org/x/oauth2 v0.0.0-20190402181905-9f3314589c9a // indirect
-	golang.org/x/sys v0.0.0-20190410235845-0ad05ae3009d // indirect
+	golang.org/x/sys v0.0.0-20190411185658-b44545bcd369 // indirect
 	golang.org/x/time v0.0.0-20190308202827-9d24e82272b4 // indirect
-	golang.org/x/tools v0.0.0-20190410211219-2538eef75904 // indirect
+	golang.org/x/tools v0.0.0-20190411180116-681f9ce8ac52 // indirect
 	google.golang.org/api v0.3.2 // indirect
 	google.golang.org/appengine v1.5.0 // indirect
 	google.golang.org/grpc v1.20.0
 	gopkg.in/yaml.v2 v2.2.2 // indirect
-	honnef.co/go/tools v0.0.0-20190411130922-526f6afaca57 // indirect
+	honnef.co/go/tools v0.0.0-20190411191103-1a905b6394b4 // indirect
 )
