@@ -36,7 +36,7 @@ require (
 	golang.org/x/mobile v0.0.0-20190412202009-28c689b77b5f // indirect
 	golang.org/x/oauth2 v0.0.0-20190402181905-9f3314589c9a // indirect
 	golang.org/x/sync v0.0.0-20190412183630-56d357773e84 // indirect
-	golang.org/x/sys v0.0.0-20190412213103-97732733099d // indirect
+	golang.org/x/sys v0.0.0-20190415081028-16da32be82c5 // indirect
 	golang.org/x/time v0.0.0-20190308202827-9d24e82272b4 // indirect
 	golang.org/x/tools v0.0.0-20190411180116-681f9ce8ac52 // indirect
 	google.golang.org/api v0.3.2 // indirect
