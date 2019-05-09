@@ -11,6 +11,8 @@ import (
 	types "github.com/cernbox/go-cs3apis/cs3/types"
 	proto "github.com/golang/protobuf/proto"
 	grpc "google.golang.org/grpc"
+	codes "google.golang.org/grpc/codes"
+	status "google.golang.org/grpc/status"
 	math "math"
 )
 
@@ -215,6 +217,14 @@ type AppProviderServiceServer interface {
 	// Returns the iframe url
 	// MUST return CODE_NOT_FOUND if the resource does not exist.
 	Open(context.Context, *OpenRequest) (*OpenResponse, error)
+}
+
+// UnimplementedAppProviderServiceServer can be embedded to have forward compatible implementations.
+type UnimplementedAppProviderServiceServer struct {
+}
+
+func (*UnimplementedAppProviderServiceServer) Open(ctx context.Context, req *OpenRequest) (*OpenResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Open not implemented")
 }
 
 func RegisterAppProviderServiceServer(s *grpc.Server, srv AppProviderServiceServer) {

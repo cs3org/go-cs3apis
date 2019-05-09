@@ -11,6 +11,8 @@ import (
 	types "github.com/cernbox/go-cs3apis/cs3/types"
 	proto "github.com/golang/protobuf/proto"
 	grpc "google.golang.org/grpc"
+	codes "google.golang.org/grpc/codes"
+	status "google.golang.org/grpc/status"
 	math "math"
 )
 
@@ -1459,6 +1461,35 @@ type UserShareProviderServiceServer interface {
 	// Update the received share to change the share state or the display name.
 	// MUST return CODE_NOT_FOUND if the share reference does not exist.
 	UpdateReceivedShare(context.Context, *UpdateReceivedShareRequest) (*UpdateReceivedShareResponse, error)
+}
+
+// UnimplementedUserShareProviderServiceServer can be embedded to have forward compatible implementations.
+type UnimplementedUserShareProviderServiceServer struct {
+}
+
+func (*UnimplementedUserShareProviderServiceServer) GetProvider(ctx context.Context, req *GetProviderRequest) (*GetProviderResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetProvider not implemented")
+}
+func (*UnimplementedUserShareProviderServiceServer) CreateShare(ctx context.Context, req *CreateShareRequest) (*CreateShareResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateShare not implemented")
+}
+func (*UnimplementedUserShareProviderServiceServer) RemoveShare(ctx context.Context, req *RemoveShareRequest) (*RemoveShareResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RemoveShare not implemented")
+}
+func (*UnimplementedUserShareProviderServiceServer) GetShare(ctx context.Context, req *GetShareRequest) (*GetShareResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetShare not implemented")
+}
+func (*UnimplementedUserShareProviderServiceServer) ListShares(ctx context.Context, req *ListSharesRequest) (*ListSharesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListShares not implemented")
+}
+func (*UnimplementedUserShareProviderServiceServer) UpdateShare(ctx context.Context, req *UpdateShareRequest) (*UpdateShareResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateShare not implemented")
+}
+func (*UnimplementedUserShareProviderServiceServer) ListReceivedShares(ctx context.Context, req *ListReceivedSharesRequest) (*ListReceivedSharesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListReceivedShares not implemented")
+}
+func (*UnimplementedUserShareProviderServiceServer) UpdateReceivedShare(ctx context.Context, req *UpdateReceivedShareRequest) (*UpdateReceivedShareResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateReceivedShare not implemented")
 }
 
 func RegisterUserShareProviderServiceServer(s *grpc.Server, srv UserShareProviderServiceServer) {

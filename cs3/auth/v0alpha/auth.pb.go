@@ -9,6 +9,8 @@ import (
 	rpc "github.com/cernbox/go-cs3apis/cs3/rpc"
 	proto "github.com/golang/protobuf/proto"
 	grpc "google.golang.org/grpc"
+	codes "google.golang.org/grpc/codes"
+	status "google.golang.org/grpc/status"
 	math "math"
 )
 
@@ -285,6 +287,17 @@ func (c *authServiceClient) WhoAmI(ctx context.Context, in *WhoAmIRequest, opts 
 type AuthServiceServer interface {
 	GenerateAccessToken(context.Context, *GenerateAccessTokenRequest) (*GenerateAccessTokenResponse, error)
 	WhoAmI(context.Context, *WhoAmIRequest) (*WhoAmIResponse, error)
+}
+
+// UnimplementedAuthServiceServer can be embedded to have forward compatible implementations.
+type UnimplementedAuthServiceServer struct {
+}
+
+func (*UnimplementedAuthServiceServer) GenerateAccessToken(ctx context.Context, req *GenerateAccessTokenRequest) (*GenerateAccessTokenResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GenerateAccessToken not implemented")
+}
+func (*UnimplementedAuthServiceServer) WhoAmI(ctx context.Context, req *WhoAmIRequest) (*WhoAmIResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method WhoAmI not implemented")
 }
 
 func RegisterAuthServiceServer(s *grpc.Server, srv AuthServiceServer) {

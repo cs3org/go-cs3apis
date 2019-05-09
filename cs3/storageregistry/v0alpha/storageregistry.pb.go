@@ -12,6 +12,8 @@ import (
 	types "github.com/cernbox/go-cs3apis/cs3/types"
 	proto "github.com/golang/protobuf/proto"
 	grpc "google.golang.org/grpc"
+	codes "google.golang.org/grpc/codes"
+	status "google.golang.org/grpc/status"
 	math "math"
 )
 
@@ -337,6 +339,17 @@ type StorageRegistryServiceServer interface {
 	GetStorageProvider(context.Context, *GetStorageProviderRequest) (*GetStorageProviderResponse, error)
 	// Returns a list of the available storage providers known by this registry.
 	ListStorageProviders(context.Context, *ListStorageProvidersRequest) (*ListStorageProvidersResponse, error)
+}
+
+// UnimplementedStorageRegistryServiceServer can be embedded to have forward compatible implementations.
+type UnimplementedStorageRegistryServiceServer struct {
+}
+
+func (*UnimplementedStorageRegistryServiceServer) GetStorageProvider(ctx context.Context, req *GetStorageProviderRequest) (*GetStorageProviderResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetStorageProvider not implemented")
+}
+func (*UnimplementedStorageRegistryServiceServer) ListStorageProviders(ctx context.Context, req *ListStorageProvidersRequest) (*ListStorageProvidersResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListStorageProviders not implemented")
 }
 
 func RegisterStorageRegistryServiceServer(s *grpc.Server, srv StorageRegistryServiceServer) {

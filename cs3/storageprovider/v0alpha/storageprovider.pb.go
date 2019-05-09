@@ -11,6 +11,8 @@ import (
 	types "github.com/cernbox/go-cs3apis/cs3/types"
 	proto "github.com/golang/protobuf/proto"
 	grpc "google.golang.org/grpc"
+	codes "google.golang.org/grpc/codes"
+	status "google.golang.org/grpc/status"
 	math "math"
 )
 
@@ -2964,6 +2966,74 @@ type StorageProviderServiceServer interface {
 	// MUST return CODE_NOT_FOUND if the reference does not exist.
 	// MUST return CODE_PRECONDITION_FAILED if the acl does not exist.
 	UpdateGrant(context.Context, *UpdateGrantRequest) (*UpdateGrantResponse, error)
+}
+
+// UnimplementedStorageProviderServiceServer can be embedded to have forward compatible implementations.
+type UnimplementedStorageProviderServiceServer struct {
+}
+
+func (*UnimplementedStorageProviderServiceServer) AddGrant(ctx context.Context, req *AddGrantRequest) (*AddGrantResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddGrant not implemented")
+}
+func (*UnimplementedStorageProviderServiceServer) CreateContainer(ctx context.Context, req *CreateContainerRequest) (*CreateContainerResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateContainer not implemented")
+}
+func (*UnimplementedStorageProviderServiceServer) Delete(ctx context.Context, req *DeleteRequest) (*DeleteResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
+}
+func (*UnimplementedStorageProviderServiceServer) GetProvider(ctx context.Context, req *GetProviderRequest) (*GetProviderResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetProvider not implemented")
+}
+func (*UnimplementedStorageProviderServiceServer) GetPath(ctx context.Context, req *GetPathRequest) (*GetPathResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetPath not implemented")
+}
+func (*UnimplementedStorageProviderServiceServer) GetQuota(ctx context.Context, req *GetQuotaRequest) (*GetQuotaResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetQuota not implemented")
+}
+func (*UnimplementedStorageProviderServiceServer) InitiateFileDownload(ctx context.Context, req *InitiateFileDownloadRequest) (*InitiateFileDownloadResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method InitiateFileDownload not implemented")
+}
+func (*UnimplementedStorageProviderServiceServer) InitiateFileUpload(ctx context.Context, req *InitiateFileUploadRequest) (*InitiateFileUploadResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method InitiateFileUpload not implemented")
+}
+func (*UnimplementedStorageProviderServiceServer) ListGrants(ctx context.Context, req *ListGrantsRequest) (*ListGrantsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListGrants not implemented")
+}
+func (*UnimplementedStorageProviderServiceServer) ListContainerStream(req *ListContainerStreamRequest, srv StorageProviderService_ListContainerStreamServer) error {
+	return status.Errorf(codes.Unimplemented, "method ListContainerStream not implemented")
+}
+func (*UnimplementedStorageProviderServiceServer) ListContainer(ctx context.Context, req *ListContainerRequest) (*ListContainerResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListContainer not implemented")
+}
+func (*UnimplementedStorageProviderServiceServer) ListFileVersions(ctx context.Context, req *ListFileVersionsRequest) (*ListFileVersionsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListFileVersions not implemented")
+}
+func (*UnimplementedStorageProviderServiceServer) ListRecycleStream(req *ListRecycleStreamRequest, srv StorageProviderService_ListRecycleStreamServer) error {
+	return status.Errorf(codes.Unimplemented, "method ListRecycleStream not implemented")
+}
+func (*UnimplementedStorageProviderServiceServer) ListRecycle(ctx context.Context, req *ListRecycleRequest) (*ListRecycleResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListRecycle not implemented")
+}
+func (*UnimplementedStorageProviderServiceServer) Move(ctx context.Context, req *MoveRequest) (*MoveResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Move not implemented")
+}
+func (*UnimplementedStorageProviderServiceServer) RemoveGrant(ctx context.Context, req *RemoveGrantRequest) (*RemoveGrantResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RemoveGrant not implemented")
+}
+func (*UnimplementedStorageProviderServiceServer) PurgeRecycle(ctx context.Context, req *PurgeRecycleRequest) (*PurgeRecycleResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PurgeRecycle not implemented")
+}
+func (*UnimplementedStorageProviderServiceServer) RestoreFileVersion(ctx context.Context, req *RestoreFileVersionRequest) (*RestoreFileVersionResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RestoreFileVersion not implemented")
+}
+func (*UnimplementedStorageProviderServiceServer) RestoreRecycleItem(ctx context.Context, req *RestoreRecycleItemRequest) (*RestoreRecycleItemResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RestoreRecycleItem not implemented")
+}
+func (*UnimplementedStorageProviderServiceServer) Stat(ctx context.Context, req *StatRequest) (*StatResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Stat not implemented")
+}
+func (*UnimplementedStorageProviderServiceServer) UpdateGrant(ctx context.Context, req *UpdateGrantRequest) (*UpdateGrantResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateGrant not implemented")
 }
 
 func RegisterStorageProviderServiceServer(s *grpc.Server, srv StorageProviderServiceServer) {

@@ -12,6 +12,8 @@ import (
 	types "github.com/cernbox/go-cs3apis/cs3/types"
 	proto "github.com/golang/protobuf/proto"
 	grpc "google.golang.org/grpc"
+	codes "google.golang.org/grpc/codes"
+	status "google.golang.org/grpc/status"
 	math "math"
 )
 
@@ -1291,6 +1293,32 @@ type PublicShareProviderServiceServer interface {
 	// Updates a share.
 	// MUST return CODE_NOT_FOUND if the share reference does not exist.
 	UpdatePublicShare(context.Context, *UpdatePublicShareRequest) (*UpdatePublicShareResponse, error)
+}
+
+// UnimplementedPublicShareProviderServiceServer can be embedded to have forward compatible implementations.
+type UnimplementedPublicShareProviderServiceServer struct {
+}
+
+func (*UnimplementedPublicShareProviderServiceServer) GetProvider(ctx context.Context, req *GetProviderRequest) (*GetProviderResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetProvider not implemented")
+}
+func (*UnimplementedPublicShareProviderServiceServer) CreatePublicShare(ctx context.Context, req *CreatePublicShareRequest) (*CreatePublicShareResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreatePublicShare not implemented")
+}
+func (*UnimplementedPublicShareProviderServiceServer) RemovePublicShare(ctx context.Context, req *RemovePublicShareRequest) (*RemovePublicShareResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RemovePublicShare not implemented")
+}
+func (*UnimplementedPublicShareProviderServiceServer) GetPublicShare(ctx context.Context, req *GetPublicShareRequest) (*GetPublicShareResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetPublicShare not implemented")
+}
+func (*UnimplementedPublicShareProviderServiceServer) GetPublicShareByToken(ctx context.Context, req *GetPublicShareByTokenRequest) (*GetPublicShareByTokenResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetPublicShareByToken not implemented")
+}
+func (*UnimplementedPublicShareProviderServiceServer) ListPublicShares(ctx context.Context, req *ListPublicSharesRequest) (*ListPublicSharesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListPublicShares not implemented")
+}
+func (*UnimplementedPublicShareProviderServiceServer) UpdatePublicShare(ctx context.Context, req *UpdatePublicShareRequest) (*UpdatePublicShareResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdatePublicShare not implemented")
 }
 
 func RegisterPublicShareProviderServiceServer(s *grpc.Server, srv PublicShareProviderServiceServer) {

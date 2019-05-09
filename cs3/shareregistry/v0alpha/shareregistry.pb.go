@@ -11,6 +11,8 @@ import (
 	types "github.com/cernbox/go-cs3apis/cs3/types"
 	proto "github.com/golang/protobuf/proto"
 	grpc "google.golang.org/grpc"
+	codes "google.golang.org/grpc/codes"
+	status "google.golang.org/grpc/status"
 	math "math"
 )
 
@@ -335,6 +337,17 @@ type ShareRegistryServiceServer interface {
 	GetShareProvider(context.Context, *GetShareProviderRequest) (*GetShareProviderResponse, error)
 	// Returns a list of the available share providers known by this registry.
 	ListShareProviders(context.Context, *ListShareProvidersRequest) (*ListShareProvidersResponse, error)
+}
+
+// UnimplementedShareRegistryServiceServer can be embedded to have forward compatible implementations.
+type UnimplementedShareRegistryServiceServer struct {
+}
+
+func (*UnimplementedShareRegistryServiceServer) GetShareProvider(ctx context.Context, req *GetShareProviderRequest) (*GetShareProviderResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetShareProvider not implemented")
+}
+func (*UnimplementedShareRegistryServiceServer) ListShareProviders(ctx context.Context, req *ListShareProvidersRequest) (*ListShareProvidersResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListShareProviders not implemented")
 }
 
 func RegisterShareRegistryServiceServer(s *grpc.Server, srv ShareRegistryServiceServer) {
