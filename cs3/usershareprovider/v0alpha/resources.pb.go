@@ -5,9 +5,9 @@ package usershareproviderv0alphapb
 
 import (
 	fmt "fmt"
-	sharetypes "github.com/cernbox/go-cs3apis/cs3/sharetypes"
-	v0alpha "github.com/cernbox/go-cs3apis/cs3/storageprovider/v0alpha"
-	types "github.com/cernbox/go-cs3apis/cs3/types"
+	sharetypes "github.com/cs3org/go-cs3apis/cs3/sharetypes"
+	v0alpha "github.com/cs3org/go-cs3apis/cs3/storageprovider/v0alpha"
+	types "github.com/cs3org/go-cs3apis/cs3/types"
 	proto "github.com/golang/protobuf/proto"
 	math "math"
 )

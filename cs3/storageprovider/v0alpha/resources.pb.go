@@ -5,7 +5,7 @@ package storageproviderv0alphapb
 
 import (
 	fmt "fmt"
-	types "github.com/cernbox/go-cs3apis/cs3/types"
+	types "github.com/cs3org/go-cs3apis/cs3/types"
 	proto "github.com/golang/protobuf/proto"
 	math "math"
 )

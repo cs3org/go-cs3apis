@@ -6,9 +6,9 @@ package shareregistryv0alphapb
 import (
 	context "context"
 	fmt "fmt"
-	rpc "github.com/cernbox/go-cs3apis/cs3/rpc"
-	sharetypes "github.com/cernbox/go-cs3apis/cs3/sharetypes"
-	types "github.com/cernbox/go-cs3apis/cs3/types"
+	rpc "github.com/cs3org/go-cs3apis/cs3/rpc"
+	sharetypes "github.com/cs3org/go-cs3apis/cs3/sharetypes"
+	types "github.com/cs3org/go-cs3apis/cs3/types"
 	proto "github.com/golang/protobuf/proto"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"

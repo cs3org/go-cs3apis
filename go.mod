@@ -1,4 +1,4 @@
-module github.com/cernbox/go-cs3apis
+module github.com/cs3org/go-cs3apis
 
 require (
 	github.com/golang/protobuf v1.3.1

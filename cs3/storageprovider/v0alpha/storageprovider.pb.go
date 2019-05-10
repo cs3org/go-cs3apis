@@ -6,9 +6,9 @@ package storageproviderv0alphapb
 import (
 	context "context"
 	fmt "fmt"
-	rpc "github.com/cernbox/go-cs3apis/cs3/rpc"
-	storagetypes "github.com/cernbox/go-cs3apis/cs3/storagetypes"
-	types "github.com/cernbox/go-cs3apis/cs3/types"
+	rpc "github.com/cs3org/go-cs3apis/cs3/rpc"
+	storagetypes "github.com/cs3org/go-cs3apis/cs3/storagetypes"
+	types "github.com/cs3org/go-cs3apis/cs3/types"
 	proto "github.com/golang/protobuf/proto"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"

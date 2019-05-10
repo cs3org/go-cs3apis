@@ -6,7 +6,7 @@ package authv0alphapb
 import (
 	context "context"
 	fmt "fmt"
-	rpc "github.com/cernbox/go-cs3apis/cs3/rpc"
+	rpc "github.com/cs3org/go-cs3apis/cs3/rpc"
 	proto "github.com/golang/protobuf/proto"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"

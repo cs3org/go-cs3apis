@@ -1,6 +1,6 @@
 generate:
   go_options:
-    import_path: github.com/cernbox/go-cs3apis
+    import_path: github.com/cs3org/go-cs3apis
     extra_modifiers:
       google/api/annotations.proto: google.golang.org/genproto/googleapis/api/annotations
       google/api/http.proto: google.golang.org/genproto/googleapis/api/annotations
