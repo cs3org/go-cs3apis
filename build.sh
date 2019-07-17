@@ -8,7 +8,7 @@ git clone https://github.com/cs3org/cs3apis build && cd build && make deps && ma
 cp  prototool_gen_go.yaml build/prototool.yaml
 #go get -u github.com/grpc-ecosystem/grpc-gateway/protoc-gen-grpc-gateway
 #go get -u github.com/grpc-ecosystem/grpc-gateway/protoc-gen-swagger
-#go get -u github.com/golang/protobuf/protoc-gen-go
+go get -u github.com/golang/protobuf/protoc-gen-go
 cd build && prototool generate && cd ..
 rm -rf build
 
