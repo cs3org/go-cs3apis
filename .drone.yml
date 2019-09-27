@@ -10,6 +10,6 @@ platform:
 steps:
 - name: build
   pull: always
-  image: go:latest
+  image: golang:1.13
   commands:
     - go build ./...
