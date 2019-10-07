@@ -6,9 +6,10 @@ package gatewayv0alphapb
 import (
 	context "context"
 	fmt "fmt"
-	rpc "github.com/cs3org/go-cs3apis/cs3/rpc"
+	v0alpha1 "github.com/cs3org/go-cs3apis/cs3/auth/v0alpha"
 	v0alpha "github.com/cs3org/go-cs3apis/cs3/storageprovider/v0alpha"
 	types "github.com/cs3org/go-cs3apis/cs3/types"
+	v0alpha2 "github.com/cs3org/go-cs3apis/cs3/usershareprovider/v0alpha"
 	proto "github.com/golang/protobuf/proto"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
@@ -27,322 +28,6 @@ var _ = math.Inf
 // proto package needs to be updated.
 const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 
-type CreateContainerRequest struct {
-	// OPTIONAL.
-	// Opaque information.
-	Opaque *types.Opaque `protobuf:"bytes,1,opt,name=opaque,proto3" json:"opaque,omitempty"`
-	// REQUIRED.
-	// The reference to which the action should be performed.
-	Ref                  *v0alpha.Reference `protobuf:"bytes,2,opt,name=ref,proto3" json:"ref,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}           `json:"-"`
-	XXX_unrecognized     []byte             `json:"-"`
-	XXX_sizecache        int32              `json:"-"`
-}
-
-func (m *CreateContainerRequest) Reset()         { *m = CreateContainerRequest{} }
-func (m *CreateContainerRequest) String() string { return proto.CompactTextString(m) }
-func (*CreateContainerRequest) ProtoMessage()    {}
-func (*CreateContainerRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_abc3eb7237c57d7d, []int{0}
-}
-
-func (m *CreateContainerRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_CreateContainerRequest.Unmarshal(m, b)
-}
-func (m *CreateContainerRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_CreateContainerRequest.Marshal(b, m, deterministic)
-}
-func (m *CreateContainerRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_CreateContainerRequest.Merge(m, src)
-}
-func (m *CreateContainerRequest) XXX_Size() int {
-	return xxx_messageInfo_CreateContainerRequest.Size(m)
-}
-func (m *CreateContainerRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_CreateContainerRequest.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_CreateContainerRequest proto.InternalMessageInfo
-
-func (m *CreateContainerRequest) GetOpaque() *types.Opaque {
-	if m != nil {
-		return m.Opaque
-	}
-	return nil
-}
-
-func (m *CreateContainerRequest) GetRef() *v0alpha.Reference {
-	if m != nil {
-		return m.Ref
-	}
-	return nil
-}
-
-type CreateContainerResponse struct {
-	// REQUIRED.
-	// The response status.
-	Status *rpc.Status `protobuf:"bytes,1,opt,name=status,proto3" json:"status,omitempty"`
-	// OPTIONAL.
-	// Opaque information.
-	Opaque               *types.Opaque `protobuf:"bytes,2,opt,name=opaque,proto3" json:"opaque,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}      `json:"-"`
-	XXX_unrecognized     []byte        `json:"-"`
-	XXX_sizecache        int32         `json:"-"`
-}
-
-func (m *CreateContainerResponse) Reset()         { *m = CreateContainerResponse{} }
-func (m *CreateContainerResponse) String() string { return proto.CompactTextString(m) }
-func (*CreateContainerResponse) ProtoMessage()    {}
-func (*CreateContainerResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_abc3eb7237c57d7d, []int{1}
-}
-
-func (m *CreateContainerResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_CreateContainerResponse.Unmarshal(m, b)
-}
-func (m *CreateContainerResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_CreateContainerResponse.Marshal(b, m, deterministic)
-}
-func (m *CreateContainerResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_CreateContainerResponse.Merge(m, src)
-}
-func (m *CreateContainerResponse) XXX_Size() int {
-	return xxx_messageInfo_CreateContainerResponse.Size(m)
-}
-func (m *CreateContainerResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_CreateContainerResponse.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_CreateContainerResponse proto.InternalMessageInfo
-
-func (m *CreateContainerResponse) GetStatus() *rpc.Status {
-	if m != nil {
-		return m.Status
-	}
-	return nil
-}
-
-func (m *CreateContainerResponse) GetOpaque() *types.Opaque {
-	if m != nil {
-		return m.Opaque
-	}
-	return nil
-}
-
-type DeleteRequest struct {
-	// OPTIONAL.
-	// Opaque information.
-	Opaque *types.Opaque `protobuf:"bytes,1,opt,name=opaque,proto3" json:"opaque,omitempty"`
-	// REQUIRED.
-	// The reference to which the action should be performed.
-	Ref                  *v0alpha.Reference `protobuf:"bytes,2,opt,name=ref,proto3" json:"ref,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}           `json:"-"`
-	XXX_unrecognized     []byte             `json:"-"`
-	XXX_sizecache        int32              `json:"-"`
-}
-
-func (m *DeleteRequest) Reset()         { *m = DeleteRequest{} }
-func (m *DeleteRequest) String() string { return proto.CompactTextString(m) }
-func (*DeleteRequest) ProtoMessage()    {}
-func (*DeleteRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_abc3eb7237c57d7d, []int{2}
-}
-
-func (m *DeleteRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_DeleteRequest.Unmarshal(m, b)
-}
-func (m *DeleteRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_DeleteRequest.Marshal(b, m, deterministic)
-}
-func (m *DeleteRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_DeleteRequest.Merge(m, src)
-}
-func (m *DeleteRequest) XXX_Size() int {
-	return xxx_messageInfo_DeleteRequest.Size(m)
-}
-func (m *DeleteRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_DeleteRequest.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_DeleteRequest proto.InternalMessageInfo
-
-func (m *DeleteRequest) GetOpaque() *types.Opaque {
-	if m != nil {
-		return m.Opaque
-	}
-	return nil
-}
-
-func (m *DeleteRequest) GetRef() *v0alpha.Reference {
-	if m != nil {
-		return m.Ref
-	}
-	return nil
-}
-
-type DeleteResponse struct {
-	// REQUIRED.
-	// The response status.
-	Status *rpc.Status `protobuf:"bytes,1,opt,name=status,proto3" json:"status,omitempty"`
-	// OPTIONAL.
-	// Opaque information.
-	Opaque               *types.Opaque `protobuf:"bytes,2,opt,name=opaque,proto3" json:"opaque,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}      `json:"-"`
-	XXX_unrecognized     []byte        `json:"-"`
-	XXX_sizecache        int32         `json:"-"`
-}
-
-func (m *DeleteResponse) Reset()         { *m = DeleteResponse{} }
-func (m *DeleteResponse) String() string { return proto.CompactTextString(m) }
-func (*DeleteResponse) ProtoMessage()    {}
-func (*DeleteResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_abc3eb7237c57d7d, []int{3}
-}
-
-func (m *DeleteResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_DeleteResponse.Unmarshal(m, b)
-}
-func (m *DeleteResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_DeleteResponse.Marshal(b, m, deterministic)
-}
-func (m *DeleteResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_DeleteResponse.Merge(m, src)
-}
-func (m *DeleteResponse) XXX_Size() int {
-	return xxx_messageInfo_DeleteResponse.Size(m)
-}
-func (m *DeleteResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_DeleteResponse.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_DeleteResponse proto.InternalMessageInfo
-
-func (m *DeleteResponse) GetStatus() *rpc.Status {
-	if m != nil {
-		return m.Status
-	}
-	return nil
-}
-
-func (m *DeleteResponse) GetOpaque() *types.Opaque {
-	if m != nil {
-		return m.Opaque
-	}
-	return nil
-}
-
-type GetPathRequest struct {
-	// OPTIONAL.
-	// Opaque information.
-	Opaque *types.Opaque `protobuf:"bytes,1,opt,name=opaque,proto3" json:"opaque,omitempty"`
-	// REQUIRED.
-	// The resource id of the resource.
-	ResourceId           *v0alpha.ResourceId `protobuf:"bytes,2,opt,name=resource_id,json=resourceId,proto3" json:"resource_id,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}            `json:"-"`
-	XXX_unrecognized     []byte              `json:"-"`
-	XXX_sizecache        int32               `json:"-"`
-}
-
-func (m *GetPathRequest) Reset()         { *m = GetPathRequest{} }
-func (m *GetPathRequest) String() string { return proto.CompactTextString(m) }
-func (*GetPathRequest) ProtoMessage()    {}
-func (*GetPathRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_abc3eb7237c57d7d, []int{4}
-}
-
-func (m *GetPathRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_GetPathRequest.Unmarshal(m, b)
-}
-func (m *GetPathRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_GetPathRequest.Marshal(b, m, deterministic)
-}
-func (m *GetPathRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_GetPathRequest.Merge(m, src)
-}
-func (m *GetPathRequest) XXX_Size() int {
-	return xxx_messageInfo_GetPathRequest.Size(m)
-}
-func (m *GetPathRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_GetPathRequest.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_GetPathRequest proto.InternalMessageInfo
-
-func (m *GetPathRequest) GetOpaque() *types.Opaque {
-	if m != nil {
-		return m.Opaque
-	}
-	return nil
-}
-
-func (m *GetPathRequest) GetResourceId() *v0alpha.ResourceId {
-	if m != nil {
-		return m.ResourceId
-	}
-	return nil
-}
-
-type GetPathResponse struct {
-	// REQUIRED.
-	// The response status.
-	Status *rpc.Status `protobuf:"bytes,1,opt,name=status,proto3" json:"status,omitempty"`
-	// OPTIONAL.
-	// Opaque information.
-	Opaque *types.Opaque `protobuf:"bytes,2,opt,name=opaque,proto3" json:"opaque,omitempty"`
-	// REQUIRED.
-	// The path of the resource.
-	Path                 string   `protobuf:"bytes,3,opt,name=path,proto3" json:"path,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *GetPathResponse) Reset()         { *m = GetPathResponse{} }
-func (m *GetPathResponse) String() string { return proto.CompactTextString(m) }
-func (*GetPathResponse) ProtoMessage()    {}
-func (*GetPathResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_abc3eb7237c57d7d, []int{5}
-}
-
-func (m *GetPathResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_GetPathResponse.Unmarshal(m, b)
-}
-func (m *GetPathResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_GetPathResponse.Marshal(b, m, deterministic)
-}
-func (m *GetPathResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_GetPathResponse.Merge(m, src)
-}
-func (m *GetPathResponse) XXX_Size() int {
-	return xxx_messageInfo_GetPathResponse.Size(m)
-}
-func (m *GetPathResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_GetPathResponse.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_GetPathResponse proto.InternalMessageInfo
-
-func (m *GetPathResponse) GetStatus() *rpc.Status {
-	if m != nil {
-		return m.Status
-	}
-	return nil
-}
-
-func (m *GetPathResponse) GetOpaque() *types.Opaque {
-	if m != nil {
-		return m.Opaque
-	}
-	return nil
-}
-
-func (m *GetPathResponse) GetPath() string {
-	if m != nil {
-		return m.Path
-	}
-	return ""
-}
-
 type GetQuotaRequest struct {
 	// OPTIONAL.
 	// Opaque information.
@@ -359,7 +44,7 @@ func (m *GetQuotaRequest) Reset()         { *m = GetQuotaRequest{} }
 func (m *GetQuotaRequest) String() string { return proto.CompactTextString(m) }
 func (*GetQuotaRequest) ProtoMessage()    {}
 func (*GetQuotaRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_abc3eb7237c57d7d, []int{6}
+	return fileDescriptor_abc3eb7237c57d7d, []int{0}
 }
 
 func (m *GetQuotaRequest) XXX_Unmarshal(b []byte) error {
@@ -394,675 +79,6 @@ func (m *GetQuotaRequest) GetRef() *v0alpha.Reference {
 	return nil
 }
 
-type GetQuotaResponse struct {
-	// REQUIRED.
-	// The response status.
-	Status *rpc.Status `protobuf:"bytes,1,opt,name=status,proto3" json:"status,omitempty"`
-	// OPTIONAL.
-	// Opaque information.
-	Opaque *types.Opaque `protobuf:"bytes,2,opt,name=opaque,proto3" json:"opaque,omitempty"`
-	// REQUIRED.
-	// The total available bytes.
-	TotalBytes uint64 `protobuf:"varint,3,opt,name=total_bytes,json=totalBytes,proto3" json:"total_bytes,omitempty"`
-	// REQUIRED.
-	// The number of used bytes.
-	UsedBytes            uint64   `protobuf:"varint,4,opt,name=used_bytes,json=usedBytes,proto3" json:"used_bytes,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *GetQuotaResponse) Reset()         { *m = GetQuotaResponse{} }
-func (m *GetQuotaResponse) String() string { return proto.CompactTextString(m) }
-func (*GetQuotaResponse) ProtoMessage()    {}
-func (*GetQuotaResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_abc3eb7237c57d7d, []int{7}
-}
-
-func (m *GetQuotaResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_GetQuotaResponse.Unmarshal(m, b)
-}
-func (m *GetQuotaResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_GetQuotaResponse.Marshal(b, m, deterministic)
-}
-func (m *GetQuotaResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_GetQuotaResponse.Merge(m, src)
-}
-func (m *GetQuotaResponse) XXX_Size() int {
-	return xxx_messageInfo_GetQuotaResponse.Size(m)
-}
-func (m *GetQuotaResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_GetQuotaResponse.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_GetQuotaResponse proto.InternalMessageInfo
-
-func (m *GetQuotaResponse) GetStatus() *rpc.Status {
-	if m != nil {
-		return m.Status
-	}
-	return nil
-}
-
-func (m *GetQuotaResponse) GetOpaque() *types.Opaque {
-	if m != nil {
-		return m.Opaque
-	}
-	return nil
-}
-
-func (m *GetQuotaResponse) GetTotalBytes() uint64 {
-	if m != nil {
-		return m.TotalBytes
-	}
-	return 0
-}
-
-func (m *GetQuotaResponse) GetUsedBytes() uint64 {
-	if m != nil {
-		return m.UsedBytes
-	}
-	return 0
-}
-
-type InitiateFileUploadRequest struct {
-	// OPTIONAL.
-	// Opaque information.
-	Opaque *types.Opaque `protobuf:"bytes,1,opt,name=opaque,proto3" json:"opaque,omitempty"`
-	// REQUIRED.
-	// The reference to which the action should be performed.
-	Ref                  *v0alpha.Reference `protobuf:"bytes,2,opt,name=ref,proto3" json:"ref,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}           `json:"-"`
-	XXX_unrecognized     []byte             `json:"-"`
-	XXX_sizecache        int32              `json:"-"`
-}
-
-func (m *InitiateFileUploadRequest) Reset()         { *m = InitiateFileUploadRequest{} }
-func (m *InitiateFileUploadRequest) String() string { return proto.CompactTextString(m) }
-func (*InitiateFileUploadRequest) ProtoMessage()    {}
-func (*InitiateFileUploadRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_abc3eb7237c57d7d, []int{8}
-}
-
-func (m *InitiateFileUploadRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_InitiateFileUploadRequest.Unmarshal(m, b)
-}
-func (m *InitiateFileUploadRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_InitiateFileUploadRequest.Marshal(b, m, deterministic)
-}
-func (m *InitiateFileUploadRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_InitiateFileUploadRequest.Merge(m, src)
-}
-func (m *InitiateFileUploadRequest) XXX_Size() int {
-	return xxx_messageInfo_InitiateFileUploadRequest.Size(m)
-}
-func (m *InitiateFileUploadRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_InitiateFileUploadRequest.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_InitiateFileUploadRequest proto.InternalMessageInfo
-
-func (m *InitiateFileUploadRequest) GetOpaque() *types.Opaque {
-	if m != nil {
-		return m.Opaque
-	}
-	return nil
-}
-
-func (m *InitiateFileUploadRequest) GetRef() *v0alpha.Reference {
-	if m != nil {
-		return m.Ref
-	}
-	return nil
-}
-
-type InitiateFileUploadResponse struct {
-	// REQUIRED.
-	// The response status.
-	Status *rpc.Status `protobuf:"bytes,1,opt,name=status,proto3" json:"status,omitempty"`
-	// OPTIONAL.
-	// Opaque information.
-	Opaque *types.Opaque `protobuf:"bytes,2,opt,name=opaque,proto3" json:"opaque,omitempty"`
-	// REQUIRED.
-	// The endpoint where to upload the data.
-	// The value MUST be a Uniform Resource Identifier (URI)
-	// as specified in RFC 3986.
-	UploadEndpoint string `protobuf:"bytes,3,opt,name=upload_endpoint,json=uploadEndpoint,proto3" json:"upload_endpoint,omitempty"`
-	// REQUIRED.
-	// List of available checksums
-	// the client can use when sending
-	// the file.
-	AvailableChecksums   []*v0alpha.ResourceChecksumPriority `protobuf:"bytes,4,rep,name=available_checksums,json=availableChecksums,proto3" json:"available_checksums,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}                            `json:"-"`
-	XXX_unrecognized     []byte                              `json:"-"`
-	XXX_sizecache        int32                               `json:"-"`
-}
-
-func (m *InitiateFileUploadResponse) Reset()         { *m = InitiateFileUploadResponse{} }
-func (m *InitiateFileUploadResponse) String() string { return proto.CompactTextString(m) }
-func (*InitiateFileUploadResponse) ProtoMessage()    {}
-func (*InitiateFileUploadResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_abc3eb7237c57d7d, []int{9}
-}
-
-func (m *InitiateFileUploadResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_InitiateFileUploadResponse.Unmarshal(m, b)
-}
-func (m *InitiateFileUploadResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_InitiateFileUploadResponse.Marshal(b, m, deterministic)
-}
-func (m *InitiateFileUploadResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_InitiateFileUploadResponse.Merge(m, src)
-}
-func (m *InitiateFileUploadResponse) XXX_Size() int {
-	return xxx_messageInfo_InitiateFileUploadResponse.Size(m)
-}
-func (m *InitiateFileUploadResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_InitiateFileUploadResponse.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_InitiateFileUploadResponse proto.InternalMessageInfo
-
-func (m *InitiateFileUploadResponse) GetStatus() *rpc.Status {
-	if m != nil {
-		return m.Status
-	}
-	return nil
-}
-
-func (m *InitiateFileUploadResponse) GetOpaque() *types.Opaque {
-	if m != nil {
-		return m.Opaque
-	}
-	return nil
-}
-
-func (m *InitiateFileUploadResponse) GetUploadEndpoint() string {
-	if m != nil {
-		return m.UploadEndpoint
-	}
-	return ""
-}
-
-func (m *InitiateFileUploadResponse) GetAvailableChecksums() []*v0alpha.ResourceChecksumPriority {
-	if m != nil {
-		return m.AvailableChecksums
-	}
-	return nil
-}
-
-type InitiateFileDownloadRequest struct {
-	// OPTIONAL.
-	// Opaque information.
-	Opaque *types.Opaque `protobuf:"bytes,1,opt,name=opaque,proto3" json:"opaque,omitempty"`
-	// REQUIRED.
-	// The reference to which the action should be performed.
-	Ref                  *v0alpha.Reference `protobuf:"bytes,2,opt,name=ref,proto3" json:"ref,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}           `json:"-"`
-	XXX_unrecognized     []byte             `json:"-"`
-	XXX_sizecache        int32              `json:"-"`
-}
-
-func (m *InitiateFileDownloadRequest) Reset()         { *m = InitiateFileDownloadRequest{} }
-func (m *InitiateFileDownloadRequest) String() string { return proto.CompactTextString(m) }
-func (*InitiateFileDownloadRequest) ProtoMessage()    {}
-func (*InitiateFileDownloadRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_abc3eb7237c57d7d, []int{10}
-}
-
-func (m *InitiateFileDownloadRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_InitiateFileDownloadRequest.Unmarshal(m, b)
-}
-func (m *InitiateFileDownloadRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_InitiateFileDownloadRequest.Marshal(b, m, deterministic)
-}
-func (m *InitiateFileDownloadRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_InitiateFileDownloadRequest.Merge(m, src)
-}
-func (m *InitiateFileDownloadRequest) XXX_Size() int {
-	return xxx_messageInfo_InitiateFileDownloadRequest.Size(m)
-}
-func (m *InitiateFileDownloadRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_InitiateFileDownloadRequest.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_InitiateFileDownloadRequest proto.InternalMessageInfo
-
-func (m *InitiateFileDownloadRequest) GetOpaque() *types.Opaque {
-	if m != nil {
-		return m.Opaque
-	}
-	return nil
-}
-
-func (m *InitiateFileDownloadRequest) GetRef() *v0alpha.Reference {
-	if m != nil {
-		return m.Ref
-	}
-	return nil
-}
-
-type InitiateFileDownloadResponse struct {
-	// REQUIRED.
-	// The response status.
-	Status *rpc.Status `protobuf:"bytes,1,opt,name=status,proto3" json:"status,omitempty"`
-	// OPTIONAL.
-	// Opaque information.
-	Opaque *types.Opaque `protobuf:"bytes,2,opt,name=opaque,proto3" json:"opaque,omitempty"`
-	// REQUIRED.
-	// The endpoint where to downooad the data.
-	// The value MUST be a Uniform Resource Identifier (URI)
-	// as specified in RFC 3986.
-	DownloadEndpoint     string   `protobuf:"bytes,3,opt,name=download_endpoint,json=downloadEndpoint,proto3" json:"download_endpoint,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *InitiateFileDownloadResponse) Reset()         { *m = InitiateFileDownloadResponse{} }
-func (m *InitiateFileDownloadResponse) String() string { return proto.CompactTextString(m) }
-func (*InitiateFileDownloadResponse) ProtoMessage()    {}
-func (*InitiateFileDownloadResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_abc3eb7237c57d7d, []int{11}
-}
-
-func (m *InitiateFileDownloadResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_InitiateFileDownloadResponse.Unmarshal(m, b)
-}
-func (m *InitiateFileDownloadResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_InitiateFileDownloadResponse.Marshal(b, m, deterministic)
-}
-func (m *InitiateFileDownloadResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_InitiateFileDownloadResponse.Merge(m, src)
-}
-func (m *InitiateFileDownloadResponse) XXX_Size() int {
-	return xxx_messageInfo_InitiateFileDownloadResponse.Size(m)
-}
-func (m *InitiateFileDownloadResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_InitiateFileDownloadResponse.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_InitiateFileDownloadResponse proto.InternalMessageInfo
-
-func (m *InitiateFileDownloadResponse) GetStatus() *rpc.Status {
-	if m != nil {
-		return m.Status
-	}
-	return nil
-}
-
-func (m *InitiateFileDownloadResponse) GetOpaque() *types.Opaque {
-	if m != nil {
-		return m.Opaque
-	}
-	return nil
-}
-
-func (m *InitiateFileDownloadResponse) GetDownloadEndpoint() string {
-	if m != nil {
-		return m.DownloadEndpoint
-	}
-	return ""
-}
-
-type ListContainerStreamRequest struct {
-	// OPTIONAL.
-	// Opaque information.
-	Opaque *types.Opaque `protobuf:"bytes,1,opt,name=opaque,proto3" json:"opaque,omitempty"`
-	// REQUIRED.
-	// The reference to which the action should be performed.
-	Ref *v0alpha.Reference `protobuf:"bytes,2,opt,name=ref,proto3" json:"ref,omitempty"`
-	// OPTIONAL.
-	// Arbitrary metadata be included with the resource.
-	// A key with the name '*' means to return all available arbitrary metadata.
-	ArbitraryMetadataKeys []string `protobuf:"bytes,3,rep,name=arbitrary_metadata_keys,json=arbitraryMetadataKeys,proto3" json:"arbitrary_metadata_keys,omitempty"`
-	XXX_NoUnkeyedLiteral  struct{} `json:"-"`
-	XXX_unrecognized      []byte   `json:"-"`
-	XXX_sizecache         int32    `json:"-"`
-}
-
-func (m *ListContainerStreamRequest) Reset()         { *m = ListContainerStreamRequest{} }
-func (m *ListContainerStreamRequest) String() string { return proto.CompactTextString(m) }
-func (*ListContainerStreamRequest) ProtoMessage()    {}
-func (*ListContainerStreamRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_abc3eb7237c57d7d, []int{12}
-}
-
-func (m *ListContainerStreamRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_ListContainerStreamRequest.Unmarshal(m, b)
-}
-func (m *ListContainerStreamRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_ListContainerStreamRequest.Marshal(b, m, deterministic)
-}
-func (m *ListContainerStreamRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ListContainerStreamRequest.Merge(m, src)
-}
-func (m *ListContainerStreamRequest) XXX_Size() int {
-	return xxx_messageInfo_ListContainerStreamRequest.Size(m)
-}
-func (m *ListContainerStreamRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_ListContainerStreamRequest.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_ListContainerStreamRequest proto.InternalMessageInfo
-
-func (m *ListContainerStreamRequest) GetOpaque() *types.Opaque {
-	if m != nil {
-		return m.Opaque
-	}
-	return nil
-}
-
-func (m *ListContainerStreamRequest) GetRef() *v0alpha.Reference {
-	if m != nil {
-		return m.Ref
-	}
-	return nil
-}
-
-func (m *ListContainerStreamRequest) GetArbitraryMetadataKeys() []string {
-	if m != nil {
-		return m.ArbitraryMetadataKeys
-	}
-	return nil
-}
-
-type ListContainerStreamResponse struct {
-	// REQUIRED.
-	// The response status.
-	Status *rpc.Status `protobuf:"bytes,1,opt,name=status,proto3" json:"status,omitempty"`
-	// OPTIONAL.
-	// Opaque information.
-	Opaque *types.Opaque `protobuf:"bytes,2,opt,name=opaque,proto3" json:"opaque,omitempty"`
-	// REQUIRED.
-	// The resource information.
-	Info                 *v0alpha.ResourceInfo `protobuf:"bytes,3,opt,name=info,proto3" json:"info,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}              `json:"-"`
-	XXX_unrecognized     []byte                `json:"-"`
-	XXX_sizecache        int32                 `json:"-"`
-}
-
-func (m *ListContainerStreamResponse) Reset()         { *m = ListContainerStreamResponse{} }
-func (m *ListContainerStreamResponse) String() string { return proto.CompactTextString(m) }
-func (*ListContainerStreamResponse) ProtoMessage()    {}
-func (*ListContainerStreamResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_abc3eb7237c57d7d, []int{13}
-}
-
-func (m *ListContainerStreamResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_ListContainerStreamResponse.Unmarshal(m, b)
-}
-func (m *ListContainerStreamResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_ListContainerStreamResponse.Marshal(b, m, deterministic)
-}
-func (m *ListContainerStreamResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ListContainerStreamResponse.Merge(m, src)
-}
-func (m *ListContainerStreamResponse) XXX_Size() int {
-	return xxx_messageInfo_ListContainerStreamResponse.Size(m)
-}
-func (m *ListContainerStreamResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_ListContainerStreamResponse.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_ListContainerStreamResponse proto.InternalMessageInfo
-
-func (m *ListContainerStreamResponse) GetStatus() *rpc.Status {
-	if m != nil {
-		return m.Status
-	}
-	return nil
-}
-
-func (m *ListContainerStreamResponse) GetOpaque() *types.Opaque {
-	if m != nil {
-		return m.Opaque
-	}
-	return nil
-}
-
-func (m *ListContainerStreamResponse) GetInfo() *v0alpha.ResourceInfo {
-	if m != nil {
-		return m.Info
-	}
-	return nil
-}
-
-type ListContainerRequest struct {
-	// OPTIONAL.
-	// Opaque information.
-	Opaque *types.Opaque `protobuf:"bytes,1,opt,name=opaque,proto3" json:"opaque,omitempty"`
-	// REQUIRED.
-	// The reference to which the action should be performed.
-	Ref *v0alpha.Reference `protobuf:"bytes,2,opt,name=ref,proto3" json:"ref,omitempty"`
-	// OPTIONAL.
-	// Arbitrary metadata be included with the resource.
-	// A key with the name '*' means to return all available arbitrary metadata.
-	ArbitraryMetadataKeys []string `protobuf:"bytes,3,rep,name=arbitrary_metadata_keys,json=arbitraryMetadataKeys,proto3" json:"arbitrary_metadata_keys,omitempty"`
-	XXX_NoUnkeyedLiteral  struct{} `json:"-"`
-	XXX_unrecognized      []byte   `json:"-"`
-	XXX_sizecache         int32    `json:"-"`
-}
-
-func (m *ListContainerRequest) Reset()         { *m = ListContainerRequest{} }
-func (m *ListContainerRequest) String() string { return proto.CompactTextString(m) }
-func (*ListContainerRequest) ProtoMessage()    {}
-func (*ListContainerRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_abc3eb7237c57d7d, []int{14}
-}
-
-func (m *ListContainerRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_ListContainerRequest.Unmarshal(m, b)
-}
-func (m *ListContainerRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_ListContainerRequest.Marshal(b, m, deterministic)
-}
-func (m *ListContainerRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ListContainerRequest.Merge(m, src)
-}
-func (m *ListContainerRequest) XXX_Size() int {
-	return xxx_messageInfo_ListContainerRequest.Size(m)
-}
-func (m *ListContainerRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_ListContainerRequest.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_ListContainerRequest proto.InternalMessageInfo
-
-func (m *ListContainerRequest) GetOpaque() *types.Opaque {
-	if m != nil {
-		return m.Opaque
-	}
-	return nil
-}
-
-func (m *ListContainerRequest) GetRef() *v0alpha.Reference {
-	if m != nil {
-		return m.Ref
-	}
-	return nil
-}
-
-func (m *ListContainerRequest) GetArbitraryMetadataKeys() []string {
-	if m != nil {
-		return m.ArbitraryMetadataKeys
-	}
-	return nil
-}
-
-type ListContainerResponse struct {
-	// REQUIRED.
-	// The response status.
-	Status *rpc.Status `protobuf:"bytes,1,opt,name=status,proto3" json:"status,omitempty"`
-	// OPTIONAL.
-	// Opaque information.
-	Opaque *types.Opaque `protobuf:"bytes,2,opt,name=opaque,proto3" json:"opaque,omitempty"`
-	// REQUIRED.
-	// The list of resource informations.
-	Infos                []*v0alpha.ResourceInfo `protobuf:"bytes,3,rep,name=infos,proto3" json:"infos,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}                `json:"-"`
-	XXX_unrecognized     []byte                  `json:"-"`
-	XXX_sizecache        int32                   `json:"-"`
-}
-
-func (m *ListContainerResponse) Reset()         { *m = ListContainerResponse{} }
-func (m *ListContainerResponse) String() string { return proto.CompactTextString(m) }
-func (*ListContainerResponse) ProtoMessage()    {}
-func (*ListContainerResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_abc3eb7237c57d7d, []int{15}
-}
-
-func (m *ListContainerResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_ListContainerResponse.Unmarshal(m, b)
-}
-func (m *ListContainerResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_ListContainerResponse.Marshal(b, m, deterministic)
-}
-func (m *ListContainerResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ListContainerResponse.Merge(m, src)
-}
-func (m *ListContainerResponse) XXX_Size() int {
-	return xxx_messageInfo_ListContainerResponse.Size(m)
-}
-func (m *ListContainerResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_ListContainerResponse.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_ListContainerResponse proto.InternalMessageInfo
-
-func (m *ListContainerResponse) GetStatus() *rpc.Status {
-	if m != nil {
-		return m.Status
-	}
-	return nil
-}
-
-func (m *ListContainerResponse) GetOpaque() *types.Opaque {
-	if m != nil {
-		return m.Opaque
-	}
-	return nil
-}
-
-func (m *ListContainerResponse) GetInfos() []*v0alpha.ResourceInfo {
-	if m != nil {
-		return m.Infos
-	}
-	return nil
-}
-
-type ListFileVersionsRequest struct {
-	// OPTIONAL.
-	// Opaque information.
-	Opaque *types.Opaque `protobuf:"bytes,1,opt,name=opaque,proto3" json:"opaque,omitempty"`
-	// REQUIRED.
-	// The reference to which the action should be performed.
-	Ref                  *v0alpha.Reference `protobuf:"bytes,2,opt,name=ref,proto3" json:"ref,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}           `json:"-"`
-	XXX_unrecognized     []byte             `json:"-"`
-	XXX_sizecache        int32              `json:"-"`
-}
-
-func (m *ListFileVersionsRequest) Reset()         { *m = ListFileVersionsRequest{} }
-func (m *ListFileVersionsRequest) String() string { return proto.CompactTextString(m) }
-func (*ListFileVersionsRequest) ProtoMessage()    {}
-func (*ListFileVersionsRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_abc3eb7237c57d7d, []int{16}
-}
-
-func (m *ListFileVersionsRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_ListFileVersionsRequest.Unmarshal(m, b)
-}
-func (m *ListFileVersionsRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_ListFileVersionsRequest.Marshal(b, m, deterministic)
-}
-func (m *ListFileVersionsRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ListFileVersionsRequest.Merge(m, src)
-}
-func (m *ListFileVersionsRequest) XXX_Size() int {
-	return xxx_messageInfo_ListFileVersionsRequest.Size(m)
-}
-func (m *ListFileVersionsRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_ListFileVersionsRequest.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_ListFileVersionsRequest proto.InternalMessageInfo
-
-func (m *ListFileVersionsRequest) GetOpaque() *types.Opaque {
-	if m != nil {
-		return m.Opaque
-	}
-	return nil
-}
-
-func (m *ListFileVersionsRequest) GetRef() *v0alpha.Reference {
-	if m != nil {
-		return m.Ref
-	}
-	return nil
-}
-
-type ListFileVersionsResponse struct {
-	// REQUIRED.
-	// The response status.
-	Status *rpc.Status `protobuf:"bytes,1,opt,name=status,proto3" json:"status,omitempty"`
-	// OPTIONAL.
-	// Opaque information.
-	Opaque *types.Opaque `protobuf:"bytes,2,opt,name=opaque,proto3" json:"opaque,omitempty"`
-	// REQUIRED.
-	// The list of file versions.
-	Versions             []*v0alpha.FileVersion `protobuf:"bytes,3,rep,name=versions,proto3" json:"versions,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}               `json:"-"`
-	XXX_unrecognized     []byte                 `json:"-"`
-	XXX_sizecache        int32                  `json:"-"`
-}
-
-func (m *ListFileVersionsResponse) Reset()         { *m = ListFileVersionsResponse{} }
-func (m *ListFileVersionsResponse) String() string { return proto.CompactTextString(m) }
-func (*ListFileVersionsResponse) ProtoMessage()    {}
-func (*ListFileVersionsResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_abc3eb7237c57d7d, []int{17}
-}
-
-func (m *ListFileVersionsResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_ListFileVersionsResponse.Unmarshal(m, b)
-}
-func (m *ListFileVersionsResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_ListFileVersionsResponse.Marshal(b, m, deterministic)
-}
-func (m *ListFileVersionsResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ListFileVersionsResponse.Merge(m, src)
-}
-func (m *ListFileVersionsResponse) XXX_Size() int {
-	return xxx_messageInfo_ListFileVersionsResponse.Size(m)
-}
-func (m *ListFileVersionsResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_ListFileVersionsResponse.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_ListFileVersionsResponse proto.InternalMessageInfo
-
-func (m *ListFileVersionsResponse) GetStatus() *rpc.Status {
-	if m != nil {
-		return m.Status
-	}
-	return nil
-}
-
-func (m *ListFileVersionsResponse) GetOpaque() *types.Opaque {
-	if m != nil {
-		return m.Opaque
-	}
-	return nil
-}
-
-func (m *ListFileVersionsResponse) GetVersions() []*v0alpha.FileVersion {
-	if m != nil {
-		return m.Versions
-	}
-	return nil
-}
-
 type ListRecycleRequest struct {
 	// OPTIONAL.
 	// Opaque information.
@@ -1089,7 +105,7 @@ func (m *ListRecycleRequest) Reset()         { *m = ListRecycleRequest{} }
 func (m *ListRecycleRequest) String() string { return proto.CompactTextString(m) }
 func (*ListRecycleRequest) ProtoMessage()    {}
 func (*ListRecycleRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_abc3eb7237c57d7d, []int{18}
+	return fileDescriptor_abc3eb7237c57d7d, []int{1}
 }
 
 func (m *ListRecycleRequest) XXX_Unmarshal(b []byte) error {
@@ -1138,67 +154,6 @@ func (m *ListRecycleRequest) GetToTs() *types.Timestamp {
 	return nil
 }
 
-type ListRecycleResponse struct {
-	// REQUIRED.
-	// The response status.
-	Status *rpc.Status `protobuf:"bytes,1,opt,name=status,proto3" json:"status,omitempty"`
-	// OPTIONAL.
-	// Opaque information.
-	Opaque *types.Opaque `protobuf:"bytes,2,opt,name=opaque,proto3" json:"opaque,omitempty"`
-	// REQUIRED.
-	// The list of recycle items.
-	RecycleItems         []*v0alpha.RecycleItem `protobuf:"bytes,3,rep,name=recycle_items,json=recycleItems,proto3" json:"recycle_items,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}               `json:"-"`
-	XXX_unrecognized     []byte                 `json:"-"`
-	XXX_sizecache        int32                  `json:"-"`
-}
-
-func (m *ListRecycleResponse) Reset()         { *m = ListRecycleResponse{} }
-func (m *ListRecycleResponse) String() string { return proto.CompactTextString(m) }
-func (*ListRecycleResponse) ProtoMessage()    {}
-func (*ListRecycleResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_abc3eb7237c57d7d, []int{19}
-}
-
-func (m *ListRecycleResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_ListRecycleResponse.Unmarshal(m, b)
-}
-func (m *ListRecycleResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_ListRecycleResponse.Marshal(b, m, deterministic)
-}
-func (m *ListRecycleResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ListRecycleResponse.Merge(m, src)
-}
-func (m *ListRecycleResponse) XXX_Size() int {
-	return xxx_messageInfo_ListRecycleResponse.Size(m)
-}
-func (m *ListRecycleResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_ListRecycleResponse.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_ListRecycleResponse proto.InternalMessageInfo
-
-func (m *ListRecycleResponse) GetStatus() *rpc.Status {
-	if m != nil {
-		return m.Status
-	}
-	return nil
-}
-
-func (m *ListRecycleResponse) GetOpaque() *types.Opaque {
-	if m != nil {
-		return m.Opaque
-	}
-	return nil
-}
-
-func (m *ListRecycleResponse) GetRecycleItems() []*v0alpha.RecycleItem {
-	if m != nil {
-		return m.RecycleItems
-	}
-	return nil
-}
-
 type ListRecycleStreamRequest struct {
 	// OPTIONAL.
 	// Opaque information.
@@ -1225,7 +180,7 @@ func (m *ListRecycleStreamRequest) Reset()         { *m = ListRecycleStreamReque
 func (m *ListRecycleStreamRequest) String() string { return proto.CompactTextString(m) }
 func (*ListRecycleStreamRequest) ProtoMessage()    {}
 func (*ListRecycleStreamRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_abc3eb7237c57d7d, []int{20}
+	return fileDescriptor_abc3eb7237c57d7d, []int{2}
 }
 
 func (m *ListRecycleStreamRequest) XXX_Unmarshal(b []byte) error {
@@ -1274,179 +229,6 @@ func (m *ListRecycleStreamRequest) GetToTs() *types.Timestamp {
 	return nil
 }
 
-type ListRecycleStreamResponse struct {
-	// REQUIRED.
-	// The response status.
-	Status *rpc.Status `protobuf:"bytes,1,opt,name=status,proto3" json:"status,omitempty"`
-	// OPTIONAL.
-	// Opaque information.
-	Opaque *types.Opaque `protobuf:"bytes,2,opt,name=opaque,proto3" json:"opaque,omitempty"`
-	// REQUIRED.
-	// The recycle items.
-	RecycleItem          *v0alpha.RecycleItem `protobuf:"bytes,3,opt,name=recycle_item,json=recycleItem,proto3" json:"recycle_item,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
-	XXX_unrecognized     []byte               `json:"-"`
-	XXX_sizecache        int32                `json:"-"`
-}
-
-func (m *ListRecycleStreamResponse) Reset()         { *m = ListRecycleStreamResponse{} }
-func (m *ListRecycleStreamResponse) String() string { return proto.CompactTextString(m) }
-func (*ListRecycleStreamResponse) ProtoMessage()    {}
-func (*ListRecycleStreamResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_abc3eb7237c57d7d, []int{21}
-}
-
-func (m *ListRecycleStreamResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_ListRecycleStreamResponse.Unmarshal(m, b)
-}
-func (m *ListRecycleStreamResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_ListRecycleStreamResponse.Marshal(b, m, deterministic)
-}
-func (m *ListRecycleStreamResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ListRecycleStreamResponse.Merge(m, src)
-}
-func (m *ListRecycleStreamResponse) XXX_Size() int {
-	return xxx_messageInfo_ListRecycleStreamResponse.Size(m)
-}
-func (m *ListRecycleStreamResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_ListRecycleStreamResponse.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_ListRecycleStreamResponse proto.InternalMessageInfo
-
-func (m *ListRecycleStreamResponse) GetStatus() *rpc.Status {
-	if m != nil {
-		return m.Status
-	}
-	return nil
-}
-
-func (m *ListRecycleStreamResponse) GetOpaque() *types.Opaque {
-	if m != nil {
-		return m.Opaque
-	}
-	return nil
-}
-
-func (m *ListRecycleStreamResponse) GetRecycleItem() *v0alpha.RecycleItem {
-	if m != nil {
-		return m.RecycleItem
-	}
-	return nil
-}
-
-type MoveRequest struct {
-	// OPTIONAL.
-	// Opaque information.
-	Opaque *types.Opaque `protobuf:"bytes,1,opt,name=opaque,proto3" json:"opaque,omitempty"`
-	// REQUIRED.
-	// The source reference the resource is moved from.
-	Source *v0alpha.Reference `protobuf:"bytes,2,opt,name=source,proto3" json:"source,omitempty"`
-	// REQUIRED.
-	// The destination reference the resource is moved to.
-	Destination          *v0alpha.Reference `protobuf:"bytes,3,opt,name=destination,proto3" json:"destination,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}           `json:"-"`
-	XXX_unrecognized     []byte             `json:"-"`
-	XXX_sizecache        int32              `json:"-"`
-}
-
-func (m *MoveRequest) Reset()         { *m = MoveRequest{} }
-func (m *MoveRequest) String() string { return proto.CompactTextString(m) }
-func (*MoveRequest) ProtoMessage()    {}
-func (*MoveRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_abc3eb7237c57d7d, []int{22}
-}
-
-func (m *MoveRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_MoveRequest.Unmarshal(m, b)
-}
-func (m *MoveRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_MoveRequest.Marshal(b, m, deterministic)
-}
-func (m *MoveRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_MoveRequest.Merge(m, src)
-}
-func (m *MoveRequest) XXX_Size() int {
-	return xxx_messageInfo_MoveRequest.Size(m)
-}
-func (m *MoveRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_MoveRequest.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_MoveRequest proto.InternalMessageInfo
-
-func (m *MoveRequest) GetOpaque() *types.Opaque {
-	if m != nil {
-		return m.Opaque
-	}
-	return nil
-}
-
-func (m *MoveRequest) GetSource() *v0alpha.Reference {
-	if m != nil {
-		return m.Source
-	}
-	return nil
-}
-
-func (m *MoveRequest) GetDestination() *v0alpha.Reference {
-	if m != nil {
-		return m.Destination
-	}
-	return nil
-}
-
-type MoveResponse struct {
-	// REQUIRED.
-	// The response status.
-	Status *rpc.Status `protobuf:"bytes,1,opt,name=status,proto3" json:"status,omitempty"`
-	// OPTIONAL.
-	// Opaque information.
-	Opaque               *types.Opaque `protobuf:"bytes,2,opt,name=opaque,proto3" json:"opaque,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}      `json:"-"`
-	XXX_unrecognized     []byte        `json:"-"`
-	XXX_sizecache        int32         `json:"-"`
-}
-
-func (m *MoveResponse) Reset()         { *m = MoveResponse{} }
-func (m *MoveResponse) String() string { return proto.CompactTextString(m) }
-func (*MoveResponse) ProtoMessage()    {}
-func (*MoveResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_abc3eb7237c57d7d, []int{23}
-}
-
-func (m *MoveResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_MoveResponse.Unmarshal(m, b)
-}
-func (m *MoveResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_MoveResponse.Marshal(b, m, deterministic)
-}
-func (m *MoveResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_MoveResponse.Merge(m, src)
-}
-func (m *MoveResponse) XXX_Size() int {
-	return xxx_messageInfo_MoveResponse.Size(m)
-}
-func (m *MoveResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_MoveResponse.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_MoveResponse proto.InternalMessageInfo
-
-func (m *MoveResponse) GetStatus() *rpc.Status {
-	if m != nil {
-		return m.Status
-	}
-	return nil
-}
-
-func (m *MoveResponse) GetOpaque() *types.Opaque {
-	if m != nil {
-		return m.Opaque
-	}
-	return nil
-}
-
 type PurgeRecycleRequest struct {
 	// OPTIONAL.
 	// Opaque information.
@@ -1463,7 +245,7 @@ func (m *PurgeRecycleRequest) Reset()         { *m = PurgeRecycleRequest{} }
 func (m *PurgeRecycleRequest) String() string { return proto.CompactTextString(m) }
 func (*PurgeRecycleRequest) ProtoMessage()    {}
 func (*PurgeRecycleRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_abc3eb7237c57d7d, []int{24}
+	return fileDescriptor_abc3eb7237c57d7d, []int{3}
 }
 
 func (m *PurgeRecycleRequest) XXX_Unmarshal(b []byte) error {
@@ -1498,770 +280,75 @@ func (m *PurgeRecycleRequest) GetRef() *v0alpha.Reference {
 	return nil
 }
 
-type PurgeRecycleResponse struct {
-	// REQUIRED.
-	// The response status.
-	Status *rpc.Status `protobuf:"bytes,1,opt,name=status,proto3" json:"status,omitempty"`
-	// OPTIONAL.
-	// Opaque information.
-	Opaque               *types.Opaque `protobuf:"bytes,2,opt,name=opaque,proto3" json:"opaque,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}      `json:"-"`
-	XXX_unrecognized     []byte        `json:"-"`
-	XXX_sizecache        int32         `json:"-"`
-}
-
-func (m *PurgeRecycleResponse) Reset()         { *m = PurgeRecycleResponse{} }
-func (m *PurgeRecycleResponse) String() string { return proto.CompactTextString(m) }
-func (*PurgeRecycleResponse) ProtoMessage()    {}
-func (*PurgeRecycleResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_abc3eb7237c57d7d, []int{25}
-}
-
-func (m *PurgeRecycleResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_PurgeRecycleResponse.Unmarshal(m, b)
-}
-func (m *PurgeRecycleResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_PurgeRecycleResponse.Marshal(b, m, deterministic)
-}
-func (m *PurgeRecycleResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_PurgeRecycleResponse.Merge(m, src)
-}
-func (m *PurgeRecycleResponse) XXX_Size() int {
-	return xxx_messageInfo_PurgeRecycleResponse.Size(m)
-}
-func (m *PurgeRecycleResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_PurgeRecycleResponse.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_PurgeRecycleResponse proto.InternalMessageInfo
-
-func (m *PurgeRecycleResponse) GetStatus() *rpc.Status {
-	if m != nil {
-		return m.Status
-	}
-	return nil
-}
-
-func (m *PurgeRecycleResponse) GetOpaque() *types.Opaque {
-	if m != nil {
-		return m.Opaque
-	}
-	return nil
-}
-
-type RestoreFileVersionRequest struct {
-	// OPTIONAL.
-	// Opaque information.
-	Opaque *types.Opaque `protobuf:"bytes,1,opt,name=opaque,proto3" json:"opaque,omitempty"`
-	// REQUIRED.
-	// The reference to which the action should be performed.
-	Ref *v0alpha.Reference `protobuf:"bytes,2,opt,name=ref,proto3" json:"ref,omitempty"`
-	// REQUIRED.
-	// The key to restore a specific file version.
-	Key                  string   `protobuf:"bytes,3,opt,name=key,proto3" json:"key,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *RestoreFileVersionRequest) Reset()         { *m = RestoreFileVersionRequest{} }
-func (m *RestoreFileVersionRequest) String() string { return proto.CompactTextString(m) }
-func (*RestoreFileVersionRequest) ProtoMessage()    {}
-func (*RestoreFileVersionRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_abc3eb7237c57d7d, []int{26}
-}
-
-func (m *RestoreFileVersionRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_RestoreFileVersionRequest.Unmarshal(m, b)
-}
-func (m *RestoreFileVersionRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_RestoreFileVersionRequest.Marshal(b, m, deterministic)
-}
-func (m *RestoreFileVersionRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_RestoreFileVersionRequest.Merge(m, src)
-}
-func (m *RestoreFileVersionRequest) XXX_Size() int {
-	return xxx_messageInfo_RestoreFileVersionRequest.Size(m)
-}
-func (m *RestoreFileVersionRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_RestoreFileVersionRequest.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_RestoreFileVersionRequest proto.InternalMessageInfo
-
-func (m *RestoreFileVersionRequest) GetOpaque() *types.Opaque {
-	if m != nil {
-		return m.Opaque
-	}
-	return nil
-}
-
-func (m *RestoreFileVersionRequest) GetRef() *v0alpha.Reference {
-	if m != nil {
-		return m.Ref
-	}
-	return nil
-}
-
-func (m *RestoreFileVersionRequest) GetKey() string {
-	if m != nil {
-		return m.Key
-	}
-	return ""
-}
-
-type RestoreFileVersionResponse struct {
-	// REQUIRED.
-	// The response status.
-	Status *rpc.Status `protobuf:"bytes,1,opt,name=status,proto3" json:"status,omitempty"`
-	// OPTIONAL.
-	// Opaque information.
-	Opaque               *types.Opaque `protobuf:"bytes,2,opt,name=opaque,proto3" json:"opaque,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}      `json:"-"`
-	XXX_unrecognized     []byte        `json:"-"`
-	XXX_sizecache        int32         `json:"-"`
-}
-
-func (m *RestoreFileVersionResponse) Reset()         { *m = RestoreFileVersionResponse{} }
-func (m *RestoreFileVersionResponse) String() string { return proto.CompactTextString(m) }
-func (*RestoreFileVersionResponse) ProtoMessage()    {}
-func (*RestoreFileVersionResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_abc3eb7237c57d7d, []int{27}
-}
-
-func (m *RestoreFileVersionResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_RestoreFileVersionResponse.Unmarshal(m, b)
-}
-func (m *RestoreFileVersionResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_RestoreFileVersionResponse.Marshal(b, m, deterministic)
-}
-func (m *RestoreFileVersionResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_RestoreFileVersionResponse.Merge(m, src)
-}
-func (m *RestoreFileVersionResponse) XXX_Size() int {
-	return xxx_messageInfo_RestoreFileVersionResponse.Size(m)
-}
-func (m *RestoreFileVersionResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_RestoreFileVersionResponse.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_RestoreFileVersionResponse proto.InternalMessageInfo
-
-func (m *RestoreFileVersionResponse) GetStatus() *rpc.Status {
-	if m != nil {
-		return m.Status
-	}
-	return nil
-}
-
-func (m *RestoreFileVersionResponse) GetOpaque() *types.Opaque {
-	if m != nil {
-		return m.Opaque
-	}
-	return nil
-}
-
-// TODO: restore to original location if not specified as OPTIONAL?
-type RestoreRecycleItemRequest struct {
-	// OPTIONAL.
-	// Opaque information.
-	Opaque *types.Opaque `protobuf:"bytes,1,opt,name=opaque,proto3" json:"opaque,omitempty"`
-	// REQUIRED.
-	// The reference to which the action should be performed.
-	Ref *v0alpha.Reference `protobuf:"bytes,2,opt,name=ref,proto3" json:"ref,omitempty"`
-	// REQUIRED.
-	// The key for the recycle item to be restored.
-	Key string `protobuf:"bytes,3,opt,name=key,proto3" json:"key,omitempty"`
-	// OPTIONAL.
-	// An optional restore path for the deleted resource.
-	// It can be useful to restore to another location rather than
-	// the original.
-	// If empty, service implementors MUST restore
-	// to original location if possible.
-	RestorePath          string   `protobuf:"bytes,4,opt,name=restore_path,json=restorePath,proto3" json:"restore_path,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *RestoreRecycleItemRequest) Reset()         { *m = RestoreRecycleItemRequest{} }
-func (m *RestoreRecycleItemRequest) String() string { return proto.CompactTextString(m) }
-func (*RestoreRecycleItemRequest) ProtoMessage()    {}
-func (*RestoreRecycleItemRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_abc3eb7237c57d7d, []int{28}
-}
-
-func (m *RestoreRecycleItemRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_RestoreRecycleItemRequest.Unmarshal(m, b)
-}
-func (m *RestoreRecycleItemRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_RestoreRecycleItemRequest.Marshal(b, m, deterministic)
-}
-func (m *RestoreRecycleItemRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_RestoreRecycleItemRequest.Merge(m, src)
-}
-func (m *RestoreRecycleItemRequest) XXX_Size() int {
-	return xxx_messageInfo_RestoreRecycleItemRequest.Size(m)
-}
-func (m *RestoreRecycleItemRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_RestoreRecycleItemRequest.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_RestoreRecycleItemRequest proto.InternalMessageInfo
-
-func (m *RestoreRecycleItemRequest) GetOpaque() *types.Opaque {
-	if m != nil {
-		return m.Opaque
-	}
-	return nil
-}
-
-func (m *RestoreRecycleItemRequest) GetRef() *v0alpha.Reference {
-	if m != nil {
-		return m.Ref
-	}
-	return nil
-}
-
-func (m *RestoreRecycleItemRequest) GetKey() string {
-	if m != nil {
-		return m.Key
-	}
-	return ""
-}
-
-func (m *RestoreRecycleItemRequest) GetRestorePath() string {
-	if m != nil {
-		return m.RestorePath
-	}
-	return ""
-}
-
-type RestoreRecycleItemResponse struct {
-	// REQUIRED.
-	// The response status.
-	Status *rpc.Status `protobuf:"bytes,1,opt,name=status,proto3" json:"status,omitempty"`
-	// OPTIONAL.
-	// Opaque information.
-	Opaque               *types.Opaque `protobuf:"bytes,2,opt,name=opaque,proto3" json:"opaque,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}      `json:"-"`
-	XXX_unrecognized     []byte        `json:"-"`
-	XXX_sizecache        int32         `json:"-"`
-}
-
-func (m *RestoreRecycleItemResponse) Reset()         { *m = RestoreRecycleItemResponse{} }
-func (m *RestoreRecycleItemResponse) String() string { return proto.CompactTextString(m) }
-func (*RestoreRecycleItemResponse) ProtoMessage()    {}
-func (*RestoreRecycleItemResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_abc3eb7237c57d7d, []int{29}
-}
-
-func (m *RestoreRecycleItemResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_RestoreRecycleItemResponse.Unmarshal(m, b)
-}
-func (m *RestoreRecycleItemResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_RestoreRecycleItemResponse.Marshal(b, m, deterministic)
-}
-func (m *RestoreRecycleItemResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_RestoreRecycleItemResponse.Merge(m, src)
-}
-func (m *RestoreRecycleItemResponse) XXX_Size() int {
-	return xxx_messageInfo_RestoreRecycleItemResponse.Size(m)
-}
-func (m *RestoreRecycleItemResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_RestoreRecycleItemResponse.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_RestoreRecycleItemResponse proto.InternalMessageInfo
-
-func (m *RestoreRecycleItemResponse) GetStatus() *rpc.Status {
-	if m != nil {
-		return m.Status
-	}
-	return nil
-}
-
-func (m *RestoreRecycleItemResponse) GetOpaque() *types.Opaque {
-	if m != nil {
-		return m.Opaque
-	}
-	return nil
-}
-
-type StatRequest struct {
-	// OPTIONAL.
-	// Opaque information.
-	Opaque *types.Opaque `protobuf:"bytes,1,opt,name=opaque,proto3" json:"opaque,omitempty"`
-	// REQUIRED.
-	// The reference to which the action should be performed.
-	Ref *v0alpha.Reference `protobuf:"bytes,2,opt,name=ref,proto3" json:"ref,omitempty"`
-	// OPTIONAL.
-	// Arbitrary metadata be included with the resource.
-	// A key with the name '*' means to return all available arbitrary metadata.
-	ArbitraryMetadataKeys []string `protobuf:"bytes,3,rep,name=arbitrary_metadata_keys,json=arbitraryMetadataKeys,proto3" json:"arbitrary_metadata_keys,omitempty"`
-	XXX_NoUnkeyedLiteral  struct{} `json:"-"`
-	XXX_unrecognized      []byte   `json:"-"`
-	XXX_sizecache         int32    `json:"-"`
-}
-
-func (m *StatRequest) Reset()         { *m = StatRequest{} }
-func (m *StatRequest) String() string { return proto.CompactTextString(m) }
-func (*StatRequest) ProtoMessage()    {}
-func (*StatRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_abc3eb7237c57d7d, []int{30}
-}
-
-func (m *StatRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_StatRequest.Unmarshal(m, b)
-}
-func (m *StatRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_StatRequest.Marshal(b, m, deterministic)
-}
-func (m *StatRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_StatRequest.Merge(m, src)
-}
-func (m *StatRequest) XXX_Size() int {
-	return xxx_messageInfo_StatRequest.Size(m)
-}
-func (m *StatRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_StatRequest.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_StatRequest proto.InternalMessageInfo
-
-func (m *StatRequest) GetOpaque() *types.Opaque {
-	if m != nil {
-		return m.Opaque
-	}
-	return nil
-}
-
-func (m *StatRequest) GetRef() *v0alpha.Reference {
-	if m != nil {
-		return m.Ref
-	}
-	return nil
-}
-
-func (m *StatRequest) GetArbitraryMetadataKeys() []string {
-	if m != nil {
-		return m.ArbitraryMetadataKeys
-	}
-	return nil
-}
-
-type StatResponse struct {
-	// REQUIRED.
-	// The response status.
-	Status *rpc.Status `protobuf:"bytes,1,opt,name=status,proto3" json:"status,omitempty"`
-	// OPTIONAL.
-	// Opaque information.
-	Opaque *types.Opaque `protobuf:"bytes,2,opt,name=opaque,proto3" json:"opaque,omitempty"`
-	// REQUIRED.
-	// The resource information.
-	Info                 *v0alpha.ResourceInfo `protobuf:"bytes,3,opt,name=info,proto3" json:"info,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}              `json:"-"`
-	XXX_unrecognized     []byte                `json:"-"`
-	XXX_sizecache        int32                 `json:"-"`
-}
-
-func (m *StatResponse) Reset()         { *m = StatResponse{} }
-func (m *StatResponse) String() string { return proto.CompactTextString(m) }
-func (*StatResponse) ProtoMessage()    {}
-func (*StatResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_abc3eb7237c57d7d, []int{31}
-}
-
-func (m *StatResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_StatResponse.Unmarshal(m, b)
-}
-func (m *StatResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_StatResponse.Marshal(b, m, deterministic)
-}
-func (m *StatResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_StatResponse.Merge(m, src)
-}
-func (m *StatResponse) XXX_Size() int {
-	return xxx_messageInfo_StatResponse.Size(m)
-}
-func (m *StatResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_StatResponse.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_StatResponse proto.InternalMessageInfo
-
-func (m *StatResponse) GetStatus() *rpc.Status {
-	if m != nil {
-		return m.Status
-	}
-	return nil
-}
-
-func (m *StatResponse) GetOpaque() *types.Opaque {
-	if m != nil {
-		return m.Opaque
-	}
-	return nil
-}
-
-func (m *StatResponse) GetInfo() *v0alpha.ResourceInfo {
-	if m != nil {
-		return m.Info
-	}
-	return nil
-}
-
-type SetArbitraryMetadataRequest struct {
-	// OPTIONAL.
-	// Opaque information.
-	Opaque *types.Opaque `protobuf:"bytes,1,opt,name=opaque,proto3" json:"opaque,omitempty"`
-	// REQUIRED.
-	// The reference to which the action should be performed.
-	Ref *v0alpha.Reference `protobuf:"bytes,2,opt,name=ref,proto3" json:"ref,omitempty"`
-	// REQUIRED.
-	// The arbitrary metadata to add to the resource.
-	ArbitraryMetadata    *v0alpha.ArbitraryMetadata `protobuf:"bytes,3,opt,name=arbitrary_metadata,json=arbitraryMetadata,proto3" json:"arbitrary_metadata,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}                   `json:"-"`
-	XXX_unrecognized     []byte                     `json:"-"`
-	XXX_sizecache        int32                      `json:"-"`
-}
-
-func (m *SetArbitraryMetadataRequest) Reset()         { *m = SetArbitraryMetadataRequest{} }
-func (m *SetArbitraryMetadataRequest) String() string { return proto.CompactTextString(m) }
-func (*SetArbitraryMetadataRequest) ProtoMessage()    {}
-func (*SetArbitraryMetadataRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_abc3eb7237c57d7d, []int{32}
-}
-
-func (m *SetArbitraryMetadataRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_SetArbitraryMetadataRequest.Unmarshal(m, b)
-}
-func (m *SetArbitraryMetadataRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_SetArbitraryMetadataRequest.Marshal(b, m, deterministic)
-}
-func (m *SetArbitraryMetadataRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_SetArbitraryMetadataRequest.Merge(m, src)
-}
-func (m *SetArbitraryMetadataRequest) XXX_Size() int {
-	return xxx_messageInfo_SetArbitraryMetadataRequest.Size(m)
-}
-func (m *SetArbitraryMetadataRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_SetArbitraryMetadataRequest.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_SetArbitraryMetadataRequest proto.InternalMessageInfo
-
-func (m *SetArbitraryMetadataRequest) GetOpaque() *types.Opaque {
-	if m != nil {
-		return m.Opaque
-	}
-	return nil
-}
-
-func (m *SetArbitraryMetadataRequest) GetRef() *v0alpha.Reference {
-	if m != nil {
-		return m.Ref
-	}
-	return nil
-}
-
-func (m *SetArbitraryMetadataRequest) GetArbitraryMetadata() *v0alpha.ArbitraryMetadata {
-	if m != nil {
-		return m.ArbitraryMetadata
-	}
-	return nil
-}
-
-type SetArbitraryMetadataResponse struct {
-	// REQUIRED.
-	// The response status.
-	Status *rpc.Status `protobuf:"bytes,1,opt,name=status,proto3" json:"status,omitempty"`
-	// OPTIONAL.
-	// Opaque information.
-	Opaque               *types.Opaque `protobuf:"bytes,2,opt,name=opaque,proto3" json:"opaque,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}      `json:"-"`
-	XXX_unrecognized     []byte        `json:"-"`
-	XXX_sizecache        int32         `json:"-"`
-}
-
-func (m *SetArbitraryMetadataResponse) Reset()         { *m = SetArbitraryMetadataResponse{} }
-func (m *SetArbitraryMetadataResponse) String() string { return proto.CompactTextString(m) }
-func (*SetArbitraryMetadataResponse) ProtoMessage()    {}
-func (*SetArbitraryMetadataResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_abc3eb7237c57d7d, []int{33}
-}
-
-func (m *SetArbitraryMetadataResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_SetArbitraryMetadataResponse.Unmarshal(m, b)
-}
-func (m *SetArbitraryMetadataResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_SetArbitraryMetadataResponse.Marshal(b, m, deterministic)
-}
-func (m *SetArbitraryMetadataResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_SetArbitraryMetadataResponse.Merge(m, src)
-}
-func (m *SetArbitraryMetadataResponse) XXX_Size() int {
-	return xxx_messageInfo_SetArbitraryMetadataResponse.Size(m)
-}
-func (m *SetArbitraryMetadataResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_SetArbitraryMetadataResponse.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_SetArbitraryMetadataResponse proto.InternalMessageInfo
-
-func (m *SetArbitraryMetadataResponse) GetStatus() *rpc.Status {
-	if m != nil {
-		return m.Status
-	}
-	return nil
-}
-
-func (m *SetArbitraryMetadataResponse) GetOpaque() *types.Opaque {
-	if m != nil {
-		return m.Opaque
-	}
-	return nil
-}
-
-type UnsetArbitraryMetadataRequest struct {
-	// OPTIONAL.
-	// Opaque information.
-	Opaque *types.Opaque `protobuf:"bytes,1,opt,name=opaque,proto3" json:"opaque,omitempty"`
-	// REQUIRED.
-	// The reference to which the action should be performed.
-	Ref *v0alpha.Reference `protobuf:"bytes,2,opt,name=ref,proto3" json:"ref,omitempty"`
-	// REQUIRED.
-	// The arbitrary metadata keys to delete.
-	ArbitraryMetadataKeys []string `protobuf:"bytes,3,rep,name=arbitrary_metadata_keys,json=arbitraryMetadataKeys,proto3" json:"arbitrary_metadata_keys,omitempty"`
-	XXX_NoUnkeyedLiteral  struct{} `json:"-"`
-	XXX_unrecognized      []byte   `json:"-"`
-	XXX_sizecache         int32    `json:"-"`
-}
-
-func (m *UnsetArbitraryMetadataRequest) Reset()         { *m = UnsetArbitraryMetadataRequest{} }
-func (m *UnsetArbitraryMetadataRequest) String() string { return proto.CompactTextString(m) }
-func (*UnsetArbitraryMetadataRequest) ProtoMessage()    {}
-func (*UnsetArbitraryMetadataRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_abc3eb7237c57d7d, []int{34}
-}
-
-func (m *UnsetArbitraryMetadataRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_UnsetArbitraryMetadataRequest.Unmarshal(m, b)
-}
-func (m *UnsetArbitraryMetadataRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_UnsetArbitraryMetadataRequest.Marshal(b, m, deterministic)
-}
-func (m *UnsetArbitraryMetadataRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_UnsetArbitraryMetadataRequest.Merge(m, src)
-}
-func (m *UnsetArbitraryMetadataRequest) XXX_Size() int {
-	return xxx_messageInfo_UnsetArbitraryMetadataRequest.Size(m)
-}
-func (m *UnsetArbitraryMetadataRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_UnsetArbitraryMetadataRequest.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_UnsetArbitraryMetadataRequest proto.InternalMessageInfo
-
-func (m *UnsetArbitraryMetadataRequest) GetOpaque() *types.Opaque {
-	if m != nil {
-		return m.Opaque
-	}
-	return nil
-}
-
-func (m *UnsetArbitraryMetadataRequest) GetRef() *v0alpha.Reference {
-	if m != nil {
-		return m.Ref
-	}
-	return nil
-}
-
-func (m *UnsetArbitraryMetadataRequest) GetArbitraryMetadataKeys() []string {
-	if m != nil {
-		return m.ArbitraryMetadataKeys
-	}
-	return nil
-}
-
-type UnsetArbitraryMetadataResponse struct {
-	// REQUIRED.
-	// The response status.
-	Status *rpc.Status `protobuf:"bytes,1,opt,name=status,proto3" json:"status,omitempty"`
-	// OPTIONAL.
-	// Opaque information.
-	Opaque               *types.Opaque `protobuf:"bytes,2,opt,name=opaque,proto3" json:"opaque,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}      `json:"-"`
-	XXX_unrecognized     []byte        `json:"-"`
-	XXX_sizecache        int32         `json:"-"`
-}
-
-func (m *UnsetArbitraryMetadataResponse) Reset()         { *m = UnsetArbitraryMetadataResponse{} }
-func (m *UnsetArbitraryMetadataResponse) String() string { return proto.CompactTextString(m) }
-func (*UnsetArbitraryMetadataResponse) ProtoMessage()    {}
-func (*UnsetArbitraryMetadataResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_abc3eb7237c57d7d, []int{35}
-}
-
-func (m *UnsetArbitraryMetadataResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_UnsetArbitraryMetadataResponse.Unmarshal(m, b)
-}
-func (m *UnsetArbitraryMetadataResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_UnsetArbitraryMetadataResponse.Marshal(b, m, deterministic)
-}
-func (m *UnsetArbitraryMetadataResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_UnsetArbitraryMetadataResponse.Merge(m, src)
-}
-func (m *UnsetArbitraryMetadataResponse) XXX_Size() int {
-	return xxx_messageInfo_UnsetArbitraryMetadataResponse.Size(m)
-}
-func (m *UnsetArbitraryMetadataResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_UnsetArbitraryMetadataResponse.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_UnsetArbitraryMetadataResponse proto.InternalMessageInfo
-
-func (m *UnsetArbitraryMetadataResponse) GetStatus() *rpc.Status {
-	if m != nil {
-		return m.Status
-	}
-	return nil
-}
-
-func (m *UnsetArbitraryMetadataResponse) GetOpaque() *types.Opaque {
-	if m != nil {
-		return m.Opaque
-	}
-	return nil
-}
-
 func init() {
-	proto.RegisterType((*CreateContainerRequest)(nil), "cs3.gatewayv0alpha.CreateContainerRequest")
-	proto.RegisterType((*CreateContainerResponse)(nil), "cs3.gatewayv0alpha.CreateContainerResponse")
-	proto.RegisterType((*DeleteRequest)(nil), "cs3.gatewayv0alpha.DeleteRequest")
-	proto.RegisterType((*DeleteResponse)(nil), "cs3.gatewayv0alpha.DeleteResponse")
-	proto.RegisterType((*GetPathRequest)(nil), "cs3.gatewayv0alpha.GetPathRequest")
-	proto.RegisterType((*GetPathResponse)(nil), "cs3.gatewayv0alpha.GetPathResponse")
 	proto.RegisterType((*GetQuotaRequest)(nil), "cs3.gatewayv0alpha.GetQuotaRequest")
-	proto.RegisterType((*GetQuotaResponse)(nil), "cs3.gatewayv0alpha.GetQuotaResponse")
-	proto.RegisterType((*InitiateFileUploadRequest)(nil), "cs3.gatewayv0alpha.InitiateFileUploadRequest")
-	proto.RegisterType((*InitiateFileUploadResponse)(nil), "cs3.gatewayv0alpha.InitiateFileUploadResponse")
-	proto.RegisterType((*InitiateFileDownloadRequest)(nil), "cs3.gatewayv0alpha.InitiateFileDownloadRequest")
-	proto.RegisterType((*InitiateFileDownloadResponse)(nil), "cs3.gatewayv0alpha.InitiateFileDownloadResponse")
-	proto.RegisterType((*ListContainerStreamRequest)(nil), "cs3.gatewayv0alpha.ListContainerStreamRequest")
-	proto.RegisterType((*ListContainerStreamResponse)(nil), "cs3.gatewayv0alpha.ListContainerStreamResponse")
-	proto.RegisterType((*ListContainerRequest)(nil), "cs3.gatewayv0alpha.ListContainerRequest")
-	proto.RegisterType((*ListContainerResponse)(nil), "cs3.gatewayv0alpha.ListContainerResponse")
-	proto.RegisterType((*ListFileVersionsRequest)(nil), "cs3.gatewayv0alpha.ListFileVersionsRequest")
-	proto.RegisterType((*ListFileVersionsResponse)(nil), "cs3.gatewayv0alpha.ListFileVersionsResponse")
 	proto.RegisterType((*ListRecycleRequest)(nil), "cs3.gatewayv0alpha.ListRecycleRequest")
-	proto.RegisterType((*ListRecycleResponse)(nil), "cs3.gatewayv0alpha.ListRecycleResponse")
 	proto.RegisterType((*ListRecycleStreamRequest)(nil), "cs3.gatewayv0alpha.ListRecycleStreamRequest")
-	proto.RegisterType((*ListRecycleStreamResponse)(nil), "cs3.gatewayv0alpha.ListRecycleStreamResponse")
-	proto.RegisterType((*MoveRequest)(nil), "cs3.gatewayv0alpha.MoveRequest")
-	proto.RegisterType((*MoveResponse)(nil), "cs3.gatewayv0alpha.MoveResponse")
 	proto.RegisterType((*PurgeRecycleRequest)(nil), "cs3.gatewayv0alpha.PurgeRecycleRequest")
-	proto.RegisterType((*PurgeRecycleResponse)(nil), "cs3.gatewayv0alpha.PurgeRecycleResponse")
-	proto.RegisterType((*RestoreFileVersionRequest)(nil), "cs3.gatewayv0alpha.RestoreFileVersionRequest")
-	proto.RegisterType((*RestoreFileVersionResponse)(nil), "cs3.gatewayv0alpha.RestoreFileVersionResponse")
-	proto.RegisterType((*RestoreRecycleItemRequest)(nil), "cs3.gatewayv0alpha.RestoreRecycleItemRequest")
-	proto.RegisterType((*RestoreRecycleItemResponse)(nil), "cs3.gatewayv0alpha.RestoreRecycleItemResponse")
-	proto.RegisterType((*StatRequest)(nil), "cs3.gatewayv0alpha.StatRequest")
-	proto.RegisterType((*StatResponse)(nil), "cs3.gatewayv0alpha.StatResponse")
-	proto.RegisterType((*SetArbitraryMetadataRequest)(nil), "cs3.gatewayv0alpha.SetArbitraryMetadataRequest")
-	proto.RegisterType((*SetArbitraryMetadataResponse)(nil), "cs3.gatewayv0alpha.SetArbitraryMetadataResponse")
-	proto.RegisterType((*UnsetArbitraryMetadataRequest)(nil), "cs3.gatewayv0alpha.UnsetArbitraryMetadataRequest")
-	proto.RegisterType((*UnsetArbitraryMetadataResponse)(nil), "cs3.gatewayv0alpha.UnsetArbitraryMetadataResponse")
 }
 
 func init() { proto.RegisterFile("cs3/gateway/v0alpha/gateway.proto", fileDescriptor_abc3eb7237c57d7d) }
 
 var fileDescriptor_abc3eb7237c57d7d = []byte{
-	// 1338 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xd4, 0x59, 0xdf, 0x6f, 0x1b, 0xc5,
-	0x13, 0xd7, 0x25, 0xae, 0xdb, 0x8e, 0xdd, 0xfc, 0xd8, 0x26, 0x4d, 0x72, 0x69, 0xbf, 0x4d, 0xee,
-	0x0b, 0x8d, 0x4b, 0x88, 0x13, 0x25, 0x08, 0x5e, 0x00, 0x29, 0x71, 0x21, 0x0a, 0xb4, 0x4a, 0xb8,
-	0x24, 0x15, 0x42, 0x15, 0xd6, 0xfa, 0xbc, 0x49, 0xae, 0xf1, 0xdd, 0x5e, 0x77, 0xd7, 0x2e, 0x27,
-	0x81, 0x00, 0x89, 0x7f, 0x80, 0xbf, 0x00, 0xc4, 0x03, 0x12, 0xf0, 0x80, 0x04, 0x48, 0x20, 0xf5,
-	0x85, 0x67, 0x1e, 0x79, 0xe2, 0x8d, 0xff, 0x80, 0xbf, 0x01, 0xed, 0xdd, 0xda, 0x39, 0xdb, 0x67,
-	0xfb, 0x1a, 0xe9, 0x5c, 0xfa, 0x12, 0xd9, 0x3b, 0x9f, 0x99, 0xf9, 0xcc, 0xcc, 0xcd, 0x79, 0x76,
-	0x02, 0x8b, 0x16, 0xdf, 0x58, 0x3d, 0xc6, 0x82, 0x3c, 0xc6, 0xfe, 0x6a, 0x63, 0x0d, 0xd7, 0xbc,
-	0x13, 0xdc, 0xfc, 0x5e, 0xf4, 0x18, 0x15, 0x14, 0x21, 0x8b, 0x6f, 0x14, 0xd5, 0x91, 0x42, 0xe8,
-	0x53, 0x52, 0x8d, 0x79, 0xd6, 0x2a, 0x17, 0x58, 0xd4, 0x79, 0x88, 0xd4, 0x97, 0xe5, 0x29, 0x17,
-	0x94, 0xe1, 0x63, 0xe2, 0x31, 0xda, 0xb0, 0xab, 0x84, 0xb5, 0x8c, 0x32, 0xc2, 0x69, 0x9d, 0x59,
-	0xa4, 0x09, 0x9e, 0x96, 0x60, 0xe1, 0x7b, 0x84, 0x87, 0x7f, 0xc3, 0x63, 0xe3, 0x63, 0xb8, 0x56,
-	0x62, 0x04, 0x0b, 0x52, 0xa2, 0xae, 0xc0, 0xb6, 0x4b, 0x98, 0x49, 0x1e, 0xd5, 0x09, 0x17, 0xe8,
-	0x36, 0x64, 0xa9, 0x87, 0x1f, 0xd5, 0xc9, 0xac, 0xb6, 0xa0, 0x15, 0x72, 0xeb, 0x93, 0x45, 0x49,
-	0x2c, 0xd4, 0xdd, 0x0d, 0x04, 0xa6, 0x02, 0xa0, 0xd7, 0x60, 0x94, 0x91, 0xa3, 0xd9, 0x91, 0x00,
-	0xf7, 0x62, 0x80, 0xeb, 0xa0, 0xa5, 0x58, 0x15, 0x4d, 0x72, 0x44, 0x18, 0x71, 0x2d, 0x62, 0x4a,
-	0x0d, 0xc3, 0x81, 0x99, 0x2e, 0xef, 0xdc, 0xa3, 0x2e, 0x27, 0x68, 0x09, 0xb2, 0x61, 0xb0, 0xca,
-	0xfd, 0x78, 0x60, 0x96, 0x79, 0x56, 0x71, 0x3f, 0x38, 0x36, 0x95, 0x38, 0xc2, 0x73, 0x64, 0x00,
-	0x4f, 0x83, 0xc3, 0x95, 0x3b, 0xa4, 0x46, 0x04, 0x19, 0x66, 0x8c, 0x55, 0x18, 0x6b, 0x3a, 0x4d,
-	0x31, 0xb4, 0x2f, 0x34, 0x18, 0xdb, 0x26, 0x62, 0x0f, 0x8b, 0x93, 0x73, 0x04, 0xb7, 0x0d, 0xb9,
-	0xe6, 0xf3, 0x52, 0xb6, 0xab, 0xca, 0xdb, 0xad, 0xfe, 0x41, 0x86, 0xf0, 0x9d, 0xaa, 0x09, 0xac,
-	0xf5, 0xd9, 0xf0, 0x61, 0xbc, 0xc5, 0x22, 0xbd, 0x68, 0x11, 0x82, 0x8c, 0x87, 0xc5, 0xc9, 0xec,
-	0xe8, 0x82, 0x56, 0xb8, 0x6c, 0x06, 0x9f, 0x8d, 0x7a, 0xe0, 0xfa, 0xbd, 0x3a, 0x15, 0x78, 0x98,
-	0xe5, 0xfd, 0x56, 0x83, 0x89, 0x33, 0xbf, 0x29, 0xc6, 0x7c, 0x13, 0x72, 0x82, 0x0a, 0x5c, 0x2b,
-	0x57, 0x7c, 0x41, 0x78, 0x10, 0x7a, 0xc6, 0x84, 0xe0, 0x68, 0x4b, 0x9e, 0xa0, 0x1b, 0x00, 0x75,
-	0x4e, 0xaa, 0x4a, 0x9e, 0x09, 0xe4, 0x97, 0xe5, 0x49, 0x20, 0x36, 0x3e, 0x85, 0xb9, 0x1d, 0xd7,
-	0x16, 0x36, 0x16, 0xe4, 0x6d, 0xbb, 0x46, 0x0e, 0xbd, 0x1a, 0xc5, 0xd5, 0x61, 0x66, 0xea, 0xb3,
-	0x11, 0xd0, 0xe3, 0x18, 0xa4, 0x98, 0xb3, 0x25, 0x18, 0xaf, 0x07, 0x5e, 0xca, 0xc4, 0xad, 0x7a,
-	0xd4, 0x76, 0x85, 0x7a, 0x64, 0xc6, 0xc2, 0xe3, 0xb7, 0xd4, 0x29, 0x22, 0x70, 0x15, 0x37, 0xb0,
-	0x5d, 0xc3, 0x95, 0x1a, 0x29, 0x5b, 0x27, 0xc4, 0x3a, 0xe5, 0x75, 0x47, 0x26, 0x71, 0xb4, 0x90,
-	0x5b, 0x7f, 0x25, 0x49, 0x23, 0x94, 0x94, 0xd2, 0x1e, 0xb3, 0x29, 0xb3, 0x85, 0x6f, 0xa2, 0x96,
-	0xc1, 0xa6, 0x88, 0x1b, 0x9f, 0x6b, 0x30, 0x1f, 0x4d, 0xc1, 0x1d, 0xfa, 0xd8, 0x1d, 0x76, 0x19,
-	0xbe, 0xd2, 0xe0, 0x7a, 0x3c, 0x87, 0x14, 0x0b, 0xb1, 0x0c, 0x93, 0x55, 0xe5, 0xa7, 0xb3, 0x14,
-	0x13, 0x4d, 0x41, 0xb3, 0x18, 0xc6, 0x6f, 0x1a, 0xe8, 0x77, 0x6d, 0x2e, 0x5a, 0x3f, 0x0a, 0xfb,
-	0x82, 0x11, 0xec, 0x0c, 0x31, 0x49, 0xe8, 0x55, 0x98, 0xc1, 0xac, 0x62, 0x0b, 0x86, 0x99, 0x5f,
-	0x76, 0x88, 0xc0, 0x55, 0x2c, 0x70, 0xf9, 0x94, 0xf8, 0xb2, 0xf1, 0x46, 0x0b, 0x97, 0xcd, 0xe9,
-	0x96, 0xf8, 0x9e, 0x92, 0xbe, 0x4b, 0x7c, 0x6e, 0xfc, 0xa8, 0xc1, 0x7c, 0x2c, 0xf5, 0x14, 0x73,
-	0xfb, 0x3a, 0x64, 0x6c, 0xf7, 0x88, 0x06, 0xe9, 0xcc, 0xad, 0x17, 0x12, 0xbd, 0xb5, 0xdd, 0x23,
-	0x6a, 0x06, 0x5a, 0xc6, 0x4f, 0x1a, 0x4c, 0xb5, 0x31, 0x7e, 0x1e, 0xd2, 0xfc, 0x83, 0x06, 0xd3,
-	0x1d, 0xa4, 0x53, 0x4c, 0xf0, 0x9b, 0x70, 0x41, 0xa6, 0x2a, 0xe4, 0xf4, 0x34, 0x19, 0x0e, 0xd5,
-	0x8c, 0x4f, 0x60, 0x46, 0x92, 0x95, 0xcd, 0x76, 0x9f, 0x30, 0x6e, 0x53, 0x97, 0x0f, 0xb3, 0xe1,
-	0x7f, 0xd6, 0x60, 0xb6, 0xdb, 0x7f, 0x8a, 0xf9, 0x2a, 0xc1, 0xa5, 0x86, 0xf2, 0xa3, 0x52, 0xb6,
-	0xd4, 0x8f, 0x6e, 0x84, 0x97, 0xd9, 0x52, 0x34, 0xfe, 0xd4, 0x00, 0x49, 0xd6, 0x26, 0xb1, 0x7c,
-	0xab, 0x36, 0xcc, 0x89, 0x0d, 0xad, 0xc0, 0xc5, 0x23, 0x46, 0x9d, 0xb2, 0xe0, 0xaa, 0xa7, 0xa6,
-	0x22, 0x4e, 0x0e, 0x6c, 0x87, 0x70, 0x81, 0x1d, 0xcf, 0xcc, 0x4a, 0xd0, 0x81, 0xcc, 0xcc, 0x05,
-	0x41, 0x25, 0x38, 0xd3, 0x07, 0x9c, 0x11, 0xf4, 0x80, 0x1b, 0xbf, 0x6a, 0x70, 0xb5, 0x2d, 0xa8,
-	0x14, 0xab, 0x70, 0x17, 0xae, 0xb0, 0xd0, 0x4d, 0xd9, 0x16, 0xc4, 0x49, 0x54, 0x0a, 0xc5, 0x6b,
-	0x47, 0x10, 0xc7, 0xcc, 0xb3, 0xb3, 0x2f, 0xdc, 0xf8, 0x4b, 0x3d, 0x44, 0x0a, 0x31, 0xfc, 0x37,
-	0x72, 0x7a, 0x45, 0x79, 0xa2, 0xc1, 0x5c, 0x4c, 0x68, 0x29, 0x96, 0xe6, 0x1d, 0xc8, 0x47, 0x4b,
-	0xa3, 0x02, 0x4a, 0x5c, 0x99, 0x5c, 0xa4, 0x32, 0xc6, 0xef, 0x1a, 0xe4, 0xee, 0xd1, 0xc6, 0x79,
-	0x1a, 0xe4, 0x0d, 0xc8, 0x86, 0x2f, 0xab, 0xa7, 0x2b, 0x87, 0x52, 0x92, 0x97, 0x86, 0x2a, 0xe1,
-	0xc2, 0x76, 0xb1, 0xb0, 0xa9, 0xab, 0x82, 0x48, 0x68, 0x23, 0xaa, 0x69, 0x54, 0x20, 0x1f, 0x46,
-	0x90, 0xe2, 0xfd, 0xc8, 0x87, 0xab, 0x7b, 0x75, 0x76, 0x4c, 0x86, 0xff, 0x3a, 0x31, 0x1e, 0xc2,
-	0x54, 0xbb, 0xeb, 0x14, 0xc3, 0xfc, 0x52, 0x83, 0x39, 0x93, 0x48, 0x5e, 0x24, 0xfa, 0x5a, 0x1d,
-	0x62, 0x9f, 0x4e, 0xc0, 0xe8, 0x29, 0xf1, 0xd5, 0x6c, 0x27, 0x3f, 0x1a, 0x1e, 0xe8, 0x71, 0x94,
-	0x52, 0xcc, 0xc2, 0x2f, 0x67, 0x59, 0x88, 0xf6, 0xcd, 0xb3, 0xcc, 0x02, 0x5a, 0x94, 0x3d, 0x1f,
-	0x50, 0x2a, 0x07, 0x57, 0xd7, 0x4c, 0x20, 0xca, 0xa9, 0x33, 0x79, 0x63, 0x8e, 0x24, 0xaa, 0x8d,
-	0x75, 0x8a, 0x89, 0xfa, 0x4e, 0x83, 0x9c, 0xd4, 0x7e, 0x1e, 0x66, 0xbe, 0xaf, 0x35, 0xc8, 0x87,
-	0x5c, 0xff, 0xb3, 0xb3, 0xf4, 0xdf, 0x1a, 0xcc, 0xef, 0x13, 0xb1, 0xd9, 0xc9, 0x7f, 0x98, 0xe9,
-	0x7d, 0x00, 0xa8, 0x3b, 0xbd, 0x2a, 0x9e, 0x95, 0x7e, 0x76, 0xba, 0x59, 0x4f, 0x76, 0x15, 0xc2,
-	0x60, 0x70, 0x3d, 0x3e, 0xc0, 0x14, 0x1f, 0xd2, 0x27, 0x1a, 0xdc, 0x38, 0x74, 0xf9, 0x33, 0xce,
-	0xeb, 0x79, 0x1f, 0x5b, 0x01, 0xff, 0xeb, 0x45, 0x3e, 0xbd, 0x9c, 0xad, 0xff, 0x93, 0x87, 0xb1,
-	0xed, 0x70, 0x87, 0xbc, 0x4f, 0x58, 0xc3, 0xb6, 0x08, 0x7a, 0x08, 0xe3, 0x1d, 0xbb, 0x56, 0xf4,
-	0x52, 0xb1, 0x7b, 0xd7, 0x5c, 0x8c, 0x5f, 0x07, 0xeb, 0xcb, 0x89, 0xb0, 0x2a, 0xa4, 0x5d, 0xc8,
-	0x86, 0x3b, 0x4f, 0xb4, 0x18, 0xa7, 0xd6, 0xb6, 0x84, 0xd5, 0x8d, 0x7e, 0x10, 0x65, 0xd0, 0x84,
-	0x8b, 0x6a, 0xaf, 0x88, 0x62, 0xe1, 0xed, 0xab, 0x4f, 0xfd, 0xff, 0x7d, 0x31, 0xca, 0xe6, 0x21,
-	0x5c, 0x6a, 0x2e, 0xee, 0x50, 0x2f, 0x85, 0xe8, 0x3a, 0x51, 0x7f, 0xa1, 0x3f, 0x48, 0x99, 0xf5,
-	0x61, 0x2a, 0x6e, 0xbd, 0x82, 0x56, 0xe3, 0xb4, 0xfb, 0x2c, 0x83, 0xf4, 0xb5, 0xe4, 0x0a, 0xca,
-	0x35, 0x07, 0xd4, 0xbd, 0x60, 0x43, 0x2b, 0x83, 0xec, 0xb4, 0xad, 0x02, 0xf5, 0x62, 0x52, 0xb8,
-	0x72, 0xfa, 0x51, 0x78, 0xa5, 0xe9, 0xd8, 0x78, 0xa0, 0x58, 0x33, 0xbd, 0xb7, 0x3a, 0xfa, 0x6a,
-	0x62, 0x7c, 0xe8, 0x77, 0x4d, 0x43, 0x55, 0xb8, 0xd2, 0x06, 0x40, 0x85, 0x81, 0x36, 0x9a, 0xde,
-	0x6e, 0x27, 0x40, 0xaa, 0xf8, 0x1c, 0x98, 0xe8, 0xbc, 0x3d, 0xa3, 0xe5, 0x5e, 0xea, 0x31, 0x77,
-	0x7c, 0xfd, 0xe5, 0x64, 0x60, 0xe5, 0x8e, 0xc1, 0x64, 0xd7, 0x65, 0x04, 0xf5, 0x34, 0x11, 0x77,
-	0x1d, 0xd3, 0x57, 0x12, 0xa2, 0x5b, 0x89, 0xfc, 0x10, 0x72, 0x11, 0x31, 0xba, 0x35, 0x40, 0xbf,
-	0xe9, 0x67, 0x69, 0x20, 0x4e, 0xc5, 0xb4, 0x03, 0x19, 0x39, 0xe0, 0xa3, 0x9b, 0x71, 0x0a, 0x91,
-	0xcb, 0x8b, 0xbe, 0xd0, 0x1b, 0xa0, 0x4c, 0x61, 0xc8, 0x47, 0x87, 0x69, 0x14, 0xcb, 0x21, 0x66,
-	0xd2, 0xd7, 0x0b, 0x83, 0x81, 0x67, 0x5d, 0xd4, 0x3d, 0xaf, 0xc6, 0x77, 0x51, 0xcf, 0x51, 0x3b,
-	0xbe, 0x8b, 0xfa, 0x8c, 0xc1, 0x67, 0x4e, 0x23, 0xb3, 0x5f, 0x5f, 0xa7, 0xdd, 0x93, 0x6d, 0x5f,
-	0xa7, 0x71, 0x23, 0xe5, 0x0e, 0x64, 0xe4, 0x4f, 0x4c, 0x7c, 0x5d, 0x22, 0x73, 0x61, 0x7c, 0x5d,
-	0xa2, 0xc3, 0xd8, 0x96, 0x03, 0xd7, 0x2c, 0xea, 0xc4, 0xc0, 0xb6, 0xf2, 0xea, 0x77, 0x68, 0x8f,
-	0x51, 0x41, 0xf7, 0xb4, 0x0f, 0x26, 0xda, 0xe5, 0x5e, 0xe5, 0x9b, 0x91, 0x6c, 0x69, 0x6b, 0xf7,
-	0xfd, 0xcd, 0xad, 0xef, 0x47, 0x50, 0x69, 0x7f, 0xa3, 0xa8, 0xf0, 0xf7, 0xd7, 0x36, 0xa5, 0xfc,
-	0x8f, 0xe0, 0xf0, 0x41, 0xfb, 0x61, 0x25, 0x1b, 0xfc, 0xf7, 0x72, 0xe3, 0xdf, 0x00, 0x00, 0x00,
-	0xff, 0xff, 0xb4, 0x30, 0x62, 0x25, 0x50, 0x1d, 0x00, 0x00,
+	// 924 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xdc, 0x97, 0x4d, 0x8f, 0x1b, 0x35,
+	0x1c, 0xc6, 0x35, 0xdb, 0x25, 0x45, 0xde, 0x42, 0xb7, 0xde, 0x02, 0xab, 0x20, 0xf1, 0xb2, 0x12,
+	0xd0, 0x65, 0x69, 0x36, 0xdd, 0xb0, 0x4d, 0x39, 0x26, 0xa9, 0x88, 0x22, 0x81, 0x1a, 0x26, 0x69,
+	0x79, 0x11, 0x52, 0xe5, 0x9d, 0xfc, 0xb3, 0x19, 0x91, 0x19, 0x4f, 0x6d, 0x4f, 0xaa, 0x20, 0x71,
+	0x40, 0x1c, 0x78, 0xf9, 0x18, 0x1c, 0xf9, 0x28, 0x1c, 0x39, 0xf1, 0x1d, 0xf8, 0x12, 0xc8, 0x63,
+	0x3b, 0x19, 0x27, 0xe9, 0xc4, 0xc3, 0x61, 0x0f, 0x5c, 0x22, 0xc5, 0x7e, 0x7e, 0xff, 0xe7, 0xb1,
+	0x3d, 0xb6, 0x67, 0xd0, 0xbb, 0x01, 0x6f, 0x9c, 0x5e, 0x12, 0x01, 0xcf, 0xc9, 0xfc, 0x74, 0x56,
+	0x27, 0xd3, 0x64, 0x42, 0xcc, 0xff, 0x5a, 0xc2, 0xa8, 0xa0, 0x18, 0x07, 0xbc, 0x51, 0xd3, 0x4d,
+	0x5a, 0x51, 0x7d, 0x53, 0x62, 0x24, 0x15, 0x93, 0x05, 0x23, 0xff, 0x28, 0xa0, 0x7a, 0x22, 0x3b,
+	0xb9, 0xa0, 0x8c, 0x5c, 0x42, 0xc2, 0xe8, 0x2c, 0x1c, 0x01, 0x5b, 0xe8, 0x18, 0x70, 0x9a, 0xb2,
+	0x00, 0xb8, 0x16, 0xdf, 0x2b, 0x12, 0xaf, 0xb4, 0x6b, 0xe4, 0x35, 0x89, 0x88, 0x79, 0x02, 0x5c,
+	0xfd, 0xea, 0xe6, 0x73, 0xd9, 0x9c, 0x72, 0x60, 0x7c, 0x42, 0xd8, 0x7a, 0xad, 0xb5, 0x1e, 0x85,
+	0x1d, 0xa5, 0xe8, 0x66, 0x17, 0xc4, 0x17, 0x29, 0x15, 0xc4, 0x87, 0x67, 0x29, 0x70, 0x81, 0x8f,
+	0x51, 0x85, 0x26, 0xe4, 0x59, 0x0a, 0x87, 0xde, 0x3b, 0xde, 0x9d, 0xbd, 0xb3, 0x5b, 0x35, 0x39,
+	0x05, 0xca, 0xeb, 0x51, 0xd6, 0xe1, 0x6b, 0x01, 0x6e, 0xa2, 0x6b, 0x0c, 0xc6, 0x87, 0x3b, 0x99,
+	0xee, 0xbd, 0x4c, 0xb7, 0x12, 0x5a, 0xfb, 0xd7, 0x7c, 0x18, 0x03, 0x83, 0x38, 0x00, 0x5f, 0x12,
+	0x47, 0x7f, 0x79, 0x08, 0x7f, 0x16, 0x72, 0xe1, 0x43, 0x30, 0x0f, 0xa6, 0x70, 0x85, 0xd6, 0xf8,
+	0x2e, 0xba, 0x3e, 0x66, 0x34, 0x7a, 0x2a, 0xf8, 0xe1, 0xb5, 0x0c, 0xbe, 0x9d, 0x33, 0x19, 0x86,
+	0x11, 0x70, 0x41, 0xa2, 0xc4, 0xaf, 0x48, 0xd1, 0x90, 0xe3, 0x63, 0xf4, 0x92, 0xa0, 0x52, 0xbc,
+	0x5b, 0x20, 0xde, 0x15, 0x74, 0xc8, 0x8f, 0xfe, 0xf6, 0xd0, 0x61, 0x6e, 0x50, 0x03, 0xc1, 0x80,
+	0x44, 0xff, 0x8f, 0xa1, 0xcd, 0xd1, 0x41, 0x3f, 0x65, 0x97, 0x70, 0xf5, 0xeb, 0x75, 0xf6, 0xcf,
+	0x1b, 0xe8, 0xd5, 0xae, 0xda, 0x7f, 0x03, 0x60, 0xb3, 0x30, 0x00, 0x9c, 0xa0, 0x83, 0x2e, 0xc4,
+	0xc0, 0x88, 0x80, 0x56, 0x10, 0x00, 0xe7, 0x43, 0xfa, 0x1d, 0xc4, 0xf8, 0x24, 0xab, 0x2a, 0xb7,
+	0xa2, 0x29, 0xb5, 0x41, 0xa5, 0xa3, 0x57, 0x3f, 0x72, 0x13, 0xf3, 0x84, 0xc6, 0x1c, 0x70, 0x0f,
+	0x55, 0xbe, 0x9c, 0xd0, 0x56, 0xd4, 0xc3, 0x6f, 0xad, 0x71, 0xaa, 0xc3, 0xd4, 0x7d, 0xfb, 0x85,
+	0xfd, 0xba, 0xd4, 0xf7, 0xe8, 0x66, 0x87, 0x01, 0x11, 0xd0, 0xa1, 0xb1, 0x20, 0x61, 0x0c, 0x0c,
+	0x9f, 0x15, 0x4d, 0xc7, 0x8a, 0xd8, 0xf8, 0x34, 0x4a, 0x31, 0xda, 0xfb, 0x29, 0xaa, 0x3c, 0x84,
+	0x29, 0x08, 0xc0, 0xc7, 0x45, 0xb8, 0xd2, 0x18, 0xa7, 0x0f, 0x5d, 0xa4, 0xda, 0xe0, 0x02, 0x5d,
+	0xef, 0x82, 0xe8, 0x13, 0x31, 0xc1, 0x85, 0x98, 0x16, 0x19, 0x8b, 0x13, 0x27, 0xad, 0xf6, 0x00,
+	0xf4, 0xb2, 0x39, 0xb2, 0xf0, 0x36, 0x30, 0x7f, 0xb0, 0xe9, 0x25, 0xdf, 0x2a, 0xd6, 0x36, 0xbf,
+	0x7a, 0xe8, 0x76, 0x2f, 0x0e, 0x45, 0x48, 0x04, 0x7c, 0x1a, 0x4e, 0xe1, 0x21, 0x7d, 0x1e, 0x4f,
+	0x29, 0x19, 0xe1, 0x66, 0x51, 0x99, 0x4d, 0x84, 0xf1, 0x7f, 0x50, 0x1e, 0xd4, 0x59, 0x7e, 0xf2,
+	0x10, 0xce, 0x0b, 0x1e, 0x27, 0x59, 0x92, 0x73, 0xd7, 0x82, 0x4a, 0x6f, 0x72, 0xdc, 0x2f, 0x8b,
+	0xe9, 0x14, 0xbf, 0x78, 0xe8, 0x40, 0x9e, 0x6f, 0x8b, 0xe7, 0x4a, 0x9d, 0x70, 0xb8, 0xb0, 0xde,
+	0x06, 0xc0, 0xe4, 0x68, 0x96, 0xe6, 0x54, 0x90, 0xba, 0x87, 0x05, 0x7a, 0xc5, 0x12, 0xe0, 0xba,
+	0x73, 0x2d, 0xe3, 0x7e, 0xaf, 0x04, 0xa1, 0x27, 0xe0, 0x07, 0xb4, 0x2f, 0x3b, 0xe4, 0xd4, 0x3c,
+	0x01, 0xc6, 0x43, 0x1a, 0x73, 0xdc, 0xd8, 0x56, 0x26, 0xaf, 0x36, 0xde, 0x1f, 0x97, 0x83, 0x16,
+	0x27, 0xc7, 0xad, 0xb5, 0xeb, 0x05, 0xab, 0x87, 0xda, 0x7e, 0x41, 0xa9, 0xbd, 0xe8, 0x16, 0xaa,
+	0x9e, 0x6f, 0x33, 0x5e, 0xa1, 0x16, 0x13, 0x3e, 0x46, 0x7b, 0xb9, 0x6e, 0xfc, 0xfe, 0x16, 0x57,
+	0xe3, 0x77, 0xea, 0xe8, 0xb7, 0x18, 0xe3, 0xd7, 0x68, 0xf7, 0x73, 0x3a, 0x03, 0xfc, 0x41, 0x11,
+	0x28, 0x15, 0xc6, 0xe1, 0xce, 0x76, 0xa1, 0x2e, 0x1d, 0xa2, 0x1b, 0xf9, 0x3b, 0x4c, 0x5b, 0xac,
+	0x8c, 0x61, 0xc3, 0x2d, 0x57, 0x2d, 0x7c, 0xb6, 0x6c, 0x20, 0xb7, 0x5f, 0x7d, 0x90, 0x04, 0xe4,
+	0x56, 0xb2, 0x78, 0xbf, 0xae, 0xeb, 0x9d, 0xf6, 0xeb, 0x26, 0x6c, 0x3d, 0x85, 0x0e, 0xd8, 0x13,
+	0x10, 0x39, 0xa5, 0xc8, 0xe9, 0xcb, 0xa4, 0xb0, 0xb0, 0xe5, 0x8a, 0x0e, 0x04, 0x11, 0xc5, 0x2b,
+	0x2a, 0x15, 0x4e, 0x2b, 0xaa, 0x84, 0xba, 0x34, 0x43, 0x7b, 0xea, 0xa6, 0x1b, 0xc8, 0x37, 0x5b,
+	0x7d, 0x06, 0xac, 0xbd, 0xe9, 0xda, 0x97, 0x62, 0x26, 0xb5, 0xcf, 0x00, 0x37, 0x62, 0xe9, 0xe9,
+	0x43, 0x44, 0x67, 0x6e, 0x9e, 0x39, 0xa9, 0xa3, 0xa7, 0x45, 0x2c, 0x9e, 0x5c, 0x79, 0xe3, 0x29,
+	0xc3, 0xbb, 0xc5, 0xb8, 0xd1, 0x19, 0xb7, 0x9a, 0xab, 0x5c, 0x5b, 0x51, 0x84, 0xe4, 0xb6, 0xcc,
+	0x1a, 0x39, 0x3e, 0x2d, 0xa6, 0x97, 0x4a, 0x7b, 0xab, 0x38, 0x01, 0xcb, 0xf9, 0x7c, 0x9c, 0x8c,
+	0x5c, 0xd7, 0x30, 0x27, 0x75, 0x9c, 0x4f, 0x8b, 0xd0, 0x9e, 0x3f, 0x2f, 0xbf, 0x3e, 0x20, 0x9c,
+	0xc1, 0x48, 0x8f, 0xb6, 0xb9, 0x3d, 0xbc, 0x4d, 0xd8, 0x17, 0x7b, 0x29, 0x50, 0x27, 0xf9, 0xcd,
+	0x43, 0x07, 0x2a, 0xa1, 0x25, 0xc0, 0x0f, 0x5c, 0x06, 0x65, 0x21, 0x26, 0xcb, 0x27, 0xff, 0x81,
+	0xd4, 0x61, 0x7e, 0xf4, 0xd0, 0x7e, 0x17, 0xec, 0xa8, 0xfa, 0xb4, 0x28, 0x7a, 0x80, 0x36, 0xc6,
+	0xb8, 0x5f, 0x16, 0x53, 0x19, 0xda, 0x11, 0x7a, 0x3d, 0xa0, 0xd1, 0x86, 0x93, 0xb9, 0x7d, 0x43,
+	0x7f, 0x04, 0xf4, 0xe5, 0x77, 0x6b, 0xdf, 0xfb, 0x66, 0xdf, 0xee, 0x4f, 0x2e, 0x7e, 0xdf, 0xa9,
+	0x74, 0xda, 0x8f, 0xbe, 0x6a, 0xb5, 0xff, 0xd8, 0xc1, 0x9d, 0x41, 0xa3, 0xa6, 0xf5, 0x4f, 0xea,
+	0x2d, 0xd9, 0xff, 0x67, 0xd6, 0xf8, 0xad, 0xdd, 0x78, 0x51, 0xc9, 0xbe, 0x82, 0x1b, 0xff, 0x06,
+	0x00, 0x00, 0xff, 0xff, 0x73, 0x7f, 0xe9, 0x13, 0x09, 0x10, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -2276,68 +363,109 @@ const _ = grpc.SupportPackageIsVersion4
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type GatewayServiceClient interface {
+	// *****************************************************************/
+	// ************************ AUTH ******** **************************/
+	// *****************************************************************/
+	GenerateAccessToken(ctx context.Context, in *v0alpha1.GenerateAccessTokenRequest, opts ...grpc.CallOption) (*v0alpha1.GenerateAccessTokenResponse, error)
+	WhoAmI(ctx context.Context, in *v0alpha1.WhoAmIRequest, opts ...grpc.CallOption) (*v0alpha1.WhoAmIResponse, error)
+	// *****************************************************************/
+	// ************************ STORAGE PROVIDER ***********************/
+	// *****************************************************************/
 	// Creates a new resource of type container.
 	// MUST return CODE_PRECONDITION_FAILED if the container
 	// cannot be created at the specified reference.
-	CreateContainer(ctx context.Context, in *CreateContainerRequest, opts ...grpc.CallOption) (*CreateContainerResponse, error)
+	CreateContainer(ctx context.Context, in *v0alpha.CreateContainerRequest, opts ...grpc.CallOption) (*v0alpha.CreateContainerResponse, error)
 	// Deletes a resource.
 	// If a resource specifies the non-empty container (directory, ...),
 	// then the entire directory is deleted recursively.
 	// If a resource specifies a reference or symlink type, only the reference is removed (not the target).
 	// MUST return CODE_NOT_FOUND if the reference does not exist.
-	Delete(ctx context.Context, in *DeleteRequest, opts ...grpc.CallOption) (*DeleteResponse, error)
+	Delete(ctx context.Context, in *v0alpha.DeleteRequest, opts ...grpc.CallOption) (*v0alpha.DeleteResponse, error)
 	// Returns the path reference for
 	// the provided resource id reference.
 	// MUST return CODE_NOT_FOUND if the reference does not exist
-	GetPath(ctx context.Context, in *GetPathRequest, opts ...grpc.CallOption) (*GetPathResponse, error)
+	GetPath(ctx context.Context, in *v0alpha.GetPathRequest, opts ...grpc.CallOption) (*v0alpha.GetPathResponse, error)
 	// Returns the quota available under the provided
 	// reference.
 	// MUST return CODE_NOT_FOUND if the reference does not exist
 	// MUST return CODE_RESOURCE_EXHAUSTED on exceeded quota limits.
-	GetQuota(ctx context.Context, in *GetQuotaRequest, opts ...grpc.CallOption) (*GetQuotaResponse, error)
+	GetQuota(ctx context.Context, in *v0alpha.GetQuotaRequest, opts ...grpc.CallOption) (*v0alpha.GetQuotaResponse, error)
 	// Initiates the download of a file using an
 	// out-of-band data transfer mechanism.
-	InitiateFileDownload(ctx context.Context, in *InitiateFileDownloadRequest, opts ...grpc.CallOption) (*InitiateFileDownloadResponse, error)
+	InitiateFileDownload(ctx context.Context, in *v0alpha.InitiateFileDownloadRequest, opts ...grpc.CallOption) (*v0alpha.InitiateFileDownloadResponse, error)
 	// Initiates the upload of a file using an
 	// out-of-band data transfer mechanism.
-	InitiateFileUpload(ctx context.Context, in *InitiateFileUploadRequest, opts ...grpc.CallOption) (*InitiateFileUploadResponse, error)
-	ListContainerStream(ctx context.Context, in *ListContainerStreamRequest, opts ...grpc.CallOption) (GatewayService_ListContainerStreamClient, error)
+	InitiateFileUpload(ctx context.Context, in *v0alpha.InitiateFileUploadRequest, opts ...grpc.CallOption) (*v0alpha.InitiateFileUploadResponse, error)
+	// Returns a stream of resource informations
+	// for the provided reference.
+	// MUST return CODE_NOT_FOUND if the reference does not exists.
+	ListContainerStream(ctx context.Context, in *v0alpha.ListContainerStreamRequest, opts ...grpc.CallOption) (GatewayService_ListContainerStreamClient, error)
 	// Returns a list of resource information
 	// for the provided reference.
 	// MUST return CODE_NOT_FOUND if the reference does not exists.
-	ListContainer(ctx context.Context, in *ListContainerRequest, opts ...grpc.CallOption) (*ListContainerResponse, error)
+	ListContainer(ctx context.Context, in *v0alpha.ListContainerRequest, opts ...grpc.CallOption) (*v0alpha.ListContainerResponse, error)
 	// Returns a list of the versions for a resource of
 	// type file at the provided reference.
 	// MUST return CODE_NOT_FOUND if the reference does not exist.
 	// MUST return CODE_OK and MUST return an empty list if no versions are available.
 	// TODO: What code if resource not of type file?
-	ListFileVersions(ctx context.Context, in *ListFileVersionsRequest, opts ...grpc.CallOption) (*ListFileVersionsResponse, error)
+	ListFileVersions(ctx context.Context, in *v0alpha.ListFileVersionsRequest, opts ...grpc.CallOption) (*v0alpha.ListFileVersionsResponse, error)
 	// Returns a stream of recycle items for this storage provider.
 	ListRecycleStream(ctx context.Context, in *ListRecycleStreamRequest, opts ...grpc.CallOption) (GatewayService_ListRecycleStreamClient, error)
 	// Returns a list of recycle items for this storage provider.
 	// MUST return CODE_OK and MUST return an empty list if no recycle items are available.
-	ListRecycle(ctx context.Context, in *ListRecycleRequest, opts ...grpc.CallOption) (*ListRecycleResponse, error)
+	ListRecycle(ctx context.Context, in *ListRecycleRequest, opts ...grpc.CallOption) (*v0alpha.ListRecycleResponse, error)
 	// Moves a resource from one reference to another.
 	// MUST return CODE_NOT_FOUND if any of the references do not exist.
 	// MUST return CODE_PRECONDITION_FAILED if the source reference
 	// cannot be moved to the destination reference.
-	Move(ctx context.Context, in *MoveRequest, opts ...grpc.CallOption) (*MoveResponse, error)
+	Move(ctx context.Context, in *v0alpha.MoveRequest, opts ...grpc.CallOption) (*v0alpha.MoveResponse, error)
 	// Permanently removes a recycle item from the recycle.
 	// This operation is irrevocable.
 	// MUST return CODE_NOT_FOUND if the recycle item id does not exist.
-	PurgeRecycle(ctx context.Context, in *PurgeRecycleRequest, opts ...grpc.CallOption) (*PurgeRecycleResponse, error)
+	PurgeRecycle(ctx context.Context, in *PurgeRecycleRequest, opts ...grpc.CallOption) (*v0alpha.PurgeRecycleResponse, error)
 	// Restores a file version for the provided reference.
 	// MUST return CODE_NOT_FOUND if the reference does not exist.
 	// MUST return CODE_NOT_FOUND if the version does not exist.
-	RestoreFileVersion(ctx context.Context, in *RestoreFileVersionRequest, opts ...grpc.CallOption) (*RestoreFileVersionResponse, error)
+	RestoreFileVersion(ctx context.Context, in *v0alpha.RestoreFileVersionRequest, opts ...grpc.CallOption) (*v0alpha.RestoreFileVersionResponse, error)
 	// Restores a recycle item from the recycle.
 	// MUST return CODE_NOT_FOUND if the recycle item id does not exist.
 	// MUST return CODE_PRECONDITION_FAILED if the restore_path is non-empty
 	// and the recycle item cannot be restored to the restore_path.
-	RestoreRecycleItem(ctx context.Context, in *RestoreRecycleItemRequest, opts ...grpc.CallOption) (*RestoreRecycleItemResponse, error)
+	RestoreRecycleItem(ctx context.Context, in *v0alpha.RestoreRecycleItemRequest, opts ...grpc.CallOption) (*v0alpha.RestoreRecycleItemResponse, error)
 	// Returns the resource information at the provided reference.
 	// MUST return CODE_NOT_FOUND if the reference does not exist.
-	Stat(ctx context.Context, in *StatRequest, opts ...grpc.CallOption) (*StatResponse, error)
+	Stat(ctx context.Context, in *v0alpha.StatRequest, opts ...grpc.CallOption) (*v0alpha.StatResponse, error)
+	// *****************************************************************/
+	// ************************ USER SHARE PROVIDER ********************/
+	// *****************************************************************/
+	// Creates a new share.
+	// MUST return CODE_NOT_FOUND if the resource reference does not exist.
+	// MUST return CODE_ALREADY_EXISTS if the share already exists for the 4-tuple consisting of
+	// (owner, shared_resource, grantee).
+	// New shares MUST be created in the state SHARE_STATE_PENDING.
+	CreateShare(ctx context.Context, in *v0alpha2.CreateShareRequest, opts ...grpc.CallOption) (*v0alpha2.CreateShareResponse, error)
+	// Removes a share.
+	// MUST return CODE_NOT_FOUND if the share reference does not exist.
+	RemoveShare(ctx context.Context, in *v0alpha2.RemoveShareRequest, opts ...grpc.CallOption) (*v0alpha2.RemoveShareResponse, error)
+	// Gets share information for a single share.
+	// MUST return CODE_NOT_FOUND if the share reference does not exist.
+	GetShare(ctx context.Context, in *v0alpha2.GetShareRequest, opts ...grpc.CallOption) (*v0alpha2.GetShareResponse, error)
+	// List the shares the authenticated principal has created,
+	// both as owner and creator. If a filter is specified, only
+	// shares satisfying the filter MUST be returned.
+	ListShares(ctx context.Context, in *v0alpha2.ListSharesRequest, opts ...grpc.CallOption) (*v0alpha2.ListSharesResponse, error)
+	// Updates a share.
+	// MUST return CODE_NOT_FOUND if the share reference does not exist.
+	UpdateShare(ctx context.Context, in *v0alpha2.UpdateShareRequest, opts ...grpc.CallOption) (*v0alpha2.UpdateShareResponse, error)
+	// List all shares the authenticated principal has received.
+	ListReceivedShares(ctx context.Context, in *v0alpha2.ListReceivedSharesRequest, opts ...grpc.CallOption) (*v0alpha2.ListReceivedSharesResponse, error)
+	// Update the received share to change the share state or the display name.
+	// MUST return CODE_NOT_FOUND if the share reference does not exist.
+	UpdateReceivedShare(ctx context.Context, in *v0alpha2.UpdateReceivedShareRequest, opts ...grpc.CallOption) (*v0alpha2.UpdateReceivedShareResponse, error)
+	// Get the information for the given received share reference.
+	// MUST return CODE_NOT_FOUND if the received share reference does not exist.
+	GetReceivedShare(ctx context.Context, in *v0alpha2.GetReceivedShareRequest, opts ...grpc.CallOption) (*v0alpha2.GetReceivedShareResponse, error)
 }
 
 type gatewayServiceClient struct {
@@ -2348,8 +476,26 @@ func NewGatewayServiceClient(cc *grpc.ClientConn) GatewayServiceClient {
 	return &gatewayServiceClient{cc}
 }
 
-func (c *gatewayServiceClient) CreateContainer(ctx context.Context, in *CreateContainerRequest, opts ...grpc.CallOption) (*CreateContainerResponse, error) {
-	out := new(CreateContainerResponse)
+func (c *gatewayServiceClient) GenerateAccessToken(ctx context.Context, in *v0alpha1.GenerateAccessTokenRequest, opts ...grpc.CallOption) (*v0alpha1.GenerateAccessTokenResponse, error) {
+	out := new(v0alpha1.GenerateAccessTokenResponse)
+	err := c.cc.Invoke(ctx, "/cs3.gatewayv0alpha.GatewayService/GenerateAccessToken", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *gatewayServiceClient) WhoAmI(ctx context.Context, in *v0alpha1.WhoAmIRequest, opts ...grpc.CallOption) (*v0alpha1.WhoAmIResponse, error) {
+	out := new(v0alpha1.WhoAmIResponse)
+	err := c.cc.Invoke(ctx, "/cs3.gatewayv0alpha.GatewayService/WhoAmI", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *gatewayServiceClient) CreateContainer(ctx context.Context, in *v0alpha.CreateContainerRequest, opts ...grpc.CallOption) (*v0alpha.CreateContainerResponse, error) {
+	out := new(v0alpha.CreateContainerResponse)
 	err := c.cc.Invoke(ctx, "/cs3.gatewayv0alpha.GatewayService/CreateContainer", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -2357,8 +503,8 @@ func (c *gatewayServiceClient) CreateContainer(ctx context.Context, in *CreateCo
 	return out, nil
 }
 
-func (c *gatewayServiceClient) Delete(ctx context.Context, in *DeleteRequest, opts ...grpc.CallOption) (*DeleteResponse, error) {
-	out := new(DeleteResponse)
+func (c *gatewayServiceClient) Delete(ctx context.Context, in *v0alpha.DeleteRequest, opts ...grpc.CallOption) (*v0alpha.DeleteResponse, error) {
+	out := new(v0alpha.DeleteResponse)
 	err := c.cc.Invoke(ctx, "/cs3.gatewayv0alpha.GatewayService/Delete", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -2366,8 +512,8 @@ func (c *gatewayServiceClient) Delete(ctx context.Context, in *DeleteRequest, op
 	return out, nil
 }
 
-func (c *gatewayServiceClient) GetPath(ctx context.Context, in *GetPathRequest, opts ...grpc.CallOption) (*GetPathResponse, error) {
-	out := new(GetPathResponse)
+func (c *gatewayServiceClient) GetPath(ctx context.Context, in *v0alpha.GetPathRequest, opts ...grpc.CallOption) (*v0alpha.GetPathResponse, error) {
+	out := new(v0alpha.GetPathResponse)
 	err := c.cc.Invoke(ctx, "/cs3.gatewayv0alpha.GatewayService/GetPath", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -2375,8 +521,8 @@ func (c *gatewayServiceClient) GetPath(ctx context.Context, in *GetPathRequest, 
 	return out, nil
 }
 
-func (c *gatewayServiceClient) GetQuota(ctx context.Context, in *GetQuotaRequest, opts ...grpc.CallOption) (*GetQuotaResponse, error) {
-	out := new(GetQuotaResponse)
+func (c *gatewayServiceClient) GetQuota(ctx context.Context, in *v0alpha.GetQuotaRequest, opts ...grpc.CallOption) (*v0alpha.GetQuotaResponse, error) {
+	out := new(v0alpha.GetQuotaResponse)
 	err := c.cc.Invoke(ctx, "/cs3.gatewayv0alpha.GatewayService/GetQuota", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -2384,8 +530,8 @@ func (c *gatewayServiceClient) GetQuota(ctx context.Context, in *GetQuotaRequest
 	return out, nil
 }
 
-func (c *gatewayServiceClient) InitiateFileDownload(ctx context.Context, in *InitiateFileDownloadRequest, opts ...grpc.CallOption) (*InitiateFileDownloadResponse, error) {
-	out := new(InitiateFileDownloadResponse)
+func (c *gatewayServiceClient) InitiateFileDownload(ctx context.Context, in *v0alpha.InitiateFileDownloadRequest, opts ...grpc.CallOption) (*v0alpha.InitiateFileDownloadResponse, error) {
+	out := new(v0alpha.InitiateFileDownloadResponse)
 	err := c.cc.Invoke(ctx, "/cs3.gatewayv0alpha.GatewayService/InitiateFileDownload", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -2393,8 +539,8 @@ func (c *gatewayServiceClient) InitiateFileDownload(ctx context.Context, in *Ini
 	return out, nil
 }
 
-func (c *gatewayServiceClient) InitiateFileUpload(ctx context.Context, in *InitiateFileUploadRequest, opts ...grpc.CallOption) (*InitiateFileUploadResponse, error) {
-	out := new(InitiateFileUploadResponse)
+func (c *gatewayServiceClient) InitiateFileUpload(ctx context.Context, in *v0alpha.InitiateFileUploadRequest, opts ...grpc.CallOption) (*v0alpha.InitiateFileUploadResponse, error) {
+	out := new(v0alpha.InitiateFileUploadResponse)
 	err := c.cc.Invoke(ctx, "/cs3.gatewayv0alpha.GatewayService/InitiateFileUpload", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -2402,7 +548,7 @@ func (c *gatewayServiceClient) InitiateFileUpload(ctx context.Context, in *Initi
 	return out, nil
 }
 
-func (c *gatewayServiceClient) ListContainerStream(ctx context.Context, in *ListContainerStreamRequest, opts ...grpc.CallOption) (GatewayService_ListContainerStreamClient, error) {
+func (c *gatewayServiceClient) ListContainerStream(ctx context.Context, in *v0alpha.ListContainerStreamRequest, opts ...grpc.CallOption) (GatewayService_ListContainerStreamClient, error) {
 	stream, err := c.cc.NewStream(ctx, &_GatewayService_serviceDesc.Streams[0], "/cs3.gatewayv0alpha.GatewayService/ListContainerStream", opts...)
 	if err != nil {
 		return nil, err
@@ -2418,7 +564,7 @@ func (c *gatewayServiceClient) ListContainerStream(ctx context.Context, in *List
 }
 
 type GatewayService_ListContainerStreamClient interface {
-	Recv() (*ListContainerStreamResponse, error)
+	Recv() (*v0alpha.ListContainerStreamResponse, error)
 	grpc.ClientStream
 }
 
@@ -2426,16 +572,16 @@ type gatewayServiceListContainerStreamClient struct {
 	grpc.ClientStream
 }
 
-func (x *gatewayServiceListContainerStreamClient) Recv() (*ListContainerStreamResponse, error) {
-	m := new(ListContainerStreamResponse)
+func (x *gatewayServiceListContainerStreamClient) Recv() (*v0alpha.ListContainerStreamResponse, error) {
+	m := new(v0alpha.ListContainerStreamResponse)
 	if err := x.ClientStream.RecvMsg(m); err != nil {
 		return nil, err
 	}
 	return m, nil
 }
 
-func (c *gatewayServiceClient) ListContainer(ctx context.Context, in *ListContainerRequest, opts ...grpc.CallOption) (*ListContainerResponse, error) {
-	out := new(ListContainerResponse)
+func (c *gatewayServiceClient) ListContainer(ctx context.Context, in *v0alpha.ListContainerRequest, opts ...grpc.CallOption) (*v0alpha.ListContainerResponse, error) {
+	out := new(v0alpha.ListContainerResponse)
 	err := c.cc.Invoke(ctx, "/cs3.gatewayv0alpha.GatewayService/ListContainer", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -2443,8 +589,8 @@ func (c *gatewayServiceClient) ListContainer(ctx context.Context, in *ListContai
 	return out, nil
 }
 
-func (c *gatewayServiceClient) ListFileVersions(ctx context.Context, in *ListFileVersionsRequest, opts ...grpc.CallOption) (*ListFileVersionsResponse, error) {
-	out := new(ListFileVersionsResponse)
+func (c *gatewayServiceClient) ListFileVersions(ctx context.Context, in *v0alpha.ListFileVersionsRequest, opts ...grpc.CallOption) (*v0alpha.ListFileVersionsResponse, error) {
+	out := new(v0alpha.ListFileVersionsResponse)
 	err := c.cc.Invoke(ctx, "/cs3.gatewayv0alpha.GatewayService/ListFileVersions", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -2468,7 +614,7 @@ func (c *gatewayServiceClient) ListRecycleStream(ctx context.Context, in *ListRe
 }
 
 type GatewayService_ListRecycleStreamClient interface {
-	Recv() (*ListRecycleStreamResponse, error)
+	Recv() (*v0alpha.ListRecycleStreamResponse, error)
 	grpc.ClientStream
 }
 
@@ -2476,16 +622,16 @@ type gatewayServiceListRecycleStreamClient struct {
 	grpc.ClientStream
 }
 
-func (x *gatewayServiceListRecycleStreamClient) Recv() (*ListRecycleStreamResponse, error) {
-	m := new(ListRecycleStreamResponse)
+func (x *gatewayServiceListRecycleStreamClient) Recv() (*v0alpha.ListRecycleStreamResponse, error) {
+	m := new(v0alpha.ListRecycleStreamResponse)
 	if err := x.ClientStream.RecvMsg(m); err != nil {
 		return nil, err
 	}
 	return m, nil
 }
 
-func (c *gatewayServiceClient) ListRecycle(ctx context.Context, in *ListRecycleRequest, opts ...grpc.CallOption) (*ListRecycleResponse, error) {
-	out := new(ListRecycleResponse)
+func (c *gatewayServiceClient) ListRecycle(ctx context.Context, in *ListRecycleRequest, opts ...grpc.CallOption) (*v0alpha.ListRecycleResponse, error) {
+	out := new(v0alpha.ListRecycleResponse)
 	err := c.cc.Invoke(ctx, "/cs3.gatewayv0alpha.GatewayService/ListRecycle", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -2493,8 +639,8 @@ func (c *gatewayServiceClient) ListRecycle(ctx context.Context, in *ListRecycleR
 	return out, nil
 }
 
-func (c *gatewayServiceClient) Move(ctx context.Context, in *MoveRequest, opts ...grpc.CallOption) (*MoveResponse, error) {
-	out := new(MoveResponse)
+func (c *gatewayServiceClient) Move(ctx context.Context, in *v0alpha.MoveRequest, opts ...grpc.CallOption) (*v0alpha.MoveResponse, error) {
+	out := new(v0alpha.MoveResponse)
 	err := c.cc.Invoke(ctx, "/cs3.gatewayv0alpha.GatewayService/Move", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -2502,8 +648,8 @@ func (c *gatewayServiceClient) Move(ctx context.Context, in *MoveRequest, opts .
 	return out, nil
 }
 
-func (c *gatewayServiceClient) PurgeRecycle(ctx context.Context, in *PurgeRecycleRequest, opts ...grpc.CallOption) (*PurgeRecycleResponse, error) {
-	out := new(PurgeRecycleResponse)
+func (c *gatewayServiceClient) PurgeRecycle(ctx context.Context, in *PurgeRecycleRequest, opts ...grpc.CallOption) (*v0alpha.PurgeRecycleResponse, error) {
+	out := new(v0alpha.PurgeRecycleResponse)
 	err := c.cc.Invoke(ctx, "/cs3.gatewayv0alpha.GatewayService/PurgeRecycle", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -2511,8 +657,8 @@ func (c *gatewayServiceClient) PurgeRecycle(ctx context.Context, in *PurgeRecycl
 	return out, nil
 }
 
-func (c *gatewayServiceClient) RestoreFileVersion(ctx context.Context, in *RestoreFileVersionRequest, opts ...grpc.CallOption) (*RestoreFileVersionResponse, error) {
-	out := new(RestoreFileVersionResponse)
+func (c *gatewayServiceClient) RestoreFileVersion(ctx context.Context, in *v0alpha.RestoreFileVersionRequest, opts ...grpc.CallOption) (*v0alpha.RestoreFileVersionResponse, error) {
+	out := new(v0alpha.RestoreFileVersionResponse)
 	err := c.cc.Invoke(ctx, "/cs3.gatewayv0alpha.GatewayService/RestoreFileVersion", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -2520,8 +666,8 @@ func (c *gatewayServiceClient) RestoreFileVersion(ctx context.Context, in *Resto
 	return out, nil
 }
 
-func (c *gatewayServiceClient) RestoreRecycleItem(ctx context.Context, in *RestoreRecycleItemRequest, opts ...grpc.CallOption) (*RestoreRecycleItemResponse, error) {
-	out := new(RestoreRecycleItemResponse)
+func (c *gatewayServiceClient) RestoreRecycleItem(ctx context.Context, in *v0alpha.RestoreRecycleItemRequest, opts ...grpc.CallOption) (*v0alpha.RestoreRecycleItemResponse, error) {
+	out := new(v0alpha.RestoreRecycleItemResponse)
 	err := c.cc.Invoke(ctx, "/cs3.gatewayv0alpha.GatewayService/RestoreRecycleItem", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -2529,9 +675,81 @@ func (c *gatewayServiceClient) RestoreRecycleItem(ctx context.Context, in *Resto
 	return out, nil
 }
 
-func (c *gatewayServiceClient) Stat(ctx context.Context, in *StatRequest, opts ...grpc.CallOption) (*StatResponse, error) {
-	out := new(StatResponse)
+func (c *gatewayServiceClient) Stat(ctx context.Context, in *v0alpha.StatRequest, opts ...grpc.CallOption) (*v0alpha.StatResponse, error) {
+	out := new(v0alpha.StatResponse)
 	err := c.cc.Invoke(ctx, "/cs3.gatewayv0alpha.GatewayService/Stat", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *gatewayServiceClient) CreateShare(ctx context.Context, in *v0alpha2.CreateShareRequest, opts ...grpc.CallOption) (*v0alpha2.CreateShareResponse, error) {
+	out := new(v0alpha2.CreateShareResponse)
+	err := c.cc.Invoke(ctx, "/cs3.gatewayv0alpha.GatewayService/CreateShare", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *gatewayServiceClient) RemoveShare(ctx context.Context, in *v0alpha2.RemoveShareRequest, opts ...grpc.CallOption) (*v0alpha2.RemoveShareResponse, error) {
+	out := new(v0alpha2.RemoveShareResponse)
+	err := c.cc.Invoke(ctx, "/cs3.gatewayv0alpha.GatewayService/RemoveShare", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *gatewayServiceClient) GetShare(ctx context.Context, in *v0alpha2.GetShareRequest, opts ...grpc.CallOption) (*v0alpha2.GetShareResponse, error) {
+	out := new(v0alpha2.GetShareResponse)
+	err := c.cc.Invoke(ctx, "/cs3.gatewayv0alpha.GatewayService/GetShare", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *gatewayServiceClient) ListShares(ctx context.Context, in *v0alpha2.ListSharesRequest, opts ...grpc.CallOption) (*v0alpha2.ListSharesResponse, error) {
+	out := new(v0alpha2.ListSharesResponse)
+	err := c.cc.Invoke(ctx, "/cs3.gatewayv0alpha.GatewayService/ListShares", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *gatewayServiceClient) UpdateShare(ctx context.Context, in *v0alpha2.UpdateShareRequest, opts ...grpc.CallOption) (*v0alpha2.UpdateShareResponse, error) {
+	out := new(v0alpha2.UpdateShareResponse)
+	err := c.cc.Invoke(ctx, "/cs3.gatewayv0alpha.GatewayService/UpdateShare", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *gatewayServiceClient) ListReceivedShares(ctx context.Context, in *v0alpha2.ListReceivedSharesRequest, opts ...grpc.CallOption) (*v0alpha2.ListReceivedSharesResponse, error) {
+	out := new(v0alpha2.ListReceivedSharesResponse)
+	err := c.cc.Invoke(ctx, "/cs3.gatewayv0alpha.GatewayService/ListReceivedShares", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *gatewayServiceClient) UpdateReceivedShare(ctx context.Context, in *v0alpha2.UpdateReceivedShareRequest, opts ...grpc.CallOption) (*v0alpha2.UpdateReceivedShareResponse, error) {
+	out := new(v0alpha2.UpdateReceivedShareResponse)
+	err := c.cc.Invoke(ctx, "/cs3.gatewayv0alpha.GatewayService/UpdateReceivedShare", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *gatewayServiceClient) GetReceivedShare(ctx context.Context, in *v0alpha2.GetReceivedShareRequest, opts ...grpc.CallOption) (*v0alpha2.GetReceivedShareResponse, error) {
+	out := new(v0alpha2.GetReceivedShareResponse)
+	err := c.cc.Invoke(ctx, "/cs3.gatewayv0alpha.GatewayService/GetReceivedShare", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -2540,129 +758,236 @@ func (c *gatewayServiceClient) Stat(ctx context.Context, in *StatRequest, opts .
 
 // GatewayServiceServer is the server API for GatewayService service.
 type GatewayServiceServer interface {
+	// *****************************************************************/
+	// ************************ AUTH ******** **************************/
+	// *****************************************************************/
+	GenerateAccessToken(context.Context, *v0alpha1.GenerateAccessTokenRequest) (*v0alpha1.GenerateAccessTokenResponse, error)
+	WhoAmI(context.Context, *v0alpha1.WhoAmIRequest) (*v0alpha1.WhoAmIResponse, error)
+	// *****************************************************************/
+	// ************************ STORAGE PROVIDER ***********************/
+	// *****************************************************************/
 	// Creates a new resource of type container.
 	// MUST return CODE_PRECONDITION_FAILED if the container
 	// cannot be created at the specified reference.
-	CreateContainer(context.Context, *CreateContainerRequest) (*CreateContainerResponse, error)
+	CreateContainer(context.Context, *v0alpha.CreateContainerRequest) (*v0alpha.CreateContainerResponse, error)
 	// Deletes a resource.
 	// If a resource specifies the non-empty container (directory, ...),
 	// then the entire directory is deleted recursively.
 	// If a resource specifies a reference or symlink type, only the reference is removed (not the target).
 	// MUST return CODE_NOT_FOUND if the reference does not exist.
-	Delete(context.Context, *DeleteRequest) (*DeleteResponse, error)
+	Delete(context.Context, *v0alpha.DeleteRequest) (*v0alpha.DeleteResponse, error)
 	// Returns the path reference for
 	// the provided resource id reference.
 	// MUST return CODE_NOT_FOUND if the reference does not exist
-	GetPath(context.Context, *GetPathRequest) (*GetPathResponse, error)
+	GetPath(context.Context, *v0alpha.GetPathRequest) (*v0alpha.GetPathResponse, error)
 	// Returns the quota available under the provided
 	// reference.
 	// MUST return CODE_NOT_FOUND if the reference does not exist
 	// MUST return CODE_RESOURCE_EXHAUSTED on exceeded quota limits.
-	GetQuota(context.Context, *GetQuotaRequest) (*GetQuotaResponse, error)
+	GetQuota(context.Context, *v0alpha.GetQuotaRequest) (*v0alpha.GetQuotaResponse, error)
 	// Initiates the download of a file using an
 	// out-of-band data transfer mechanism.
-	InitiateFileDownload(context.Context, *InitiateFileDownloadRequest) (*InitiateFileDownloadResponse, error)
+	InitiateFileDownload(context.Context, *v0alpha.InitiateFileDownloadRequest) (*v0alpha.InitiateFileDownloadResponse, error)
 	// Initiates the upload of a file using an
 	// out-of-band data transfer mechanism.
-	InitiateFileUpload(context.Context, *InitiateFileUploadRequest) (*InitiateFileUploadResponse, error)
-	ListContainerStream(*ListContainerStreamRequest, GatewayService_ListContainerStreamServer) error
+	InitiateFileUpload(context.Context, *v0alpha.InitiateFileUploadRequest) (*v0alpha.InitiateFileUploadResponse, error)
+	// Returns a stream of resource informations
+	// for the provided reference.
+	// MUST return CODE_NOT_FOUND if the reference does not exists.
+	ListContainerStream(*v0alpha.ListContainerStreamRequest, GatewayService_ListContainerStreamServer) error
 	// Returns a list of resource information
 	// for the provided reference.
 	// MUST return CODE_NOT_FOUND if the reference does not exists.
-	ListContainer(context.Context, *ListContainerRequest) (*ListContainerResponse, error)
+	ListContainer(context.Context, *v0alpha.ListContainerRequest) (*v0alpha.ListContainerResponse, error)
 	// Returns a list of the versions for a resource of
 	// type file at the provided reference.
 	// MUST return CODE_NOT_FOUND if the reference does not exist.
 	// MUST return CODE_OK and MUST return an empty list if no versions are available.
 	// TODO: What code if resource not of type file?
-	ListFileVersions(context.Context, *ListFileVersionsRequest) (*ListFileVersionsResponse, error)
+	ListFileVersions(context.Context, *v0alpha.ListFileVersionsRequest) (*v0alpha.ListFileVersionsResponse, error)
 	// Returns a stream of recycle items for this storage provider.
 	ListRecycleStream(*ListRecycleStreamRequest, GatewayService_ListRecycleStreamServer) error
 	// Returns a list of recycle items for this storage provider.
 	// MUST return CODE_OK and MUST return an empty list if no recycle items are available.
-	ListRecycle(context.Context, *ListRecycleRequest) (*ListRecycleResponse, error)
+	ListRecycle(context.Context, *ListRecycleRequest) (*v0alpha.ListRecycleResponse, error)
 	// Moves a resource from one reference to another.
 	// MUST return CODE_NOT_FOUND if any of the references do not exist.
 	// MUST return CODE_PRECONDITION_FAILED if the source reference
 	// cannot be moved to the destination reference.
-	Move(context.Context, *MoveRequest) (*MoveResponse, error)
+	Move(context.Context, *v0alpha.MoveRequest) (*v0alpha.MoveResponse, error)
 	// Permanently removes a recycle item from the recycle.
 	// This operation is irrevocable.
 	// MUST return CODE_NOT_FOUND if the recycle item id does not exist.
-	PurgeRecycle(context.Context, *PurgeRecycleRequest) (*PurgeRecycleResponse, error)
+	PurgeRecycle(context.Context, *PurgeRecycleRequest) (*v0alpha.PurgeRecycleResponse, error)
 	// Restores a file version for the provided reference.
 	// MUST return CODE_NOT_FOUND if the reference does not exist.
 	// MUST return CODE_NOT_FOUND if the version does not exist.
-	RestoreFileVersion(context.Context, *RestoreFileVersionRequest) (*RestoreFileVersionResponse, error)
+	RestoreFileVersion(context.Context, *v0alpha.RestoreFileVersionRequest) (*v0alpha.RestoreFileVersionResponse, error)
 	// Restores a recycle item from the recycle.
 	// MUST return CODE_NOT_FOUND if the recycle item id does not exist.
 	// MUST return CODE_PRECONDITION_FAILED if the restore_path is non-empty
 	// and the recycle item cannot be restored to the restore_path.
-	RestoreRecycleItem(context.Context, *RestoreRecycleItemRequest) (*RestoreRecycleItemResponse, error)
+	RestoreRecycleItem(context.Context, *v0alpha.RestoreRecycleItemRequest) (*v0alpha.RestoreRecycleItemResponse, error)
 	// Returns the resource information at the provided reference.
 	// MUST return CODE_NOT_FOUND if the reference does not exist.
-	Stat(context.Context, *StatRequest) (*StatResponse, error)
+	Stat(context.Context, *v0alpha.StatRequest) (*v0alpha.StatResponse, error)
+	// *****************************************************************/
+	// ************************ USER SHARE PROVIDER ********************/
+	// *****************************************************************/
+	// Creates a new share.
+	// MUST return CODE_NOT_FOUND if the resource reference does not exist.
+	// MUST return CODE_ALREADY_EXISTS if the share already exists for the 4-tuple consisting of
+	// (owner, shared_resource, grantee).
+	// New shares MUST be created in the state SHARE_STATE_PENDING.
+	CreateShare(context.Context, *v0alpha2.CreateShareRequest) (*v0alpha2.CreateShareResponse, error)
+	// Removes a share.
+	// MUST return CODE_NOT_FOUND if the share reference does not exist.
+	RemoveShare(context.Context, *v0alpha2.RemoveShareRequest) (*v0alpha2.RemoveShareResponse, error)
+	// Gets share information for a single share.
+	// MUST return CODE_NOT_FOUND if the share reference does not exist.
+	GetShare(context.Context, *v0alpha2.GetShareRequest) (*v0alpha2.GetShareResponse, error)
+	// List the shares the authenticated principal has created,
+	// both as owner and creator. If a filter is specified, only
+	// shares satisfying the filter MUST be returned.
+	ListShares(context.Context, *v0alpha2.ListSharesRequest) (*v0alpha2.ListSharesResponse, error)
+	// Updates a share.
+	// MUST return CODE_NOT_FOUND if the share reference does not exist.
+	UpdateShare(context.Context, *v0alpha2.UpdateShareRequest) (*v0alpha2.UpdateShareResponse, error)
+	// List all shares the authenticated principal has received.
+	ListReceivedShares(context.Context, *v0alpha2.ListReceivedSharesRequest) (*v0alpha2.ListReceivedSharesResponse, error)
+	// Update the received share to change the share state or the display name.
+	// MUST return CODE_NOT_FOUND if the share reference does not exist.
+	UpdateReceivedShare(context.Context, *v0alpha2.UpdateReceivedShareRequest) (*v0alpha2.UpdateReceivedShareResponse, error)
+	// Get the information for the given received share reference.
+	// MUST return CODE_NOT_FOUND if the received share reference does not exist.
+	GetReceivedShare(context.Context, *v0alpha2.GetReceivedShareRequest) (*v0alpha2.GetReceivedShareResponse, error)
 }
 
 // UnimplementedGatewayServiceServer can be embedded to have forward compatible implementations.
 type UnimplementedGatewayServiceServer struct {
 }
 
-func (*UnimplementedGatewayServiceServer) CreateContainer(ctx context.Context, req *CreateContainerRequest) (*CreateContainerResponse, error) {
+func (*UnimplementedGatewayServiceServer) GenerateAccessToken(ctx context.Context, req *v0alpha1.GenerateAccessTokenRequest) (*v0alpha1.GenerateAccessTokenResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GenerateAccessToken not implemented")
+}
+func (*UnimplementedGatewayServiceServer) WhoAmI(ctx context.Context, req *v0alpha1.WhoAmIRequest) (*v0alpha1.WhoAmIResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method WhoAmI not implemented")
+}
+func (*UnimplementedGatewayServiceServer) CreateContainer(ctx context.Context, req *v0alpha.CreateContainerRequest) (*v0alpha.CreateContainerResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateContainer not implemented")
 }
-func (*UnimplementedGatewayServiceServer) Delete(ctx context.Context, req *DeleteRequest) (*DeleteResponse, error) {
+func (*UnimplementedGatewayServiceServer) Delete(ctx context.Context, req *v0alpha.DeleteRequest) (*v0alpha.DeleteResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
-func (*UnimplementedGatewayServiceServer) GetPath(ctx context.Context, req *GetPathRequest) (*GetPathResponse, error) {
+func (*UnimplementedGatewayServiceServer) GetPath(ctx context.Context, req *v0alpha.GetPathRequest) (*v0alpha.GetPathResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetPath not implemented")
 }
-func (*UnimplementedGatewayServiceServer) GetQuota(ctx context.Context, req *GetQuotaRequest) (*GetQuotaResponse, error) {
+func (*UnimplementedGatewayServiceServer) GetQuota(ctx context.Context, req *v0alpha.GetQuotaRequest) (*v0alpha.GetQuotaResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetQuota not implemented")
 }
-func (*UnimplementedGatewayServiceServer) InitiateFileDownload(ctx context.Context, req *InitiateFileDownloadRequest) (*InitiateFileDownloadResponse, error) {
+func (*UnimplementedGatewayServiceServer) InitiateFileDownload(ctx context.Context, req *v0alpha.InitiateFileDownloadRequest) (*v0alpha.InitiateFileDownloadResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method InitiateFileDownload not implemented")
 }
-func (*UnimplementedGatewayServiceServer) InitiateFileUpload(ctx context.Context, req *InitiateFileUploadRequest) (*InitiateFileUploadResponse, error) {
+func (*UnimplementedGatewayServiceServer) InitiateFileUpload(ctx context.Context, req *v0alpha.InitiateFileUploadRequest) (*v0alpha.InitiateFileUploadResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method InitiateFileUpload not implemented")
 }
-func (*UnimplementedGatewayServiceServer) ListContainerStream(req *ListContainerStreamRequest, srv GatewayService_ListContainerStreamServer) error {
+func (*UnimplementedGatewayServiceServer) ListContainerStream(req *v0alpha.ListContainerStreamRequest, srv GatewayService_ListContainerStreamServer) error {
 	return status.Errorf(codes.Unimplemented, "method ListContainerStream not implemented")
 }
-func (*UnimplementedGatewayServiceServer) ListContainer(ctx context.Context, req *ListContainerRequest) (*ListContainerResponse, error) {
+func (*UnimplementedGatewayServiceServer) ListContainer(ctx context.Context, req *v0alpha.ListContainerRequest) (*v0alpha.ListContainerResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListContainer not implemented")
 }
-func (*UnimplementedGatewayServiceServer) ListFileVersions(ctx context.Context, req *ListFileVersionsRequest) (*ListFileVersionsResponse, error) {
+func (*UnimplementedGatewayServiceServer) ListFileVersions(ctx context.Context, req *v0alpha.ListFileVersionsRequest) (*v0alpha.ListFileVersionsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListFileVersions not implemented")
 }
 func (*UnimplementedGatewayServiceServer) ListRecycleStream(req *ListRecycleStreamRequest, srv GatewayService_ListRecycleStreamServer) error {
 	return status.Errorf(codes.Unimplemented, "method ListRecycleStream not implemented")
 }
-func (*UnimplementedGatewayServiceServer) ListRecycle(ctx context.Context, req *ListRecycleRequest) (*ListRecycleResponse, error) {
+func (*UnimplementedGatewayServiceServer) ListRecycle(ctx context.Context, req *ListRecycleRequest) (*v0alpha.ListRecycleResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListRecycle not implemented")
 }
-func (*UnimplementedGatewayServiceServer) Move(ctx context.Context, req *MoveRequest) (*MoveResponse, error) {
+func (*UnimplementedGatewayServiceServer) Move(ctx context.Context, req *v0alpha.MoveRequest) (*v0alpha.MoveResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Move not implemented")
 }
-func (*UnimplementedGatewayServiceServer) PurgeRecycle(ctx context.Context, req *PurgeRecycleRequest) (*PurgeRecycleResponse, error) {
+func (*UnimplementedGatewayServiceServer) PurgeRecycle(ctx context.Context, req *PurgeRecycleRequest) (*v0alpha.PurgeRecycleResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PurgeRecycle not implemented")
 }
-func (*UnimplementedGatewayServiceServer) RestoreFileVersion(ctx context.Context, req *RestoreFileVersionRequest) (*RestoreFileVersionResponse, error) {
+func (*UnimplementedGatewayServiceServer) RestoreFileVersion(ctx context.Context, req *v0alpha.RestoreFileVersionRequest) (*v0alpha.RestoreFileVersionResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RestoreFileVersion not implemented")
 }
-func (*UnimplementedGatewayServiceServer) RestoreRecycleItem(ctx context.Context, req *RestoreRecycleItemRequest) (*RestoreRecycleItemResponse, error) {
+func (*UnimplementedGatewayServiceServer) RestoreRecycleItem(ctx context.Context, req *v0alpha.RestoreRecycleItemRequest) (*v0alpha.RestoreRecycleItemResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RestoreRecycleItem not implemented")
 }
-func (*UnimplementedGatewayServiceServer) Stat(ctx context.Context, req *StatRequest) (*StatResponse, error) {
+func (*UnimplementedGatewayServiceServer) Stat(ctx context.Context, req *v0alpha.StatRequest) (*v0alpha.StatResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Stat not implemented")
+}
+func (*UnimplementedGatewayServiceServer) CreateShare(ctx context.Context, req *v0alpha2.CreateShareRequest) (*v0alpha2.CreateShareResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateShare not implemented")
+}
+func (*UnimplementedGatewayServiceServer) RemoveShare(ctx context.Context, req *v0alpha2.RemoveShareRequest) (*v0alpha2.RemoveShareResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RemoveShare not implemented")
+}
+func (*UnimplementedGatewayServiceServer) GetShare(ctx context.Context, req *v0alpha2.GetShareRequest) (*v0alpha2.GetShareResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetShare not implemented")
+}
+func (*UnimplementedGatewayServiceServer) ListShares(ctx context.Context, req *v0alpha2.ListSharesRequest) (*v0alpha2.ListSharesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListShares not implemented")
+}
+func (*UnimplementedGatewayServiceServer) UpdateShare(ctx context.Context, req *v0alpha2.UpdateShareRequest) (*v0alpha2.UpdateShareResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateShare not implemented")
+}
+func (*UnimplementedGatewayServiceServer) ListReceivedShares(ctx context.Context, req *v0alpha2.ListReceivedSharesRequest) (*v0alpha2.ListReceivedSharesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListReceivedShares not implemented")
+}
+func (*UnimplementedGatewayServiceServer) UpdateReceivedShare(ctx context.Context, req *v0alpha2.UpdateReceivedShareRequest) (*v0alpha2.UpdateReceivedShareResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateReceivedShare not implemented")
+}
+func (*UnimplementedGatewayServiceServer) GetReceivedShare(ctx context.Context, req *v0alpha2.GetReceivedShareRequest) (*v0alpha2.GetReceivedShareResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetReceivedShare not implemented")
 }
 
 func RegisterGatewayServiceServer(s *grpc.Server, srv GatewayServiceServer) {
 	s.RegisterService(&_GatewayService_serviceDesc, srv)
 }
 
+func _GatewayService_GenerateAccessToken_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(v0alpha1.GenerateAccessTokenRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GatewayServiceServer).GenerateAccessToken(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/cs3.gatewayv0alpha.GatewayService/GenerateAccessToken",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GatewayServiceServer).GenerateAccessToken(ctx, req.(*v0alpha1.GenerateAccessTokenRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _GatewayService_WhoAmI_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(v0alpha1.WhoAmIRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GatewayServiceServer).WhoAmI(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/cs3.gatewayv0alpha.GatewayService/WhoAmI",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GatewayServiceServer).WhoAmI(ctx, req.(*v0alpha1.WhoAmIRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _GatewayService_CreateContainer_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateContainerRequest)
+	in := new(v0alpha.CreateContainerRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -2674,13 +999,13 @@ func _GatewayService_CreateContainer_Handler(srv interface{}, ctx context.Contex
 		FullMethod: "/cs3.gatewayv0alpha.GatewayService/CreateContainer",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GatewayServiceServer).CreateContainer(ctx, req.(*CreateContainerRequest))
+		return srv.(GatewayServiceServer).CreateContainer(ctx, req.(*v0alpha.CreateContainerRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _GatewayService_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DeleteRequest)
+	in := new(v0alpha.DeleteRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -2692,13 +1017,13 @@ func _GatewayService_Delete_Handler(srv interface{}, ctx context.Context, dec fu
 		FullMethod: "/cs3.gatewayv0alpha.GatewayService/Delete",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GatewayServiceServer).Delete(ctx, req.(*DeleteRequest))
+		return srv.(GatewayServiceServer).Delete(ctx, req.(*v0alpha.DeleteRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _GatewayService_GetPath_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetPathRequest)
+	in := new(v0alpha.GetPathRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -2710,13 +1035,13 @@ func _GatewayService_GetPath_Handler(srv interface{}, ctx context.Context, dec f
 		FullMethod: "/cs3.gatewayv0alpha.GatewayService/GetPath",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GatewayServiceServer).GetPath(ctx, req.(*GetPathRequest))
+		return srv.(GatewayServiceServer).GetPath(ctx, req.(*v0alpha.GetPathRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _GatewayService_GetQuota_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetQuotaRequest)
+	in := new(v0alpha.GetQuotaRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -2728,13 +1053,13 @@ func _GatewayService_GetQuota_Handler(srv interface{}, ctx context.Context, dec 
 		FullMethod: "/cs3.gatewayv0alpha.GatewayService/GetQuota",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GatewayServiceServer).GetQuota(ctx, req.(*GetQuotaRequest))
+		return srv.(GatewayServiceServer).GetQuota(ctx, req.(*v0alpha.GetQuotaRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _GatewayService_InitiateFileDownload_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(InitiateFileDownloadRequest)
+	in := new(v0alpha.InitiateFileDownloadRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -2746,13 +1071,13 @@ func _GatewayService_InitiateFileDownload_Handler(srv interface{}, ctx context.C
 		FullMethod: "/cs3.gatewayv0alpha.GatewayService/InitiateFileDownload",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GatewayServiceServer).InitiateFileDownload(ctx, req.(*InitiateFileDownloadRequest))
+		return srv.(GatewayServiceServer).InitiateFileDownload(ctx, req.(*v0alpha.InitiateFileDownloadRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _GatewayService_InitiateFileUpload_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(InitiateFileUploadRequest)
+	in := new(v0alpha.InitiateFileUploadRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -2764,13 +1089,13 @@ func _GatewayService_InitiateFileUpload_Handler(srv interface{}, ctx context.Con
 		FullMethod: "/cs3.gatewayv0alpha.GatewayService/InitiateFileUpload",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GatewayServiceServer).InitiateFileUpload(ctx, req.(*InitiateFileUploadRequest))
+		return srv.(GatewayServiceServer).InitiateFileUpload(ctx, req.(*v0alpha.InitiateFileUploadRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _GatewayService_ListContainerStream_Handler(srv interface{}, stream grpc.ServerStream) error {
-	m := new(ListContainerStreamRequest)
+	m := new(v0alpha.ListContainerStreamRequest)
 	if err := stream.RecvMsg(m); err != nil {
 		return err
 	}
@@ -2778,7 +1103,7 @@ func _GatewayService_ListContainerStream_Handler(srv interface{}, stream grpc.Se
 }
 
 type GatewayService_ListContainerStreamServer interface {
-	Send(*ListContainerStreamResponse) error
+	Send(*v0alpha.ListContainerStreamResponse) error
 	grpc.ServerStream
 }
 
@@ -2786,12 +1111,12 @@ type gatewayServiceListContainerStreamServer struct {
 	grpc.ServerStream
 }
 
-func (x *gatewayServiceListContainerStreamServer) Send(m *ListContainerStreamResponse) error {
+func (x *gatewayServiceListContainerStreamServer) Send(m *v0alpha.ListContainerStreamResponse) error {
 	return x.ServerStream.SendMsg(m)
 }
 
 func _GatewayService_ListContainer_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListContainerRequest)
+	in := new(v0alpha.ListContainerRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -2803,13 +1128,13 @@ func _GatewayService_ListContainer_Handler(srv interface{}, ctx context.Context,
 		FullMethod: "/cs3.gatewayv0alpha.GatewayService/ListContainer",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GatewayServiceServer).ListContainer(ctx, req.(*ListContainerRequest))
+		return srv.(GatewayServiceServer).ListContainer(ctx, req.(*v0alpha.ListContainerRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _GatewayService_ListFileVersions_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListFileVersionsRequest)
+	in := new(v0alpha.ListFileVersionsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -2821,7 +1146,7 @@ func _GatewayService_ListFileVersions_Handler(srv interface{}, ctx context.Conte
 		FullMethod: "/cs3.gatewayv0alpha.GatewayService/ListFileVersions",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GatewayServiceServer).ListFileVersions(ctx, req.(*ListFileVersionsRequest))
+		return srv.(GatewayServiceServer).ListFileVersions(ctx, req.(*v0alpha.ListFileVersionsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -2835,7 +1160,7 @@ func _GatewayService_ListRecycleStream_Handler(srv interface{}, stream grpc.Serv
 }
 
 type GatewayService_ListRecycleStreamServer interface {
-	Send(*ListRecycleStreamResponse) error
+	Send(*v0alpha.ListRecycleStreamResponse) error
 	grpc.ServerStream
 }
 
@@ -2843,7 +1168,7 @@ type gatewayServiceListRecycleStreamServer struct {
 	grpc.ServerStream
 }
 
-func (x *gatewayServiceListRecycleStreamServer) Send(m *ListRecycleStreamResponse) error {
+func (x *gatewayServiceListRecycleStreamServer) Send(m *v0alpha.ListRecycleStreamResponse) error {
 	return x.ServerStream.SendMsg(m)
 }
 
@@ -2866,7 +1191,7 @@ func _GatewayService_ListRecycle_Handler(srv interface{}, ctx context.Context, d
 }
 
 func _GatewayService_Move_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(MoveRequest)
+	in := new(v0alpha.MoveRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -2878,7 +1203,7 @@ func _GatewayService_Move_Handler(srv interface{}, ctx context.Context, dec func
 		FullMethod: "/cs3.gatewayv0alpha.GatewayService/Move",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GatewayServiceServer).Move(ctx, req.(*MoveRequest))
+		return srv.(GatewayServiceServer).Move(ctx, req.(*v0alpha.MoveRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -2902,7 +1227,7 @@ func _GatewayService_PurgeRecycle_Handler(srv interface{}, ctx context.Context, 
 }
 
 func _GatewayService_RestoreFileVersion_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(RestoreFileVersionRequest)
+	in := new(v0alpha.RestoreFileVersionRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -2914,13 +1239,13 @@ func _GatewayService_RestoreFileVersion_Handler(srv interface{}, ctx context.Con
 		FullMethod: "/cs3.gatewayv0alpha.GatewayService/RestoreFileVersion",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GatewayServiceServer).RestoreFileVersion(ctx, req.(*RestoreFileVersionRequest))
+		return srv.(GatewayServiceServer).RestoreFileVersion(ctx, req.(*v0alpha.RestoreFileVersionRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _GatewayService_RestoreRecycleItem_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(RestoreRecycleItemRequest)
+	in := new(v0alpha.RestoreRecycleItemRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -2932,13 +1257,13 @@ func _GatewayService_RestoreRecycleItem_Handler(srv interface{}, ctx context.Con
 		FullMethod: "/cs3.gatewayv0alpha.GatewayService/RestoreRecycleItem",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GatewayServiceServer).RestoreRecycleItem(ctx, req.(*RestoreRecycleItemRequest))
+		return srv.(GatewayServiceServer).RestoreRecycleItem(ctx, req.(*v0alpha.RestoreRecycleItemRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _GatewayService_Stat_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(StatRequest)
+	in := new(v0alpha.StatRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -2950,7 +1275,151 @@ func _GatewayService_Stat_Handler(srv interface{}, ctx context.Context, dec func
 		FullMethod: "/cs3.gatewayv0alpha.GatewayService/Stat",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GatewayServiceServer).Stat(ctx, req.(*StatRequest))
+		return srv.(GatewayServiceServer).Stat(ctx, req.(*v0alpha.StatRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _GatewayService_CreateShare_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(v0alpha2.CreateShareRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GatewayServiceServer).CreateShare(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/cs3.gatewayv0alpha.GatewayService/CreateShare",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GatewayServiceServer).CreateShare(ctx, req.(*v0alpha2.CreateShareRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _GatewayService_RemoveShare_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(v0alpha2.RemoveShareRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GatewayServiceServer).RemoveShare(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/cs3.gatewayv0alpha.GatewayService/RemoveShare",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GatewayServiceServer).RemoveShare(ctx, req.(*v0alpha2.RemoveShareRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _GatewayService_GetShare_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(v0alpha2.GetShareRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GatewayServiceServer).GetShare(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/cs3.gatewayv0alpha.GatewayService/GetShare",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GatewayServiceServer).GetShare(ctx, req.(*v0alpha2.GetShareRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _GatewayService_ListShares_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(v0alpha2.ListSharesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GatewayServiceServer).ListShares(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/cs3.gatewayv0alpha.GatewayService/ListShares",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GatewayServiceServer).ListShares(ctx, req.(*v0alpha2.ListSharesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _GatewayService_UpdateShare_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(v0alpha2.UpdateShareRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GatewayServiceServer).UpdateShare(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/cs3.gatewayv0alpha.GatewayService/UpdateShare",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GatewayServiceServer).UpdateShare(ctx, req.(*v0alpha2.UpdateShareRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _GatewayService_ListReceivedShares_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(v0alpha2.ListReceivedSharesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GatewayServiceServer).ListReceivedShares(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/cs3.gatewayv0alpha.GatewayService/ListReceivedShares",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GatewayServiceServer).ListReceivedShares(ctx, req.(*v0alpha2.ListReceivedSharesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _GatewayService_UpdateReceivedShare_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(v0alpha2.UpdateReceivedShareRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GatewayServiceServer).UpdateReceivedShare(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/cs3.gatewayv0alpha.GatewayService/UpdateReceivedShare",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GatewayServiceServer).UpdateReceivedShare(ctx, req.(*v0alpha2.UpdateReceivedShareRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _GatewayService_GetReceivedShare_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(v0alpha2.GetReceivedShareRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GatewayServiceServer).GetReceivedShare(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/cs3.gatewayv0alpha.GatewayService/GetReceivedShare",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GatewayServiceServer).GetReceivedShare(ctx, req.(*v0alpha2.GetReceivedShareRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -2959,6 +1428,14 @@ var _GatewayService_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "cs3.gatewayv0alpha.GatewayService",
 	HandlerType: (*GatewayServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "GenerateAccessToken",
+			Handler:    _GatewayService_GenerateAccessToken_Handler,
+		},
+		{
+			MethodName: "WhoAmI",
+			Handler:    _GatewayService_WhoAmI_Handler,
+		},
 		{
 			MethodName: "CreateContainer",
 			Handler:    _GatewayService_CreateContainer_Handler,
@@ -3014,6 +1491,38 @@ var _GatewayService_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Stat",
 			Handler:    _GatewayService_Stat_Handler,
+		},
+		{
+			MethodName: "CreateShare",
+			Handler:    _GatewayService_CreateShare_Handler,
+		},
+		{
+			MethodName: "RemoveShare",
+			Handler:    _GatewayService_RemoveShare_Handler,
+		},
+		{
+			MethodName: "GetShare",
+			Handler:    _GatewayService_GetShare_Handler,
+		},
+		{
+			MethodName: "ListShares",
+			Handler:    _GatewayService_ListShares_Handler,
+		},
+		{
+			MethodName: "UpdateShare",
+			Handler:    _GatewayService_UpdateShare_Handler,
+		},
+		{
+			MethodName: "ListReceivedShares",
+			Handler:    _GatewayService_ListReceivedShares_Handler,
+		},
+		{
+			MethodName: "UpdateReceivedShare",
+			Handler:    _GatewayService_UpdateReceivedShare_Handler,
+		},
+		{
+			MethodName: "GetReceivedShare",
+			Handler:    _GatewayService_GetReceivedShare_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{
