@@ -27,47 +27,47 @@ var _ = math.Inf
 // proto package needs to be updated.
 const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 
-type ListSharesRequest_Filter_Type int32
+type ListOCMSharesRequest_Filter_Type int32
 
 const (
-	ListSharesRequest_Filter_LIST_SHARES_REQUEST_FILTER_TYPE_INVALID          ListSharesRequest_Filter_Type = 0
-	ListSharesRequest_Filter_LIST_SHARES_REQUEST_FILTER_TYPE_NO_FILTER        ListSharesRequest_Filter_Type = 1
-	ListSharesRequest_Filter_LIST_SHARES_REQUEST_FILTER_TYPE_RESOURCE_ID      ListSharesRequest_Filter_Type = 2
-	ListSharesRequest_Filter_LIST_SHARES_REQUEST_FILTER_TYPE_OWNER            ListSharesRequest_Filter_Type = 3
-	ListSharesRequest_Filter_LIST_SHARES_REQUEST_FILTER_TYPE_CREATOR          ListSharesRequest_Filter_Type = 4
-	ListSharesRequest_Filter_LIST_SHARES_REQUEST_FILTER_TYPE_OWNER_PROVIDER   ListSharesRequest_Filter_Type = 5
-	ListSharesRequest_Filter_LIST_SHARES_REQUEST_FILTER_TYPE_CREATOR_PROVIDER ListSharesRequest_Filter_Type = 6
+	ListOCMSharesRequest_Filter_LIST_OCM_SHARES_REQUEST_FILTER_TYPE_INVALID          ListOCMSharesRequest_Filter_Type = 0
+	ListOCMSharesRequest_Filter_LIST_OCM_SHARES_REQUEST_FILTER_TYPE_NO_FILTER        ListOCMSharesRequest_Filter_Type = 1
+	ListOCMSharesRequest_Filter_LIST_OCM_SHARES_REQUEST_FILTER_TYPE_RESOURCE_ID      ListOCMSharesRequest_Filter_Type = 2
+	ListOCMSharesRequest_Filter_LIST_OCM_SHARES_REQUEST_FILTER_TYPE_OWNER            ListOCMSharesRequest_Filter_Type = 3
+	ListOCMSharesRequest_Filter_LIST_OCM_SHARES_REQUEST_FILTER_TYPE_CREATOR          ListOCMSharesRequest_Filter_Type = 4
+	ListOCMSharesRequest_Filter_LIST_OCM_SHARES_REQUEST_FILTER_TYPE_OWNER_PROVIDER   ListOCMSharesRequest_Filter_Type = 5
+	ListOCMSharesRequest_Filter_LIST_OCM_SHARES_REQUEST_FILTER_TYPE_CREATOR_PROVIDER ListOCMSharesRequest_Filter_Type = 6
 )
 
-var ListSharesRequest_Filter_Type_name = map[int32]string{
-	0: "LIST_SHARES_REQUEST_FILTER_TYPE_INVALID",
-	1: "LIST_SHARES_REQUEST_FILTER_TYPE_NO_FILTER",
-	2: "LIST_SHARES_REQUEST_FILTER_TYPE_RESOURCE_ID",
-	3: "LIST_SHARES_REQUEST_FILTER_TYPE_OWNER",
-	4: "LIST_SHARES_REQUEST_FILTER_TYPE_CREATOR",
-	5: "LIST_SHARES_REQUEST_FILTER_TYPE_OWNER_PROVIDER",
-	6: "LIST_SHARES_REQUEST_FILTER_TYPE_CREATOR_PROVIDER",
+var ListOCMSharesRequest_Filter_Type_name = map[int32]string{
+	0: "LIST_OCM_SHARES_REQUEST_FILTER_TYPE_INVALID",
+	1: "LIST_OCM_SHARES_REQUEST_FILTER_TYPE_NO_FILTER",
+	2: "LIST_OCM_SHARES_REQUEST_FILTER_TYPE_RESOURCE_ID",
+	3: "LIST_OCM_SHARES_REQUEST_FILTER_TYPE_OWNER",
+	4: "LIST_OCM_SHARES_REQUEST_FILTER_TYPE_CREATOR",
+	5: "LIST_OCM_SHARES_REQUEST_FILTER_TYPE_OWNER_PROVIDER",
+	6: "LIST_OCM_SHARES_REQUEST_FILTER_TYPE_CREATOR_PROVIDER",
 }
 
-var ListSharesRequest_Filter_Type_value = map[string]int32{
-	"LIST_SHARES_REQUEST_FILTER_TYPE_INVALID":          0,
-	"LIST_SHARES_REQUEST_FILTER_TYPE_NO_FILTER":        1,
-	"LIST_SHARES_REQUEST_FILTER_TYPE_RESOURCE_ID":      2,
-	"LIST_SHARES_REQUEST_FILTER_TYPE_OWNER":            3,
-	"LIST_SHARES_REQUEST_FILTER_TYPE_CREATOR":          4,
-	"LIST_SHARES_REQUEST_FILTER_TYPE_OWNER_PROVIDER":   5,
-	"LIST_SHARES_REQUEST_FILTER_TYPE_CREATOR_PROVIDER": 6,
+var ListOCMSharesRequest_Filter_Type_value = map[string]int32{
+	"LIST_OCM_SHARES_REQUEST_FILTER_TYPE_INVALID":          0,
+	"LIST_OCM_SHARES_REQUEST_FILTER_TYPE_NO_FILTER":        1,
+	"LIST_OCM_SHARES_REQUEST_FILTER_TYPE_RESOURCE_ID":      2,
+	"LIST_OCM_SHARES_REQUEST_FILTER_TYPE_OWNER":            3,
+	"LIST_OCM_SHARES_REQUEST_FILTER_TYPE_CREATOR":          4,
+	"LIST_OCM_SHARES_REQUEST_FILTER_TYPE_OWNER_PROVIDER":   5,
+	"LIST_OCM_SHARES_REQUEST_FILTER_TYPE_CREATOR_PROVIDER": 6,
 }
 
-func (x ListSharesRequest_Filter_Type) String() string {
-	return proto.EnumName(ListSharesRequest_Filter_Type_name, int32(x))
+func (x ListOCMSharesRequest_Filter_Type) String() string {
+	return proto.EnumName(ListOCMSharesRequest_Filter_Type_name, int32(x))
 }
 
-func (ListSharesRequest_Filter_Type) EnumDescriptor() ([]byte, []int) {
+func (ListOCMSharesRequest_Filter_Type) EnumDescriptor() ([]byte, []int) {
 	return fileDescriptor_68ad38c27409e544, []int{4, 0, 0}
 }
 
-type CreateShareRequest struct {
+type CreateOCMShareRequest struct {
 	// OPTIONAL.
 	// Opaque information.
 	Opaque *types.Opaque `protobuf:"bytes,1,opt,name=opaque,proto3" json:"opaque,omitempty"`
@@ -82,53 +82,53 @@ type CreateShareRequest struct {
 	XXX_sizecache        int32       `json:"-"`
 }
 
-func (m *CreateShareRequest) Reset()         { *m = CreateShareRequest{} }
-func (m *CreateShareRequest) String() string { return proto.CompactTextString(m) }
-func (*CreateShareRequest) ProtoMessage()    {}
-func (*CreateShareRequest) Descriptor() ([]byte, []int) {
+func (m *CreateOCMShareRequest) Reset()         { *m = CreateOCMShareRequest{} }
+func (m *CreateOCMShareRequest) String() string { return proto.CompactTextString(m) }
+func (*CreateOCMShareRequest) ProtoMessage()    {}
+func (*CreateOCMShareRequest) Descriptor() ([]byte, []int) {
 	return fileDescriptor_68ad38c27409e544, []int{0}
 }
 
-func (m *CreateShareRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_CreateShareRequest.Unmarshal(m, b)
+func (m *CreateOCMShareRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_CreateOCMShareRequest.Unmarshal(m, b)
 }
-func (m *CreateShareRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_CreateShareRequest.Marshal(b, m, deterministic)
+func (m *CreateOCMShareRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_CreateOCMShareRequest.Marshal(b, m, deterministic)
 }
-func (m *CreateShareRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_CreateShareRequest.Merge(m, src)
+func (m *CreateOCMShareRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CreateOCMShareRequest.Merge(m, src)
 }
-func (m *CreateShareRequest) XXX_Size() int {
-	return xxx_messageInfo_CreateShareRequest.Size(m)
+func (m *CreateOCMShareRequest) XXX_Size() int {
+	return xxx_messageInfo_CreateOCMShareRequest.Size(m)
 }
-func (m *CreateShareRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_CreateShareRequest.DiscardUnknown(m)
+func (m *CreateOCMShareRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_CreateOCMShareRequest.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_CreateShareRequest proto.InternalMessageInfo
+var xxx_messageInfo_CreateOCMShareRequest proto.InternalMessageInfo
 
-func (m *CreateShareRequest) GetOpaque() *types.Opaque {
+func (m *CreateOCMShareRequest) GetOpaque() *types.Opaque {
 	if m != nil {
 		return m.Opaque
 	}
 	return nil
 }
 
-func (m *CreateShareRequest) GetResourceId() *v0alpha.ResourceId {
+func (m *CreateOCMShareRequest) GetResourceId() *v0alpha.ResourceId {
 	if m != nil {
 		return m.ResourceId
 	}
 	return nil
 }
 
-func (m *CreateShareRequest) GetGrant() *ShareGrant {
+func (m *CreateOCMShareRequest) GetGrant() *ShareGrant {
 	if m != nil {
 		return m.Grant
 	}
 	return nil
 }
 
-type CreateShareResponse struct {
+type CreateOCMShareResponse struct {
 	// REQUIRED.
 	// The response status.
 	Status *rpc.Status `protobuf:"bytes,1,opt,name=status,proto3" json:"status,omitempty"`
@@ -143,192 +143,192 @@ type CreateShareResponse struct {
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *CreateShareResponse) Reset()         { *m = CreateShareResponse{} }
-func (m *CreateShareResponse) String() string { return proto.CompactTextString(m) }
-func (*CreateShareResponse) ProtoMessage()    {}
-func (*CreateShareResponse) Descriptor() ([]byte, []int) {
+func (m *CreateOCMShareResponse) Reset()         { *m = CreateOCMShareResponse{} }
+func (m *CreateOCMShareResponse) String() string { return proto.CompactTextString(m) }
+func (*CreateOCMShareResponse) ProtoMessage()    {}
+func (*CreateOCMShareResponse) Descriptor() ([]byte, []int) {
 	return fileDescriptor_68ad38c27409e544, []int{1}
 }
 
-func (m *CreateShareResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_CreateShareResponse.Unmarshal(m, b)
+func (m *CreateOCMShareResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_CreateOCMShareResponse.Unmarshal(m, b)
 }
-func (m *CreateShareResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_CreateShareResponse.Marshal(b, m, deterministic)
+func (m *CreateOCMShareResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_CreateOCMShareResponse.Marshal(b, m, deterministic)
 }
-func (m *CreateShareResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_CreateShareResponse.Merge(m, src)
+func (m *CreateOCMShareResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CreateOCMShareResponse.Merge(m, src)
 }
-func (m *CreateShareResponse) XXX_Size() int {
-	return xxx_messageInfo_CreateShareResponse.Size(m)
+func (m *CreateOCMShareResponse) XXX_Size() int {
+	return xxx_messageInfo_CreateOCMShareResponse.Size(m)
 }
-func (m *CreateShareResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_CreateShareResponse.DiscardUnknown(m)
+func (m *CreateOCMShareResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_CreateOCMShareResponse.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_CreateShareResponse proto.InternalMessageInfo
+var xxx_messageInfo_CreateOCMShareResponse proto.InternalMessageInfo
 
-func (m *CreateShareResponse) GetStatus() *rpc.Status {
+func (m *CreateOCMShareResponse) GetStatus() *rpc.Status {
 	if m != nil {
 		return m.Status
 	}
 	return nil
 }
 
-func (m *CreateShareResponse) GetOpaque() *types.Opaque {
+func (m *CreateOCMShareResponse) GetOpaque() *types.Opaque {
 	if m != nil {
 		return m.Opaque
 	}
 	return nil
 }
 
-func (m *CreateShareResponse) GetShare() *Share {
+func (m *CreateOCMShareResponse) GetShare() *Share {
 	if m != nil {
 		return m.Share
 	}
 	return nil
 }
 
-type UpdateShareRequest struct {
+type UpdateOCMShareRequest struct {
 	// OPTIONAL.
 	// Opaque information.
-	Opaque               *types.Opaque                   `protobuf:"bytes,1,opt,name=opaque,proto3" json:"opaque,omitempty"`
-	Ref                  *ShareReference                 `protobuf:"bytes,2,opt,name=ref,proto3" json:"ref,omitempty"`
-	Field                *UpdateShareRequest_UpdateField `protobuf:"bytes,3,opt,name=field,proto3" json:"field,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}                        `json:"-"`
-	XXX_unrecognized     []byte                          `json:"-"`
-	XXX_sizecache        int32                           `json:"-"`
+	Opaque               *types.Opaque                      `protobuf:"bytes,1,opt,name=opaque,proto3" json:"opaque,omitempty"`
+	Ref                  *ShareReference                    `protobuf:"bytes,2,opt,name=ref,proto3" json:"ref,omitempty"`
+	Field                *UpdateOCMShareRequest_UpdateField `protobuf:"bytes,3,opt,name=field,proto3" json:"field,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}                           `json:"-"`
+	XXX_unrecognized     []byte                             `json:"-"`
+	XXX_sizecache        int32                              `json:"-"`
 }
 
-func (m *UpdateShareRequest) Reset()         { *m = UpdateShareRequest{} }
-func (m *UpdateShareRequest) String() string { return proto.CompactTextString(m) }
-func (*UpdateShareRequest) ProtoMessage()    {}
-func (*UpdateShareRequest) Descriptor() ([]byte, []int) {
+func (m *UpdateOCMShareRequest) Reset()         { *m = UpdateOCMShareRequest{} }
+func (m *UpdateOCMShareRequest) String() string { return proto.CompactTextString(m) }
+func (*UpdateOCMShareRequest) ProtoMessage()    {}
+func (*UpdateOCMShareRequest) Descriptor() ([]byte, []int) {
 	return fileDescriptor_68ad38c27409e544, []int{2}
 }
 
-func (m *UpdateShareRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_UpdateShareRequest.Unmarshal(m, b)
+func (m *UpdateOCMShareRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_UpdateOCMShareRequest.Unmarshal(m, b)
 }
-func (m *UpdateShareRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_UpdateShareRequest.Marshal(b, m, deterministic)
+func (m *UpdateOCMShareRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_UpdateOCMShareRequest.Marshal(b, m, deterministic)
 }
-func (m *UpdateShareRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_UpdateShareRequest.Merge(m, src)
+func (m *UpdateOCMShareRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_UpdateOCMShareRequest.Merge(m, src)
 }
-func (m *UpdateShareRequest) XXX_Size() int {
-	return xxx_messageInfo_UpdateShareRequest.Size(m)
+func (m *UpdateOCMShareRequest) XXX_Size() int {
+	return xxx_messageInfo_UpdateOCMShareRequest.Size(m)
 }
-func (m *UpdateShareRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_UpdateShareRequest.DiscardUnknown(m)
+func (m *UpdateOCMShareRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_UpdateOCMShareRequest.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_UpdateShareRequest proto.InternalMessageInfo
+var xxx_messageInfo_UpdateOCMShareRequest proto.InternalMessageInfo
 
-func (m *UpdateShareRequest) GetOpaque() *types.Opaque {
+func (m *UpdateOCMShareRequest) GetOpaque() *types.Opaque {
 	if m != nil {
 		return m.Opaque
 	}
 	return nil
 }
 
-func (m *UpdateShareRequest) GetRef() *ShareReference {
+func (m *UpdateOCMShareRequest) GetRef() *ShareReference {
 	if m != nil {
 		return m.Ref
 	}
 	return nil
 }
 
-func (m *UpdateShareRequest) GetField() *UpdateShareRequest_UpdateField {
+func (m *UpdateOCMShareRequest) GetField() *UpdateOCMShareRequest_UpdateField {
 	if m != nil {
 		return m.Field
 	}
 	return nil
 }
 
-type UpdateShareRequest_UpdateField struct {
+type UpdateOCMShareRequest_UpdateField struct {
 	// One of the update fields MUST be specified.
 	//
 	// Types that are valid to be assigned to Field:
-	//	*UpdateShareRequest_UpdateField_Permissions
-	//	*UpdateShareRequest_UpdateField_DisplayName
-	Field                isUpdateShareRequest_UpdateField_Field `protobuf_oneof:"field"`
-	XXX_NoUnkeyedLiteral struct{}                               `json:"-"`
-	XXX_unrecognized     []byte                                 `json:"-"`
-	XXX_sizecache        int32                                  `json:"-"`
+	//	*UpdateOCMShareRequest_UpdateField_Permissions
+	//	*UpdateOCMShareRequest_UpdateField_DisplayName
+	Field                isUpdateOCMShareRequest_UpdateField_Field `protobuf_oneof:"field"`
+	XXX_NoUnkeyedLiteral struct{}                                  `json:"-"`
+	XXX_unrecognized     []byte                                    `json:"-"`
+	XXX_sizecache        int32                                     `json:"-"`
 }
 
-func (m *UpdateShareRequest_UpdateField) Reset()         { *m = UpdateShareRequest_UpdateField{} }
-func (m *UpdateShareRequest_UpdateField) String() string { return proto.CompactTextString(m) }
-func (*UpdateShareRequest_UpdateField) ProtoMessage()    {}
-func (*UpdateShareRequest_UpdateField) Descriptor() ([]byte, []int) {
+func (m *UpdateOCMShareRequest_UpdateField) Reset()         { *m = UpdateOCMShareRequest_UpdateField{} }
+func (m *UpdateOCMShareRequest_UpdateField) String() string { return proto.CompactTextString(m) }
+func (*UpdateOCMShareRequest_UpdateField) ProtoMessage()    {}
+func (*UpdateOCMShareRequest_UpdateField) Descriptor() ([]byte, []int) {
 	return fileDescriptor_68ad38c27409e544, []int{2, 0}
 }
 
-func (m *UpdateShareRequest_UpdateField) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_UpdateShareRequest_UpdateField.Unmarshal(m, b)
+func (m *UpdateOCMShareRequest_UpdateField) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_UpdateOCMShareRequest_UpdateField.Unmarshal(m, b)
 }
-func (m *UpdateShareRequest_UpdateField) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_UpdateShareRequest_UpdateField.Marshal(b, m, deterministic)
+func (m *UpdateOCMShareRequest_UpdateField) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_UpdateOCMShareRequest_UpdateField.Marshal(b, m, deterministic)
 }
-func (m *UpdateShareRequest_UpdateField) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_UpdateShareRequest_UpdateField.Merge(m, src)
+func (m *UpdateOCMShareRequest_UpdateField) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_UpdateOCMShareRequest_UpdateField.Merge(m, src)
 }
-func (m *UpdateShareRequest_UpdateField) XXX_Size() int {
-	return xxx_messageInfo_UpdateShareRequest_UpdateField.Size(m)
+func (m *UpdateOCMShareRequest_UpdateField) XXX_Size() int {
+	return xxx_messageInfo_UpdateOCMShareRequest_UpdateField.Size(m)
 }
-func (m *UpdateShareRequest_UpdateField) XXX_DiscardUnknown() {
-	xxx_messageInfo_UpdateShareRequest_UpdateField.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_UpdateShareRequest_UpdateField proto.InternalMessageInfo
-
-type isUpdateShareRequest_UpdateField_Field interface {
-	isUpdateShareRequest_UpdateField_Field()
+func (m *UpdateOCMShareRequest_UpdateField) XXX_DiscardUnknown() {
+	xxx_messageInfo_UpdateOCMShareRequest_UpdateField.DiscardUnknown(m)
 }
 
-type UpdateShareRequest_UpdateField_Permissions struct {
+var xxx_messageInfo_UpdateOCMShareRequest_UpdateField proto.InternalMessageInfo
+
+type isUpdateOCMShareRequest_UpdateField_Field interface {
+	isUpdateOCMShareRequest_UpdateField_Field()
+}
+
+type UpdateOCMShareRequest_UpdateField_Permissions struct {
 	Permissions *SharePermissions `protobuf:"bytes,2,opt,name=permissions,proto3,oneof"`
 }
 
-type UpdateShareRequest_UpdateField_DisplayName struct {
+type UpdateOCMShareRequest_UpdateField_DisplayName struct {
 	DisplayName string `protobuf:"bytes,3,opt,name=display_name,json=displayName,proto3,oneof"`
 }
 
-func (*UpdateShareRequest_UpdateField_Permissions) isUpdateShareRequest_UpdateField_Field() {}
+func (*UpdateOCMShareRequest_UpdateField_Permissions) isUpdateOCMShareRequest_UpdateField_Field() {}
 
-func (*UpdateShareRequest_UpdateField_DisplayName) isUpdateShareRequest_UpdateField_Field() {}
+func (*UpdateOCMShareRequest_UpdateField_DisplayName) isUpdateOCMShareRequest_UpdateField_Field() {}
 
-func (m *UpdateShareRequest_UpdateField) GetField() isUpdateShareRequest_UpdateField_Field {
+func (m *UpdateOCMShareRequest_UpdateField) GetField() isUpdateOCMShareRequest_UpdateField_Field {
 	if m != nil {
 		return m.Field
 	}
 	return nil
 }
 
-func (m *UpdateShareRequest_UpdateField) GetPermissions() *SharePermissions {
-	if x, ok := m.GetField().(*UpdateShareRequest_UpdateField_Permissions); ok {
+func (m *UpdateOCMShareRequest_UpdateField) GetPermissions() *SharePermissions {
+	if x, ok := m.GetField().(*UpdateOCMShareRequest_UpdateField_Permissions); ok {
 		return x.Permissions
 	}
 	return nil
 }
 
-func (m *UpdateShareRequest_UpdateField) GetDisplayName() string {
-	if x, ok := m.GetField().(*UpdateShareRequest_UpdateField_DisplayName); ok {
+func (m *UpdateOCMShareRequest_UpdateField) GetDisplayName() string {
+	if x, ok := m.GetField().(*UpdateOCMShareRequest_UpdateField_DisplayName); ok {
 		return x.DisplayName
 	}
 	return ""
 }
 
 // XXX_OneofWrappers is for the internal use of the proto package.
-func (*UpdateShareRequest_UpdateField) XXX_OneofWrappers() []interface{} {
+func (*UpdateOCMShareRequest_UpdateField) XXX_OneofWrappers() []interface{} {
 	return []interface{}{
-		(*UpdateShareRequest_UpdateField_Permissions)(nil),
-		(*UpdateShareRequest_UpdateField_DisplayName)(nil),
+		(*UpdateOCMShareRequest_UpdateField_Permissions)(nil),
+		(*UpdateOCMShareRequest_UpdateField_DisplayName)(nil),
 	}
 }
 
-type UpdateShareResponse struct {
+type UpdateOCMShareResponse struct {
 	// REQUIRED.
 	// The response status.
 	Status *rpc.Status `protobuf:"bytes,1,opt,name=status,proto3" json:"status,omitempty"`
@@ -340,90 +340,90 @@ type UpdateShareResponse struct {
 	XXX_sizecache        int32         `json:"-"`
 }
 
-func (m *UpdateShareResponse) Reset()         { *m = UpdateShareResponse{} }
-func (m *UpdateShareResponse) String() string { return proto.CompactTextString(m) }
-func (*UpdateShareResponse) ProtoMessage()    {}
-func (*UpdateShareResponse) Descriptor() ([]byte, []int) {
+func (m *UpdateOCMShareResponse) Reset()         { *m = UpdateOCMShareResponse{} }
+func (m *UpdateOCMShareResponse) String() string { return proto.CompactTextString(m) }
+func (*UpdateOCMShareResponse) ProtoMessage()    {}
+func (*UpdateOCMShareResponse) Descriptor() ([]byte, []int) {
 	return fileDescriptor_68ad38c27409e544, []int{3}
 }
 
-func (m *UpdateShareResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_UpdateShareResponse.Unmarshal(m, b)
+func (m *UpdateOCMShareResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_UpdateOCMShareResponse.Unmarshal(m, b)
 }
-func (m *UpdateShareResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_UpdateShareResponse.Marshal(b, m, deterministic)
+func (m *UpdateOCMShareResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_UpdateOCMShareResponse.Marshal(b, m, deterministic)
 }
-func (m *UpdateShareResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_UpdateShareResponse.Merge(m, src)
+func (m *UpdateOCMShareResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_UpdateOCMShareResponse.Merge(m, src)
 }
-func (m *UpdateShareResponse) XXX_Size() int {
-	return xxx_messageInfo_UpdateShareResponse.Size(m)
+func (m *UpdateOCMShareResponse) XXX_Size() int {
+	return xxx_messageInfo_UpdateOCMShareResponse.Size(m)
 }
-func (m *UpdateShareResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_UpdateShareResponse.DiscardUnknown(m)
+func (m *UpdateOCMShareResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_UpdateOCMShareResponse.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_UpdateShareResponse proto.InternalMessageInfo
+var xxx_messageInfo_UpdateOCMShareResponse proto.InternalMessageInfo
 
-func (m *UpdateShareResponse) GetStatus() *rpc.Status {
+func (m *UpdateOCMShareResponse) GetStatus() *rpc.Status {
 	if m != nil {
 		return m.Status
 	}
 	return nil
 }
 
-func (m *UpdateShareResponse) GetOpaque() *types.Opaque {
+func (m *UpdateOCMShareResponse) GetOpaque() *types.Opaque {
 	if m != nil {
 		return m.Opaque
 	}
 	return nil
 }
 
-type ListSharesRequest struct {
+type ListOCMSharesRequest struct {
 	// OPTIONAL.
 	// Opaque information.
 	Opaque *types.Opaque `protobuf:"bytes,1,opt,name=opaque,proto3" json:"opaque,omitempty"`
 	// OPTIONAL.
 	// The list of filters to apply if any.
-	Filters              []*ListSharesRequest_Filter `protobuf:"bytes,2,rep,name=filters,proto3" json:"filters,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}                    `json:"-"`
-	XXX_unrecognized     []byte                      `json:"-"`
-	XXX_sizecache        int32                       `json:"-"`
+	Filters              []*ListOCMSharesRequest_Filter `protobuf:"bytes,2,rep,name=filters,proto3" json:"filters,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}                       `json:"-"`
+	XXX_unrecognized     []byte                         `json:"-"`
+	XXX_sizecache        int32                          `json:"-"`
 }
 
-func (m *ListSharesRequest) Reset()         { *m = ListSharesRequest{} }
-func (m *ListSharesRequest) String() string { return proto.CompactTextString(m) }
-func (*ListSharesRequest) ProtoMessage()    {}
-func (*ListSharesRequest) Descriptor() ([]byte, []int) {
+func (m *ListOCMSharesRequest) Reset()         { *m = ListOCMSharesRequest{} }
+func (m *ListOCMSharesRequest) String() string { return proto.CompactTextString(m) }
+func (*ListOCMSharesRequest) ProtoMessage()    {}
+func (*ListOCMSharesRequest) Descriptor() ([]byte, []int) {
 	return fileDescriptor_68ad38c27409e544, []int{4}
 }
 
-func (m *ListSharesRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_ListSharesRequest.Unmarshal(m, b)
+func (m *ListOCMSharesRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ListOCMSharesRequest.Unmarshal(m, b)
 }
-func (m *ListSharesRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_ListSharesRequest.Marshal(b, m, deterministic)
+func (m *ListOCMSharesRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ListOCMSharesRequest.Marshal(b, m, deterministic)
 }
-func (m *ListSharesRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ListSharesRequest.Merge(m, src)
+func (m *ListOCMSharesRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ListOCMSharesRequest.Merge(m, src)
 }
-func (m *ListSharesRequest) XXX_Size() int {
-	return xxx_messageInfo_ListSharesRequest.Size(m)
+func (m *ListOCMSharesRequest) XXX_Size() int {
+	return xxx_messageInfo_ListOCMSharesRequest.Size(m)
 }
-func (m *ListSharesRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_ListSharesRequest.DiscardUnknown(m)
+func (m *ListOCMSharesRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_ListOCMSharesRequest.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_ListSharesRequest proto.InternalMessageInfo
+var xxx_messageInfo_ListOCMSharesRequest proto.InternalMessageInfo
 
-func (m *ListSharesRequest) GetOpaque() *types.Opaque {
+func (m *ListOCMSharesRequest) GetOpaque() *types.Opaque {
 	if m != nil {
 		return m.Opaque
 	}
 	return nil
 }
 
-func (m *ListSharesRequest) GetFilters() []*ListSharesRequest_Filter {
+func (m *ListOCMSharesRequest) GetFilters() []*ListOCMSharesRequest_Filter {
 	if m != nil {
 		return m.Filters
 	}
@@ -431,110 +431,110 @@ func (m *ListSharesRequest) GetFilters() []*ListSharesRequest_Filter {
 }
 
 // represents a filter to apply to the request.
-type ListSharesRequest_Filter struct {
-	Type ListSharesRequest_Filter_Type `protobuf:"varint,2,opt,name=type,proto3,enum=cs3.ocmshareproviderv0alpha.ListSharesRequest_Filter_Type" json:"type,omitempty"`
+type ListOCMSharesRequest_Filter struct {
+	Type ListOCMSharesRequest_Filter_Type `protobuf:"varint,2,opt,name=type,proto3,enum=cs3.ocmshareproviderv0alpha.ListOCMSharesRequest_Filter_Type" json:"type,omitempty"`
 	// Types that are valid to be assigned to Term:
-	//	*ListSharesRequest_Filter_ResourceId
-	//	*ListSharesRequest_Filter_Owner
-	//	*ListSharesRequest_Filter_Creator
-	Term                 isListSharesRequest_Filter_Term `protobuf_oneof:"term"`
-	XXX_NoUnkeyedLiteral struct{}                        `json:"-"`
-	XXX_unrecognized     []byte                          `json:"-"`
-	XXX_sizecache        int32                           `json:"-"`
+	//	*ListOCMSharesRequest_Filter_ResourceId
+	//	*ListOCMSharesRequest_Filter_Owner
+	//	*ListOCMSharesRequest_Filter_Creator
+	Term                 isListOCMSharesRequest_Filter_Term `protobuf_oneof:"term"`
+	XXX_NoUnkeyedLiteral struct{}                           `json:"-"`
+	XXX_unrecognized     []byte                             `json:"-"`
+	XXX_sizecache        int32                              `json:"-"`
 }
 
-func (m *ListSharesRequest_Filter) Reset()         { *m = ListSharesRequest_Filter{} }
-func (m *ListSharesRequest_Filter) String() string { return proto.CompactTextString(m) }
-func (*ListSharesRequest_Filter) ProtoMessage()    {}
-func (*ListSharesRequest_Filter) Descriptor() ([]byte, []int) {
+func (m *ListOCMSharesRequest_Filter) Reset()         { *m = ListOCMSharesRequest_Filter{} }
+func (m *ListOCMSharesRequest_Filter) String() string { return proto.CompactTextString(m) }
+func (*ListOCMSharesRequest_Filter) ProtoMessage()    {}
+func (*ListOCMSharesRequest_Filter) Descriptor() ([]byte, []int) {
 	return fileDescriptor_68ad38c27409e544, []int{4, 0}
 }
 
-func (m *ListSharesRequest_Filter) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_ListSharesRequest_Filter.Unmarshal(m, b)
+func (m *ListOCMSharesRequest_Filter) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ListOCMSharesRequest_Filter.Unmarshal(m, b)
 }
-func (m *ListSharesRequest_Filter) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_ListSharesRequest_Filter.Marshal(b, m, deterministic)
+func (m *ListOCMSharesRequest_Filter) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ListOCMSharesRequest_Filter.Marshal(b, m, deterministic)
 }
-func (m *ListSharesRequest_Filter) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ListSharesRequest_Filter.Merge(m, src)
+func (m *ListOCMSharesRequest_Filter) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ListOCMSharesRequest_Filter.Merge(m, src)
 }
-func (m *ListSharesRequest_Filter) XXX_Size() int {
-	return xxx_messageInfo_ListSharesRequest_Filter.Size(m)
+func (m *ListOCMSharesRequest_Filter) XXX_Size() int {
+	return xxx_messageInfo_ListOCMSharesRequest_Filter.Size(m)
 }
-func (m *ListSharesRequest_Filter) XXX_DiscardUnknown() {
-	xxx_messageInfo_ListSharesRequest_Filter.DiscardUnknown(m)
+func (m *ListOCMSharesRequest_Filter) XXX_DiscardUnknown() {
+	xxx_messageInfo_ListOCMSharesRequest_Filter.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_ListSharesRequest_Filter proto.InternalMessageInfo
+var xxx_messageInfo_ListOCMSharesRequest_Filter proto.InternalMessageInfo
 
-func (m *ListSharesRequest_Filter) GetType() ListSharesRequest_Filter_Type {
+func (m *ListOCMSharesRequest_Filter) GetType() ListOCMSharesRequest_Filter_Type {
 	if m != nil {
 		return m.Type
 	}
-	return ListSharesRequest_Filter_LIST_SHARES_REQUEST_FILTER_TYPE_INVALID
+	return ListOCMSharesRequest_Filter_LIST_OCM_SHARES_REQUEST_FILTER_TYPE_INVALID
 }
 
-type isListSharesRequest_Filter_Term interface {
-	isListSharesRequest_Filter_Term()
+type isListOCMSharesRequest_Filter_Term interface {
+	isListOCMSharesRequest_Filter_Term()
 }
 
-type ListSharesRequest_Filter_ResourceId struct {
+type ListOCMSharesRequest_Filter_ResourceId struct {
 	ResourceId *v0alpha.ResourceId `protobuf:"bytes,3,opt,name=resource_id,json=resourceId,proto3,oneof"`
 }
 
-type ListSharesRequest_Filter_Owner struct {
+type ListOCMSharesRequest_Filter_Owner struct {
 	Owner *types.UserId `protobuf:"bytes,4,opt,name=owner,proto3,oneof"`
 }
 
-type ListSharesRequest_Filter_Creator struct {
+type ListOCMSharesRequest_Filter_Creator struct {
 	Creator *types.UserId `protobuf:"bytes,5,opt,name=creator,proto3,oneof"`
 }
 
-func (*ListSharesRequest_Filter_ResourceId) isListSharesRequest_Filter_Term() {}
+func (*ListOCMSharesRequest_Filter_ResourceId) isListOCMSharesRequest_Filter_Term() {}
 
-func (*ListSharesRequest_Filter_Owner) isListSharesRequest_Filter_Term() {}
+func (*ListOCMSharesRequest_Filter_Owner) isListOCMSharesRequest_Filter_Term() {}
 
-func (*ListSharesRequest_Filter_Creator) isListSharesRequest_Filter_Term() {}
+func (*ListOCMSharesRequest_Filter_Creator) isListOCMSharesRequest_Filter_Term() {}
 
-func (m *ListSharesRequest_Filter) GetTerm() isListSharesRequest_Filter_Term {
+func (m *ListOCMSharesRequest_Filter) GetTerm() isListOCMSharesRequest_Filter_Term {
 	if m != nil {
 		return m.Term
 	}
 	return nil
 }
 
-func (m *ListSharesRequest_Filter) GetResourceId() *v0alpha.ResourceId {
-	if x, ok := m.GetTerm().(*ListSharesRequest_Filter_ResourceId); ok {
+func (m *ListOCMSharesRequest_Filter) GetResourceId() *v0alpha.ResourceId {
+	if x, ok := m.GetTerm().(*ListOCMSharesRequest_Filter_ResourceId); ok {
 		return x.ResourceId
 	}
 	return nil
 }
 
-func (m *ListSharesRequest_Filter) GetOwner() *types.UserId {
-	if x, ok := m.GetTerm().(*ListSharesRequest_Filter_Owner); ok {
+func (m *ListOCMSharesRequest_Filter) GetOwner() *types.UserId {
+	if x, ok := m.GetTerm().(*ListOCMSharesRequest_Filter_Owner); ok {
 		return x.Owner
 	}
 	return nil
 }
 
-func (m *ListSharesRequest_Filter) GetCreator() *types.UserId {
-	if x, ok := m.GetTerm().(*ListSharesRequest_Filter_Creator); ok {
+func (m *ListOCMSharesRequest_Filter) GetCreator() *types.UserId {
+	if x, ok := m.GetTerm().(*ListOCMSharesRequest_Filter_Creator); ok {
 		return x.Creator
 	}
 	return nil
 }
 
 // XXX_OneofWrappers is for the internal use of the proto package.
-func (*ListSharesRequest_Filter) XXX_OneofWrappers() []interface{} {
+func (*ListOCMSharesRequest_Filter) XXX_OneofWrappers() []interface{} {
 	return []interface{}{
-		(*ListSharesRequest_Filter_ResourceId)(nil),
-		(*ListSharesRequest_Filter_Owner)(nil),
-		(*ListSharesRequest_Filter_Creator)(nil),
+		(*ListOCMSharesRequest_Filter_ResourceId)(nil),
+		(*ListOCMSharesRequest_Filter_Owner)(nil),
+		(*ListOCMSharesRequest_Filter_Creator)(nil),
 	}
 }
 
-type ListSharesResponse struct {
+type ListOCMSharesResponse struct {
 	// REQUIRED.
 	// The response status.
 	Status *rpc.Status `protobuf:"bytes,1,opt,name=status,proto3" json:"status,omitempty"`
@@ -549,53 +549,53 @@ type ListSharesResponse struct {
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *ListSharesResponse) Reset()         { *m = ListSharesResponse{} }
-func (m *ListSharesResponse) String() string { return proto.CompactTextString(m) }
-func (*ListSharesResponse) ProtoMessage()    {}
-func (*ListSharesResponse) Descriptor() ([]byte, []int) {
+func (m *ListOCMSharesResponse) Reset()         { *m = ListOCMSharesResponse{} }
+func (m *ListOCMSharesResponse) String() string { return proto.CompactTextString(m) }
+func (*ListOCMSharesResponse) ProtoMessage()    {}
+func (*ListOCMSharesResponse) Descriptor() ([]byte, []int) {
 	return fileDescriptor_68ad38c27409e544, []int{5}
 }
 
-func (m *ListSharesResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_ListSharesResponse.Unmarshal(m, b)
+func (m *ListOCMSharesResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ListOCMSharesResponse.Unmarshal(m, b)
 }
-func (m *ListSharesResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_ListSharesResponse.Marshal(b, m, deterministic)
+func (m *ListOCMSharesResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ListOCMSharesResponse.Marshal(b, m, deterministic)
 }
-func (m *ListSharesResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ListSharesResponse.Merge(m, src)
+func (m *ListOCMSharesResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ListOCMSharesResponse.Merge(m, src)
 }
-func (m *ListSharesResponse) XXX_Size() int {
-	return xxx_messageInfo_ListSharesResponse.Size(m)
+func (m *ListOCMSharesResponse) XXX_Size() int {
+	return xxx_messageInfo_ListOCMSharesResponse.Size(m)
 }
-func (m *ListSharesResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_ListSharesResponse.DiscardUnknown(m)
+func (m *ListOCMSharesResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_ListOCMSharesResponse.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_ListSharesResponse proto.InternalMessageInfo
+var xxx_messageInfo_ListOCMSharesResponse proto.InternalMessageInfo
 
-func (m *ListSharesResponse) GetStatus() *rpc.Status {
+func (m *ListOCMSharesResponse) GetStatus() *rpc.Status {
 	if m != nil {
 		return m.Status
 	}
 	return nil
 }
 
-func (m *ListSharesResponse) GetOpaque() *types.Opaque {
+func (m *ListOCMSharesResponse) GetOpaque() *types.Opaque {
 	if m != nil {
 		return m.Opaque
 	}
 	return nil
 }
 
-func (m *ListSharesResponse) GetShares() []*Share {
+func (m *ListOCMSharesResponse) GetShares() []*Share {
 	if m != nil {
 		return m.Shares
 	}
 	return nil
 }
 
-type RemoveShareRequest struct {
+type RemoveOCMShareRequest struct {
 	// OPTIONAL.
 	// Opaque information.
 	Opaque *types.Opaque `protobuf:"bytes,1,opt,name=opaque,proto3" json:"opaque,omitempty"`
@@ -607,46 +607,46 @@ type RemoveShareRequest struct {
 	XXX_sizecache        int32           `json:"-"`
 }
 
-func (m *RemoveShareRequest) Reset()         { *m = RemoveShareRequest{} }
-func (m *RemoveShareRequest) String() string { return proto.CompactTextString(m) }
-func (*RemoveShareRequest) ProtoMessage()    {}
-func (*RemoveShareRequest) Descriptor() ([]byte, []int) {
+func (m *RemoveOCMShareRequest) Reset()         { *m = RemoveOCMShareRequest{} }
+func (m *RemoveOCMShareRequest) String() string { return proto.CompactTextString(m) }
+func (*RemoveOCMShareRequest) ProtoMessage()    {}
+func (*RemoveOCMShareRequest) Descriptor() ([]byte, []int) {
 	return fileDescriptor_68ad38c27409e544, []int{6}
 }
 
-func (m *RemoveShareRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_RemoveShareRequest.Unmarshal(m, b)
+func (m *RemoveOCMShareRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_RemoveOCMShareRequest.Unmarshal(m, b)
 }
-func (m *RemoveShareRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_RemoveShareRequest.Marshal(b, m, deterministic)
+func (m *RemoveOCMShareRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_RemoveOCMShareRequest.Marshal(b, m, deterministic)
 }
-func (m *RemoveShareRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_RemoveShareRequest.Merge(m, src)
+func (m *RemoveOCMShareRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_RemoveOCMShareRequest.Merge(m, src)
 }
-func (m *RemoveShareRequest) XXX_Size() int {
-	return xxx_messageInfo_RemoveShareRequest.Size(m)
+func (m *RemoveOCMShareRequest) XXX_Size() int {
+	return xxx_messageInfo_RemoveOCMShareRequest.Size(m)
 }
-func (m *RemoveShareRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_RemoveShareRequest.DiscardUnknown(m)
+func (m *RemoveOCMShareRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_RemoveOCMShareRequest.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_RemoveShareRequest proto.InternalMessageInfo
+var xxx_messageInfo_RemoveOCMShareRequest proto.InternalMessageInfo
 
-func (m *RemoveShareRequest) GetOpaque() *types.Opaque {
+func (m *RemoveOCMShareRequest) GetOpaque() *types.Opaque {
 	if m != nil {
 		return m.Opaque
 	}
 	return nil
 }
 
-func (m *RemoveShareRequest) GetRef() *ShareReference {
+func (m *RemoveOCMShareRequest) GetRef() *ShareReference {
 	if m != nil {
 		return m.Ref
 	}
 	return nil
 }
 
-type RemoveShareResponse struct {
+type RemoveOCMShareResponse struct {
 	// REQUIRED.
 	// The response status.
 	Status *rpc.Status `protobuf:"bytes,1,opt,name=status,proto3" json:"status,omitempty"`
@@ -658,46 +658,46 @@ type RemoveShareResponse struct {
 	XXX_sizecache        int32         `json:"-"`
 }
 
-func (m *RemoveShareResponse) Reset()         { *m = RemoveShareResponse{} }
-func (m *RemoveShareResponse) String() string { return proto.CompactTextString(m) }
-func (*RemoveShareResponse) ProtoMessage()    {}
-func (*RemoveShareResponse) Descriptor() ([]byte, []int) {
+func (m *RemoveOCMShareResponse) Reset()         { *m = RemoveOCMShareResponse{} }
+func (m *RemoveOCMShareResponse) String() string { return proto.CompactTextString(m) }
+func (*RemoveOCMShareResponse) ProtoMessage()    {}
+func (*RemoveOCMShareResponse) Descriptor() ([]byte, []int) {
 	return fileDescriptor_68ad38c27409e544, []int{7}
 }
 
-func (m *RemoveShareResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_RemoveShareResponse.Unmarshal(m, b)
+func (m *RemoveOCMShareResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_RemoveOCMShareResponse.Unmarshal(m, b)
 }
-func (m *RemoveShareResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_RemoveShareResponse.Marshal(b, m, deterministic)
+func (m *RemoveOCMShareResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_RemoveOCMShareResponse.Marshal(b, m, deterministic)
 }
-func (m *RemoveShareResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_RemoveShareResponse.Merge(m, src)
+func (m *RemoveOCMShareResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_RemoveOCMShareResponse.Merge(m, src)
 }
-func (m *RemoveShareResponse) XXX_Size() int {
-	return xxx_messageInfo_RemoveShareResponse.Size(m)
+func (m *RemoveOCMShareResponse) XXX_Size() int {
+	return xxx_messageInfo_RemoveOCMShareResponse.Size(m)
 }
-func (m *RemoveShareResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_RemoveShareResponse.DiscardUnknown(m)
+func (m *RemoveOCMShareResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_RemoveOCMShareResponse.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_RemoveShareResponse proto.InternalMessageInfo
+var xxx_messageInfo_RemoveOCMShareResponse proto.InternalMessageInfo
 
-func (m *RemoveShareResponse) GetStatus() *rpc.Status {
+func (m *RemoveOCMShareResponse) GetStatus() *rpc.Status {
 	if m != nil {
 		return m.Status
 	}
 	return nil
 }
 
-func (m *RemoveShareResponse) GetOpaque() *types.Opaque {
+func (m *RemoveOCMShareResponse) GetOpaque() *types.Opaque {
 	if m != nil {
 		return m.Opaque
 	}
 	return nil
 }
 
-type GetShareRequest struct {
+type GetOCMShareRequest struct {
 	// OPTIONAL.
 	// Opaque information.
 	Opaque *types.Opaque `protobuf:"bytes,1,opt,name=opaque,proto3" json:"opaque,omitempty"`
@@ -709,46 +709,46 @@ type GetShareRequest struct {
 	XXX_sizecache        int32           `json:"-"`
 }
 
-func (m *GetShareRequest) Reset()         { *m = GetShareRequest{} }
-func (m *GetShareRequest) String() string { return proto.CompactTextString(m) }
-func (*GetShareRequest) ProtoMessage()    {}
-func (*GetShareRequest) Descriptor() ([]byte, []int) {
+func (m *GetOCMShareRequest) Reset()         { *m = GetOCMShareRequest{} }
+func (m *GetOCMShareRequest) String() string { return proto.CompactTextString(m) }
+func (*GetOCMShareRequest) ProtoMessage()    {}
+func (*GetOCMShareRequest) Descriptor() ([]byte, []int) {
 	return fileDescriptor_68ad38c27409e544, []int{8}
 }
 
-func (m *GetShareRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_GetShareRequest.Unmarshal(m, b)
+func (m *GetOCMShareRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_GetOCMShareRequest.Unmarshal(m, b)
 }
-func (m *GetShareRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_GetShareRequest.Marshal(b, m, deterministic)
+func (m *GetOCMShareRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_GetOCMShareRequest.Marshal(b, m, deterministic)
 }
-func (m *GetShareRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_GetShareRequest.Merge(m, src)
+func (m *GetOCMShareRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_GetOCMShareRequest.Merge(m, src)
 }
-func (m *GetShareRequest) XXX_Size() int {
-	return xxx_messageInfo_GetShareRequest.Size(m)
+func (m *GetOCMShareRequest) XXX_Size() int {
+	return xxx_messageInfo_GetOCMShareRequest.Size(m)
 }
-func (m *GetShareRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_GetShareRequest.DiscardUnknown(m)
+func (m *GetOCMShareRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_GetOCMShareRequest.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_GetShareRequest proto.InternalMessageInfo
+var xxx_messageInfo_GetOCMShareRequest proto.InternalMessageInfo
 
-func (m *GetShareRequest) GetOpaque() *types.Opaque {
+func (m *GetOCMShareRequest) GetOpaque() *types.Opaque {
 	if m != nil {
 		return m.Opaque
 	}
 	return nil
 }
 
-func (m *GetShareRequest) GetRef() *ShareReference {
+func (m *GetOCMShareRequest) GetRef() *ShareReference {
 	if m != nil {
 		return m.Ref
 	}
 	return nil
 }
 
-type GetShareResponse struct {
+type GetOCMShareResponse struct {
 	// REQUIRED.
 	// The response status.
 	Status *rpc.Status `protobuf:"bytes,1,opt,name=status,proto3" json:"status,omitempty"`
@@ -763,53 +763,53 @@ type GetShareResponse struct {
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *GetShareResponse) Reset()         { *m = GetShareResponse{} }
-func (m *GetShareResponse) String() string { return proto.CompactTextString(m) }
-func (*GetShareResponse) ProtoMessage()    {}
-func (*GetShareResponse) Descriptor() ([]byte, []int) {
+func (m *GetOCMShareResponse) Reset()         { *m = GetOCMShareResponse{} }
+func (m *GetOCMShareResponse) String() string { return proto.CompactTextString(m) }
+func (*GetOCMShareResponse) ProtoMessage()    {}
+func (*GetOCMShareResponse) Descriptor() ([]byte, []int) {
 	return fileDescriptor_68ad38c27409e544, []int{9}
 }
 
-func (m *GetShareResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_GetShareResponse.Unmarshal(m, b)
+func (m *GetOCMShareResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_GetOCMShareResponse.Unmarshal(m, b)
 }
-func (m *GetShareResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_GetShareResponse.Marshal(b, m, deterministic)
+func (m *GetOCMShareResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_GetOCMShareResponse.Marshal(b, m, deterministic)
 }
-func (m *GetShareResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_GetShareResponse.Merge(m, src)
+func (m *GetOCMShareResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_GetOCMShareResponse.Merge(m, src)
 }
-func (m *GetShareResponse) XXX_Size() int {
-	return xxx_messageInfo_GetShareResponse.Size(m)
+func (m *GetOCMShareResponse) XXX_Size() int {
+	return xxx_messageInfo_GetOCMShareResponse.Size(m)
 }
-func (m *GetShareResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_GetShareResponse.DiscardUnknown(m)
+func (m *GetOCMShareResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_GetOCMShareResponse.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_GetShareResponse proto.InternalMessageInfo
+var xxx_messageInfo_GetOCMShareResponse proto.InternalMessageInfo
 
-func (m *GetShareResponse) GetStatus() *rpc.Status {
+func (m *GetOCMShareResponse) GetStatus() *rpc.Status {
 	if m != nil {
 		return m.Status
 	}
 	return nil
 }
 
-func (m *GetShareResponse) GetOpaque() *types.Opaque {
+func (m *GetOCMShareResponse) GetOpaque() *types.Opaque {
 	if m != nil {
 		return m.Opaque
 	}
 	return nil
 }
 
-func (m *GetShareResponse) GetShare() *Share {
+func (m *GetOCMShareResponse) GetShare() *Share {
 	if m != nil {
 		return m.Share
 	}
 	return nil
 }
 
-type ListReceivedSharesRequest struct {
+type ListReceivedOCMSharesRequest struct {
 	// OPTIONAL.
 	// Opaque information.
 	Opaque               *types.Opaque `protobuf:"bytes,1,opt,name=opaque,proto3" json:"opaque,omitempty"`
@@ -818,39 +818,39 @@ type ListReceivedSharesRequest struct {
 	XXX_sizecache        int32         `json:"-"`
 }
 
-func (m *ListReceivedSharesRequest) Reset()         { *m = ListReceivedSharesRequest{} }
-func (m *ListReceivedSharesRequest) String() string { return proto.CompactTextString(m) }
-func (*ListReceivedSharesRequest) ProtoMessage()    {}
-func (*ListReceivedSharesRequest) Descriptor() ([]byte, []int) {
+func (m *ListReceivedOCMSharesRequest) Reset()         { *m = ListReceivedOCMSharesRequest{} }
+func (m *ListReceivedOCMSharesRequest) String() string { return proto.CompactTextString(m) }
+func (*ListReceivedOCMSharesRequest) ProtoMessage()    {}
+func (*ListReceivedOCMSharesRequest) Descriptor() ([]byte, []int) {
 	return fileDescriptor_68ad38c27409e544, []int{10}
 }
 
-func (m *ListReceivedSharesRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_ListReceivedSharesRequest.Unmarshal(m, b)
+func (m *ListReceivedOCMSharesRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ListReceivedOCMSharesRequest.Unmarshal(m, b)
 }
-func (m *ListReceivedSharesRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_ListReceivedSharesRequest.Marshal(b, m, deterministic)
+func (m *ListReceivedOCMSharesRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ListReceivedOCMSharesRequest.Marshal(b, m, deterministic)
 }
-func (m *ListReceivedSharesRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ListReceivedSharesRequest.Merge(m, src)
+func (m *ListReceivedOCMSharesRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ListReceivedOCMSharesRequest.Merge(m, src)
 }
-func (m *ListReceivedSharesRequest) XXX_Size() int {
-	return xxx_messageInfo_ListReceivedSharesRequest.Size(m)
+func (m *ListReceivedOCMSharesRequest) XXX_Size() int {
+	return xxx_messageInfo_ListReceivedOCMSharesRequest.Size(m)
 }
-func (m *ListReceivedSharesRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_ListReceivedSharesRequest.DiscardUnknown(m)
+func (m *ListReceivedOCMSharesRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_ListReceivedOCMSharesRequest.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_ListReceivedSharesRequest proto.InternalMessageInfo
+var xxx_messageInfo_ListReceivedOCMSharesRequest proto.InternalMessageInfo
 
-func (m *ListReceivedSharesRequest) GetOpaque() *types.Opaque {
+func (m *ListReceivedOCMSharesRequest) GetOpaque() *types.Opaque {
 	if m != nil {
 		return m.Opaque
 	}
 	return nil
 }
 
-type ListReceivedSharesResponse struct {
+type ListReceivedOCMSharesResponse struct {
 	// REQUIRED.
 	// The response status.
 	Status *rpc.Status `protobuf:"bytes,1,opt,name=status,proto3" json:"status,omitempty"`
@@ -865,46 +865,46 @@ type ListReceivedSharesResponse struct {
 	XXX_sizecache        int32            `json:"-"`
 }
 
-func (m *ListReceivedSharesResponse) Reset()         { *m = ListReceivedSharesResponse{} }
-func (m *ListReceivedSharesResponse) String() string { return proto.CompactTextString(m) }
-func (*ListReceivedSharesResponse) ProtoMessage()    {}
-func (*ListReceivedSharesResponse) Descriptor() ([]byte, []int) {
+func (m *ListReceivedOCMSharesResponse) Reset()         { *m = ListReceivedOCMSharesResponse{} }
+func (m *ListReceivedOCMSharesResponse) String() string { return proto.CompactTextString(m) }
+func (*ListReceivedOCMSharesResponse) ProtoMessage()    {}
+func (*ListReceivedOCMSharesResponse) Descriptor() ([]byte, []int) {
 	return fileDescriptor_68ad38c27409e544, []int{11}
 }
 
-func (m *ListReceivedSharesResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_ListReceivedSharesResponse.Unmarshal(m, b)
+func (m *ListReceivedOCMSharesResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ListReceivedOCMSharesResponse.Unmarshal(m, b)
 }
-func (m *ListReceivedSharesResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_ListReceivedSharesResponse.Marshal(b, m, deterministic)
+func (m *ListReceivedOCMSharesResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ListReceivedOCMSharesResponse.Marshal(b, m, deterministic)
 }
-func (m *ListReceivedSharesResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ListReceivedSharesResponse.Merge(m, src)
+func (m *ListReceivedOCMSharesResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ListReceivedOCMSharesResponse.Merge(m, src)
 }
-func (m *ListReceivedSharesResponse) XXX_Size() int {
-	return xxx_messageInfo_ListReceivedSharesResponse.Size(m)
+func (m *ListReceivedOCMSharesResponse) XXX_Size() int {
+	return xxx_messageInfo_ListReceivedOCMSharesResponse.Size(m)
 }
-func (m *ListReceivedSharesResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_ListReceivedSharesResponse.DiscardUnknown(m)
+func (m *ListReceivedOCMSharesResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_ListReceivedOCMSharesResponse.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_ListReceivedSharesResponse proto.InternalMessageInfo
+var xxx_messageInfo_ListReceivedOCMSharesResponse proto.InternalMessageInfo
 
-func (m *ListReceivedSharesResponse) GetStatus() *rpc.Status {
+func (m *ListReceivedOCMSharesResponse) GetStatus() *rpc.Status {
 	if m != nil {
 		return m.Status
 	}
 	return nil
 }
 
-func (m *ListReceivedSharesResponse) GetOpaque() *types.Opaque {
+func (m *ListReceivedOCMSharesResponse) GetOpaque() *types.Opaque {
 	if m != nil {
 		return m.Opaque
 	}
 	return nil
 }
 
-func (m *ListReceivedSharesResponse) GetShares() []*ReceivedShare {
+func (m *ListReceivedOCMSharesResponse) GetShares() []*ReceivedShare {
 	if m != nil {
 		return m.Shares
 	}
@@ -912,151 +912,151 @@ func (m *ListReceivedSharesResponse) GetShares() []*ReceivedShare {
 }
 
 // TODO(labkode): clean up display_name ? we'll use storage links for that.
-type UpdateReceivedShareRequest struct {
+type UpdateReceivedOCMShareRequest struct {
 	// OPTIONAL.
 	// Opaque information.
 	Opaque *types.Opaque `protobuf:"bytes,1,opt,name=opaque,proto3" json:"opaque,omitempty"`
 	// REQUIRED.
-	Ref                  *ShareReference                         `protobuf:"bytes,2,opt,name=ref,proto3" json:"ref,omitempty"`
-	Field                *UpdateReceivedShareRequest_UpdateField `protobuf:"bytes,3,opt,name=field,proto3" json:"field,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}                                `json:"-"`
-	XXX_unrecognized     []byte                                  `json:"-"`
-	XXX_sizecache        int32                                   `json:"-"`
+	Ref                  *ShareReference                            `protobuf:"bytes,2,opt,name=ref,proto3" json:"ref,omitempty"`
+	Field                *UpdateReceivedOCMShareRequest_UpdateField `protobuf:"bytes,3,opt,name=field,proto3" json:"field,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}                                   `json:"-"`
+	XXX_unrecognized     []byte                                     `json:"-"`
+	XXX_sizecache        int32                                      `json:"-"`
 }
 
-func (m *UpdateReceivedShareRequest) Reset()         { *m = UpdateReceivedShareRequest{} }
-func (m *UpdateReceivedShareRequest) String() string { return proto.CompactTextString(m) }
-func (*UpdateReceivedShareRequest) ProtoMessage()    {}
-func (*UpdateReceivedShareRequest) Descriptor() ([]byte, []int) {
+func (m *UpdateReceivedOCMShareRequest) Reset()         { *m = UpdateReceivedOCMShareRequest{} }
+func (m *UpdateReceivedOCMShareRequest) String() string { return proto.CompactTextString(m) }
+func (*UpdateReceivedOCMShareRequest) ProtoMessage()    {}
+func (*UpdateReceivedOCMShareRequest) Descriptor() ([]byte, []int) {
 	return fileDescriptor_68ad38c27409e544, []int{12}
 }
 
-func (m *UpdateReceivedShareRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_UpdateReceivedShareRequest.Unmarshal(m, b)
+func (m *UpdateReceivedOCMShareRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_UpdateReceivedOCMShareRequest.Unmarshal(m, b)
 }
-func (m *UpdateReceivedShareRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_UpdateReceivedShareRequest.Marshal(b, m, deterministic)
+func (m *UpdateReceivedOCMShareRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_UpdateReceivedOCMShareRequest.Marshal(b, m, deterministic)
 }
-func (m *UpdateReceivedShareRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_UpdateReceivedShareRequest.Merge(m, src)
+func (m *UpdateReceivedOCMShareRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_UpdateReceivedOCMShareRequest.Merge(m, src)
 }
-func (m *UpdateReceivedShareRequest) XXX_Size() int {
-	return xxx_messageInfo_UpdateReceivedShareRequest.Size(m)
+func (m *UpdateReceivedOCMShareRequest) XXX_Size() int {
+	return xxx_messageInfo_UpdateReceivedOCMShareRequest.Size(m)
 }
-func (m *UpdateReceivedShareRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_UpdateReceivedShareRequest.DiscardUnknown(m)
+func (m *UpdateReceivedOCMShareRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_UpdateReceivedOCMShareRequest.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_UpdateReceivedShareRequest proto.InternalMessageInfo
+var xxx_messageInfo_UpdateReceivedOCMShareRequest proto.InternalMessageInfo
 
-func (m *UpdateReceivedShareRequest) GetOpaque() *types.Opaque {
+func (m *UpdateReceivedOCMShareRequest) GetOpaque() *types.Opaque {
 	if m != nil {
 		return m.Opaque
 	}
 	return nil
 }
 
-func (m *UpdateReceivedShareRequest) GetRef() *ShareReference {
+func (m *UpdateReceivedOCMShareRequest) GetRef() *ShareReference {
 	if m != nil {
 		return m.Ref
 	}
 	return nil
 }
 
-func (m *UpdateReceivedShareRequest) GetField() *UpdateReceivedShareRequest_UpdateField {
+func (m *UpdateReceivedOCMShareRequest) GetField() *UpdateReceivedOCMShareRequest_UpdateField {
 	if m != nil {
 		return m.Field
 	}
 	return nil
 }
 
-type UpdateReceivedShareRequest_UpdateField struct {
+type UpdateReceivedOCMShareRequest_UpdateField struct {
 	// One of the update fields MUST be specified.
 	//
 	// Types that are valid to be assigned to Field:
-	//	*UpdateReceivedShareRequest_UpdateField_DisplayName
-	//	*UpdateReceivedShareRequest_UpdateField_State
-	Field                isUpdateReceivedShareRequest_UpdateField_Field `protobuf_oneof:"field"`
-	XXX_NoUnkeyedLiteral struct{}                                       `json:"-"`
-	XXX_unrecognized     []byte                                         `json:"-"`
-	XXX_sizecache        int32                                          `json:"-"`
+	//	*UpdateReceivedOCMShareRequest_UpdateField_DisplayName
+	//	*UpdateReceivedOCMShareRequest_UpdateField_State
+	Field                isUpdateReceivedOCMShareRequest_UpdateField_Field `protobuf_oneof:"field"`
+	XXX_NoUnkeyedLiteral struct{}                                          `json:"-"`
+	XXX_unrecognized     []byte                                            `json:"-"`
+	XXX_sizecache        int32                                             `json:"-"`
 }
 
-func (m *UpdateReceivedShareRequest_UpdateField) Reset() {
-	*m = UpdateReceivedShareRequest_UpdateField{}
+func (m *UpdateReceivedOCMShareRequest_UpdateField) Reset() {
+	*m = UpdateReceivedOCMShareRequest_UpdateField{}
 }
-func (m *UpdateReceivedShareRequest_UpdateField) String() string { return proto.CompactTextString(m) }
-func (*UpdateReceivedShareRequest_UpdateField) ProtoMessage()    {}
-func (*UpdateReceivedShareRequest_UpdateField) Descriptor() ([]byte, []int) {
+func (m *UpdateReceivedOCMShareRequest_UpdateField) String() string { return proto.CompactTextString(m) }
+func (*UpdateReceivedOCMShareRequest_UpdateField) ProtoMessage()    {}
+func (*UpdateReceivedOCMShareRequest_UpdateField) Descriptor() ([]byte, []int) {
 	return fileDescriptor_68ad38c27409e544, []int{12, 0}
 }
 
-func (m *UpdateReceivedShareRequest_UpdateField) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_UpdateReceivedShareRequest_UpdateField.Unmarshal(m, b)
+func (m *UpdateReceivedOCMShareRequest_UpdateField) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_UpdateReceivedOCMShareRequest_UpdateField.Unmarshal(m, b)
 }
-func (m *UpdateReceivedShareRequest_UpdateField) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_UpdateReceivedShareRequest_UpdateField.Marshal(b, m, deterministic)
+func (m *UpdateReceivedOCMShareRequest_UpdateField) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_UpdateReceivedOCMShareRequest_UpdateField.Marshal(b, m, deterministic)
 }
-func (m *UpdateReceivedShareRequest_UpdateField) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_UpdateReceivedShareRequest_UpdateField.Merge(m, src)
+func (m *UpdateReceivedOCMShareRequest_UpdateField) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_UpdateReceivedOCMShareRequest_UpdateField.Merge(m, src)
 }
-func (m *UpdateReceivedShareRequest_UpdateField) XXX_Size() int {
-	return xxx_messageInfo_UpdateReceivedShareRequest_UpdateField.Size(m)
+func (m *UpdateReceivedOCMShareRequest_UpdateField) XXX_Size() int {
+	return xxx_messageInfo_UpdateReceivedOCMShareRequest_UpdateField.Size(m)
 }
-func (m *UpdateReceivedShareRequest_UpdateField) XXX_DiscardUnknown() {
-	xxx_messageInfo_UpdateReceivedShareRequest_UpdateField.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_UpdateReceivedShareRequest_UpdateField proto.InternalMessageInfo
-
-type isUpdateReceivedShareRequest_UpdateField_Field interface {
-	isUpdateReceivedShareRequest_UpdateField_Field()
+func (m *UpdateReceivedOCMShareRequest_UpdateField) XXX_DiscardUnknown() {
+	xxx_messageInfo_UpdateReceivedOCMShareRequest_UpdateField.DiscardUnknown(m)
 }
 
-type UpdateReceivedShareRequest_UpdateField_DisplayName struct {
+var xxx_messageInfo_UpdateReceivedOCMShareRequest_UpdateField proto.InternalMessageInfo
+
+type isUpdateReceivedOCMShareRequest_UpdateField_Field interface {
+	isUpdateReceivedOCMShareRequest_UpdateField_Field()
+}
+
+type UpdateReceivedOCMShareRequest_UpdateField_DisplayName struct {
 	DisplayName string `protobuf:"bytes,1,opt,name=display_name,json=displayName,proto3,oneof"`
 }
 
-type UpdateReceivedShareRequest_UpdateField_State struct {
+type UpdateReceivedOCMShareRequest_UpdateField_State struct {
 	State ShareState `protobuf:"varint,2,opt,name=state,proto3,enum=cs3.ocmshareproviderv0alpha.ShareState,oneof"`
 }
 
-func (*UpdateReceivedShareRequest_UpdateField_DisplayName) isUpdateReceivedShareRequest_UpdateField_Field() {
+func (*UpdateReceivedOCMShareRequest_UpdateField_DisplayName) isUpdateReceivedOCMShareRequest_UpdateField_Field() {
 }
 
-func (*UpdateReceivedShareRequest_UpdateField_State) isUpdateReceivedShareRequest_UpdateField_Field() {
+func (*UpdateReceivedOCMShareRequest_UpdateField_State) isUpdateReceivedOCMShareRequest_UpdateField_Field() {
 }
 
-func (m *UpdateReceivedShareRequest_UpdateField) GetField() isUpdateReceivedShareRequest_UpdateField_Field {
+func (m *UpdateReceivedOCMShareRequest_UpdateField) GetField() isUpdateReceivedOCMShareRequest_UpdateField_Field {
 	if m != nil {
 		return m.Field
 	}
 	return nil
 }
 
-func (m *UpdateReceivedShareRequest_UpdateField) GetDisplayName() string {
-	if x, ok := m.GetField().(*UpdateReceivedShareRequest_UpdateField_DisplayName); ok {
+func (m *UpdateReceivedOCMShareRequest_UpdateField) GetDisplayName() string {
+	if x, ok := m.GetField().(*UpdateReceivedOCMShareRequest_UpdateField_DisplayName); ok {
 		return x.DisplayName
 	}
 	return ""
 }
 
-func (m *UpdateReceivedShareRequest_UpdateField) GetState() ShareState {
-	if x, ok := m.GetField().(*UpdateReceivedShareRequest_UpdateField_State); ok {
+func (m *UpdateReceivedOCMShareRequest_UpdateField) GetState() ShareState {
+	if x, ok := m.GetField().(*UpdateReceivedOCMShareRequest_UpdateField_State); ok {
 		return x.State
 	}
 	return ShareState_SHARE_STATE_INVALID
 }
 
 // XXX_OneofWrappers is for the internal use of the proto package.
-func (*UpdateReceivedShareRequest_UpdateField) XXX_OneofWrappers() []interface{} {
+func (*UpdateReceivedOCMShareRequest_UpdateField) XXX_OneofWrappers() []interface{} {
 	return []interface{}{
-		(*UpdateReceivedShareRequest_UpdateField_DisplayName)(nil),
-		(*UpdateReceivedShareRequest_UpdateField_State)(nil),
+		(*UpdateReceivedOCMShareRequest_UpdateField_DisplayName)(nil),
+		(*UpdateReceivedOCMShareRequest_UpdateField_State)(nil),
 	}
 }
 
-type UpdateReceivedShareResponse struct {
+type UpdateReceivedOCMShareResponse struct {
 	// REQUIRED.
 	// The response status.
 	Status *rpc.Status `protobuf:"bytes,1,opt,name=status,proto3" json:"status,omitempty"`
@@ -1068,39 +1068,39 @@ type UpdateReceivedShareResponse struct {
 	XXX_sizecache        int32         `json:"-"`
 }
 
-func (m *UpdateReceivedShareResponse) Reset()         { *m = UpdateReceivedShareResponse{} }
-func (m *UpdateReceivedShareResponse) String() string { return proto.CompactTextString(m) }
-func (*UpdateReceivedShareResponse) ProtoMessage()    {}
-func (*UpdateReceivedShareResponse) Descriptor() ([]byte, []int) {
+func (m *UpdateReceivedOCMShareResponse) Reset()         { *m = UpdateReceivedOCMShareResponse{} }
+func (m *UpdateReceivedOCMShareResponse) String() string { return proto.CompactTextString(m) }
+func (*UpdateReceivedOCMShareResponse) ProtoMessage()    {}
+func (*UpdateReceivedOCMShareResponse) Descriptor() ([]byte, []int) {
 	return fileDescriptor_68ad38c27409e544, []int{13}
 }
 
-func (m *UpdateReceivedShareResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_UpdateReceivedShareResponse.Unmarshal(m, b)
+func (m *UpdateReceivedOCMShareResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_UpdateReceivedOCMShareResponse.Unmarshal(m, b)
 }
-func (m *UpdateReceivedShareResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_UpdateReceivedShareResponse.Marshal(b, m, deterministic)
+func (m *UpdateReceivedOCMShareResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_UpdateReceivedOCMShareResponse.Marshal(b, m, deterministic)
 }
-func (m *UpdateReceivedShareResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_UpdateReceivedShareResponse.Merge(m, src)
+func (m *UpdateReceivedOCMShareResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_UpdateReceivedOCMShareResponse.Merge(m, src)
 }
-func (m *UpdateReceivedShareResponse) XXX_Size() int {
-	return xxx_messageInfo_UpdateReceivedShareResponse.Size(m)
+func (m *UpdateReceivedOCMShareResponse) XXX_Size() int {
+	return xxx_messageInfo_UpdateReceivedOCMShareResponse.Size(m)
 }
-func (m *UpdateReceivedShareResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_UpdateReceivedShareResponse.DiscardUnknown(m)
+func (m *UpdateReceivedOCMShareResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_UpdateReceivedOCMShareResponse.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_UpdateReceivedShareResponse proto.InternalMessageInfo
+var xxx_messageInfo_UpdateReceivedOCMShareResponse proto.InternalMessageInfo
 
-func (m *UpdateReceivedShareResponse) GetStatus() *rpc.Status {
+func (m *UpdateReceivedOCMShareResponse) GetStatus() *rpc.Status {
 	if m != nil {
 		return m.Status
 	}
 	return nil
 }
 
-func (m *UpdateReceivedShareResponse) GetOpaque() *types.Opaque {
+func (m *UpdateReceivedOCMShareResponse) GetOpaque() *types.Opaque {
 	if m != nil {
 		return m.Opaque
 	}
@@ -1108,24 +1108,24 @@ func (m *UpdateReceivedShareResponse) GetOpaque() *types.Opaque {
 }
 
 func init() {
-	proto.RegisterEnum("cs3.ocmshareproviderv0alpha.ListSharesRequest_Filter_Type", ListSharesRequest_Filter_Type_name, ListSharesRequest_Filter_Type_value)
-	proto.RegisterType((*CreateShareRequest)(nil), "cs3.ocmshareproviderv0alpha.CreateShareRequest")
-	proto.RegisterType((*CreateShareResponse)(nil), "cs3.ocmshareproviderv0alpha.CreateShareResponse")
-	proto.RegisterType((*UpdateShareRequest)(nil), "cs3.ocmshareproviderv0alpha.UpdateShareRequest")
-	proto.RegisterType((*UpdateShareRequest_UpdateField)(nil), "cs3.ocmshareproviderv0alpha.UpdateShareRequest.UpdateField")
-	proto.RegisterType((*UpdateShareResponse)(nil), "cs3.ocmshareproviderv0alpha.UpdateShareResponse")
-	proto.RegisterType((*ListSharesRequest)(nil), "cs3.ocmshareproviderv0alpha.ListSharesRequest")
-	proto.RegisterType((*ListSharesRequest_Filter)(nil), "cs3.ocmshareproviderv0alpha.ListSharesRequest.Filter")
-	proto.RegisterType((*ListSharesResponse)(nil), "cs3.ocmshareproviderv0alpha.ListSharesResponse")
-	proto.RegisterType((*RemoveShareRequest)(nil), "cs3.ocmshareproviderv0alpha.RemoveShareRequest")
-	proto.RegisterType((*RemoveShareResponse)(nil), "cs3.ocmshareproviderv0alpha.RemoveShareResponse")
-	proto.RegisterType((*GetShareRequest)(nil), "cs3.ocmshareproviderv0alpha.GetShareRequest")
-	proto.RegisterType((*GetShareResponse)(nil), "cs3.ocmshareproviderv0alpha.GetShareResponse")
-	proto.RegisterType((*ListReceivedSharesRequest)(nil), "cs3.ocmshareproviderv0alpha.ListReceivedSharesRequest")
-	proto.RegisterType((*ListReceivedSharesResponse)(nil), "cs3.ocmshareproviderv0alpha.ListReceivedSharesResponse")
-	proto.RegisterType((*UpdateReceivedShareRequest)(nil), "cs3.ocmshareproviderv0alpha.UpdateReceivedShareRequest")
-	proto.RegisterType((*UpdateReceivedShareRequest_UpdateField)(nil), "cs3.ocmshareproviderv0alpha.UpdateReceivedShareRequest.UpdateField")
-	proto.RegisterType((*UpdateReceivedShareResponse)(nil), "cs3.ocmshareproviderv0alpha.UpdateReceivedShareResponse")
+	proto.RegisterEnum("cs3.ocmshareproviderv0alpha.ListOCMSharesRequest_Filter_Type", ListOCMSharesRequest_Filter_Type_name, ListOCMSharesRequest_Filter_Type_value)
+	proto.RegisterType((*CreateOCMShareRequest)(nil), "cs3.ocmshareproviderv0alpha.CreateOCMShareRequest")
+	proto.RegisterType((*CreateOCMShareResponse)(nil), "cs3.ocmshareproviderv0alpha.CreateOCMShareResponse")
+	proto.RegisterType((*UpdateOCMShareRequest)(nil), "cs3.ocmshareproviderv0alpha.UpdateOCMShareRequest")
+	proto.RegisterType((*UpdateOCMShareRequest_UpdateField)(nil), "cs3.ocmshareproviderv0alpha.UpdateOCMShareRequest.UpdateField")
+	proto.RegisterType((*UpdateOCMShareResponse)(nil), "cs3.ocmshareproviderv0alpha.UpdateOCMShareResponse")
+	proto.RegisterType((*ListOCMSharesRequest)(nil), "cs3.ocmshareproviderv0alpha.ListOCMSharesRequest")
+	proto.RegisterType((*ListOCMSharesRequest_Filter)(nil), "cs3.ocmshareproviderv0alpha.ListOCMSharesRequest.Filter")
+	proto.RegisterType((*ListOCMSharesResponse)(nil), "cs3.ocmshareproviderv0alpha.ListOCMSharesResponse")
+	proto.RegisterType((*RemoveOCMShareRequest)(nil), "cs3.ocmshareproviderv0alpha.RemoveOCMShareRequest")
+	proto.RegisterType((*RemoveOCMShareResponse)(nil), "cs3.ocmshareproviderv0alpha.RemoveOCMShareResponse")
+	proto.RegisterType((*GetOCMShareRequest)(nil), "cs3.ocmshareproviderv0alpha.GetOCMShareRequest")
+	proto.RegisterType((*GetOCMShareResponse)(nil), "cs3.ocmshareproviderv0alpha.GetOCMShareResponse")
+	proto.RegisterType((*ListReceivedOCMSharesRequest)(nil), "cs3.ocmshareproviderv0alpha.ListReceivedOCMSharesRequest")
+	proto.RegisterType((*ListReceivedOCMSharesResponse)(nil), "cs3.ocmshareproviderv0alpha.ListReceivedOCMSharesResponse")
+	proto.RegisterType((*UpdateReceivedOCMShareRequest)(nil), "cs3.ocmshareproviderv0alpha.UpdateReceivedOCMShareRequest")
+	proto.RegisterType((*UpdateReceivedOCMShareRequest_UpdateField)(nil), "cs3.ocmshareproviderv0alpha.UpdateReceivedOCMShareRequest.UpdateField")
+	proto.RegisterType((*UpdateReceivedOCMShareResponse)(nil), "cs3.ocmshareproviderv0alpha.UpdateReceivedOCMShareResponse")
 }
 
 func init() {
@@ -1133,71 +1133,72 @@ func init() {
 }
 
 var fileDescriptor_68ad38c27409e544 = []byte{
-	// 1019 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xcc, 0x57, 0xdf, 0x6e, 0x1b, 0xc5,
-	0x17, 0xce, 0xfa, 0x5f, 0x7e, 0xbf, 0x63, 0x44, 0xdd, 0x69, 0x2b, 0xdc, 0xcd, 0x05, 0x68, 0x11,
-	0xa4, 0x21, 0xcd, 0x3a, 0xb2, 0x81, 0x56, 0x45, 0x15, 0x8a, 0x9d, 0x4d, 0x62, 0x29, 0x78, 0x9d,
-	0x59, 0x27, 0x50, 0x84, 0xb4, 0xda, 0xae, 0x27, 0xe9, 0x4a, 0xb1, 0x77, 0x33, 0xb3, 0x31, 0x8a,
-	0x40, 0xdc, 0x21, 0x71, 0xc5, 0x33, 0x20, 0xe0, 0x02, 0x71, 0xcd, 0x3b, 0x20, 0x71, 0xcf, 0x0d,
-	0x12, 0x42, 0xe2, 0x05, 0x78, 0x05, 0x34, 0xb3, 0xe3, 0xda, 0x6b, 0x3b, 0xde, 0x4d, 0x90, 0x29,
-	0x37, 0x55, 0x33, 0xf3, 0x7d, 0xe7, 0x7c, 0xe7, 0xec, 0xcc, 0x99, 0xcf, 0x50, 0x73, 0x59, 0xad,
-	0xe2, 0xbb, 0x3d, 0xf6, 0xcc, 0xa1, 0x24, 0xa0, 0xfe, 0xc0, 0xeb, 0x12, 0x5a, 0x19, 0x6c, 0x3a,
-	0xa7, 0xc1, 0x33, 0x67, 0x6a, 0x43, 0x0f, 0xa8, 0x1f, 0xfa, 0x68, 0xc5, 0x65, 0x35, 0x7d, 0x72,
-	0x4f, 0x72, 0xd4, 0xfb, 0x73, 0x23, 0x52, 0xc2, 0xfc, 0x73, 0xea, 0x12, 0x16, 0x85, 0x52, 0x6f,
-	0x73, 0x34, 0x0d, 0xdc, 0x0a, 0x0b, 0x9d, 0xf0, 0x7c, 0xb8, 0xba, 0xce, 0x57, 0x59, 0xe8, 0x53,
-	0xe7, 0x24, 0x39, 0xc4, 0x1d, 0x0e, 0x0e, 0x2f, 0x02, 0xc2, 0xa2, 0x7f, 0xa3, 0x65, 0xed, 0x67,
-	0x05, 0x50, 0x83, 0x12, 0x27, 0x24, 0x16, 0x57, 0x82, 0xc9, 0xd9, 0x39, 0x61, 0x21, 0x5a, 0x83,
-	0x82, 0x1f, 0x38, 0x67, 0xe7, 0xa4, 0xac, 0xbc, 0xa6, 0xdc, 0x2b, 0x56, 0x6f, 0xea, 0xbc, 0x98,
-	0x88, 0x68, 0x8a, 0x0d, 0x2c, 0x01, 0x68, 0x17, 0x8a, 0xc3, 0x5c, 0xb6, 0xd7, 0x2d, 0x67, 0x04,
-	0xfe, 0x4d, 0x81, 0x9f, 0xd0, 0x26, 0xa5, 0xe9, 0x58, 0xc2, 0x9b, 0x5d, 0x0c, 0xf4, 0xf9, 0xff,
-	0xd1, 0x63, 0xc8, 0x9f, 0x50, 0xa7, 0x1f, 0x96, 0xb3, 0x22, 0xc4, 0xaa, 0x3e, 0xa7, 0x7f, 0xba,
-	0x50, 0xbb, 0xcb, 0xe1, 0x38, 0x62, 0x69, 0xdf, 0x29, 0x70, 0x2b, 0x56, 0x09, 0x0b, 0xfc, 0x3e,
-	0x23, 0x68, 0x15, 0x0a, 0x51, 0xd7, 0x64, 0x29, 0x37, 0x44, 0x5c, 0x1a, 0xb8, 0xba, 0x25, 0x96,
-	0xb1, 0xdc, 0x1e, 0xab, 0x39, 0x93, 0x54, 0xf3, 0x43, 0xc8, 0x0b, 0x55, 0x52, 0xaa, 0x96, 0x2c,
-	0x15, 0x47, 0x04, 0xed, 0xcf, 0x0c, 0xa0, 0xc3, 0xa0, 0xfb, 0x0f, 0xfa, 0xfd, 0x18, 0xb2, 0x94,
-	0x1c, 0x4b, 0x8d, 0xeb, 0x29, 0x32, 0x93, 0x63, 0x42, 0x49, 0xdf, 0x25, 0x98, 0xf3, 0xd0, 0x01,
-	0xe4, 0x8f, 0x3d, 0x72, 0xda, 0x95, 0xd2, 0xdf, 0x9b, 0x1b, 0x60, 0x5a, 0xa9, 0x5c, 0xda, 0xe1,
-	0x21, 0x70, 0x14, 0x49, 0xfd, 0x5a, 0x81, 0xe2, 0xd8, 0x32, 0x3a, 0x80, 0x62, 0x40, 0x68, 0xcf,
-	0x63, 0xcc, 0xf3, 0xfb, 0x4c, 0x2a, 0xdd, 0x48, 0x56, 0xda, 0x1e, 0x91, 0xf6, 0x96, 0xf0, 0x78,
-	0x0c, 0xf4, 0x3a, 0xbc, 0xd4, 0xf5, 0x58, 0x70, 0xea, 0x5c, 0xd8, 0x7d, 0xa7, 0x17, 0xf5, 0xfd,
-	0xff, 0x1c, 0x24, 0x57, 0x5b, 0x4e, 0x8f, 0xd4, 0x97, 0x65, 0x69, 0x9a, 0x07, 0xb7, 0x62, 0xca,
-	0x17, 0x77, 0x12, 0xb4, 0xbf, 0xf2, 0x70, 0x73, 0xdf, 0x63, 0xa1, 0xc8, 0xc4, 0xae, 0xf1, 0x39,
-	0x4d, 0x58, 0x3e, 0xf6, 0x4e, 0x43, 0x42, 0x79, 0xa3, 0xb2, 0xf7, 0x8a, 0xd5, 0x77, 0xe6, 0x36,
-	0x6a, 0x2a, 0x97, 0xbe, 0x23, 0xd8, 0x78, 0x18, 0x45, 0xfd, 0x3d, 0x07, 0x85, 0x68, 0x0d, 0xb5,
-	0x20, 0xc7, 0x73, 0x8a, 0x2a, 0x5e, 0xae, 0x3e, 0xba, 0x56, 0x60, 0xbd, 0x73, 0x11, 0x10, 0x2c,
-	0xe2, 0xa0, 0x66, 0xfc, 0xaa, 0x67, 0xaf, 0x72, 0xd5, 0xf7, 0x96, 0x62, 0x97, 0x7d, 0x0d, 0xf2,
-	0xfe, 0xa7, 0x7d, 0x42, 0xcb, 0xb9, 0xa9, 0x06, 0x1d, 0x32, 0x42, 0x05, 0x3e, 0x42, 0xa0, 0x0d,
-	0x58, 0x76, 0xf9, 0xbd, 0xf6, 0x69, 0x39, 0x7f, 0x39, 0x78, 0x88, 0xd1, 0x7e, 0xcd, 0x40, 0x8e,
-	0x6b, 0x46, 0xeb, 0xb0, 0xba, 0xdf, 0xb4, 0x3a, 0xb6, 0xb5, 0xb7, 0x85, 0x0d, 0xcb, 0xc6, 0xc6,
-	0xc1, 0xa1, 0x61, 0x75, 0xec, 0x9d, 0xe6, 0x7e, 0xc7, 0xc0, 0x76, 0xe7, 0x49, 0xdb, 0xb0, 0x9b,
-	0xad, 0xa3, 0xad, 0xfd, 0xe6, 0x76, 0x69, 0x09, 0x6d, 0xc0, 0x5a, 0x12, 0xb8, 0x65, 0xca, 0x3f,
-	0x4b, 0x0a, 0xaa, 0xc0, 0x7a, 0x12, 0x1c, 0x1b, 0x96, 0x79, 0x88, 0x1b, 0x86, 0xdd, 0xdc, 0x2e,
-	0x65, 0xd0, 0x1a, 0xbc, 0x91, 0x44, 0x30, 0x3f, 0x6c, 0x19, 0xb8, 0x94, 0x4d, 0xa3, 0xbb, 0x81,
-	0x8d, 0xad, 0x8e, 0x89, 0x4b, 0x39, 0x54, 0x05, 0x3d, 0x55, 0x5c, 0xbb, 0x8d, 0xcd, 0xa3, 0xe6,
-	0xb6, 0x81, 0x4b, 0x79, 0xf4, 0x36, 0x6c, 0xa6, 0x4c, 0x30, 0x62, 0x15, 0xea, 0x05, 0xc8, 0x85,
-	0x84, 0xf6, 0xb4, 0xef, 0x15, 0x40, 0xe3, 0x87, 0x65, 0x81, 0x63, 0xf6, 0x11, 0x14, 0xc4, 0x59,
-	0x65, 0xe5, 0xac, 0xb8, 0x1a, 0x69, 0xe6, 0xac, 0x64, 0x68, 0x5f, 0x00, 0xc2, 0xa4, 0xe7, 0x0f,
-	0x5e, 0xd0, 0x9c, 0xe5, 0x33, 0x28, 0x96, 0x7f, 0x81, 0x33, 0xe8, 0x33, 0xb8, 0xb1, 0x4b, 0xc2,
-	0x17, 0x54, 0xe7, 0x37, 0x0a, 0x94, 0x46, 0xd9, 0xff, 0x93, 0x6f, 0xee, 0x0e, 0xdc, 0xe5, 0x07,
-	0x16, 0x13, 0x97, 0x78, 0x03, 0xd2, 0xbd, 0xee, 0xa8, 0xd6, 0x7e, 0x52, 0x40, 0x9d, 0x15, 0x68,
-	0x81, 0x45, 0xd7, 0x27, 0x6e, 0xc0, 0x5b, 0x73, 0xab, 0x8e, 0x09, 0x7b, 0x7e, 0x13, 0xfe, 0xc8,
-	0x80, 0x1a, 0x3d, 0x87, 0xf1, 0xfd, 0x7f, 0xdd, 0x7a, 0x3c, 0x89, 0x5b, 0x8f, 0x46, 0x0a, 0xeb,
-	0x31, 0x4b, 0xf1, 0x2c, 0x0b, 0xf2, 0x79, 0xdc, 0x81, 0x4c, 0xda, 0x05, 0x65, 0x86, 0x5d, 0x40,
-	0xef, 0x43, 0x9e, 0x7f, 0x90, 0xe1, 0xf3, 0x98, 0xc2, 0x6f, 0xf2, 0xef, 0x48, 0xf8, 0xc3, 0x24,
-	0x78, 0x23, 0xbf, 0x71, 0x06, 0x2b, 0x33, 0xe5, 0x2e, 0xee, 0x60, 0x54, 0x7f, 0x2b, 0xc0, 0x2b,
-	0x66, 0xe3, 0x83, 0xc8, 0x37, 0x49, 0xad, 0x16, 0xa1, 0x03, 0xcf, 0x25, 0x28, 0x80, 0xe2, 0x98,
-	0x11, 0x46, 0x95, 0xb9, 0x85, 0x4d, 0x9b, 0x7f, 0x75, 0x33, 0x3d, 0x41, 0x56, 0x18, 0x40, 0x71,
-	0x6c, 0xd8, 0x25, 0x64, 0x9c, 0x1e, 0xcb, 0x09, 0x19, 0x67, 0xcd, 0xd1, 0x13, 0xf8, 0xdf, 0x70,
-	0xea, 0xa0, 0xfb, 0x73, 0xd9, 0x13, 0xa3, 0x51, 0xdd, 0x48, 0x89, 0x96, 0x89, 0x7a, 0x00, 0xa3,
-	0xd7, 0x0e, 0xe9, 0x57, 0xf3, 0x50, 0x6a, 0x25, 0x35, 0x7e, 0xd4, 0xc9, 0x31, 0xeb, 0x9a, 0xd0,
-	0xc9, 0x69, 0x7b, 0x9e, 0xd0, 0xc9, 0x59, 0xae, 0xf8, 0x4b, 0xf9, 0x9e, 0xc7, 0xa7, 0x1a, 0x7a,
-	0x37, 0x51, 0xf9, 0xcc, 0x79, 0xaa, 0x3e, 0xb8, 0x32, 0x4f, 0xea, 0xf8, 0x4a, 0x19, 0xba, 0xf6,
-	0x18, 0x00, 0x3d, 0xb8, 0xe6, 0x98, 0x50, 0x1f, 0x5e, 0x9d, 0x18, 0x49, 0xa9, 0xff, 0xa0, 0xc0,
-	0xab, 0xae, 0xdf, 0x9b, 0xc7, 0xaf, 0xdf, 0x31, 0x27, 0x36, 0xda, 0xfc, 0xf7, 0x74, 0x5b, 0xf9,
-	0xf8, 0xee, 0x25, 0x8c, 0xe0, 0xe9, 0xb7, 0x99, 0xdb, 0x8d, 0xba, 0xf9, 0x11, 0xbf, 0xb6, 0xdc,
-	0x79, 0x0d, 0xbd, 0xd5, 0x8f, 0x99, 0x95, 0x86, 0x55, 0xd3, 0x27, 0x6f, 0xf3, 0xd1, 0xe6, 0x16,
-	0xa7, 0xfd, 0x22, 0x76, 0x3f, 0xb9, 0x64, 0xf7, 0x69, 0x41, 0xfc, 0x8c, 0xaf, 0xfd, 0x1d, 0x00,
-	0x00, 0xff, 0xff, 0x4a, 0x06, 0xd8, 0xb5, 0xa2, 0x10, 0x00, 0x00,
+	// 1028 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xcc, 0x58, 0xdd, 0x6e, 0xe3, 0x44,
+	0x14, 0xae, 0xf3, 0x57, 0x71, 0x02, 0x25, 0x0c, 0xcd, 0x12, 0xb2, 0x2c, 0x20, 0x23, 0xb1, 0x5b,
+	0x4a, 0x9d, 0x6e, 0x82, 0x50, 0x29, 0x2a, 0xa8, 0x49, 0xdd, 0x36, 0x52, 0xb7, 0x4e, 0x27, 0x69,
+	0xf9, 0xd1, 0x4a, 0x96, 0xd7, 0x99, 0xee, 0x5a, 0x4a, 0x62, 0xef, 0x8c, 0x1b, 0x14, 0x09, 0x21,
+	0xf1, 0x02, 0x2b, 0x21, 0x71, 0xc3, 0x2d, 0x48, 0x80, 0x78, 0x01, 0xde, 0x61, 0xdf, 0x03, 0x89,
+	0x5b, 0xee, 0xb9, 0x40, 0x63, 0x8f, 0x69, 0xed, 0x26, 0xb1, 0x93, 0x55, 0x58, 0x6e, 0xaa, 0xf6,
+	0xcc, 0xf9, 0xbe, 0xf3, 0x9d, 0xe3, 0x99, 0x33, 0x67, 0x0a, 0x35, 0x93, 0xd5, 0x2a, 0xb6, 0xd9,
+	0x67, 0x8f, 0x0c, 0x4a, 0x1c, 0x6a, 0x0f, 0xad, 0x2e, 0xa1, 0x95, 0xe1, 0xa6, 0xd1, 0x73, 0x1e,
+	0x19, 0xd7, 0x16, 0x14, 0x87, 0xda, 0xae, 0x8d, 0x6e, 0x9a, 0xac, 0xa6, 0x44, 0xd7, 0x04, 0xa6,
+	0xfc, 0xfe, 0x54, 0x46, 0x4a, 0x98, 0x7d, 0x41, 0x4d, 0xc2, 0x7c, 0xaa, 0xf2, 0x2a, 0xf7, 0xa6,
+	0x8e, 0x59, 0x61, 0xae, 0xe1, 0x5e, 0x04, 0xd6, 0x75, 0x6e, 0x65, 0xae, 0x4d, 0x8d, 0x87, 0xf1,
+	0x14, 0x45, 0xee, 0xec, 0x8e, 0x1c, 0xc2, 0xfc, 0x9f, 0xbe, 0x59, 0x7e, 0x2a, 0x41, 0xb1, 0x41,
+	0x89, 0xe1, 0x12, 0xad, 0x71, 0xaf, 0xcd, 0xc5, 0x60, 0xf2, 0xf8, 0x82, 0x30, 0x17, 0xad, 0x41,
+	0xce, 0x76, 0x8c, 0xc7, 0x17, 0xa4, 0x24, 0xbd, 0x2d, 0xdd, 0xc9, 0x57, 0x5f, 0x51, 0x78, 0x3e,
+	0x3e, 0x56, 0xf3, 0x16, 0xb0, 0x70, 0x40, 0x07, 0x90, 0x0f, 0xc2, 0xe9, 0x56, 0xb7, 0x94, 0xf2,
+	0xfc, 0xdf, 0xf5, 0xfc, 0x23, 0xf2, 0x84, 0x3a, 0x05, 0x0b, 0xf7, 0x66, 0x17, 0x03, 0xfd, 0xf7,
+	0x77, 0xb4, 0x03, 0xd9, 0x87, 0xd4, 0x18, 0xb8, 0xa5, 0xb4, 0x47, 0x71, 0x5b, 0x99, 0x52, 0x42,
+	0xc5, 0x53, 0x7b, 0xc0, 0xdd, 0xb1, 0x8f, 0x92, 0x7f, 0x96, 0xe0, 0x46, 0x34, 0x19, 0xe6, 0xd8,
+	0x03, 0x46, 0xd0, 0x6d, 0xc8, 0xf9, 0xb5, 0x13, 0xd9, 0xbc, 0xec, 0x51, 0x53, 0xc7, 0x54, 0xda,
+	0x9e, 0x19, 0x8b, 0xe5, 0x2b, 0x69, 0xa7, 0xe2, 0xd2, 0xde, 0x82, 0xac, 0x27, 0x4c, 0xa8, 0x95,
+	0xe3, 0xd5, 0x62, 0x1f, 0x20, 0xff, 0x99, 0x82, 0xe2, 0xa9, 0xd3, 0x7d, 0xb6, 0xaa, 0xef, 0x40,
+	0x9a, 0x92, 0x73, 0x21, 0x73, 0x3d, 0x41, 0x70, 0x72, 0x4e, 0x28, 0x19, 0x98, 0x04, 0x73, 0x1c,
+	0xea, 0x40, 0xf6, 0xdc, 0x22, 0xbd, 0xae, 0x50, 0xff, 0xc9, 0x54, 0x82, 0xb1, 0x62, 0x85, 0x75,
+	0x9f, 0xb3, 0x60, 0x9f, 0xac, 0xfc, 0x44, 0x82, 0xfc, 0x15, 0x33, 0x3a, 0x81, 0xbc, 0x43, 0x68,
+	0xdf, 0x62, 0xcc, 0xb2, 0x07, 0x4c, 0x88, 0xdd, 0x88, 0x17, 0xdb, 0xba, 0x04, 0x1d, 0x2e, 0xe1,
+	0xab, 0x1c, 0xe8, 0x1d, 0x78, 0xb1, 0x6b, 0x31, 0xa7, 0x67, 0x8c, 0xf4, 0x81, 0xd1, 0xf7, 0xab,
+	0xff, 0x02, 0x77, 0x12, 0xd6, 0x63, 0xa3, 0x4f, 0xea, 0xcb, 0x22, 0x3b, 0xb9, 0x07, 0x37, 0xa2,
+	0xe2, 0x17, 0xb7, 0x25, 0xe4, 0xef, 0x73, 0xb0, 0x7a, 0x64, 0x31, 0x37, 0x08, 0xc6, 0xe6, 0xf8,
+	0xae, 0x18, 0x96, 0xcf, 0xad, 0x9e, 0x4b, 0x28, 0x2f, 0x57, 0xfa, 0x4e, 0xbe, 0xba, 0x35, 0xb5,
+	0x5c, 0xe3, 0xc2, 0x29, 0xfb, 0x1e, 0x01, 0x0e, 0x88, 0xca, 0x7f, 0x67, 0x20, 0xe7, 0xdb, 0xd0,
+	0x09, 0x64, 0x78, 0x58, 0x2f, 0x97, 0x95, 0xea, 0xce, 0xbc, 0xdc, 0x4a, 0x67, 0xe4, 0x10, 0xec,
+	0x51, 0xa1, 0x66, 0xf8, 0xfc, 0xa7, 0x67, 0x39, 0xff, 0x87, 0x4b, 0xa1, 0x0e, 0xb0, 0x06, 0x59,
+	0xfb, 0xab, 0x01, 0xa1, 0xa5, 0xcc, 0xb5, 0x32, 0x9d, 0x32, 0x42, 0x3d, 0x7f, 0xdf, 0x03, 0x6d,
+	0xc0, 0xb2, 0xc9, 0x0f, 0xbb, 0x4d, 0x4b, 0xd9, 0xc9, 0xce, 0x81, 0x8f, 0xfc, 0x57, 0x0a, 0x32,
+	0x5c, 0x33, 0xaa, 0xc0, 0xfa, 0x51, 0xb3, 0xdd, 0xd1, 0xb5, 0xc6, 0x3d, 0xbd, 0x7d, 0xb8, 0x8b,
+	0xd5, 0xb6, 0x8e, 0xd5, 0x93, 0x53, 0xb5, 0xdd, 0xd1, 0xf7, 0x9b, 0x47, 0x1d, 0x15, 0xeb, 0x9d,
+	0x2f, 0x5a, 0xaa, 0xde, 0x3c, 0x3e, 0xdb, 0x3d, 0x6a, 0xee, 0x15, 0x96, 0xd0, 0x5d, 0xd8, 0x48,
+	0x02, 0x38, 0xd6, 0xc4, 0x9f, 0x05, 0x09, 0xd5, 0xa0, 0x92, 0x04, 0x82, 0xd5, 0xb6, 0x76, 0x8a,
+	0x1b, 0xaa, 0xde, 0xdc, 0x2b, 0xa4, 0xd0, 0x06, 0xac, 0x25, 0x01, 0x69, 0x9f, 0x1d, 0xab, 0xb8,
+	0x90, 0x4e, 0x9a, 0x47, 0x03, 0xab, 0xbb, 0x1d, 0x0d, 0x17, 0x32, 0xe8, 0x43, 0xa8, 0x26, 0xe6,
+	0xd7, 0x5b, 0x58, 0x3b, 0x6b, 0xee, 0xa9, 0xb8, 0x90, 0x45, 0x5b, 0xf0, 0xc1, 0x0c, 0x81, 0x2e,
+	0x91, 0xb9, 0x7a, 0x0e, 0x32, 0x2e, 0xa1, 0x7d, 0xf9, 0x17, 0x09, 0x8a, 0x91, 0xbd, 0xb4, 0xc0,
+	0xbe, 0xbc, 0x0d, 0x39, 0x6f, 0x37, 0xb3, 0x52, 0xda, 0x3b, 0x3f, 0x49, 0x1a, 0xb3, 0x40, 0xc8,
+	0xdf, 0x4a, 0x50, 0xc4, 0xa4, 0x6f, 0x0f, 0x9f, 0x5f, 0x67, 0xe6, 0x2d, 0x2b, 0x2a, 0x61, 0x81,
+	0x2d, 0xeb, 0x1b, 0x40, 0x07, 0xc4, 0x7d, 0x7e, 0xd9, 0xfe, 0x24, 0xc1, 0xab, 0x21, 0x01, 0xff,
+	0xcb, 0x1b, 0xbb, 0x09, 0x6f, 0xf0, 0x0d, 0x8c, 0x89, 0x49, 0xac, 0x21, 0xe9, 0x3e, 0x43, 0x7f,
+	0x97, 0x7f, 0x97, 0xe0, 0xd6, 0x04, 0xae, 0x05, 0xa6, 0x5e, 0x8f, 0x1c, 0x8a, 0xf7, 0xa6, 0xe6,
+	0x1e, 0x68, 0x0b, 0x1f, 0x8e, 0x3f, 0x52, 0x70, 0xcb, 0xbf, 0x4c, 0xa3, 0xda, 0xff, 0xfb, 0xf1,
+	0xe5, 0x7e, 0x78, 0x7c, 0xd9, 0x4f, 0x30, 0xbe, 0x4c, 0x10, 0x3d, 0x6e, 0x8c, 0xf9, 0x3a, 0x3c,
+	0xc5, 0x44, 0x47, 0x0e, 0x69, 0xcc, 0xc8, 0x81, 0x3e, 0x85, 0x2c, 0xff, 0x2c, 0xc1, 0xcd, 0x9a,
+	0x60, 0x78, 0xe5, 0x5f, 0x93, 0xf0, 0x0b, 0xcd, 0xc3, 0x5d, 0xce, 0x2c, 0x2e, 0xbc, 0x39, 0x49,
+	0xf1, 0xe2, 0x76, 0x48, 0xf5, 0x87, 0x65, 0x78, 0x2d, 0x08, 0xd4, 0x12, 0x72, 0xdb, 0x84, 0x0e,
+	0x2d, 0x93, 0xa0, 0x11, 0xac, 0x84, 0x07, 0x6b, 0x54, 0x9d, 0x9a, 0xde, 0xd8, 0x27, 0x45, 0xb9,
+	0x36, 0x13, 0x46, 0xa4, 0x3a, 0x82, 0x95, 0x70, 0x37, 0x8c, 0x09, 0x3d, 0xb6, 0x7b, 0xc7, 0x84,
+	0x9e, 0xd0, 0x6e, 0x1d, 0xc8, 0x5f, 0xe9, 0x4c, 0xa8, 0x32, 0x95, 0xe3, 0x7a, 0x13, 0x2d, 0x6f,
+	0x26, 0x07, 0x88, 0x88, 0x43, 0x78, 0x29, 0x74, 0x4f, 0xa2, 0xbb, 0x33, 0xcf, 0x67, 0xe5, 0xea,
+	0x2c, 0x90, 0xcb, 0x22, 0x87, 0xa7, 0xe4, 0x98, 0x22, 0x8f, 0x7d, 0x0f, 0xc4, 0x14, 0x79, 0xc2,
+	0x18, 0xfe, 0x44, 0xcc, 0x06, 0xd7, 0xda, 0x21, 0xfa, 0x28, 0x36, 0x91, 0x49, 0xed, 0xb8, 0xbc,
+	0x3d, 0x0f, 0x54, 0x08, 0xfa, 0x4e, 0x0a, 0x9e, 0x0c, 0x51, 0x1f, 0xb4, 0x3d, 0x7f, 0x97, 0x29,
+	0x7f, 0x3c, 0x17, 0xd6, 0xd7, 0x54, 0xff, 0x55, 0x82, 0xb7, 0x4c, 0xbb, 0x3f, 0x8d, 0xa2, 0x5e,
+	0xd4, 0x22, 0x0b, 0x2d, 0xfe, 0xc2, 0x6f, 0x49, 0x5f, 0xbe, 0x3e, 0x01, 0xe1, 0x3c, 0xf8, 0x31,
+	0xb5, 0xda, 0xa8, 0x6b, 0x9f, 0xf3, 0x70, 0x7c, 0xae, 0x0b, 0x26, 0xb7, 0xdf, 0x52, 0x37, 0x1b,
+	0xed, 0x9a, 0x12, 0x6d, 0x06, 0x67, 0x9b, 0xbb, 0x1c, 0xf6, 0xd4, 0x5b, 0xbd, 0x3f, 0x61, 0xf5,
+	0x41, 0xce, 0xfb, 0xc7, 0x42, 0xed, 0x9f, 0x00, 0x00, 0x00, 0xff, 0xff, 0x82, 0x29, 0x06, 0x3f,
+	0x34, 0x11, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -1212,30 +1213,30 @@ const _ = grpc.SupportPackageIsVersion4
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type OCMShareProviderServiceClient interface {
-	// Creates a new share.
+	// Creates a new ocm share.
 	// MUST return CODE_NOT_FOUND if the resource reference does not exist.
 	// MUST return CODE_ALREADY_EXISTS if the share already exists for the 4-tuple consisting of
 	// (owner, shared_resource, grantee).
 	// New shares MUST be created in the state SHARE_STATE_PENDING.
-	CreateShare(ctx context.Context, in *CreateShareRequest, opts ...grpc.CallOption) (*CreateShareResponse, error)
+	CreateOCMShare(ctx context.Context, in *CreateOCMShareRequest, opts ...grpc.CallOption) (*CreateOCMShareResponse, error)
 	// Removes a share.
 	// MUST return CODE_NOT_FOUND if the share reference does not exist.
-	RemoveShare(ctx context.Context, in *RemoveShareRequest, opts ...grpc.CallOption) (*RemoveShareResponse, error)
+	RemoveOCMShare(ctx context.Context, in *RemoveOCMShareRequest, opts ...grpc.CallOption) (*RemoveOCMShareResponse, error)
 	// Gets share information for a single share.
 	// MUST return CODE_NOT_FOUND if the share reference does not exist.
-	GetShare(ctx context.Context, in *GetShareRequest, opts ...grpc.CallOption) (*GetShareResponse, error)
+	GetOCMShare(ctx context.Context, in *GetOCMShareRequest, opts ...grpc.CallOption) (*GetOCMShareResponse, error)
 	// List the shares the authenticated principal has created,
 	// both as owner and creator. If a filter is specified, only
 	// shares satisfying the filter MUST be returned.
-	ListShares(ctx context.Context, in *ListSharesRequest, opts ...grpc.CallOption) (*ListSharesResponse, error)
+	ListOCMShares(ctx context.Context, in *ListOCMSharesRequest, opts ...grpc.CallOption) (*ListOCMSharesResponse, error)
 	// Updates a share.
 	// MUST return CODE_NOT_FOUND if the share reference does not exist.
-	UpdateShare(ctx context.Context, in *UpdateShareRequest, opts ...grpc.CallOption) (*UpdateShareResponse, error)
+	UpdateOCMShare(ctx context.Context, in *UpdateOCMShareRequest, opts ...grpc.CallOption) (*UpdateOCMShareResponse, error)
 	// List all shares the authenticated principal has received.
-	ListReceivedShares(ctx context.Context, in *ListReceivedSharesRequest, opts ...grpc.CallOption) (*ListReceivedSharesResponse, error)
+	ListReceivedOCMShares(ctx context.Context, in *ListReceivedOCMSharesRequest, opts ...grpc.CallOption) (*ListReceivedOCMSharesResponse, error)
 	// Update the received share to change the share state or the display name.
 	// MUST return CODE_NOT_FOUND if the share reference does not exist.
-	UpdateReceivedShare(ctx context.Context, in *UpdateReceivedShareRequest, opts ...grpc.CallOption) (*UpdateReceivedShareResponse, error)
+	UpdateReceivedOCMShare(ctx context.Context, in *UpdateReceivedOCMShareRequest, opts ...grpc.CallOption) (*UpdateReceivedOCMShareResponse, error)
 }
 
 type oCMShareProviderServiceClient struct {
@@ -1246,63 +1247,63 @@ func NewOCMShareProviderServiceClient(cc *grpc.ClientConn) OCMShareProviderServi
 	return &oCMShareProviderServiceClient{cc}
 }
 
-func (c *oCMShareProviderServiceClient) CreateShare(ctx context.Context, in *CreateShareRequest, opts ...grpc.CallOption) (*CreateShareResponse, error) {
-	out := new(CreateShareResponse)
-	err := c.cc.Invoke(ctx, "/cs3.ocmshareproviderv0alpha.OCMShareProviderService/CreateShare", in, out, opts...)
+func (c *oCMShareProviderServiceClient) CreateOCMShare(ctx context.Context, in *CreateOCMShareRequest, opts ...grpc.CallOption) (*CreateOCMShareResponse, error) {
+	out := new(CreateOCMShareResponse)
+	err := c.cc.Invoke(ctx, "/cs3.ocmshareproviderv0alpha.OCMShareProviderService/CreateOCMShare", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *oCMShareProviderServiceClient) RemoveShare(ctx context.Context, in *RemoveShareRequest, opts ...grpc.CallOption) (*RemoveShareResponse, error) {
-	out := new(RemoveShareResponse)
-	err := c.cc.Invoke(ctx, "/cs3.ocmshareproviderv0alpha.OCMShareProviderService/RemoveShare", in, out, opts...)
+func (c *oCMShareProviderServiceClient) RemoveOCMShare(ctx context.Context, in *RemoveOCMShareRequest, opts ...grpc.CallOption) (*RemoveOCMShareResponse, error) {
+	out := new(RemoveOCMShareResponse)
+	err := c.cc.Invoke(ctx, "/cs3.ocmshareproviderv0alpha.OCMShareProviderService/RemoveOCMShare", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *oCMShareProviderServiceClient) GetShare(ctx context.Context, in *GetShareRequest, opts ...grpc.CallOption) (*GetShareResponse, error) {
-	out := new(GetShareResponse)
-	err := c.cc.Invoke(ctx, "/cs3.ocmshareproviderv0alpha.OCMShareProviderService/GetShare", in, out, opts...)
+func (c *oCMShareProviderServiceClient) GetOCMShare(ctx context.Context, in *GetOCMShareRequest, opts ...grpc.CallOption) (*GetOCMShareResponse, error) {
+	out := new(GetOCMShareResponse)
+	err := c.cc.Invoke(ctx, "/cs3.ocmshareproviderv0alpha.OCMShareProviderService/GetOCMShare", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *oCMShareProviderServiceClient) ListShares(ctx context.Context, in *ListSharesRequest, opts ...grpc.CallOption) (*ListSharesResponse, error) {
-	out := new(ListSharesResponse)
-	err := c.cc.Invoke(ctx, "/cs3.ocmshareproviderv0alpha.OCMShareProviderService/ListShares", in, out, opts...)
+func (c *oCMShareProviderServiceClient) ListOCMShares(ctx context.Context, in *ListOCMSharesRequest, opts ...grpc.CallOption) (*ListOCMSharesResponse, error) {
+	out := new(ListOCMSharesResponse)
+	err := c.cc.Invoke(ctx, "/cs3.ocmshareproviderv0alpha.OCMShareProviderService/ListOCMShares", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *oCMShareProviderServiceClient) UpdateShare(ctx context.Context, in *UpdateShareRequest, opts ...grpc.CallOption) (*UpdateShareResponse, error) {
-	out := new(UpdateShareResponse)
-	err := c.cc.Invoke(ctx, "/cs3.ocmshareproviderv0alpha.OCMShareProviderService/UpdateShare", in, out, opts...)
+func (c *oCMShareProviderServiceClient) UpdateOCMShare(ctx context.Context, in *UpdateOCMShareRequest, opts ...grpc.CallOption) (*UpdateOCMShareResponse, error) {
+	out := new(UpdateOCMShareResponse)
+	err := c.cc.Invoke(ctx, "/cs3.ocmshareproviderv0alpha.OCMShareProviderService/UpdateOCMShare", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *oCMShareProviderServiceClient) ListReceivedShares(ctx context.Context, in *ListReceivedSharesRequest, opts ...grpc.CallOption) (*ListReceivedSharesResponse, error) {
-	out := new(ListReceivedSharesResponse)
-	err := c.cc.Invoke(ctx, "/cs3.ocmshareproviderv0alpha.OCMShareProviderService/ListReceivedShares", in, out, opts...)
+func (c *oCMShareProviderServiceClient) ListReceivedOCMShares(ctx context.Context, in *ListReceivedOCMSharesRequest, opts ...grpc.CallOption) (*ListReceivedOCMSharesResponse, error) {
+	out := new(ListReceivedOCMSharesResponse)
+	err := c.cc.Invoke(ctx, "/cs3.ocmshareproviderv0alpha.OCMShareProviderService/ListReceivedOCMShares", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *oCMShareProviderServiceClient) UpdateReceivedShare(ctx context.Context, in *UpdateReceivedShareRequest, opts ...grpc.CallOption) (*UpdateReceivedShareResponse, error) {
-	out := new(UpdateReceivedShareResponse)
-	err := c.cc.Invoke(ctx, "/cs3.ocmshareproviderv0alpha.OCMShareProviderService/UpdateReceivedShare", in, out, opts...)
+func (c *oCMShareProviderServiceClient) UpdateReceivedOCMShare(ctx context.Context, in *UpdateReceivedOCMShareRequest, opts ...grpc.CallOption) (*UpdateReceivedOCMShareResponse, error) {
+	out := new(UpdateReceivedOCMShareResponse)
+	err := c.cc.Invoke(ctx, "/cs3.ocmshareproviderv0alpha.OCMShareProviderService/UpdateReceivedOCMShare", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1311,184 +1312,184 @@ func (c *oCMShareProviderServiceClient) UpdateReceivedShare(ctx context.Context,
 
 // OCMShareProviderServiceServer is the server API for OCMShareProviderService service.
 type OCMShareProviderServiceServer interface {
-	// Creates a new share.
+	// Creates a new ocm share.
 	// MUST return CODE_NOT_FOUND if the resource reference does not exist.
 	// MUST return CODE_ALREADY_EXISTS if the share already exists for the 4-tuple consisting of
 	// (owner, shared_resource, grantee).
 	// New shares MUST be created in the state SHARE_STATE_PENDING.
-	CreateShare(context.Context, *CreateShareRequest) (*CreateShareResponse, error)
+	CreateOCMShare(context.Context, *CreateOCMShareRequest) (*CreateOCMShareResponse, error)
 	// Removes a share.
 	// MUST return CODE_NOT_FOUND if the share reference does not exist.
-	RemoveShare(context.Context, *RemoveShareRequest) (*RemoveShareResponse, error)
+	RemoveOCMShare(context.Context, *RemoveOCMShareRequest) (*RemoveOCMShareResponse, error)
 	// Gets share information for a single share.
 	// MUST return CODE_NOT_FOUND if the share reference does not exist.
-	GetShare(context.Context, *GetShareRequest) (*GetShareResponse, error)
+	GetOCMShare(context.Context, *GetOCMShareRequest) (*GetOCMShareResponse, error)
 	// List the shares the authenticated principal has created,
 	// both as owner and creator. If a filter is specified, only
 	// shares satisfying the filter MUST be returned.
-	ListShares(context.Context, *ListSharesRequest) (*ListSharesResponse, error)
+	ListOCMShares(context.Context, *ListOCMSharesRequest) (*ListOCMSharesResponse, error)
 	// Updates a share.
 	// MUST return CODE_NOT_FOUND if the share reference does not exist.
-	UpdateShare(context.Context, *UpdateShareRequest) (*UpdateShareResponse, error)
+	UpdateOCMShare(context.Context, *UpdateOCMShareRequest) (*UpdateOCMShareResponse, error)
 	// List all shares the authenticated principal has received.
-	ListReceivedShares(context.Context, *ListReceivedSharesRequest) (*ListReceivedSharesResponse, error)
+	ListReceivedOCMShares(context.Context, *ListReceivedOCMSharesRequest) (*ListReceivedOCMSharesResponse, error)
 	// Update the received share to change the share state or the display name.
 	// MUST return CODE_NOT_FOUND if the share reference does not exist.
-	UpdateReceivedShare(context.Context, *UpdateReceivedShareRequest) (*UpdateReceivedShareResponse, error)
+	UpdateReceivedOCMShare(context.Context, *UpdateReceivedOCMShareRequest) (*UpdateReceivedOCMShareResponse, error)
 }
 
 // UnimplementedOCMShareProviderServiceServer can be embedded to have forward compatible implementations.
 type UnimplementedOCMShareProviderServiceServer struct {
 }
 
-func (*UnimplementedOCMShareProviderServiceServer) CreateShare(ctx context.Context, req *CreateShareRequest) (*CreateShareResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateShare not implemented")
+func (*UnimplementedOCMShareProviderServiceServer) CreateOCMShare(ctx context.Context, req *CreateOCMShareRequest) (*CreateOCMShareResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateOCMShare not implemented")
 }
-func (*UnimplementedOCMShareProviderServiceServer) RemoveShare(ctx context.Context, req *RemoveShareRequest) (*RemoveShareResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method RemoveShare not implemented")
+func (*UnimplementedOCMShareProviderServiceServer) RemoveOCMShare(ctx context.Context, req *RemoveOCMShareRequest) (*RemoveOCMShareResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RemoveOCMShare not implemented")
 }
-func (*UnimplementedOCMShareProviderServiceServer) GetShare(ctx context.Context, req *GetShareRequest) (*GetShareResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetShare not implemented")
+func (*UnimplementedOCMShareProviderServiceServer) GetOCMShare(ctx context.Context, req *GetOCMShareRequest) (*GetOCMShareResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetOCMShare not implemented")
 }
-func (*UnimplementedOCMShareProviderServiceServer) ListShares(ctx context.Context, req *ListSharesRequest) (*ListSharesResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListShares not implemented")
+func (*UnimplementedOCMShareProviderServiceServer) ListOCMShares(ctx context.Context, req *ListOCMSharesRequest) (*ListOCMSharesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListOCMShares not implemented")
 }
-func (*UnimplementedOCMShareProviderServiceServer) UpdateShare(ctx context.Context, req *UpdateShareRequest) (*UpdateShareResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdateShare not implemented")
+func (*UnimplementedOCMShareProviderServiceServer) UpdateOCMShare(ctx context.Context, req *UpdateOCMShareRequest) (*UpdateOCMShareResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateOCMShare not implemented")
 }
-func (*UnimplementedOCMShareProviderServiceServer) ListReceivedShares(ctx context.Context, req *ListReceivedSharesRequest) (*ListReceivedSharesResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListReceivedShares not implemented")
+func (*UnimplementedOCMShareProviderServiceServer) ListReceivedOCMShares(ctx context.Context, req *ListReceivedOCMSharesRequest) (*ListReceivedOCMSharesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListReceivedOCMShares not implemented")
 }
-func (*UnimplementedOCMShareProviderServiceServer) UpdateReceivedShare(ctx context.Context, req *UpdateReceivedShareRequest) (*UpdateReceivedShareResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdateReceivedShare not implemented")
+func (*UnimplementedOCMShareProviderServiceServer) UpdateReceivedOCMShare(ctx context.Context, req *UpdateReceivedOCMShareRequest) (*UpdateReceivedOCMShareResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateReceivedOCMShare not implemented")
 }
 
 func RegisterOCMShareProviderServiceServer(s *grpc.Server, srv OCMShareProviderServiceServer) {
 	s.RegisterService(&_OCMShareProviderService_serviceDesc, srv)
 }
 
-func _OCMShareProviderService_CreateShare_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateShareRequest)
+func _OCMShareProviderService_CreateOCMShare_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateOCMShareRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(OCMShareProviderServiceServer).CreateShare(ctx, in)
+		return srv.(OCMShareProviderServiceServer).CreateOCMShare(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/cs3.ocmshareproviderv0alpha.OCMShareProviderService/CreateShare",
+		FullMethod: "/cs3.ocmshareproviderv0alpha.OCMShareProviderService/CreateOCMShare",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(OCMShareProviderServiceServer).CreateShare(ctx, req.(*CreateShareRequest))
+		return srv.(OCMShareProviderServiceServer).CreateOCMShare(ctx, req.(*CreateOCMShareRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _OCMShareProviderService_RemoveShare_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(RemoveShareRequest)
+func _OCMShareProviderService_RemoveOCMShare_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RemoveOCMShareRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(OCMShareProviderServiceServer).RemoveShare(ctx, in)
+		return srv.(OCMShareProviderServiceServer).RemoveOCMShare(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/cs3.ocmshareproviderv0alpha.OCMShareProviderService/RemoveShare",
+		FullMethod: "/cs3.ocmshareproviderv0alpha.OCMShareProviderService/RemoveOCMShare",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(OCMShareProviderServiceServer).RemoveShare(ctx, req.(*RemoveShareRequest))
+		return srv.(OCMShareProviderServiceServer).RemoveOCMShare(ctx, req.(*RemoveOCMShareRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _OCMShareProviderService_GetShare_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetShareRequest)
+func _OCMShareProviderService_GetOCMShare_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetOCMShareRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(OCMShareProviderServiceServer).GetShare(ctx, in)
+		return srv.(OCMShareProviderServiceServer).GetOCMShare(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/cs3.ocmshareproviderv0alpha.OCMShareProviderService/GetShare",
+		FullMethod: "/cs3.ocmshareproviderv0alpha.OCMShareProviderService/GetOCMShare",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(OCMShareProviderServiceServer).GetShare(ctx, req.(*GetShareRequest))
+		return srv.(OCMShareProviderServiceServer).GetOCMShare(ctx, req.(*GetOCMShareRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _OCMShareProviderService_ListShares_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListSharesRequest)
+func _OCMShareProviderService_ListOCMShares_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListOCMSharesRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(OCMShareProviderServiceServer).ListShares(ctx, in)
+		return srv.(OCMShareProviderServiceServer).ListOCMShares(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/cs3.ocmshareproviderv0alpha.OCMShareProviderService/ListShares",
+		FullMethod: "/cs3.ocmshareproviderv0alpha.OCMShareProviderService/ListOCMShares",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(OCMShareProviderServiceServer).ListShares(ctx, req.(*ListSharesRequest))
+		return srv.(OCMShareProviderServiceServer).ListOCMShares(ctx, req.(*ListOCMSharesRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _OCMShareProviderService_UpdateShare_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateShareRequest)
+func _OCMShareProviderService_UpdateOCMShare_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateOCMShareRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(OCMShareProviderServiceServer).UpdateShare(ctx, in)
+		return srv.(OCMShareProviderServiceServer).UpdateOCMShare(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/cs3.ocmshareproviderv0alpha.OCMShareProviderService/UpdateShare",
+		FullMethod: "/cs3.ocmshareproviderv0alpha.OCMShareProviderService/UpdateOCMShare",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(OCMShareProviderServiceServer).UpdateShare(ctx, req.(*UpdateShareRequest))
+		return srv.(OCMShareProviderServiceServer).UpdateOCMShare(ctx, req.(*UpdateOCMShareRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _OCMShareProviderService_ListReceivedShares_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListReceivedSharesRequest)
+func _OCMShareProviderService_ListReceivedOCMShares_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListReceivedOCMSharesRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(OCMShareProviderServiceServer).ListReceivedShares(ctx, in)
+		return srv.(OCMShareProviderServiceServer).ListReceivedOCMShares(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/cs3.ocmshareproviderv0alpha.OCMShareProviderService/ListReceivedShares",
+		FullMethod: "/cs3.ocmshareproviderv0alpha.OCMShareProviderService/ListReceivedOCMShares",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(OCMShareProviderServiceServer).ListReceivedShares(ctx, req.(*ListReceivedSharesRequest))
+		return srv.(OCMShareProviderServiceServer).ListReceivedOCMShares(ctx, req.(*ListReceivedOCMSharesRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _OCMShareProviderService_UpdateReceivedShare_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateReceivedShareRequest)
+func _OCMShareProviderService_UpdateReceivedOCMShare_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateReceivedOCMShareRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(OCMShareProviderServiceServer).UpdateReceivedShare(ctx, in)
+		return srv.(OCMShareProviderServiceServer).UpdateReceivedOCMShare(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/cs3.ocmshareproviderv0alpha.OCMShareProviderService/UpdateReceivedShare",
+		FullMethod: "/cs3.ocmshareproviderv0alpha.OCMShareProviderService/UpdateReceivedOCMShare",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(OCMShareProviderServiceServer).UpdateReceivedShare(ctx, req.(*UpdateReceivedShareRequest))
+		return srv.(OCMShareProviderServiceServer).UpdateReceivedOCMShare(ctx, req.(*UpdateReceivedOCMShareRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1498,32 +1499,32 @@ var _OCMShareProviderService_serviceDesc = grpc.ServiceDesc{
 	HandlerType: (*OCMShareProviderServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "CreateShare",
-			Handler:    _OCMShareProviderService_CreateShare_Handler,
+			MethodName: "CreateOCMShare",
+			Handler:    _OCMShareProviderService_CreateOCMShare_Handler,
 		},
 		{
-			MethodName: "RemoveShare",
-			Handler:    _OCMShareProviderService_RemoveShare_Handler,
+			MethodName: "RemoveOCMShare",
+			Handler:    _OCMShareProviderService_RemoveOCMShare_Handler,
 		},
 		{
-			MethodName: "GetShare",
-			Handler:    _OCMShareProviderService_GetShare_Handler,
+			MethodName: "GetOCMShare",
+			Handler:    _OCMShareProviderService_GetOCMShare_Handler,
 		},
 		{
-			MethodName: "ListShares",
-			Handler:    _OCMShareProviderService_ListShares_Handler,
+			MethodName: "ListOCMShares",
+			Handler:    _OCMShareProviderService_ListOCMShares_Handler,
 		},
 		{
-			MethodName: "UpdateShare",
-			Handler:    _OCMShareProviderService_UpdateShare_Handler,
+			MethodName: "UpdateOCMShare",
+			Handler:    _OCMShareProviderService_UpdateOCMShare_Handler,
 		},
 		{
-			MethodName: "ListReceivedShares",
-			Handler:    _OCMShareProviderService_ListReceivedShares_Handler,
+			MethodName: "ListReceivedOCMShares",
+			Handler:    _OCMShareProviderService_ListReceivedOCMShares_Handler,
 		},
 		{
-			MethodName: "UpdateReceivedShare",
-			Handler:    _OCMShareProviderService_UpdateReceivedShare_Handler,
+			MethodName: "UpdateReceivedOCMShare",
+			Handler:    _OCMShareProviderService_UpdateReceivedOCMShare_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
