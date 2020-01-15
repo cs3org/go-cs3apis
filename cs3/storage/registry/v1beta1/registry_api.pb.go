@@ -6,8 +6,8 @@ package registryv1beta1
 import (
 	context "context"
 	fmt "fmt"
-	v1beta12 "github.com/cs3org/go-cs3apis/cs3/rpc/v1beta1"
-	v1beta11 "github.com/cs3org/go-cs3apis/cs3/storage/provider/v1beta1"
+	v1beta11 "github.com/cs3org/go-cs3apis/cs3/rpc/v1beta1"
+	v1beta12 "github.com/cs3org/go-cs3apis/cs3/storage/provider/v1beta1"
 	v1beta1 "github.com/cs3org/go-cs3apis/cs3/types/v1beta1"
 	proto "github.com/golang/protobuf/proto"
 	grpc "google.golang.org/grpc"
@@ -27,13 +27,115 @@ var _ = math.Inf
 // proto package needs to be updated.
 const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 
+type GetHomeRequest struct {
+	// OPTIONAL.
+	// Opaque information.
+	Opaque               *v1beta1.Opaque `protobuf:"bytes,1,opt,name=opaque,proto3" json:"opaque,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}        `json:"-"`
+	XXX_unrecognized     []byte          `json:"-"`
+	XXX_sizecache        int32           `json:"-"`
+}
+
+func (m *GetHomeRequest) Reset()         { *m = GetHomeRequest{} }
+func (m *GetHomeRequest) String() string { return proto.CompactTextString(m) }
+func (*GetHomeRequest) ProtoMessage()    {}
+func (*GetHomeRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_73c91f9d6bdb642a, []int{0}
+}
+
+func (m *GetHomeRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_GetHomeRequest.Unmarshal(m, b)
+}
+func (m *GetHomeRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_GetHomeRequest.Marshal(b, m, deterministic)
+}
+func (m *GetHomeRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_GetHomeRequest.Merge(m, src)
+}
+func (m *GetHomeRequest) XXX_Size() int {
+	return xxx_messageInfo_GetHomeRequest.Size(m)
+}
+func (m *GetHomeRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_GetHomeRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_GetHomeRequest proto.InternalMessageInfo
+
+func (m *GetHomeRequest) GetOpaque() *v1beta1.Opaque {
+	if m != nil {
+		return m.Opaque
+	}
+	return nil
+}
+
+type GetHomeResponse struct {
+	// REQUIRED.
+	// The response status.
+	Status *v1beta11.Status `protobuf:"bytes,1,opt,name=status,proto3" json:"status,omitempty"`
+	// OPTIONAL.
+	// Opaque information.
+	Opaque *v1beta1.Opaque `protobuf:"bytes,2,opt,name=opaque,proto3" json:"opaque,omitempty"`
+	// REQUIRED.
+	// The storage provider for the user home.
+	Provider             *ProviderInfo `protobuf:"bytes,3,opt,name=provider,proto3" json:"provider,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}      `json:"-"`
+	XXX_unrecognized     []byte        `json:"-"`
+	XXX_sizecache        int32         `json:"-"`
+}
+
+func (m *GetHomeResponse) Reset()         { *m = GetHomeResponse{} }
+func (m *GetHomeResponse) String() string { return proto.CompactTextString(m) }
+func (*GetHomeResponse) ProtoMessage()    {}
+func (*GetHomeResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_73c91f9d6bdb642a, []int{1}
+}
+
+func (m *GetHomeResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_GetHomeResponse.Unmarshal(m, b)
+}
+func (m *GetHomeResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_GetHomeResponse.Marshal(b, m, deterministic)
+}
+func (m *GetHomeResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_GetHomeResponse.Merge(m, src)
+}
+func (m *GetHomeResponse) XXX_Size() int {
+	return xxx_messageInfo_GetHomeResponse.Size(m)
+}
+func (m *GetHomeResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_GetHomeResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_GetHomeResponse proto.InternalMessageInfo
+
+func (m *GetHomeResponse) GetStatus() *v1beta11.Status {
+	if m != nil {
+		return m.Status
+	}
+	return nil
+}
+
+func (m *GetHomeResponse) GetOpaque() *v1beta1.Opaque {
+	if m != nil {
+		return m.Opaque
+	}
+	return nil
+}
+
+func (m *GetHomeResponse) GetProvider() *ProviderInfo {
+	if m != nil {
+		return m.Provider
+	}
+	return nil
+}
+
 type GetStorageProviderRequest struct {
 	// OPTIONAL.
 	// Opaque information.
 	Opaque *v1beta1.Opaque `protobuf:"bytes,1,opt,name=opaque,proto3" json:"opaque,omitempty"`
 	// REQUIRED.
 	// The reference for the resource.
-	Ref                  *v1beta11.Reference `protobuf:"bytes,2,opt,name=ref,proto3" json:"ref,omitempty"`
+	Ref                  *v1beta12.Reference `protobuf:"bytes,2,opt,name=ref,proto3" json:"ref,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}            `json:"-"`
 	XXX_unrecognized     []byte              `json:"-"`
 	XXX_sizecache        int32               `json:"-"`
@@ -43,7 +145,7 @@ func (m *GetStorageProviderRequest) Reset()         { *m = GetStorageProviderReq
 func (m *GetStorageProviderRequest) String() string { return proto.CompactTextString(m) }
 func (*GetStorageProviderRequest) ProtoMessage()    {}
 func (*GetStorageProviderRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_73c91f9d6bdb642a, []int{0}
+	return fileDescriptor_73c91f9d6bdb642a, []int{2}
 }
 
 func (m *GetStorageProviderRequest) XXX_Unmarshal(b []byte) error {
@@ -71,7 +173,7 @@ func (m *GetStorageProviderRequest) GetOpaque() *v1beta1.Opaque {
 	return nil
 }
 
-func (m *GetStorageProviderRequest) GetRef() *v1beta11.Reference {
+func (m *GetStorageProviderRequest) GetRef() *v1beta12.Reference {
 	if m != nil {
 		return m.Ref
 	}
@@ -81,7 +183,7 @@ func (m *GetStorageProviderRequest) GetRef() *v1beta11.Reference {
 type GetStorageProviderResponse struct {
 	// REQUIRED.
 	// The response status.
-	Status *v1beta12.Status `protobuf:"bytes,1,opt,name=status,proto3" json:"status,omitempty"`
+	Status *v1beta11.Status `protobuf:"bytes,1,opt,name=status,proto3" json:"status,omitempty"`
 	// OPTIONAL.
 	// Opaque information.
 	Opaque *v1beta1.Opaque `protobuf:"bytes,2,opt,name=opaque,proto3" json:"opaque,omitempty"`
@@ -97,7 +199,7 @@ func (m *GetStorageProviderResponse) Reset()         { *m = GetStorageProviderRe
 func (m *GetStorageProviderResponse) String() string { return proto.CompactTextString(m) }
 func (*GetStorageProviderResponse) ProtoMessage()    {}
 func (*GetStorageProviderResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_73c91f9d6bdb642a, []int{1}
+	return fileDescriptor_73c91f9d6bdb642a, []int{3}
 }
 
 func (m *GetStorageProviderResponse) XXX_Unmarshal(b []byte) error {
@@ -118,7 +220,7 @@ func (m *GetStorageProviderResponse) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_GetStorageProviderResponse proto.InternalMessageInfo
 
-func (m *GetStorageProviderResponse) GetStatus() *v1beta12.Status {
+func (m *GetStorageProviderResponse) GetStatus() *v1beta11.Status {
 	if m != nil {
 		return m.Status
 	}
@@ -152,7 +254,7 @@ func (m *ListStorageProvidersRequest) Reset()         { *m = ListStorageProvider
 func (m *ListStorageProvidersRequest) String() string { return proto.CompactTextString(m) }
 func (*ListStorageProvidersRequest) ProtoMessage()    {}
 func (*ListStorageProvidersRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_73c91f9d6bdb642a, []int{2}
+	return fileDescriptor_73c91f9d6bdb642a, []int{4}
 }
 
 func (m *ListStorageProvidersRequest) XXX_Unmarshal(b []byte) error {
@@ -183,7 +285,7 @@ func (m *ListStorageProvidersRequest) GetOpaque() *v1beta1.Opaque {
 type ListStorageProvidersResponse struct {
 	// REQUIRED.
 	// The response status.
-	Status *v1beta12.Status `protobuf:"bytes,1,opt,name=status,proto3" json:"status,omitempty"`
+	Status *v1beta11.Status `protobuf:"bytes,1,opt,name=status,proto3" json:"status,omitempty"`
 	// OPTIONAL.
 	// Opaque information.
 	Opaque *v1beta1.Opaque `protobuf:"bytes,2,opt,name=opaque,proto3" json:"opaque,omitempty"`
@@ -199,7 +301,7 @@ func (m *ListStorageProvidersResponse) Reset()         { *m = ListStorageProvide
 func (m *ListStorageProvidersResponse) String() string { return proto.CompactTextString(m) }
 func (*ListStorageProvidersResponse) ProtoMessage()    {}
 func (*ListStorageProvidersResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_73c91f9d6bdb642a, []int{3}
+	return fileDescriptor_73c91f9d6bdb642a, []int{5}
 }
 
 func (m *ListStorageProvidersResponse) XXX_Unmarshal(b []byte) error {
@@ -220,7 +322,7 @@ func (m *ListStorageProvidersResponse) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_ListStorageProvidersResponse proto.InternalMessageInfo
 
-func (m *ListStorageProvidersResponse) GetStatus() *v1beta12.Status {
+func (m *ListStorageProvidersResponse) GetStatus() *v1beta11.Status {
 	if m != nil {
 		return m.Status
 	}
@@ -241,116 +343,13 @@ func (m *ListStorageProvidersResponse) GetProviders() []*ProviderInfo {
 	return nil
 }
 
-type GetHomeRequest struct {
-	// OPTIONAL.
-	// Opaque information.
-	Opaque               *v1beta1.Opaque `protobuf:"bytes,1,opt,name=opaque,proto3" json:"opaque,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}        `json:"-"`
-	XXX_unrecognized     []byte          `json:"-"`
-	XXX_sizecache        int32           `json:"-"`
-}
-
-func (m *GetHomeRequest) Reset()         { *m = GetHomeRequest{} }
-func (m *GetHomeRequest) String() string { return proto.CompactTextString(m) }
-func (*GetHomeRequest) ProtoMessage()    {}
-func (*GetHomeRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_73c91f9d6bdb642a, []int{4}
-}
-
-func (m *GetHomeRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_GetHomeRequest.Unmarshal(m, b)
-}
-func (m *GetHomeRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_GetHomeRequest.Marshal(b, m, deterministic)
-}
-func (m *GetHomeRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_GetHomeRequest.Merge(m, src)
-}
-func (m *GetHomeRequest) XXX_Size() int {
-	return xxx_messageInfo_GetHomeRequest.Size(m)
-}
-func (m *GetHomeRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_GetHomeRequest.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_GetHomeRequest proto.InternalMessageInfo
-
-func (m *GetHomeRequest) GetOpaque() *v1beta1.Opaque {
-	if m != nil {
-		return m.Opaque
-	}
-	return nil
-}
-
-type GetHomeResponse struct {
-	// REQUIRED.
-	// The response status.
-	Status *v1beta12.Status `protobuf:"bytes,1,opt,name=status,proto3" json:"status,omitempty"`
-	// OPTIONAL.
-	// Opaque information.
-	Opaque *v1beta1.Opaque `protobuf:"bytes,2,opt,name=opaque,proto3" json:"opaque,omitempty"`
-	// REQUIRED.
-	// The path to the home in a storage provider.
-	// For example /eos/user/h/hugo in the storage provider with root path /eos/user/.
-	Path                 string   `protobuf:"bytes,3,opt,name=path,proto3" json:"path,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *GetHomeResponse) Reset()         { *m = GetHomeResponse{} }
-func (m *GetHomeResponse) String() string { return proto.CompactTextString(m) }
-func (*GetHomeResponse) ProtoMessage()    {}
-func (*GetHomeResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_73c91f9d6bdb642a, []int{5}
-}
-
-func (m *GetHomeResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_GetHomeResponse.Unmarshal(m, b)
-}
-func (m *GetHomeResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_GetHomeResponse.Marshal(b, m, deterministic)
-}
-func (m *GetHomeResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_GetHomeResponse.Merge(m, src)
-}
-func (m *GetHomeResponse) XXX_Size() int {
-	return xxx_messageInfo_GetHomeResponse.Size(m)
-}
-func (m *GetHomeResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_GetHomeResponse.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_GetHomeResponse proto.InternalMessageInfo
-
-func (m *GetHomeResponse) GetStatus() *v1beta12.Status {
-	if m != nil {
-		return m.Status
-	}
-	return nil
-}
-
-func (m *GetHomeResponse) GetOpaque() *v1beta1.Opaque {
-	if m != nil {
-		return m.Opaque
-	}
-	return nil
-}
-
-func (m *GetHomeResponse) GetPath() string {
-	if m != nil {
-		return m.Path
-	}
-	return ""
-}
-
 func init() {
+	proto.RegisterType((*GetHomeRequest)(nil), "cs3.storage.registry.v1beta1.GetHomeRequest")
+	proto.RegisterType((*GetHomeResponse)(nil), "cs3.storage.registry.v1beta1.GetHomeResponse")
 	proto.RegisterType((*GetStorageProviderRequest)(nil), "cs3.storage.registry.v1beta1.GetStorageProviderRequest")
 	proto.RegisterType((*GetStorageProviderResponse)(nil), "cs3.storage.registry.v1beta1.GetStorageProviderResponse")
 	proto.RegisterType((*ListStorageProvidersRequest)(nil), "cs3.storage.registry.v1beta1.ListStorageProvidersRequest")
 	proto.RegisterType((*ListStorageProvidersResponse)(nil), "cs3.storage.registry.v1beta1.ListStorageProvidersResponse")
-	proto.RegisterType((*GetHomeRequest)(nil), "cs3.storage.registry.v1beta1.GetHomeRequest")
-	proto.RegisterType((*GetHomeResponse)(nil), "cs3.storage.registry.v1beta1.GetHomeResponse")
 }
 
 func init() {
@@ -358,38 +357,37 @@ func init() {
 }
 
 var fileDescriptor_73c91f9d6bdb642a = []byte{
-	// 488 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xbc, 0x54, 0xdd, 0x6a, 0x13, 0x41,
-	0x14, 0x66, 0xb2, 0x12, 0xed, 0x29, 0x58, 0x19, 0x04, 0xd3, 0x35, 0x42, 0xd8, 0x1b, 0x45, 0xea,
-	0x2c, 0x69, 0x2e, 0xb4, 0xde, 0x99, 0x80, 0x6d, 0x41, 0x70, 0x99, 0x80, 0x17, 0x12, 0x90, 0xed,
-	0x7a, 0x52, 0xf7, 0xa2, 0x99, 0xe9, 0xcc, 0x6c, 0xa1, 0x4f, 0x20, 0x45, 0xc4, 0x77, 0xf0, 0xd2,
-	0x27, 0x11, 0xf1, 0xa1, 0x64, 0x67, 0x67, 0xc7, 0x55, 0xd7, 0xb5, 0xad, 0xd0, 0xbb, 0x24, 0xdf,
-	0xcf, 0x7c, 0xe7, 0x9b, 0x93, 0x81, 0x38, 0xd3, 0x93, 0x58, 0x1b, 0xa1, 0xd2, 0x43, 0x8c, 0x15,
-	0x1e, 0xe6, 0xda, 0xa8, 0xd3, 0xf8, 0x64, 0x7c, 0x80, 0x26, 0x1d, 0xfb, 0x1f, 0xde, 0xa4, 0x32,
-	0x67, 0x52, 0x09, 0x23, 0xe8, 0x30, 0xd3, 0x13, 0xe6, 0x04, 0xac, 0xc6, 0x99, 0x13, 0x84, 0x25,
-	0x1a, 0x2b, 0x99, 0x79, 0x07, 0x6d, 0x52, 0x53, 0xe8, 0x4a, 0x1b, 0x6e, 0x35, 0x0f, 0x93, 0x4a,
-	0x9c, 0xe4, 0x6f, 0x51, 0x35, 0x0e, 0xd3, 0xa2, 0x50, 0x19, 0xb6, 0xb2, 0x5b, 0xa2, 0xfd, 0xca,
-	0xbe, 0x57, 0xb2, 0xcd, 0xa9, 0x44, 0xed, 0x29, 0xf6, 0x5b, 0x05, 0x47, 0x67, 0x04, 0x36, 0x77,
-	0xd1, 0xcc, 0x2b, 0xbb, 0xc4, 0x9d, 0xcd, 0xf1, 0xb8, 0x40, 0x6d, 0xe8, 0x18, 0xfa, 0x42, 0xa6,
-	0xc7, 0x05, 0x0e, 0xc8, 0x88, 0x3c, 0x58, 0xdf, 0xde, 0x64, 0xe5, 0x94, 0x95, 0xde, 0xb9, 0xb1,
-	0x97, 0x96, 0xc0, 0x1d, 0x91, 0xee, 0x40, 0xa0, 0x70, 0x39, 0xe8, 0x59, 0xfe, 0x7d, 0xd6, 0x6c,
-	0xa5, 0x9e, 0xcc, 0x4b, 0x39, 0x2e, 0x51, 0xe1, 0x2a, 0x43, 0x5e, 0x6a, 0xa2, 0xaf, 0x04, 0xc2,
-	0xb6, 0x2c, 0x5a, 0x8a, 0x95, 0x46, 0x1a, 0x43, 0xbf, 0x6a, 0xcd, 0x85, 0xb9, 0x63, 0xcd, 0x95,
-	0xcc, 0xbc, 0xdf, 0xdc, 0xc2, 0xdc, 0xd1, 0x1a, 0xe9, 0x7b, 0xe7, 0x4d, 0xff, 0x1c, 0x6e, 0xd4,
-	0x29, 0x07, 0x81, 0x15, 0x3d, 0x64, 0x5d, 0x17, 0xcb, 0xea, 0x94, 0xfb, 0xab, 0xa5, 0xe0, 0x5e,
-	0x1b, 0x25, 0x70, 0xf7, 0x45, 0xae, 0x7f, 0x1f, 0x45, 0x5f, 0xbe, 0xd7, 0xe8, 0x3b, 0x81, 0x61,
-	0xbb, 0xe5, 0x15, 0xd6, 0xb3, 0x07, 0x6b, 0xf5, 0x88, 0x7a, 0x10, 0x8c, 0x82, 0x0b, 0xf6, 0xf3,
-	0x53, 0x1c, 0xcd, 0xe0, 0xe6, 0x2e, 0x9a, 0x3d, 0x71, 0x84, 0xff, 0xd1, 0xc9, 0x19, 0x81, 0x0d,
-	0xef, 0x72, 0x85, 0x35, 0x50, 0xb8, 0x26, 0x53, 0xf3, 0xce, 0x6e, 0xc8, 0x1a, 0xb7, 0x9f, 0xb7,
-	0x3f, 0x05, 0xb0, 0xce, 0xdd, 0xf4, 0xcf, 0x92, 0x7d, 0xfa, 0x9e, 0x00, 0xfd, 0x73, 0x99, 0xe9,
-	0xe3, 0xee, 0xba, 0xfe, 0xfa, 0x57, 0x0c, 0x9f, 0x5c, 0x5c, 0xe8, 0x1a, 0xf9, 0x48, 0xe0, 0x76,
-	0xdb, 0xe6, 0xd0, 0x9d, 0x6e, 0xcb, 0x8e, 0x05, 0x0e, 0x9f, 0x5e, 0x46, 0xea, 0xf2, 0x2c, 0xe1,
-	0xba, 0xbb, 0x34, 0xba, 0xf5, 0xcf, 0xa1, 0x1a, 0x1b, 0x12, 0x3e, 0x3a, 0x27, 0xbb, 0x3a, 0x67,
-	0xfa, 0x81, 0xc0, 0x28, 0x13, 0x47, 0x9d, 0xa2, 0xe9, 0x2d, 0x7f, 0x67, 0x32, 0x4f, 0xca, 0x17,
-	0x31, 0x21, 0xaf, 0x37, 0x6a, 0x96, 0x23, 0x7d, 0xee, 0x05, 0xb3, 0x39, 0xff, 0xd2, 0x1b, 0xce,
-	0xf4, 0x84, 0xb9, 0xb1, 0x58, 0xad, 0x63, 0xaf, 0xc6, 0xd3, 0x92, 0xf4, 0xcd, 0xc2, 0x0b, 0x07,
-	0x2f, 0x6a, 0x78, 0xe1, 0xe0, 0x83, 0xbe, 0x7d, 0x6f, 0x27, 0x3f, 0x02, 0x00, 0x00, 0xff, 0xff,
-	0x10, 0xcc, 0xe9, 0x55, 0x59, 0x06, 0x00, 0x00,
+	// 474 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xd4, 0x54, 0x4f, 0x6b, 0x13, 0x41,
+	0x14, 0x67, 0xb2, 0x10, 0xf5, 0x15, 0xac, 0x0c, 0x82, 0xe9, 0x1a, 0x21, 0xe4, 0xa2, 0x48, 0x9d,
+	0x25, 0xcd, 0x41, 0xeb, 0xcd, 0x04, 0x6c, 0x0b, 0x82, 0xcb, 0x06, 0x3c, 0x48, 0x40, 0xb6, 0xeb,
+	0x4b, 0xd9, 0x43, 0x33, 0xd3, 0x99, 0x49, 0xa1, 0x9f, 0x40, 0x44, 0xc4, 0xef, 0xe0, 0xd1, 0xef,
+	0xe0, 0x5d, 0xc4, 0x0f, 0x25, 0xbb, 0xfb, 0x66, 0xdc, 0xea, 0xba, 0xb6, 0x11, 0x04, 0x8f, 0xbb,
+	0xbf, 0x3f, 0xef, 0xbd, 0xdf, 0x1b, 0x1e, 0x44, 0x99, 0x19, 0x47, 0xc6, 0x4a, 0x9d, 0x1e, 0x61,
+	0xa4, 0xf1, 0x28, 0x37, 0x56, 0x9f, 0x45, 0xa7, 0xa3, 0x43, 0xb4, 0xe9, 0xc8, 0xff, 0x78, 0x95,
+	0xaa, 0x5c, 0x28, 0x2d, 0xad, 0xe4, 0xfd, 0xcc, 0x8c, 0x05, 0x09, 0x84, 0xc3, 0x05, 0x09, 0xc2,
+	0x02, 0x8d, 0xb4, 0xca, 0xbc, 0x83, 0xb1, 0xa9, 0x5d, 0x99, 0x4a, 0x1b, 0x6e, 0xd7, 0x8b, 0x29,
+	0x2d, 0x4f, 0xf3, 0xd7, 0xa8, 0x6b, 0xc5, 0x8c, 0x5c, 0xe9, 0x0c, 0x1b, 0xd9, 0x0d, 0xad, 0x9d,
+	0x67, 0xdf, 0x29, 0xd8, 0xf6, 0x4c, 0xa1, 0xf1, 0x94, 0xf2, 0xab, 0x82, 0x87, 0x53, 0xb8, 0xbe,
+	0x87, 0x76, 0x5f, 0x1e, 0x63, 0x82, 0x27, 0x2b, 0x34, 0x96, 0x8f, 0xa0, 0x2b, 0x55, 0x7a, 0xb2,
+	0xc2, 0x1e, 0x1b, 0xb0, 0x7b, 0x1b, 0x3b, 0x5b, 0xa2, 0x98, 0xac, 0xd2, 0x90, 0x83, 0x78, 0x5e,
+	0x12, 0x12, 0x22, 0x0e, 0x3f, 0x33, 0xd8, 0xf4, 0x2e, 0x46, 0xc9, 0xa5, 0x41, 0x1e, 0x41, 0xb7,
+	0x9a, 0x91, 0x6c, 0x6e, 0x95, 0x36, 0x5a, 0x65, 0xde, 0x64, 0x56, 0xc2, 0x09, 0xd1, 0x6a, 0x75,
+	0x3b, 0x17, 0xac, 0xcb, 0x9f, 0xc2, 0x55, 0x97, 0x56, 0x2f, 0x28, 0x45, 0xf7, 0x45, 0xdb, 0x1a,
+	0x44, 0x4c, 0xec, 0x83, 0xe5, 0x42, 0x26, 0x5e, 0x3b, 0x7c, 0xcb, 0x60, 0x6b, 0x0f, 0xed, 0xac,
+	0x92, 0x39, 0xd2, 0xfa, 0x81, 0xf0, 0x5d, 0x08, 0x34, 0x2e, 0x68, 0x90, 0xbb, 0xe7, 0x7a, 0x72,
+	0x45, 0xbd, 0x34, 0xc1, 0x05, 0x6a, 0x5c, 0x66, 0x98, 0x14, 0x9a, 0xe1, 0x17, 0x06, 0x61, 0x53,
+	0x2f, 0xff, 0x61, 0xac, 0x31, 0xdc, 0x7e, 0x96, 0x9b, 0x9f, 0x47, 0x31, 0x7f, 0xf1, 0xd0, 0xbe,
+	0x31, 0xe8, 0x37, 0x5b, 0xfe, 0xc3, 0x78, 0xf6, 0xe1, 0x9a, 0x1b, 0xd1, 0xf4, 0x82, 0x41, 0x70,
+	0xc9, 0x7c, 0x7e, 0x88, 0x77, 0x3e, 0x04, 0xb0, 0x91, 0x10, 0xf9, 0x49, 0x7c, 0xc0, 0xdf, 0x30,
+	0xe0, 0xbf, 0xee, 0x9e, 0x3f, 0x6c, 0x77, 0xff, 0xed, 0xcb, 0x0d, 0x1f, 0x5d, 0x5e, 0x48, 0x39,
+	0xbe, 0x67, 0x70, 0xb3, 0x29, 0x68, 0xbe, 0xdb, 0x6e, 0xd9, 0xb2, 0xef, 0xf0, 0xf1, 0x3a, 0x52,
+	0xea, 0x67, 0x01, 0x57, 0xe8, 0xc0, 0xf0, 0xed, 0x3f, 0x0e, 0x55, 0xbb, 0x66, 0xe1, 0x83, 0x0b,
+	0xb2, 0xab, 0x3a, 0x93, 0x77, 0x0c, 0x06, 0x99, 0x3c, 0x6e, 0x15, 0x4d, 0x6e, 0xf8, 0x9d, 0xa9,
+	0x3c, 0x2e, 0xae, 0x68, 0xcc, 0x5e, 0x6e, 0x3a, 0x16, 0x91, 0x3e, 0x76, 0x82, 0xe9, 0x2c, 0xf9,
+	0xd4, 0xe9, 0x4f, 0xcd, 0x58, 0xd0, 0x58, 0xc2, 0xe9, 0xc4, 0x8b, 0xd1, 0xa4, 0x20, 0x7d, 0x2d,
+	0xe1, 0x39, 0xc1, 0x73, 0x07, 0xcf, 0x09, 0x3e, 0xec, 0x96, 0x37, 0x7a, 0xfc, 0x3d, 0x00, 0x00,
+	0xff, 0xff, 0xe5, 0x1f, 0x25, 0xb6, 0x8d, 0x06, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -410,8 +408,7 @@ type RegistryAPIClient interface {
 	GetStorageProvider(ctx context.Context, in *GetStorageProviderRequest, opts ...grpc.CallOption) (*GetStorageProviderResponse, error)
 	// Returns a list of the available storage providers known by this registry.
 	ListStorageProviders(ctx context.Context, in *ListStorageProvidersRequest, opts ...grpc.CallOption) (*ListStorageProvidersResponse, error)
-	// Returns the home path for the given authenticated user.
-	// When a user has access to multiple storage providers, one of them is the home.
+	// Gets the user home storage provider.
 	GetHome(ctx context.Context, in *GetHomeRequest, opts ...grpc.CallOption) (*GetHomeResponse, error)
 }
 
@@ -458,8 +455,7 @@ type RegistryAPIServer interface {
 	GetStorageProvider(context.Context, *GetStorageProviderRequest) (*GetStorageProviderResponse, error)
 	// Returns a list of the available storage providers known by this registry.
 	ListStorageProviders(context.Context, *ListStorageProvidersRequest) (*ListStorageProvidersResponse, error)
-	// Returns the home path for the given authenticated user.
-	// When a user has access to multiple storage providers, one of them is the home.
+	// Gets the user home storage provider.
 	GetHome(context.Context, *GetHomeRequest) (*GetHomeResponse, error)
 }
 
