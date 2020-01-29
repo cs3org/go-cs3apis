@@ -6,7 +6,7 @@ require (
 	golang.org/x/sys v0.0.0-20190415081028-16da32be82c5 // indirect
 	golang.org/x/text v0.3.1-0.20180807135948-17ff2d5776d2 // indirect
 	google.golang.org/genproto v0.0.0-20190404172233-64821d5d2107 // indirect
-	google.golang.org/grpc v1.26.0
+	google.golang.org/grpc v1.27.0
 )
 
 go 1.13
