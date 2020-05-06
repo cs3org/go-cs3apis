@@ -540,7 +540,7 @@ func (m *ResourceChecksumPriority) GetPriority() uint32 {
 }
 
 // The mechanism to identify a resource
-// in the storage provider namespace.
+// in the storage provider namespace. Note that the path OR the resourceId must be specifed, not both.
 type Reference struct {
 	// REQUIRED.
 	// One of the specifications MUST be specified.
