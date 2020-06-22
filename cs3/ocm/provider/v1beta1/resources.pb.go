@@ -20,30 +20,251 @@ var _ = math.Inf
 // proto package needs to be updated.
 const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 
-// Details of the sync'n'share system provider.
-type ProviderInfo struct {
-	// REQUIRED.
-	// The domain of the sync'n'share provider.
-	Domain string `protobuf:"bytes,1,opt,name=domain,proto3" json:"domain,omitempty"`
-	// REQUIRED.
-	// The API version supported by the provider.
-	ApiVersion string `protobuf:"bytes,2,opt,name=api_version,json=apiVersion,proto3" json:"api_version,omitempty"`
-	// REQUIRED.
-	// The endpoint on which the API is exposed.
-	ApiEndpoint string `protobuf:"bytes,3,opt,name=api_endpoint,json=apiEndpoint,proto3" json:"api_endpoint,omitempty"`
-	// REQUIRED.
-	// The endpoint on which the webdav protocol is exposed.
-	WebdavEndpoint       string   `protobuf:"bytes,4,opt,name=webdav_endpoint,json=webdavEndpoint,proto3" json:"webdav_endpoint,omitempty"`
+//  Identifier for various types of services offered by sync'n'share system providers.
+type ServiceType struct {
+	// REQUIRED
+	// The name of the service type.
+	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	// REQUIRED
+	// The description of the service type.
+	Description          string   `protobuf:"bytes,2,opt,name=description,proto3" json:"description,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *ServiceType) Reset()         { *m = ServiceType{} }
+func (m *ServiceType) String() string { return proto.CompactTextString(m) }
+func (*ServiceType) ProtoMessage()    {}
+func (*ServiceType) Descriptor() ([]byte, []int) {
+	return fileDescriptor_646d597abb45fefd, []int{0}
+}
+
+func (m *ServiceType) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ServiceType.Unmarshal(m, b)
+}
+func (m *ServiceType) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ServiceType.Marshal(b, m, deterministic)
+}
+func (m *ServiceType) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ServiceType.Merge(m, src)
+}
+func (m *ServiceType) XXX_Size() int {
+	return xxx_messageInfo_ServiceType.Size(m)
+}
+func (m *ServiceType) XXX_DiscardUnknown() {
+	xxx_messageInfo_ServiceType.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_ServiceType proto.InternalMessageInfo
+
+func (m *ServiceType) GetName() string {
+	if m != nil {
+		return m.Name
+	}
+	return ""
+}
+
+func (m *ServiceType) GetDescription() string {
+	if m != nil {
+		return m.Description
+	}
+	return ""
+}
+
+// The endpoints exposed by particular services.
+type ServiceEndpoint struct {
+	// REQUIRED.
+	// The type of service.
+	Type *ServiceType `protobuf:"bytes,1,opt,name=type,proto3" json:"type,omitempty"`
+	// REQUIRED.
+	// The name of the service.
+	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	// REQUIRED.
+	// The path at which the service is hosted.
+	Path string `protobuf:"bytes,3,opt,name=path,proto3" json:"path,omitempty"`
+	// OPTIONAL.
+	// Whether the service is monitored.
+	IsMonitored bool `protobuf:"varint,4,opt,name=is_monitored,json=isMonitored,proto3" json:"is_monitored,omitempty"`
+	// OPTIONAL.
+	// Additional properties about the service.
+	Properties           map[string]string `protobuf:"bytes,5,rep,name=properties,proto3" json:"properties,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
+	XXX_NoUnkeyedLiteral struct{}          `json:"-"`
+	XXX_unrecognized     []byte            `json:"-"`
+	XXX_sizecache        int32             `json:"-"`
+}
+
+func (m *ServiceEndpoint) Reset()         { *m = ServiceEndpoint{} }
+func (m *ServiceEndpoint) String() string { return proto.CompactTextString(m) }
+func (*ServiceEndpoint) ProtoMessage()    {}
+func (*ServiceEndpoint) Descriptor() ([]byte, []int) {
+	return fileDescriptor_646d597abb45fefd, []int{1}
+}
+
+func (m *ServiceEndpoint) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ServiceEndpoint.Unmarshal(m, b)
+}
+func (m *ServiceEndpoint) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ServiceEndpoint.Marshal(b, m, deterministic)
+}
+func (m *ServiceEndpoint) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ServiceEndpoint.Merge(m, src)
+}
+func (m *ServiceEndpoint) XXX_Size() int {
+	return xxx_messageInfo_ServiceEndpoint.Size(m)
+}
+func (m *ServiceEndpoint) XXX_DiscardUnknown() {
+	xxx_messageInfo_ServiceEndpoint.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_ServiceEndpoint proto.InternalMessageInfo
+
+func (m *ServiceEndpoint) GetType() *ServiceType {
+	if m != nil {
+		return m.Type
+	}
+	return nil
+}
+
+func (m *ServiceEndpoint) GetName() string {
+	if m != nil {
+		return m.Name
+	}
+	return ""
+}
+
+func (m *ServiceEndpoint) GetPath() string {
+	if m != nil {
+		return m.Path
+	}
+	return ""
+}
+
+func (m *ServiceEndpoint) GetIsMonitored() bool {
+	if m != nil {
+		return m.IsMonitored
+	}
+	return false
+}
+
+func (m *ServiceEndpoint) GetProperties() map[string]string {
+	if m != nil {
+		return m.Properties
+	}
+	return nil
+}
+
+// The services offered by sync'n'share system providers.
+type Service struct {
+	// REQUIRED.
+	// The URL at which the service is hosted.
+	Host string `protobuf:"bytes,1,opt,name=host,proto3" json:"host,omitempty"`
+	// REQUIRED.
+	// The primary endpoint of the service.
+	Endpoint *ServiceEndpoint `protobuf:"bytes,2,opt,name=endpoint,proto3" json:"endpoint,omitempty"`
+	// REQUIRED.
+	// The API version of the provided service.
+	ApiVersion string `protobuf:"bytes,3,opt,name=api_version,json=apiVersion,proto3" json:"api_version,omitempty"`
+	// OPTIONAL.
+	// Additional endpoints at which the service is exposed.
+	AdditionalEndpoints  []*ServiceEndpoint `protobuf:"bytes,4,rep,name=additional_endpoints,json=additionalEndpoints,proto3" json:"additional_endpoints,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}           `json:"-"`
+	XXX_unrecognized     []byte             `json:"-"`
+	XXX_sizecache        int32              `json:"-"`
+}
+
+func (m *Service) Reset()         { *m = Service{} }
+func (m *Service) String() string { return proto.CompactTextString(m) }
+func (*Service) ProtoMessage()    {}
+func (*Service) Descriptor() ([]byte, []int) {
+	return fileDescriptor_646d597abb45fefd, []int{2}
+}
+
+func (m *Service) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_Service.Unmarshal(m, b)
+}
+func (m *Service) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_Service.Marshal(b, m, deterministic)
+}
+func (m *Service) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Service.Merge(m, src)
+}
+func (m *Service) XXX_Size() int {
+	return xxx_messageInfo_Service.Size(m)
+}
+func (m *Service) XXX_DiscardUnknown() {
+	xxx_messageInfo_Service.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_Service proto.InternalMessageInfo
+
+func (m *Service) GetHost() string {
+	if m != nil {
+		return m.Host
+	}
+	return ""
+}
+
+func (m *Service) GetEndpoint() *ServiceEndpoint {
+	if m != nil {
+		return m.Endpoint
+	}
+	return nil
+}
+
+func (m *Service) GetApiVersion() string {
+	if m != nil {
+		return m.ApiVersion
+	}
+	return ""
+}
+
+func (m *Service) GetAdditionalEndpoints() []*ServiceEndpoint {
+	if m != nil {
+		return m.AdditionalEndpoints
+	}
+	return nil
+}
+
+// Details of the sync'n'share system provider.
+type ProviderInfo struct {
+	// REQUIRED.
+	// The name of the provider.
+	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	// REQUIRED.
+	// The full name of the provider.
+	FullName string `protobuf:"bytes,2,opt,name=full_name,json=fullName,proto3" json:"full_name,omitempty"`
+	// REQUIRED.
+	// A description of the provider.
+	Description string `protobuf:"bytes,3,opt,name=description,proto3" json:"description,omitempty"`
+	// REQUIRED.
+	// The organization to which the provider belongs.
+	Organization string `protobuf:"bytes,4,opt,name=organization,proto3" json:"organization,omitempty"`
+	// REQUIRED.
+	// The domain of the sync'n'share provider.
+	Domain string `protobuf:"bytes,5,opt,name=domain,proto3" json:"domain,omitempty"`
+	// REQUIRED.
+	// The homepage of the provider.
+	Homepage string `protobuf:"bytes,6,opt,name=homepage,proto3" json:"homepage,omitempty"`
+	// REQUIRED.
+	// The email at which the provider can be reached.
+	Email string `protobuf:"bytes,7,opt,name=email,proto3" json:"email,omitempty"`
+	// REQUIRED.
+	// The list of services provided by the provider.
+	Services []*Service `protobuf:"bytes,8,rep,name=services,proto3" json:"services,omitempty"`
+	// OPTIONAL.
+	// Additional properties about the service.
+	Properties           map[string]string `protobuf:"bytes,9,rep,name=properties,proto3" json:"properties,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
+	XXX_NoUnkeyedLiteral struct{}          `json:"-"`
+	XXX_unrecognized     []byte            `json:"-"`
+	XXX_sizecache        int32             `json:"-"`
 }
 
 func (m *ProviderInfo) Reset()         { *m = ProviderInfo{} }
 func (m *ProviderInfo) String() string { return proto.CompactTextString(m) }
 func (*ProviderInfo) ProtoMessage()    {}
 func (*ProviderInfo) Descriptor() ([]byte, []int) {
-	return fileDescriptor_646d597abb45fefd, []int{0}
+	return fileDescriptor_646d597abb45fefd, []int{3}
 }
 
 func (m *ProviderInfo) XXX_Unmarshal(b []byte) error {
@@ -64,6 +285,34 @@ func (m *ProviderInfo) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_ProviderInfo proto.InternalMessageInfo
 
+func (m *ProviderInfo) GetName() string {
+	if m != nil {
+		return m.Name
+	}
+	return ""
+}
+
+func (m *ProviderInfo) GetFullName() string {
+	if m != nil {
+		return m.FullName
+	}
+	return ""
+}
+
+func (m *ProviderInfo) GetDescription() string {
+	if m != nil {
+		return m.Description
+	}
+	return ""
+}
+
+func (m *ProviderInfo) GetOrganization() string {
+	if m != nil {
+		return m.Organization
+	}
+	return ""
+}
+
 func (m *ProviderInfo) GetDomain() string {
 	if m != nil {
 		return m.Domain
@@ -71,29 +320,41 @@ func (m *ProviderInfo) GetDomain() string {
 	return ""
 }
 
-func (m *ProviderInfo) GetApiVersion() string {
+func (m *ProviderInfo) GetHomepage() string {
 	if m != nil {
-		return m.ApiVersion
+		return m.Homepage
 	}
 	return ""
 }
 
-func (m *ProviderInfo) GetApiEndpoint() string {
+func (m *ProviderInfo) GetEmail() string {
 	if m != nil {
-		return m.ApiEndpoint
+		return m.Email
 	}
 	return ""
 }
 
-func (m *ProviderInfo) GetWebdavEndpoint() string {
+func (m *ProviderInfo) GetServices() []*Service {
 	if m != nil {
-		return m.WebdavEndpoint
+		return m.Services
 	}
-	return ""
+	return nil
+}
+
+func (m *ProviderInfo) GetProperties() map[string]string {
+	if m != nil {
+		return m.Properties
+	}
+	return nil
 }
 
 func init() {
+	proto.RegisterType((*ServiceType)(nil), "cs3.ocm.provider.v1beta1.ServiceType")
+	proto.RegisterType((*ServiceEndpoint)(nil), "cs3.ocm.provider.v1beta1.ServiceEndpoint")
+	proto.RegisterMapType((map[string]string)(nil), "cs3.ocm.provider.v1beta1.ServiceEndpoint.PropertiesEntry")
+	proto.RegisterType((*Service)(nil), "cs3.ocm.provider.v1beta1.Service")
 	proto.RegisterType((*ProviderInfo)(nil), "cs3.ocm.provider.v1beta1.ProviderInfo")
+	proto.RegisterMapType((map[string]string)(nil), "cs3.ocm.provider.v1beta1.ProviderInfo.PropertiesEntry")
 }
 
 func init() {
@@ -101,21 +362,40 @@ func init() {
 }
 
 var fileDescriptor_646d597abb45fefd = []byte{
-	// 249 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x74, 0xd0, 0x3f, 0x6a, 0xc3, 0x30,
-	0x18, 0x05, 0x70, 0xec, 0x94, 0x40, 0xd5, 0x90, 0x80, 0x86, 0xa2, 0xa1, 0xd0, 0x3f, 0x4b, 0x33,
-	0xc9, 0x18, 0xdf, 0xc0, 0xa1, 0x43, 0x27, 0x9b, 0x0c, 0x19, 0x8a, 0xa1, 0xc8, 0x9f, 0x55, 0xd0,
-	0x20, 0x7d, 0x42, 0x72, 0xdd, 0xa9, 0xa7, 0xe8, 0x0d, 0x3a, 0xf6, 0x28, 0x3d, 0x55, 0xb1, 0x2c,
-	0xd1, 0x29, 0xa3, 0xde, 0xfb, 0x09, 0xf4, 0x44, 0xf6, 0xe0, 0xab, 0x02, 0x41, 0x17, 0xd6, 0xe1,
-	0xa4, 0x06, 0xe9, 0x8a, 0xa9, 0xec, 0xe5, 0x28, 0xca, 0xc2, 0x49, 0x8f, 0xef, 0x0e, 0xa4, 0xe7,
-	0xd6, 0xe1, 0x88, 0x94, 0x81, 0xaf, 0x38, 0x82, 0xe6, 0x49, 0xf2, 0x28, 0x1f, 0xbe, 0x32, 0xb2,
-	0x69, 0x63, 0xf8, 0x6c, 0xde, 0x90, 0x5e, 0x93, 0xf5, 0x80, 0x5a, 0x28, 0xc3, 0xb2, 0xbb, 0x6c,
-	0x7f, 0x79, 0x8c, 0x27, 0x7a, 0x4b, 0xae, 0x84, 0x55, 0xaf, 0x93, 0x74, 0x5e, 0xa1, 0x61, 0x79,
-	0x28, 0x89, 0xb0, 0xea, 0xb4, 0x24, 0xf4, 0x9e, 0x6c, 0x66, 0x20, 0xcd, 0x60, 0x51, 0x99, 0x91,
-	0xad, 0x82, 0x98, 0x2f, 0x3d, 0xc5, 0x88, 0x3e, 0x92, 0xdd, 0x87, 0xec, 0x07, 0x31, 0xfd, 0xab,
-	0x8b, 0xa0, 0xb6, 0x4b, 0x9c, 0x60, 0xfd, 0x49, 0x6e, 0x00, 0x35, 0x3f, 0xf7, 0xea, 0x7a, 0x7b,
-	0x4c, 0x03, 0xdb, 0x79, 0x5f, 0x9b, 0xbd, 0xec, 0x92, 0x89, 0xe4, 0x3b, 0x5f, 0x1d, 0x9a, 0xf6,
-	0x27, 0x67, 0x07, 0x5f, 0xf1, 0x06, 0x34, 0x4f, 0x23, 0xf9, 0xa9, 0xac, 0x67, 0xf0, 0x1b, 0xaa,
-	0xae, 0x01, 0xdd, 0xa5, 0xaa, 0x8b, 0x55, 0xbf, 0x0e, 0xbf, 0x56, 0xfd, 0x05, 0x00, 0x00, 0xff,
-	0xff, 0x86, 0xc2, 0xc6, 0x58, 0x61, 0x01, 0x00, 0x00,
+	// 547 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xb4, 0x54, 0xcd, 0x8a, 0x13, 0x41,
+	0x10, 0x66, 0x7e, 0x92, 0x9d, 0xd4, 0x04, 0x23, 0xed, 0x22, 0xcd, 0x2a, 0x98, 0x0d, 0x08, 0xf1,
+	0x32, 0x21, 0x09, 0x88, 0x2b, 0xec, 0x25, 0x21, 0x07, 0x0f, 0x9a, 0x30, 0x4a, 0x40, 0x09, 0x84,
+	0xde, 0x99, 0xde, 0x4d, 0x63, 0x66, 0xba, 0xe9, 0x9e, 0x04, 0x22, 0xf8, 0x32, 0x82, 0x17, 0x6f,
+	0xbe, 0x86, 0xaf, 0xe1, 0x8b, 0xc8, 0xf4, 0x4c, 0xc7, 0x59, 0xdd, 0xb0, 0x7a, 0xd8, 0x5b, 0xd7,
+	0xcf, 0x57, 0xf5, 0xd5, 0x57, 0x45, 0x43, 0x37, 0x52, 0xc3, 0x1e, 0x8f, 0x92, 0x9e, 0x90, 0x7c,
+	0xcb, 0x62, 0x2a, 0x7b, 0xdb, 0xfe, 0x05, 0xcd, 0x48, 0xbf, 0x27, 0xa9, 0xe2, 0x1b, 0x19, 0x51,
+	0x15, 0x08, 0xc9, 0x33, 0x8e, 0x70, 0xa4, 0x86, 0x01, 0x8f, 0x92, 0xc0, 0x64, 0x06, 0x65, 0x66,
+	0x67, 0x0c, 0xfe, 0x5b, 0x2a, 0xb7, 0x2c, 0xa2, 0xef, 0x76, 0x82, 0x22, 0x04, 0x6e, 0x4a, 0x12,
+	0x8a, 0xad, 0xb6, 0xd5, 0x6d, 0x84, 0xfa, 0x8d, 0xda, 0xe0, 0xc7, 0x54, 0x45, 0x92, 0x89, 0x8c,
+	0xf1, 0x14, 0xdb, 0x3a, 0x54, 0x75, 0x75, 0xbe, 0xdb, 0xd0, 0x2a, 0xab, 0x4c, 0xd2, 0x58, 0x70,
+	0x96, 0x66, 0xe8, 0x0c, 0xdc, 0x6c, 0x27, 0x8a, 0x4a, 0xfe, 0xe0, 0x69, 0x70, 0x88, 0x41, 0x50,
+	0x69, 0x1f, 0x6a, 0xc8, 0x9e, 0x84, 0x5d, 0x21, 0x81, 0xc0, 0x15, 0x24, 0x5b, 0x61, 0xa7, 0xf0,
+	0xe5, 0x6f, 0x74, 0x0a, 0x4d, 0xa6, 0x96, 0x09, 0x4f, 0x59, 0xc6, 0x25, 0x8d, 0xb1, 0xdb, 0xb6,
+	0xba, 0x5e, 0xe8, 0x33, 0xf5, 0xda, 0xb8, 0xd0, 0x7b, 0x00, 0x21, 0xb9, 0xa0, 0x32, 0x63, 0x54,
+	0xe1, 0x5a, 0xdb, 0xe9, 0xfa, 0x83, 0xb3, 0x5b, 0xb9, 0x98, 0x21, 0x82, 0xd9, 0x1e, 0x3b, 0x49,
+	0x33, 0xb9, 0x0b, 0x2b, 0xc5, 0x4e, 0xce, 0xa1, 0xf5, 0x47, 0x18, 0xdd, 0x07, 0xe7, 0x23, 0xdd,
+	0x95, 0xe2, 0xe5, 0x4f, 0x74, 0x0c, 0xb5, 0x2d, 0x59, 0x6f, 0xcc, 0x2c, 0x85, 0xf1, 0xd2, 0x7e,
+	0x61, 0x75, 0x7e, 0x5a, 0x70, 0x54, 0xb6, 0xcb, 0x87, 0x5b, 0x71, 0x95, 0x19, 0xd5, 0xf3, 0x37,
+	0x9a, 0x80, 0x47, 0x4b, 0x1a, 0x1a, 0xec, 0x0f, 0x9e, 0xfd, 0x33, 0xef, 0x70, 0x0f, 0x45, 0x4f,
+	0xc0, 0x27, 0x82, 0x2d, 0xb7, 0x54, 0xaa, 0x7c, 0x79, 0x85, 0x7c, 0x40, 0x04, 0x9b, 0x17, 0x1e,
+	0xb4, 0x80, 0x63, 0x12, 0xc7, 0x2c, 0xdf, 0x23, 0x59, 0x2f, 0x0d, 0x4e, 0x61, 0x57, 0x6b, 0xf5,
+	0x1f, 0x3d, 0x1f, 0xfc, 0x2e, 0x63, 0x7c, 0xaa, 0xf3, 0xd5, 0x81, 0xe6, 0xac, 0x44, 0xbe, 0x4a,
+	0x2f, 0xf9, 0x8d, 0x07, 0xf6, 0x08, 0x1a, 0x97, 0x9b, 0xf5, 0x7a, 0x59, 0x59, 0xba, 0x97, 0x3b,
+	0xde, 0xdc, 0x70, 0x7d, 0xce, 0x5f, 0xd7, 0x87, 0x3a, 0xd0, 0xe4, 0xf2, 0x8a, 0xa4, 0xec, 0x13,
+	0xd1, 0x29, 0xae, 0x4e, 0xb9, 0xe6, 0x43, 0x0f, 0xa1, 0x1e, 0xf3, 0x84, 0xb0, 0x14, 0xd7, 0x74,
+	0xb4, 0xb4, 0xd0, 0x09, 0x78, 0x2b, 0x9e, 0x50, 0x41, 0xae, 0x28, 0xae, 0x17, 0x9d, 0x8d, 0x9d,
+	0xef, 0x8e, 0x26, 0x84, 0xad, 0xf1, 0x51, 0xb1, 0x3b, 0x6d, 0xa0, 0x73, 0xf0, 0x54, 0x31, 0xb9,
+	0xc2, 0x9e, 0xd6, 0xe8, 0xf4, 0x56, 0x8d, 0xc2, 0x3d, 0x04, 0xcd, 0xaf, 0x1d, 0x64, 0x43, 0x17,
+	0x78, 0x7e, 0xb8, 0x40, 0x55, 0xbb, 0x3b, 0xbc, 0xc6, 0xd1, 0x67, 0x78, 0x1c, 0xf1, 0xe4, 0x20,
+	0x8f, 0xd1, 0xbd, 0xd0, 0xfc, 0x28, 0xb3, 0xfc, 0x43, 0x99, 0x59, 0x1f, 0x5a, 0x26, 0xa7, 0x4c,
+	0xf9, 0x62, 0x3b, 0xe3, 0xe9, 0xec, 0x9b, 0x8d, 0xc7, 0x6a, 0x18, 0x4c, 0xa3, 0x64, 0x4f, 0x3d,
+	0x98, 0xf7, 0x47, 0x79, 0xc2, 0x0f, 0x1d, 0x5a, 0x4c, 0xa3, 0x64, 0x61, 0x42, 0x8b, 0x32, 0x74,
+	0x51, 0xd7, 0xdf, 0xd4, 0xf0, 0x57, 0x00, 0x00, 0x00, 0xff, 0xff, 0x03, 0xba, 0x3a, 0xf8, 0xd2,
+	0x04, 0x00, 0x00,
 }
