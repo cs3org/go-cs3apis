@@ -29,47 +29,47 @@ const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 
 // REQUIRED.
 // View mode.
-type OpenRequest_ViewMode int32
+type OpenFileInAppProviderRequest_ViewMode int32
 
 const (
-	OpenRequest_VIEW_MODE_INVALID OpenRequest_ViewMode = 0
+	OpenFileInAppProviderRequest_VIEW_MODE_INVALID OpenFileInAppProviderRequest_ViewMode = 0
 	// The file can be opened but not downloaded.
-	OpenRequest_VIEW_MODE_VIEW_ONLY OpenRequest_ViewMode = 1
+	OpenFileInAppProviderRequest_VIEW_MODE_VIEW_ONLY OpenFileInAppProviderRequest_ViewMode = 1
 	// The file can be downloaded.
-	OpenRequest_VIEW_MODE_READ_ONLY OpenRequest_ViewMode = 2
+	OpenFileInAppProviderRequest_VIEW_MODE_READ_ONLY OpenFileInAppProviderRequest_ViewMode = 2
 	// The file can be downloaded and updated.
-	OpenRequest_VIEW_MODE_READ_WRITE OpenRequest_ViewMode = 3
+	OpenFileInAppProviderRequest_VIEW_MODE_READ_WRITE OpenFileInAppProviderRequest_ViewMode = 3
 )
 
-var OpenRequest_ViewMode_name = map[int32]string{
+var OpenFileInAppProviderRequest_ViewMode_name = map[int32]string{
 	0: "VIEW_MODE_INVALID",
 	1: "VIEW_MODE_VIEW_ONLY",
 	2: "VIEW_MODE_READ_ONLY",
 	3: "VIEW_MODE_READ_WRITE",
 }
 
-var OpenRequest_ViewMode_value = map[string]int32{
+var OpenFileInAppProviderRequest_ViewMode_value = map[string]int32{
 	"VIEW_MODE_INVALID":    0,
 	"VIEW_MODE_VIEW_ONLY":  1,
 	"VIEW_MODE_READ_ONLY":  2,
 	"VIEW_MODE_READ_WRITE": 3,
 }
 
-func (x OpenRequest_ViewMode) String() string {
-	return proto.EnumName(OpenRequest_ViewMode_name, int32(x))
+func (x OpenFileInAppProviderRequest_ViewMode) String() string {
+	return proto.EnumName(OpenFileInAppProviderRequest_ViewMode_name, int32(x))
 }
 
-func (OpenRequest_ViewMode) EnumDescriptor() ([]byte, []int) {
+func (OpenFileInAppProviderRequest_ViewMode) EnumDescriptor() ([]byte, []int) {
 	return fileDescriptor_c007b70b037097fe, []int{0, 0}
 }
 
-type OpenRequest struct {
+type OpenFileInAppProviderRequest struct {
 	// OPTIONAL.
 	// Opaque information.
 	Opaque *v1beta1.Opaque `protobuf:"bytes,1,opt,name=opaque,proto3" json:"opaque,omitempty"`
 	// REQUIRED.
 	// The resource reference.
-	ResourceInfo *v1beta11.ResourceInfo `protobuf:"bytes,2,opt,name=resource_info,json=resourceInfo,proto3" json:"resource_info,omitempty"`
+	Ref *v1beta11.Reference `protobuf:"bytes,2,opt,name=ref,proto3" json:"ref,omitempty"`
 	// REQUIRED.
 	// The access token this application provider will use when contacting
 	// the storage provider to read and write.
@@ -79,67 +79,67 @@ type OpenRequest struct {
 	// ResourceIds MUST NOT change when a resource is renamed.
 	// The access token MUST be short-lived.
 	// TODO(labkode): investigate token derivation techniques.
-	AccessToken          string               `protobuf:"bytes,3,opt,name=access_token,json=accessToken,proto3" json:"access_token,omitempty"`
-	ViewMode             OpenRequest_ViewMode `protobuf:"varint,4,opt,name=view_mode,json=viewMode,proto3,enum=cs3.app.provider.v1beta1.OpenRequest_ViewMode" json:"view_mode,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
-	XXX_unrecognized     []byte               `json:"-"`
-	XXX_sizecache        int32                `json:"-"`
+	AccessToken          string                                `protobuf:"bytes,3,opt,name=access_token,json=accessToken,proto3" json:"access_token,omitempty"`
+	ViewMode             OpenFileInAppProviderRequest_ViewMode `protobuf:"varint,4,opt,name=view_mode,json=viewMode,proto3,enum=cs3.app.provider.v1beta1.OpenFileInAppProviderRequest_ViewMode" json:"view_mode,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}                              `json:"-"`
+	XXX_unrecognized     []byte                                `json:"-"`
+	XXX_sizecache        int32                                 `json:"-"`
 }
 
-func (m *OpenRequest) Reset()         { *m = OpenRequest{} }
-func (m *OpenRequest) String() string { return proto.CompactTextString(m) }
-func (*OpenRequest) ProtoMessage()    {}
-func (*OpenRequest) Descriptor() ([]byte, []int) {
+func (m *OpenFileInAppProviderRequest) Reset()         { *m = OpenFileInAppProviderRequest{} }
+func (m *OpenFileInAppProviderRequest) String() string { return proto.CompactTextString(m) }
+func (*OpenFileInAppProviderRequest) ProtoMessage()    {}
+func (*OpenFileInAppProviderRequest) Descriptor() ([]byte, []int) {
 	return fileDescriptor_c007b70b037097fe, []int{0}
 }
 
-func (m *OpenRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_OpenRequest.Unmarshal(m, b)
+func (m *OpenFileInAppProviderRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_OpenFileInAppProviderRequest.Unmarshal(m, b)
 }
-func (m *OpenRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_OpenRequest.Marshal(b, m, deterministic)
+func (m *OpenFileInAppProviderRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_OpenFileInAppProviderRequest.Marshal(b, m, deterministic)
 }
-func (m *OpenRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_OpenRequest.Merge(m, src)
+func (m *OpenFileInAppProviderRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_OpenFileInAppProviderRequest.Merge(m, src)
 }
-func (m *OpenRequest) XXX_Size() int {
-	return xxx_messageInfo_OpenRequest.Size(m)
+func (m *OpenFileInAppProviderRequest) XXX_Size() int {
+	return xxx_messageInfo_OpenFileInAppProviderRequest.Size(m)
 }
-func (m *OpenRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_OpenRequest.DiscardUnknown(m)
+func (m *OpenFileInAppProviderRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_OpenFileInAppProviderRequest.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_OpenRequest proto.InternalMessageInfo
+var xxx_messageInfo_OpenFileInAppProviderRequest proto.InternalMessageInfo
 
-func (m *OpenRequest) GetOpaque() *v1beta1.Opaque {
+func (m *OpenFileInAppProviderRequest) GetOpaque() *v1beta1.Opaque {
 	if m != nil {
 		return m.Opaque
 	}
 	return nil
 }
 
-func (m *OpenRequest) GetResourceInfo() *v1beta11.ResourceInfo {
+func (m *OpenFileInAppProviderRequest) GetRef() *v1beta11.Reference {
 	if m != nil {
-		return m.ResourceInfo
+		return m.Ref
 	}
 	return nil
 }
 
-func (m *OpenRequest) GetAccessToken() string {
+func (m *OpenFileInAppProviderRequest) GetAccessToken() string {
 	if m != nil {
 		return m.AccessToken
 	}
 	return ""
 }
 
-func (m *OpenRequest) GetViewMode() OpenRequest_ViewMode {
+func (m *OpenFileInAppProviderRequest) GetViewMode() OpenFileInAppProviderRequest_ViewMode {
 	if m != nil {
 		return m.ViewMode
 	}
-	return OpenRequest_VIEW_MODE_INVALID
+	return OpenFileInAppProviderRequest_VIEW_MODE_INVALID
 }
 
-type OpenResponse struct {
+type OpenFileInAppProviderResponse struct {
 	// REQUIRED.
 	// The response status.
 	Status *v1beta12.Status `protobuf:"bytes,1,opt,name=status,proto3" json:"status,omitempty"`
@@ -150,62 +150,62 @@ type OpenResponse struct {
 	// The url that user agents will render to clients.
 	// Usually the rendering happens by using HTML iframes,
 	// at least, Office 365, Collabora, OnlyOffice do like that.
-	IframeUrl            string   `protobuf:"bytes,3,opt,name=iframe_url,json=iframeUrl,proto3" json:"iframe_url,omitempty"`
+	AppProviderUrl       string   `protobuf:"bytes,3,opt,name=app_provider_url,json=appProviderUrl,proto3" json:"app_provider_url,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *OpenResponse) Reset()         { *m = OpenResponse{} }
-func (m *OpenResponse) String() string { return proto.CompactTextString(m) }
-func (*OpenResponse) ProtoMessage()    {}
-func (*OpenResponse) Descriptor() ([]byte, []int) {
+func (m *OpenFileInAppProviderResponse) Reset()         { *m = OpenFileInAppProviderResponse{} }
+func (m *OpenFileInAppProviderResponse) String() string { return proto.CompactTextString(m) }
+func (*OpenFileInAppProviderResponse) ProtoMessage()    {}
+func (*OpenFileInAppProviderResponse) Descriptor() ([]byte, []int) {
 	return fileDescriptor_c007b70b037097fe, []int{1}
 }
 
-func (m *OpenResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_OpenResponse.Unmarshal(m, b)
+func (m *OpenFileInAppProviderResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_OpenFileInAppProviderResponse.Unmarshal(m, b)
 }
-func (m *OpenResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_OpenResponse.Marshal(b, m, deterministic)
+func (m *OpenFileInAppProviderResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_OpenFileInAppProviderResponse.Marshal(b, m, deterministic)
 }
-func (m *OpenResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_OpenResponse.Merge(m, src)
+func (m *OpenFileInAppProviderResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_OpenFileInAppProviderResponse.Merge(m, src)
 }
-func (m *OpenResponse) XXX_Size() int {
-	return xxx_messageInfo_OpenResponse.Size(m)
+func (m *OpenFileInAppProviderResponse) XXX_Size() int {
+	return xxx_messageInfo_OpenFileInAppProviderResponse.Size(m)
 }
-func (m *OpenResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_OpenResponse.DiscardUnknown(m)
+func (m *OpenFileInAppProviderResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_OpenFileInAppProviderResponse.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_OpenResponse proto.InternalMessageInfo
+var xxx_messageInfo_OpenFileInAppProviderResponse proto.InternalMessageInfo
 
-func (m *OpenResponse) GetStatus() *v1beta12.Status {
+func (m *OpenFileInAppProviderResponse) GetStatus() *v1beta12.Status {
 	if m != nil {
 		return m.Status
 	}
 	return nil
 }
 
-func (m *OpenResponse) GetOpaque() *v1beta1.Opaque {
+func (m *OpenFileInAppProviderResponse) GetOpaque() *v1beta1.Opaque {
 	if m != nil {
 		return m.Opaque
 	}
 	return nil
 }
 
-func (m *OpenResponse) GetIframeUrl() string {
+func (m *OpenFileInAppProviderResponse) GetAppProviderUrl() string {
 	if m != nil {
-		return m.IframeUrl
+		return m.AppProviderUrl
 	}
 	return ""
 }
 
 func init() {
-	proto.RegisterEnum("cs3.app.provider.v1beta1.OpenRequest_ViewMode", OpenRequest_ViewMode_name, OpenRequest_ViewMode_value)
-	proto.RegisterType((*OpenRequest)(nil), "cs3.app.provider.v1beta1.OpenRequest")
-	proto.RegisterType((*OpenResponse)(nil), "cs3.app.provider.v1beta1.OpenResponse")
+	proto.RegisterEnum("cs3.app.provider.v1beta1.OpenFileInAppProviderRequest_ViewMode", OpenFileInAppProviderRequest_ViewMode_name, OpenFileInAppProviderRequest_ViewMode_value)
+	proto.RegisterType((*OpenFileInAppProviderRequest)(nil), "cs3.app.provider.v1beta1.OpenFileInAppProviderRequest")
+	proto.RegisterType((*OpenFileInAppProviderResponse)(nil), "cs3.app.provider.v1beta1.OpenFileInAppProviderResponse")
 }
 
 func init() {
@@ -213,38 +213,39 @@ func init() {
 }
 
 var fileDescriptor_c007b70b037097fe = []byte{
-	// 485 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x8c, 0x92, 0xdf, 0x6e, 0xd3, 0x30,
-	0x14, 0xc6, 0x49, 0x3a, 0x55, 0xab, 0x5b, 0xa0, 0x18, 0xd0, 0x42, 0xb5, 0x49, 0xa5, 0x12, 0xa8,
-	0x02, 0xe4, 0xaa, 0xed, 0x13, 0xa4, 0x6b, 0x2f, 0x22, 0xb6, 0x25, 0x0a, 0x5b, 0x27, 0x50, 0xa5,
-	0x28, 0x4b, 0x4f, 0x51, 0xc4, 0x1a, 0x9f, 0xd9, 0x49, 0x27, 0xae, 0x78, 0x06, 0x5e, 0x81, 0x4b,
-	0x1e, 0x85, 0xa7, 0xe1, 0x11, 0x50, 0x62, 0x27, 0x14, 0xa6, 0x69, 0xbb, 0x8b, 0xbf, 0xef, 0xf7,
-	0xc5, 0xe7, 0x8f, 0xc9, 0xdb, 0x48, 0x8e, 0x07, 0x21, 0xe2, 0x00, 0x05, 0xdf, 0xc4, 0x4b, 0x10,
-	0x83, 0xcd, 0xf0, 0x02, 0xd2, 0x70, 0x58, 0x09, 0x41, 0x88, 0x31, 0x43, 0xc1, 0x53, 0x4e, 0xad,
-	0x48, 0x8e, 0x59, 0x88, 0xc8, 0x4a, 0x8f, 0x69, 0xb8, 0xb3, 0x9f, 0xff, 0x46, 0x60, 0x54, 0xa5,
-	0x65, 0x1a, 0xa6, 0x99, 0x54, 0xb9, 0xce, 0xbb, 0xdc, 0x95, 0x29, 0x17, 0xe1, 0x67, 0xb8, 0x79,
-	0x91, 0x00, 0xc9, 0x33, 0x11, 0x41, 0x49, 0x1f, 0xe4, 0x74, 0xfa, 0x15, 0x41, 0x56, 0x48, 0x71,
-	0x52, 0x76, 0xef, 0xb7, 0x49, 0x9a, 0x2e, 0x42, 0xe2, 0xc3, 0x55, 0x06, 0x32, 0xa5, 0x43, 0x52,
-	0xe7, 0x18, 0x5e, 0x65, 0x60, 0x19, 0x5d, 0xa3, 0xdf, 0x1c, 0xbd, 0x60, 0x79, 0x95, 0x2a, 0xa1,
-	0xf3, 0xcc, 0x2d, 0x00, 0x5f, 0x83, 0xd4, 0x25, 0x0f, 0xcb, 0x4b, 0x83, 0x38, 0x59, 0x71, 0xcb,
-	0x2c, 0x92, 0x6f, 0x8a, 0xa4, 0xae, 0xf3, 0x46, 0x8f, 0xcc, 0xd7, 0x11, 0x27, 0x59, 0x71, 0xbf,
-	0x25, 0xb6, 0x4e, 0xf4, 0x25, 0x69, 0x85, 0x51, 0x04, 0x52, 0x06, 0x29, 0xff, 0x02, 0x89, 0x55,
-	0xeb, 0x1a, 0xfd, 0x86, 0xdf, 0x54, 0xda, 0x69, 0x2e, 0xd1, 0xf7, 0xa4, 0xb1, 0x89, 0xe1, 0x3a,
-	0x58, 0xf3, 0x25, 0x58, 0x3b, 0x5d, 0xa3, 0xff, 0x68, 0xc4, 0xd8, 0x6d, 0xf3, 0x64, 0x5b, 0x0d,
-	0xb2, 0x79, 0x0c, 0xd7, 0xc7, 0x7c, 0x09, 0xfe, 0xee, 0x46, 0x7f, 0xf5, 0xd6, 0x64, 0xb7, 0x54,
-	0xe9, 0x73, 0xf2, 0x64, 0xee, 0xcc, 0xce, 0x83, 0x63, 0x77, 0x3a, 0x0b, 0x9c, 0x93, 0xb9, 0x7d,
-	0xe4, 0x4c, 0xdb, 0x0f, 0xe8, 0x1e, 0x79, 0xfa, 0x57, 0x2e, 0xbe, 0xdc, 0x93, 0xa3, 0x8f, 0x6d,
-	0xe3, 0x5f, 0xc3, 0x9f, 0xd9, 0x53, 0x65, 0x98, 0xd4, 0x22, 0xcf, 0xfe, 0x33, 0xce, 0x7d, 0xe7,
-	0x74, 0xd6, 0xae, 0xf5, 0xbe, 0x1b, 0xa4, 0xa5, 0x2a, 0x92, 0xc8, 0x13, 0x09, 0x74, 0x40, 0xea,
-	0x6a, 0xc1, 0x7a, 0xe6, 0x7b, 0x45, 0x27, 0x02, 0xa3, 0xaa, 0x81, 0x0f, 0x85, 0xed, 0x6b, 0x6c,
-	0x6b, 0x49, 0xe6, 0x7d, 0x97, 0x74, 0x40, 0x48, 0xbc, 0x12, 0xe1, 0x1a, 0x82, 0x4c, 0x5c, 0xea,
-	0x89, 0x36, 0x94, 0x72, 0x26, 0x2e, 0x47, 0x4b, 0xd2, 0xf4, 0xf4, 0xd4, 0x6c, 0xcf, 0xa1, 0x67,
-	0x64, 0x27, 0xaf, 0x90, 0xbe, 0xba, 0xd7, 0x4c, 0x3b, 0xaf, 0xef, 0xc2, 0x54, 0xa3, 0x93, 0x6f,
-	0x64, 0x3f, 0xe2, 0xeb, 0x5b, 0xe1, 0x49, 0xbb, 0xaa, 0x01, 0x63, 0x2f, 0x7f, 0x9e, 0x9e, 0xf1,
-	0xe9, 0x71, 0x49, 0x69, 0xe8, 0x87, 0x59, 0x3b, 0xb4, 0xbd, 0x9f, 0xa6, 0x75, 0x28, 0xc7, 0xcc,
-	0x46, 0x64, 0x65, 0x86, 0xcd, 0x87, 0x93, 0x1c, 0xf8, 0x55, 0x58, 0x0b, 0x1b, 0x71, 0x51, 0x5a,
-	0x0b, 0x6d, 0x5d, 0xd4, 0x8b, 0x47, 0x3f, 0xfe, 0x13, 0x00, 0x00, 0xff, 0xff, 0x7c, 0xc7, 0xe1,
-	0x39, 0xa8, 0x03, 0x00, 0x00,
+	// 500 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x9c, 0x93, 0xc1, 0x6e, 0xd3, 0x4c,
+	0x10, 0xc7, 0x3f, 0x3b, 0x9f, 0xa2, 0x76, 0x83, 0x8a, 0x59, 0xa8, 0x6a, 0xa2, 0x54, 0x0a, 0xb9,
+	0x10, 0x09, 0xb4, 0x51, 0x12, 0x09, 0xc4, 0x09, 0x39, 0x4d, 0x90, 0x2c, 0xb5, 0x8d, 0x65, 0x4a,
+	0x2a, 0x50, 0x24, 0x6b, 0xeb, 0x4c, 0x91, 0x45, 0xe2, 0x9d, 0xee, 0xda, 0xa9, 0x38, 0x71, 0xe5,
+	0x11, 0x38, 0x73, 0x44, 0xe2, 0x45, 0x78, 0x26, 0x0e, 0xc8, 0xf6, 0xda, 0x05, 0x4a, 0x10, 0x70,
+	0xdb, 0x9d, 0xff, 0x6f, 0xc6, 0xff, 0x99, 0x59, 0x93, 0x07, 0xa1, 0x1a, 0xf6, 0x38, 0x62, 0x0f,
+	0xa5, 0x58, 0x47, 0x0b, 0x90, 0xbd, 0x75, 0xff, 0x0c, 0x12, 0xde, 0xaf, 0x02, 0x01, 0xc7, 0x88,
+	0xa1, 0x14, 0x89, 0xa0, 0x76, 0xa8, 0x86, 0x8c, 0x23, 0xb2, 0x52, 0x63, 0x1a, 0x6e, 0xb6, 0xb2,
+	0x32, 0x12, 0xc3, 0x2a, 0x5b, 0x25, 0x3c, 0x49, 0x55, 0x91, 0xd7, 0x7c, 0x98, 0xa9, 0x2a, 0x11,
+	0x92, 0xbf, 0x86, 0xeb, 0x1f, 0x92, 0xa0, 0x44, 0x2a, 0x43, 0x28, 0xe9, 0xfd, 0x8c, 0x4e, 0xde,
+	0x22, 0xa8, 0x0a, 0xc9, 0x6f, 0x85, 0xdc, 0xf9, 0x6a, 0x92, 0xd6, 0x14, 0x21, 0x7e, 0x16, 0x2d,
+	0xc1, 0x8d, 0x1d, 0x44, 0x4f, 0x17, 0xf4, 0xe1, 0x22, 0x05, 0x95, 0xd0, 0x3e, 0xa9, 0x0b, 0xe4,
+	0x17, 0x29, 0xd8, 0x46, 0xdb, 0xe8, 0x36, 0x06, 0x77, 0x59, 0x66, 0xbb, 0x28, 0xa1, 0x0b, 0xb2,
+	0x69, 0x0e, 0xf8, 0x1a, 0xa4, 0x4f, 0x48, 0x4d, 0xc2, 0xb9, 0x6d, 0xe6, 0xfc, 0xfd, 0x9c, 0xd7,
+	0x76, 0xaf, 0xb5, 0xca, 0x7c, 0x38, 0x07, 0x09, 0x71, 0x08, 0x7e, 0x96, 0x43, 0xef, 0x91, 0x1b,
+	0x3c, 0x0c, 0x41, 0xa9, 0x20, 0x11, 0x6f, 0x20, 0xb6, 0x6b, 0x6d, 0xa3, 0xbb, 0xed, 0x37, 0x8a,
+	0xd8, 0x49, 0x16, 0xa2, 0x73, 0xb2, 0xbd, 0x8e, 0xe0, 0x32, 0x58, 0x89, 0x05, 0xd8, 0xff, 0xb7,
+	0x8d, 0xee, 0xce, 0xe0, 0x29, 0xdb, 0x34, 0x4a, 0xf6, 0xbb, 0xde, 0xd8, 0x2c, 0x82, 0xcb, 0x23,
+	0xb1, 0x00, 0x7f, 0x6b, 0xad, 0x4f, 0x9d, 0x15, 0xd9, 0x2a, 0xa3, 0x74, 0x97, 0xdc, 0x9a, 0xb9,
+	0x93, 0xd3, 0xe0, 0x68, 0x3a, 0x9e, 0x04, 0xee, 0xf1, 0xcc, 0x39, 0x74, 0xc7, 0xd6, 0x7f, 0x74,
+	0x8f, 0xdc, 0xbe, 0x0a, 0xe7, 0xa7, 0xe9, 0xf1, 0xe1, 0x4b, 0xcb, 0xf8, 0x51, 0xf0, 0x27, 0xce,
+	0xb8, 0x10, 0x4c, 0x6a, 0x93, 0x3b, 0x3f, 0x09, 0xa7, 0xbe, 0x7b, 0x32, 0xb1, 0x6a, 0x9d, 0xcf,
+	0x06, 0xd9, 0xdf, 0x60, 0x51, 0xa1, 0x88, 0x15, 0xd0, 0x1e, 0xa9, 0x17, 0xdb, 0xd7, 0xf3, 0xdf,
+	0xcb, 0x7b, 0x95, 0x18, 0x56, 0x2d, 0x3e, 0xcf, 0x65, 0x5f, 0x63, 0xdf, 0x2d, 0xcc, 0xfc, 0xd3,
+	0x85, 0x75, 0x89, 0xc5, 0x11, 0x83, 0xea, 0x8d, 0xa6, 0x72, 0xa9, 0x27, 0xbf, 0xc3, 0xaf, 0x2c,
+	0xbd, 0x90, 0xcb, 0xc1, 0x07, 0x83, 0x34, 0xca, 0xbb, 0xe3, 0xb9, 0xf4, 0xbd, 0x41, 0x76, 0x7f,
+	0xe9, 0x9f, 0x3e, 0xfa, 0xb7, 0x9d, 0x34, 0x1f, 0xff, 0x75, 0x5e, 0x31, 0xa8, 0xd1, 0x3b, 0xd2,
+	0x0a, 0xc5, 0x6a, 0x63, 0xf6, 0xc8, 0xaa, 0x7c, 0x63, 0xe4, 0x65, 0x6f, 0xdf, 0x33, 0x5e, 0xdd,
+	0x2c, 0x29, 0x0d, 0x7d, 0x34, 0x6b, 0x07, 0x8e, 0xf7, 0xc9, 0xb4, 0x0f, 0xd4, 0x90, 0x39, 0x88,
+	0xac, 0xcc, 0x61, 0xb3, 0xfe, 0x28, 0x03, 0xbe, 0xe4, 0xd2, 0xdc, 0x41, 0x9c, 0x97, 0xd2, 0x5c,
+	0x4b, 0x67, 0xf5, 0xfc, 0x8f, 0x1a, 0x7e, 0x0b, 0x00, 0x00, 0xff, 0xff, 0x2b, 0xc3, 0x62, 0xcc,
+	0x05, 0x04, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -261,7 +262,7 @@ const _ = grpc.SupportPackageIsVersion4
 type ProviderAPIClient interface {
 	// Returns the iframe url
 	// MUST return CODE_NOT_FOUND if the resource does not exist.
-	Open(ctx context.Context, in *OpenRequest, opts ...grpc.CallOption) (*OpenResponse, error)
+	OpenFileInAppProvider(ctx context.Context, in *OpenFileInAppProviderRequest, opts ...grpc.CallOption) (*OpenFileInAppProviderResponse, error)
 }
 
 type providerAPIClient struct {
@@ -272,9 +273,9 @@ func NewProviderAPIClient(cc *grpc.ClientConn) ProviderAPIClient {
 	return &providerAPIClient{cc}
 }
 
-func (c *providerAPIClient) Open(ctx context.Context, in *OpenRequest, opts ...grpc.CallOption) (*OpenResponse, error) {
-	out := new(OpenResponse)
-	err := c.cc.Invoke(ctx, "/cs3.app.provider.v1beta1.ProviderAPI/Open", in, out, opts...)
+func (c *providerAPIClient) OpenFileInAppProvider(ctx context.Context, in *OpenFileInAppProviderRequest, opts ...grpc.CallOption) (*OpenFileInAppProviderResponse, error) {
+	out := new(OpenFileInAppProviderResponse)
+	err := c.cc.Invoke(ctx, "/cs3.app.provider.v1beta1.ProviderAPI/OpenFileInAppProvider", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -285,35 +286,35 @@ func (c *providerAPIClient) Open(ctx context.Context, in *OpenRequest, opts ...g
 type ProviderAPIServer interface {
 	// Returns the iframe url
 	// MUST return CODE_NOT_FOUND if the resource does not exist.
-	Open(context.Context, *OpenRequest) (*OpenResponse, error)
+	OpenFileInAppProvider(context.Context, *OpenFileInAppProviderRequest) (*OpenFileInAppProviderResponse, error)
 }
 
 // UnimplementedProviderAPIServer can be embedded to have forward compatible implementations.
 type UnimplementedProviderAPIServer struct {
 }
 
-func (*UnimplementedProviderAPIServer) Open(ctx context.Context, req *OpenRequest) (*OpenResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Open not implemented")
+func (*UnimplementedProviderAPIServer) OpenFileInAppProvider(ctx context.Context, req *OpenFileInAppProviderRequest) (*OpenFileInAppProviderResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method OpenFileInAppProvider not implemented")
 }
 
 func RegisterProviderAPIServer(s *grpc.Server, srv ProviderAPIServer) {
 	s.RegisterService(&_ProviderAPI_serviceDesc, srv)
 }
 
-func _ProviderAPI_Open_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(OpenRequest)
+func _ProviderAPI_OpenFileInAppProvider_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(OpenFileInAppProviderRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ProviderAPIServer).Open(ctx, in)
+		return srv.(ProviderAPIServer).OpenFileInAppProvider(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/cs3.app.provider.v1beta1.ProviderAPI/Open",
+		FullMethod: "/cs3.app.provider.v1beta1.ProviderAPI/OpenFileInAppProvider",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ProviderAPIServer).Open(ctx, req.(*OpenRequest))
+		return srv.(ProviderAPIServer).OpenFileInAppProvider(ctx, req.(*OpenFileInAppProviderRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -323,8 +324,8 @@ var _ProviderAPI_serviceDesc = grpc.ServiceDesc{
 	HandlerType: (*ProviderAPIServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "Open",
-			Handler:    _ProviderAPI_Open_Handler,
+			MethodName: "OpenFileInAppProvider",
+			Handler:    _ProviderAPI_OpenFileInAppProvider_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
