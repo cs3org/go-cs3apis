@@ -68,7 +68,8 @@ type OpenFileInAppProviderRequest struct {
 	// Opaque information.
 	Opaque *v1beta1.Opaque `protobuf:"bytes,1,opt,name=opaque,proto3" json:"opaque,omitempty"`
 	// REQUIRED.
-	// The resource reference.
+	// The resource reference. If a path is given, it will be resolved via Stat() to a ResourceId
+	// when a call to the WOPI server is to be issued.
 	Ref *v1beta11.Reference `protobuf:"bytes,2,opt,name=ref,proto3" json:"ref,omitempty"`
 	// REQUIRED.
 	// The access token this application provider will use when contacting
