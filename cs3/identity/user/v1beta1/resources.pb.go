@@ -74,7 +74,7 @@ func (m *UserId) GetOpaqueId() string {
 	return ""
 }
 
-// Represents an user of the system.
+// Represents a user of the system.
 type User struct {
 	Id                   *UserId         `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	Username             string          `protobuf:"bytes,2,opt,name=username,proto3" json:"username,omitempty"`

@@ -1321,11 +1321,11 @@ var fileDescriptor_2b58cdfce2e5a7f0 = []byte{
 
 // Reference imports to suppress errors if they are not otherwise used.
 var _ context.Context
-var _ grpc.ClientConn
+var _ grpc.ClientConnInterface
 
 // This is a compile-time assertion to ensure that this generated file
 // is compatible with the grpc package it is being compiled against.
-const _ = grpc.SupportPackageIsVersion4
+const _ = grpc.SupportPackageIsVersion6
 
 // CollaborationAPIClient is the client API for CollaborationAPI service.
 //
@@ -1361,10 +1361,10 @@ type CollaborationAPIClient interface {
 }
 
 type collaborationAPIClient struct {
-	cc *grpc.ClientConn
+	cc grpc.ClientConnInterface
 }
 
-func NewCollaborationAPIClient(cc *grpc.ClientConn) CollaborationAPIClient {
+func NewCollaborationAPIClient(cc grpc.ClientConnInterface) CollaborationAPIClient {
 	return &collaborationAPIClient{cc}
 }
 
