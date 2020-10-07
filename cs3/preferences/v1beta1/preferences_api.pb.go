@@ -243,11 +243,11 @@ var fileDescriptor_d9feea93568a6977 = []byte{
 
 // Reference imports to suppress errors if they are not otherwise used.
 var _ context.Context
-var _ grpc.ClientConnInterface
+var _ grpc.ClientConn
 
 // This is a compile-time assertion to ensure that this generated file
 // is compatible with the grpc package it is being compiled against.
-const _ = grpc.SupportPackageIsVersion6
+const _ = grpc.SupportPackageIsVersion4
 
 // PreferencesAPIClient is the client API for PreferencesAPI service.
 //
@@ -261,10 +261,10 @@ type PreferencesAPIClient interface {
 }
 
 type preferencesAPIClient struct {
-	cc grpc.ClientConnInterface
+	cc *grpc.ClientConn
 }
 
-func NewPreferencesAPIClient(cc grpc.ClientConnInterface) PreferencesAPIClient {
+func NewPreferencesAPIClient(cc *grpc.ClientConn) PreferencesAPIClient {
 	return &preferencesAPIClient{cc}
 }
 

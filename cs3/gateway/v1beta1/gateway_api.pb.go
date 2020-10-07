@@ -1049,11 +1049,11 @@ var fileDescriptor_2d35d050f2c88549 = []byte{
 
 // Reference imports to suppress errors if they are not otherwise used.
 var _ context.Context
-var _ grpc.ClientConnInterface
+var _ grpc.ClientConn
 
 // This is a compile-time assertion to ensure that this generated file
 // is compatible with the grpc package it is being compiled against.
-const _ = grpc.SupportPackageIsVersion6
+const _ = grpc.SupportPackageIsVersion4
 
 // GatewayAPIClient is the client API for GatewayAPI service.
 //
@@ -1271,10 +1271,10 @@ type GatewayAPIClient interface {
 }
 
 type gatewayAPIClient struct {
-	cc grpc.ClientConnInterface
+	cc *grpc.ClientConn
 }
 
-func NewGatewayAPIClient(cc grpc.ClientConnInterface) GatewayAPIClient {
+func NewGatewayAPIClient(cc *grpc.ClientConn) GatewayAPIClient {
 	return &gatewayAPIClient{cc}
 }
 

@@ -421,11 +421,11 @@ var fileDescriptor_13b0cfd696cc0a1f = []byte{
 
 // Reference imports to suppress errors if they are not otherwise used.
 var _ context.Context
-var _ grpc.ClientConnInterface
+var _ grpc.ClientConn
 
 // This is a compile-time assertion to ensure that this generated file
 // is compatible with the grpc package it is being compiled against.
-const _ = grpc.SupportPackageIsVersion6
+const _ = grpc.SupportPackageIsVersion4
 
 // TxAPIClient is the client API for TxAPI service.
 //
@@ -441,10 +441,10 @@ type TxAPIClient interface {
 }
 
 type txAPIClient struct {
-	cc grpc.ClientConnInterface
+	cc *grpc.ClientConn
 }
 
-func NewTxAPIClient(cc grpc.ClientConnInterface) TxAPIClient {
+func NewTxAPIClient(cc *grpc.ClientConn) TxAPIClient {
 	return &txAPIClient{cc}
 }
 
