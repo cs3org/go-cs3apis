@@ -1102,6 +1102,7 @@ type RecycleItem struct {
 	Key string `protobuf:"bytes,3,opt,name=key,proto3" json:"key,omitempty"`
 	// REQUIRED.
 	// The original path of the deleted resource.
+	// MUST start with the slash character (/).
 	Path string `protobuf:"bytes,4,opt,name=path,proto3" json:"path,omitempty"`
 	// OPTIONAL.
 	// The size of the deleted resource.
