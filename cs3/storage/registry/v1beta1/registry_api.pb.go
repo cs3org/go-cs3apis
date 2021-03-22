@@ -129,7 +129,7 @@ func (m *GetHomeResponse) GetProvider() *ProviderInfo {
 	return nil
 }
 
-type GetStorageProviderRequest struct {
+type GetStorageProvidersRequest struct {
 	// OPTIONAL.
 	// Opaque information.
 	Opaque *v1beta1.Opaque `protobuf:"bytes,1,opt,name=opaque,proto3" json:"opaque,omitempty"`
@@ -141,46 +141,46 @@ type GetStorageProviderRequest struct {
 	XXX_sizecache        int32               `json:"-"`
 }
 
-func (m *GetStorageProviderRequest) Reset()         { *m = GetStorageProviderRequest{} }
-func (m *GetStorageProviderRequest) String() string { return proto.CompactTextString(m) }
-func (*GetStorageProviderRequest) ProtoMessage()    {}
-func (*GetStorageProviderRequest) Descriptor() ([]byte, []int) {
+func (m *GetStorageProvidersRequest) Reset()         { *m = GetStorageProvidersRequest{} }
+func (m *GetStorageProvidersRequest) String() string { return proto.CompactTextString(m) }
+func (*GetStorageProvidersRequest) ProtoMessage()    {}
+func (*GetStorageProvidersRequest) Descriptor() ([]byte, []int) {
 	return fileDescriptor_73c91f9d6bdb642a, []int{2}
 }
 
-func (m *GetStorageProviderRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_GetStorageProviderRequest.Unmarshal(m, b)
+func (m *GetStorageProvidersRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_GetStorageProvidersRequest.Unmarshal(m, b)
 }
-func (m *GetStorageProviderRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_GetStorageProviderRequest.Marshal(b, m, deterministic)
+func (m *GetStorageProvidersRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_GetStorageProvidersRequest.Marshal(b, m, deterministic)
 }
-func (m *GetStorageProviderRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_GetStorageProviderRequest.Merge(m, src)
+func (m *GetStorageProvidersRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_GetStorageProvidersRequest.Merge(m, src)
 }
-func (m *GetStorageProviderRequest) XXX_Size() int {
-	return xxx_messageInfo_GetStorageProviderRequest.Size(m)
+func (m *GetStorageProvidersRequest) XXX_Size() int {
+	return xxx_messageInfo_GetStorageProvidersRequest.Size(m)
 }
-func (m *GetStorageProviderRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_GetStorageProviderRequest.DiscardUnknown(m)
+func (m *GetStorageProvidersRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_GetStorageProvidersRequest.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_GetStorageProviderRequest proto.InternalMessageInfo
+var xxx_messageInfo_GetStorageProvidersRequest proto.InternalMessageInfo
 
-func (m *GetStorageProviderRequest) GetOpaque() *v1beta1.Opaque {
+func (m *GetStorageProvidersRequest) GetOpaque() *v1beta1.Opaque {
 	if m != nil {
 		return m.Opaque
 	}
 	return nil
 }
 
-func (m *GetStorageProviderRequest) GetRef() *v1beta12.Reference {
+func (m *GetStorageProvidersRequest) GetRef() *v1beta12.Reference {
 	if m != nil {
 		return m.Ref
 	}
 	return nil
 }
 
-type GetStorageProviderResponse struct {
+type GetStorageProvidersResponse struct {
 	// REQUIRED.
 	// The response status.
 	Status *v1beta11.Status `protobuf:"bytes,1,opt,name=status,proto3" json:"status,omitempty"`
@@ -188,55 +188,55 @@ type GetStorageProviderResponse struct {
 	// Opaque information.
 	Opaque *v1beta1.Opaque `protobuf:"bytes,2,opt,name=opaque,proto3" json:"opaque,omitempty"`
 	// REQUIRED.
-	// The storage provider handling the requested storage resource.
-	Provider             *ProviderInfo `protobuf:"bytes,3,opt,name=provider,proto3" json:"provider,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}      `json:"-"`
-	XXX_unrecognized     []byte        `json:"-"`
-	XXX_sizecache        int32         `json:"-"`
+	// The storage providers handling the requested storage resource.
+	Providers            []*ProviderInfo `protobuf:"bytes,3,rep,name=providers,proto3" json:"providers,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}        `json:"-"`
+	XXX_unrecognized     []byte          `json:"-"`
+	XXX_sizecache        int32           `json:"-"`
 }
 
-func (m *GetStorageProviderResponse) Reset()         { *m = GetStorageProviderResponse{} }
-func (m *GetStorageProviderResponse) String() string { return proto.CompactTextString(m) }
-func (*GetStorageProviderResponse) ProtoMessage()    {}
-func (*GetStorageProviderResponse) Descriptor() ([]byte, []int) {
+func (m *GetStorageProvidersResponse) Reset()         { *m = GetStorageProvidersResponse{} }
+func (m *GetStorageProvidersResponse) String() string { return proto.CompactTextString(m) }
+func (*GetStorageProvidersResponse) ProtoMessage()    {}
+func (*GetStorageProvidersResponse) Descriptor() ([]byte, []int) {
 	return fileDescriptor_73c91f9d6bdb642a, []int{3}
 }
 
-func (m *GetStorageProviderResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_GetStorageProviderResponse.Unmarshal(m, b)
+func (m *GetStorageProvidersResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_GetStorageProvidersResponse.Unmarshal(m, b)
 }
-func (m *GetStorageProviderResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_GetStorageProviderResponse.Marshal(b, m, deterministic)
+func (m *GetStorageProvidersResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_GetStorageProvidersResponse.Marshal(b, m, deterministic)
 }
-func (m *GetStorageProviderResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_GetStorageProviderResponse.Merge(m, src)
+func (m *GetStorageProvidersResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_GetStorageProvidersResponse.Merge(m, src)
 }
-func (m *GetStorageProviderResponse) XXX_Size() int {
-	return xxx_messageInfo_GetStorageProviderResponse.Size(m)
+func (m *GetStorageProvidersResponse) XXX_Size() int {
+	return xxx_messageInfo_GetStorageProvidersResponse.Size(m)
 }
-func (m *GetStorageProviderResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_GetStorageProviderResponse.DiscardUnknown(m)
+func (m *GetStorageProvidersResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_GetStorageProvidersResponse.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_GetStorageProviderResponse proto.InternalMessageInfo
+var xxx_messageInfo_GetStorageProvidersResponse proto.InternalMessageInfo
 
-func (m *GetStorageProviderResponse) GetStatus() *v1beta11.Status {
+func (m *GetStorageProvidersResponse) GetStatus() *v1beta11.Status {
 	if m != nil {
 		return m.Status
 	}
 	return nil
 }
 
-func (m *GetStorageProviderResponse) GetOpaque() *v1beta1.Opaque {
+func (m *GetStorageProvidersResponse) GetOpaque() *v1beta1.Opaque {
 	if m != nil {
 		return m.Opaque
 	}
 	return nil
 }
 
-func (m *GetStorageProviderResponse) GetProvider() *ProviderInfo {
+func (m *GetStorageProvidersResponse) GetProviders() []*ProviderInfo {
 	if m != nil {
-		return m.Provider
+		return m.Providers
 	}
 	return nil
 }
@@ -346,8 +346,8 @@ func (m *ListStorageProvidersResponse) GetProviders() []*ProviderInfo {
 func init() {
 	proto.RegisterType((*GetHomeRequest)(nil), "cs3.storage.registry.v1beta1.GetHomeRequest")
 	proto.RegisterType((*GetHomeResponse)(nil), "cs3.storage.registry.v1beta1.GetHomeResponse")
-	proto.RegisterType((*GetStorageProviderRequest)(nil), "cs3.storage.registry.v1beta1.GetStorageProviderRequest")
-	proto.RegisterType((*GetStorageProviderResponse)(nil), "cs3.storage.registry.v1beta1.GetStorageProviderResponse")
+	proto.RegisterType((*GetStorageProvidersRequest)(nil), "cs3.storage.registry.v1beta1.GetStorageProvidersRequest")
+	proto.RegisterType((*GetStorageProvidersResponse)(nil), "cs3.storage.registry.v1beta1.GetStorageProvidersResponse")
 	proto.RegisterType((*ListStorageProvidersRequest)(nil), "cs3.storage.registry.v1beta1.ListStorageProvidersRequest")
 	proto.RegisterType((*ListStorageProvidersResponse)(nil), "cs3.storage.registry.v1beta1.ListStorageProvidersResponse")
 }
@@ -357,37 +357,37 @@ func init() {
 }
 
 var fileDescriptor_73c91f9d6bdb642a = []byte{
-	// 474 bytes of a gzipped FileDescriptorProto
+	// 472 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xd4, 0x54, 0x4f, 0x6b, 0x13, 0x41,
-	0x14, 0x67, 0xb2, 0x10, 0xf5, 0x15, 0xac, 0x0c, 0x82, 0xe9, 0x1a, 0x21, 0xe4, 0xa2, 0x48, 0x9d,
-	0x25, 0xcd, 0x41, 0xeb, 0xcd, 0x04, 0x6c, 0x0b, 0x82, 0xcb, 0x06, 0x3c, 0x48, 0x40, 0xb6, 0xeb,
-	0x4b, 0xd9, 0x43, 0x33, 0xd3, 0x99, 0x49, 0xa1, 0x9f, 0x40, 0x44, 0xc4, 0xef, 0xe0, 0xd1, 0xef,
-	0xe0, 0x5d, 0xc4, 0x0f, 0x25, 0xbb, 0xfb, 0x66, 0xdc, 0xea, 0xba, 0xb6, 0x11, 0x04, 0x8f, 0xbb,
-	0xbf, 0x3f, 0xef, 0xbd, 0xdf, 0x1b, 0x1e, 0x44, 0x99, 0x19, 0x47, 0xc6, 0x4a, 0x9d, 0x1e, 0x61,
-	0xa4, 0xf1, 0x28, 0x37, 0x56, 0x9f, 0x45, 0xa7, 0xa3, 0x43, 0xb4, 0xe9, 0xc8, 0xff, 0x78, 0x95,
-	0xaa, 0x5c, 0x28, 0x2d, 0xad, 0xe4, 0xfd, 0xcc, 0x8c, 0x05, 0x09, 0x84, 0xc3, 0x05, 0x09, 0xc2,
-	0x02, 0x8d, 0xb4, 0xca, 0xbc, 0x83, 0xb1, 0xa9, 0x5d, 0x99, 0x4a, 0x1b, 0x6e, 0xd7, 0x8b, 0x29,
-	0x2d, 0x4f, 0xf3, 0xd7, 0xa8, 0x6b, 0xc5, 0x8c, 0x5c, 0xe9, 0x0c, 0x1b, 0xd9, 0x0d, 0xad, 0x9d,
-	0x67, 0xdf, 0x29, 0xd8, 0xf6, 0x4c, 0xa1, 0xf1, 0x94, 0xf2, 0xab, 0x82, 0x87, 0x53, 0xb8, 0xbe,
-	0x87, 0x76, 0x5f, 0x1e, 0x63, 0x82, 0x27, 0x2b, 0x34, 0x96, 0x8f, 0xa0, 0x2b, 0x55, 0x7a, 0xb2,
-	0xc2, 0x1e, 0x1b, 0xb0, 0x7b, 0x1b, 0x3b, 0x5b, 0xa2, 0x98, 0xac, 0xd2, 0x90, 0x83, 0x78, 0x5e,
-	0x12, 0x12, 0x22, 0x0e, 0x3f, 0x33, 0xd8, 0xf4, 0x2e, 0x46, 0xc9, 0xa5, 0x41, 0x1e, 0x41, 0xb7,
-	0x9a, 0x91, 0x6c, 0x6e, 0x95, 0x36, 0x5a, 0x65, 0xde, 0x64, 0x56, 0xc2, 0x09, 0xd1, 0x6a, 0x75,
-	0x3b, 0x17, 0xac, 0xcb, 0x9f, 0xc2, 0x55, 0x97, 0x56, 0x2f, 0x28, 0x45, 0xf7, 0x45, 0xdb, 0x1a,
-	0x44, 0x4c, 0xec, 0x83, 0xe5, 0x42, 0x26, 0x5e, 0x3b, 0x7c, 0xcb, 0x60, 0x6b, 0x0f, 0xed, 0xac,
-	0x92, 0x39, 0xd2, 0xfa, 0x81, 0xf0, 0x5d, 0x08, 0x34, 0x2e, 0x68, 0x90, 0xbb, 0xe7, 0x7a, 0x72,
-	0x45, 0xbd, 0x34, 0xc1, 0x05, 0x6a, 0x5c, 0x66, 0x98, 0x14, 0x9a, 0xe1, 0x17, 0x06, 0x61, 0x53,
-	0x2f, 0xff, 0x61, 0xac, 0x31, 0xdc, 0x7e, 0x96, 0x9b, 0x9f, 0x47, 0x31, 0x7f, 0xf1, 0xd0, 0xbe,
-	0x31, 0xe8, 0x37, 0x5b, 0xfe, 0xc3, 0x78, 0xf6, 0xe1, 0x9a, 0x1b, 0xd1, 0xf4, 0x82, 0x41, 0x70,
-	0xc9, 0x7c, 0x7e, 0x88, 0x77, 0x3e, 0x04, 0xb0, 0x91, 0x10, 0xf9, 0x49, 0x7c, 0xc0, 0xdf, 0x30,
-	0xe0, 0xbf, 0xee, 0x9e, 0x3f, 0x6c, 0x77, 0xff, 0xed, 0xcb, 0x0d, 0x1f, 0x5d, 0x5e, 0x48, 0x39,
-	0xbe, 0x67, 0x70, 0xb3, 0x29, 0x68, 0xbe, 0xdb, 0x6e, 0xd9, 0xb2, 0xef, 0xf0, 0xf1, 0x3a, 0x52,
-	0xea, 0x67, 0x01, 0x57, 0xe8, 0xc0, 0xf0, 0xed, 0x3f, 0x0e, 0x55, 0xbb, 0x66, 0xe1, 0x83, 0x0b,
-	0xb2, 0xab, 0x3a, 0x93, 0x77, 0x0c, 0x06, 0x99, 0x3c, 0x6e, 0x15, 0x4d, 0x6e, 0xf8, 0x9d, 0xa9,
-	0x3c, 0x2e, 0xae, 0x68, 0xcc, 0x5e, 0x6e, 0x3a, 0x16, 0x91, 0x3e, 0x76, 0x82, 0xe9, 0x2c, 0xf9,
-	0xd4, 0xe9, 0x4f, 0xcd, 0x58, 0xd0, 0x58, 0xc2, 0xe9, 0xc4, 0x8b, 0xd1, 0xa4, 0x20, 0x7d, 0x2d,
-	0xe1, 0x39, 0xc1, 0x73, 0x07, 0xcf, 0x09, 0x3e, 0xec, 0x96, 0x37, 0x7a, 0xfc, 0x3d, 0x00, 0x00,
-	0xff, 0xff, 0xe5, 0x1f, 0x25, 0xb6, 0x8d, 0x06, 0x00, 0x00,
+	0x14, 0x67, 0xb2, 0x10, 0xf5, 0x15, 0xac, 0x8c, 0x82, 0x71, 0x1b, 0x21, 0xec, 0x45, 0x91, 0x3a,
+	0x4b, 0x9a, 0x8b, 0xf5, 0x66, 0x02, 0xb6, 0x05, 0xc1, 0x65, 0x03, 0x1e, 0x24, 0x20, 0xdb, 0xf5,
+	0xa5, 0xec, 0xa1, 0x99, 0xe9, 0xcc, 0xa4, 0xd0, 0xaf, 0x50, 0xf1, 0xe2, 0x47, 0xf0, 0xe8, 0x77,
+	0xf0, 0x0b, 0xa8, 0x1f, 0x4a, 0x76, 0xf7, 0xcd, 0x98, 0xc2, 0xba, 0x8d, 0x41, 0x04, 0x8f, 0xbb,
+	0xbf, 0x3f, 0xef, 0xbd, 0xdf, 0x1b, 0x1e, 0xc4, 0xb9, 0x19, 0xc5, 0xc6, 0x4a, 0x9d, 0x9d, 0x60,
+	0xac, 0xf1, 0xa4, 0x30, 0x56, 0x5f, 0xc4, 0xe7, 0xc3, 0x63, 0xb4, 0xd9, 0xd0, 0xff, 0x78, 0x97,
+	0xa9, 0x42, 0x28, 0x2d, 0xad, 0xe4, 0xfd, 0xdc, 0x8c, 0x04, 0x09, 0x84, 0xc3, 0x05, 0x09, 0xc2,
+	0x12, 0x8d, 0xb5, 0xca, 0xbd, 0x83, 0xb1, 0x99, 0x5d, 0x9a, 0x5a, 0x1b, 0xee, 0xae, 0x16, 0x53,
+	0x5a, 0x9e, 0x17, 0xef, 0x51, 0xaf, 0x14, 0x33, 0x72, 0xa9, 0x73, 0x6c, 0x64, 0x37, 0xb4, 0x76,
+	0x95, 0xfd, 0xb0, 0x64, 0xdb, 0x0b, 0x85, 0xc6, 0x53, 0xaa, 0xaf, 0x1a, 0x8e, 0x26, 0x70, 0xfb,
+	0x00, 0xed, 0xa1, 0x3c, 0xc5, 0x14, 0xcf, 0x96, 0x68, 0x2c, 0x1f, 0x42, 0x57, 0xaa, 0xec, 0x6c,
+	0x89, 0x3d, 0x36, 0x60, 0x8f, 0xb7, 0xf6, 0x1e, 0x88, 0x72, 0xb2, 0x5a, 0x43, 0x0e, 0xe2, 0x75,
+	0x45, 0x48, 0x89, 0x18, 0x7d, 0x65, 0xb0, 0xed, 0x5d, 0x8c, 0x92, 0x0b, 0x83, 0x3c, 0x86, 0x6e,
+	0x3d, 0x23, 0xd9, 0xdc, 0xaf, 0x6c, 0xb4, 0xca, 0xbd, 0xc9, 0xb4, 0x82, 0x53, 0xa2, 0xad, 0xd4,
+	0xed, 0xac, 0x59, 0x97, 0xbf, 0x84, 0x9b, 0x2e, 0xad, 0x5e, 0x50, 0x89, 0x9e, 0x88, 0xb6, 0x35,
+	0x88, 0x84, 0xd8, 0x47, 0x8b, 0xb9, 0x4c, 0xbd, 0x36, 0xba, 0x64, 0x10, 0x1e, 0xa0, 0x9d, 0xd6,
+	0x32, 0x47, 0x32, 0x9b, 0x27, 0xc2, 0xf7, 0x21, 0xd0, 0x38, 0xa7, 0x49, 0x1e, 0x5d, 0x69, 0xca,
+	0x55, 0xf5, 0xd2, 0x14, 0xe7, 0xa8, 0x71, 0x91, 0x63, 0x5a, 0x6a, 0xa2, 0xef, 0x0c, 0x76, 0x1a,
+	0x9b, 0xf9, 0x87, 0xc1, 0x1e, 0xc2, 0x2d, 0xd7, 0xa6, 0xe9, 0x05, 0x83, 0xe0, 0x0f, 0x93, 0xfd,
+	0x25, 0x8e, 0x12, 0xd8, 0x79, 0x55, 0x98, 0xbf, 0x18, 0x6d, 0xf4, 0x83, 0x41, 0xbf, 0xd9, 0xf2,
+	0x7f, 0x0c, 0x68, 0xef, 0x53, 0x00, 0x5b, 0x29, 0x91, 0x5f, 0x24, 0x47, 0xfc, 0x92, 0xc1, 0xdd,
+	0x86, 0xf5, 0xf3, 0x67, 0xed, 0xf6, 0xbf, 0x7f, 0xbe, 0xe1, 0xfe, 0x06, 0x4a, 0x8a, 0xf2, 0x23,
+	0x83, 0x7b, 0x4d, 0x59, 0xf3, 0x6b, 0x3c, 0x5b, 0x56, 0x1e, 0x3e, 0xdf, 0x44, 0x4a, 0xfd, 0xcc,
+	0xe1, 0x06, 0xdd, 0x19, 0xbe, 0x7b, 0xed, 0x54, 0x2b, 0x47, 0x2d, 0x7c, 0xba, 0x26, 0xbb, 0xae,
+	0x33, 0xfe, 0xc0, 0x60, 0x90, 0xcb, 0xd3, 0x56, 0xd1, 0xf8, 0x8e, 0x5f, 0x9b, 0x2a, 0x92, 0xf2,
+	0x98, 0x26, 0xec, 0xed, 0xb6, 0x63, 0x11, 0xe9, 0x73, 0x27, 0x98, 0x4c, 0xd3, 0x2f, 0x9d, 0xfe,
+	0xc4, 0x8c, 0x04, 0x8d, 0x25, 0x9c, 0x4e, 0xbc, 0x19, 0x8e, 0x4b, 0xd2, 0xb7, 0x0a, 0x9e, 0x11,
+	0x3c, 0x73, 0xf0, 0x8c, 0xe0, 0xe3, 0x6e, 0x75, 0xaa, 0x47, 0x3f, 0x03, 0x00, 0x00, 0xff, 0xff,
+	0xac, 0x24, 0x1a, 0x97, 0x94, 0x06, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -405,7 +405,7 @@ type RegistryAPIClient interface {
 	// Returns the storage provider that is reponsible for the given
 	// resource reference.
 	// MUST return CODE_NOT_FOUND if the reference does not exist.
-	GetStorageProvider(ctx context.Context, in *GetStorageProviderRequest, opts ...grpc.CallOption) (*GetStorageProviderResponse, error)
+	GetStorageProviders(ctx context.Context, in *GetStorageProvidersRequest, opts ...grpc.CallOption) (*GetStorageProvidersResponse, error)
 	// Returns a list of the available storage providers known by this registry.
 	ListStorageProviders(ctx context.Context, in *ListStorageProvidersRequest, opts ...grpc.CallOption) (*ListStorageProvidersResponse, error)
 	// Gets the user home storage provider.
@@ -420,9 +420,9 @@ func NewRegistryAPIClient(cc *grpc.ClientConn) RegistryAPIClient {
 	return &registryAPIClient{cc}
 }
 
-func (c *registryAPIClient) GetStorageProvider(ctx context.Context, in *GetStorageProviderRequest, opts ...grpc.CallOption) (*GetStorageProviderResponse, error) {
-	out := new(GetStorageProviderResponse)
-	err := c.cc.Invoke(ctx, "/cs3.storage.registry.v1beta1.RegistryAPI/GetStorageProvider", in, out, opts...)
+func (c *registryAPIClient) GetStorageProviders(ctx context.Context, in *GetStorageProvidersRequest, opts ...grpc.CallOption) (*GetStorageProvidersResponse, error) {
+	out := new(GetStorageProvidersResponse)
+	err := c.cc.Invoke(ctx, "/cs3.storage.registry.v1beta1.RegistryAPI/GetStorageProviders", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -452,7 +452,7 @@ type RegistryAPIServer interface {
 	// Returns the storage provider that is reponsible for the given
 	// resource reference.
 	// MUST return CODE_NOT_FOUND if the reference does not exist.
-	GetStorageProvider(context.Context, *GetStorageProviderRequest) (*GetStorageProviderResponse, error)
+	GetStorageProviders(context.Context, *GetStorageProvidersRequest) (*GetStorageProvidersResponse, error)
 	// Returns a list of the available storage providers known by this registry.
 	ListStorageProviders(context.Context, *ListStorageProvidersRequest) (*ListStorageProvidersResponse, error)
 	// Gets the user home storage provider.
@@ -463,8 +463,8 @@ type RegistryAPIServer interface {
 type UnimplementedRegistryAPIServer struct {
 }
 
-func (*UnimplementedRegistryAPIServer) GetStorageProvider(ctx context.Context, req *GetStorageProviderRequest) (*GetStorageProviderResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetStorageProvider not implemented")
+func (*UnimplementedRegistryAPIServer) GetStorageProviders(ctx context.Context, req *GetStorageProvidersRequest) (*GetStorageProvidersResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetStorageProviders not implemented")
 }
 func (*UnimplementedRegistryAPIServer) ListStorageProviders(ctx context.Context, req *ListStorageProvidersRequest) (*ListStorageProvidersResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListStorageProviders not implemented")
@@ -477,20 +477,20 @@ func RegisterRegistryAPIServer(s *grpc.Server, srv RegistryAPIServer) {
 	s.RegisterService(&_RegistryAPI_serviceDesc, srv)
 }
 
-func _RegistryAPI_GetStorageProvider_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetStorageProviderRequest)
+func _RegistryAPI_GetStorageProviders_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetStorageProvidersRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(RegistryAPIServer).GetStorageProvider(ctx, in)
+		return srv.(RegistryAPIServer).GetStorageProviders(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/cs3.storage.registry.v1beta1.RegistryAPI/GetStorageProvider",
+		FullMethod: "/cs3.storage.registry.v1beta1.RegistryAPI/GetStorageProviders",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(RegistryAPIServer).GetStorageProvider(ctx, req.(*GetStorageProviderRequest))
+		return srv.(RegistryAPIServer).GetStorageProviders(ctx, req.(*GetStorageProvidersRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -536,8 +536,8 @@ var _RegistryAPI_serviceDesc = grpc.ServiceDesc{
 	HandlerType: (*RegistryAPIServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "GetStorageProvider",
-			Handler:    _RegistryAPI_GetStorageProvider_Handler,
+			MethodName: "GetStorageProviders",
+			Handler:    _RegistryAPI_GetStorageProviders_Handler,
 		},
 		{
 			MethodName: "ListStorageProviders",
