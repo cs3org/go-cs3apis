@@ -28,12 +28,21 @@ var _ = math.Inf
 const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 
 type AuthenticateRequest struct {
-	Opaque               *v1beta1.Opaque `protobuf:"bytes,1,opt,name=opaque,proto3" json:"opaque,omitempty"`
-	ClientId             string          `protobuf:"bytes,2,opt,name=client_id,json=clientId,proto3" json:"client_id,omitempty"`
-	ClientSecret         string          `protobuf:"bytes,3,opt,name=client_secret,json=clientSecret,proto3" json:"client_secret,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}        `json:"-"`
-	XXX_unrecognized     []byte          `json:"-"`
-	XXX_sizecache        int32           `json:"-"`
+	// OPTIONAL.
+	// Opaque information.
+	Opaque *v1beta1.Opaque `protobuf:"bytes,1,opt,name=opaque,proto3" json:"opaque,omitempty"`
+	// OPTIONAL.
+	// The id of the client.
+	// For basic authentication with username and password
+	// both client_id and client_secret are expected to be filled.
+	// However, for example, for OIDC only a token is necessary.
+	ClientId string `protobuf:"bytes,2,opt,name=client_id,json=clientId,proto3" json:"client_id,omitempty"`
+	// OPTIONAL.
+	// The secret of the client.
+	ClientSecret         string   `protobuf:"bytes,3,opt,name=client_secret,json=clientSecret,proto3" json:"client_secret,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
 func (m *AuthenticateRequest) Reset()         { *m = AuthenticateRequest{} }
@@ -83,8 +92,12 @@ func (m *AuthenticateRequest) GetClientSecret() string {
 }
 
 type AuthenticateResponse struct {
+	// REQUIRED.
+	// The response status.
 	Status *v1beta11.Status `protobuf:"bytes,1,opt,name=status,proto3" json:"status,omitempty"`
-	User   *v1beta12.User   `protobuf:"bytes,2,opt,name=user,proto3" json:"user,omitempty"`
+	// REQUIRED.
+	// The authenticated user.
+	User *v1beta12.User `protobuf:"bytes,2,opt,name=user,proto3" json:"user,omitempty"`
 	// REQUIRED.
 	// The scope of the token to be issued.
 	// This would be a list of resources with corresponding role-based access scope.

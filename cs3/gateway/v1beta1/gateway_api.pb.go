@@ -6,21 +6,22 @@ package gatewayv1beta1
 import (
 	context "context"
 	fmt "fmt"
-	v1beta14 "github.com/cs3org/go-cs3apis/cs3/app/provider/v1beta1"
-	v1beta19 "github.com/cs3org/go-cs3apis/cs3/app/registry/v1beta1"
-	v1beta111 "github.com/cs3org/go-cs3apis/cs3/auth/registry/v1beta1"
-	v1beta110 "github.com/cs3org/go-cs3apis/cs3/identity/group/v1beta1"
+	v1beta15 "github.com/cs3org/go-cs3apis/cs3/app/provider/v1beta1"
+	v1beta110 "github.com/cs3org/go-cs3apis/cs3/app/registry/v1beta1"
+	v1beta14 "github.com/cs3org/go-cs3apis/cs3/auth/applications/v1beta1"
+	v1beta112 "github.com/cs3org/go-cs3apis/cs3/auth/registry/v1beta1"
+	v1beta111 "github.com/cs3org/go-cs3apis/cs3/identity/group/v1beta1"
 	v1beta12 "github.com/cs3org/go-cs3apis/cs3/identity/user/v1beta1"
-	v1beta114 "github.com/cs3org/go-cs3apis/cs3/ocm/core/v1beta1"
-	v1beta112 "github.com/cs3org/go-cs3apis/cs3/ocm/invite/v1beta1"
-	v1beta113 "github.com/cs3org/go-cs3apis/cs3/ocm/provider/v1beta1"
-	v1beta16 "github.com/cs3org/go-cs3apis/cs3/preferences/v1beta1"
+	v1beta115 "github.com/cs3org/go-cs3apis/cs3/ocm/core/v1beta1"
+	v1beta113 "github.com/cs3org/go-cs3apis/cs3/ocm/invite/v1beta1"
+	v1beta114 "github.com/cs3org/go-cs3apis/cs3/ocm/provider/v1beta1"
+	v1beta17 "github.com/cs3org/go-cs3apis/cs3/preferences/v1beta1"
 	v1beta11 "github.com/cs3org/go-cs3apis/cs3/rpc/v1beta1"
-	v1beta15 "github.com/cs3org/go-cs3apis/cs3/sharing/collaboration/v1beta1"
-	v1beta17 "github.com/cs3org/go-cs3apis/cs3/sharing/link/v1beta1"
-	v1beta18 "github.com/cs3org/go-cs3apis/cs3/sharing/ocm/v1beta1"
+	v1beta16 "github.com/cs3org/go-cs3apis/cs3/sharing/collaboration/v1beta1"
+	v1beta18 "github.com/cs3org/go-cs3apis/cs3/sharing/link/v1beta1"
+	v1beta19 "github.com/cs3org/go-cs3apis/cs3/sharing/ocm/v1beta1"
 	v1beta13 "github.com/cs3org/go-cs3apis/cs3/storage/provider/v1beta1"
-	v1beta115 "github.com/cs3org/go-cs3apis/cs3/tx/v1beta1"
+	v1beta116 "github.com/cs3org/go-cs3apis/cs3/tx/v1beta1"
 	v1beta1 "github.com/cs3org/go-cs3apis/cs3/types/v1beta1"
 	proto "github.com/golang/protobuf/proto"
 	grpc "google.golang.org/grpc"
@@ -161,7 +162,7 @@ type AuthenticateResponse struct {
 	// The access token.
 	Token string `protobuf:"bytes,3,opt,name=token,proto3" json:"token,omitempty"`
 	// REQUIRED.
-	// The user.
+	// The authenticated user.
 	User                 *v1beta12.User `protobuf:"bytes,4,opt,name=user,proto3" json:"user,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}       `json:"-"`
 	XXX_unrecognized     []byte         `json:"-"`
@@ -850,160 +851,166 @@ func init() {
 }
 
 var fileDescriptor_2d35d050f2c88549 = []byte{
-	// 2434 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xdc, 0x5a, 0x5b, 0x6f, 0x1b, 0xc7,
-	0x15, 0xee, 0x4a, 0x8a, 0x62, 0x8d, 0x2c, 0x5f, 0x46, 0x76, 0xad, 0x28, 0x2e, 0x1a, 0xd0, 0x75,
-	0x6c, 0xc7, 0x36, 0x69, 0x49, 0xb1, 0x13, 0x3b, 0x49, 0x01, 0x5d, 0x6c, 0x86, 0x88, 0x15, 0x29,
-	0x94, 0x6c, 0x27, 0x45, 0x0a, 0x75, 0xb5, 0x1c, 0x49, 0x0b, 0x93, 0x3b, 0xeb, 0xdd, 0xa1, 0x64,
-	0x16, 0x69, 0xda, 0x22, 0x45, 0x2f, 0x68, 0xfb, 0x50, 0x34, 0x7d, 0xed, 0x43, 0xdf, 0xda, 0xff,
-	0x51, 0x14, 0x68, 0x5f, 0xfb, 0x33, 0xfa, 0xd4, 0x5f, 0x50, 0xcc, 0xcc, 0x99, 0xdd, 0x99, 0xe5,
-	0x90, 0x3b, 0x54, 0x00, 0x1b, 0xe8, 0x1b, 0x39, 0xf3, 0x7d, 0xe7, 0x7c, 0xe7, 0xcc, 0xed, 0xec,
-	0xec, 0xa2, 0xcb, 0x41, 0xba, 0x54, 0xdb, 0xf7, 0x19, 0x39, 0xf2, 0x7b, 0xb5, 0xc3, 0x85, 0x5d,
-	0xc2, 0xfc, 0x05, 0xf5, 0x7f, 0xc7, 0x8f, 0xc3, 0x6a, 0x9c, 0x50, 0x46, 0xf1, 0x6c, 0x90, 0x2e,
-	0x55, 0xa1, 0xb9, 0x0a, 0xb0, 0xf9, 0xeb, 0x9c, 0xeb, 0xc7, 0x71, 0x2d, 0x4e, 0xe8, 0x61, 0xd8,
-	0x22, 0x49, 0x66, 0x40, 0x35, 0xe4, 0x16, 0x72, 0x70, 0x42, 0xf6, 0xc3, 0x94, 0x25, 0xb9, 0x37,
-	0xd5, 0xa0, 0x81, 0x6f, 0x08, 0x70, 0x97, 0x1d, 0x38, 0xa1, 0x2f, 0xd9, 0x62, 0x48, 0x48, 0x4a,
-	0xbb, 0x49, 0x40, 0x52, 0x00, 0xbd, 0xc5, 0x41, 0x61, 0x8b, 0x44, 0x2c, 0x64, 0xbd, 0xda, 0x7e,
-	0x42, 0xbb, 0x71, 0x1e, 0x2f, 0xff, 0xa7, 0x19, 0xbc, 0x66, 0x60, 0xbb, 0xa9, 0x16, 0x59, 0xd1,
-	0xec, 0xd5, 0xc1, 0x50, 0xfe, 0x47, 0x33, 0x7a, 0x85, 0x23, 0x69, 0xd0, 0xa9, 0x05, 0x34, 0x21,
-	0x19, 0x88, 0x06, 0x9d, 0x1d, 0xde, 0x60, 0x03, 0x86, 0xd1, 0x61, 0xc8, 0x72, 0xa8, 0xfc, 0x5b,
-	0x4c, 0x29, 0x07, 0xba, 0xe4, 0xff, 0x26, 0x07, 0xc7, 0x09, 0xd9, 0x23, 0x09, 0x89, 0x02, 0x92,
-	0x6a, 0xd8, 0xac, 0x4d, 0x83, 0x5f, 0xe4, 0xf0, 0x24, 0x0e, 0x32, 0x58, 0xca, 0x7c, 0xd6, 0x55,
-	0x51, 0xdf, 0xe5, 0xbd, 0xe9, 0x81, 0x9f, 0x84, 0xd1, 0x7e, 0x2d, 0xa0, 0xed, 0xb6, 0xbf, 0x4b,
-	0x13, 0x9f, 0x85, 0x34, 0xca, 0xf0, 0x46, 0x6b, 0x31, 0x3a, 0x45, 0x6d, 0x87, 0xd1, 0xd3, 0x8c,
-	0xc1, 0xff, 0x68, 0xc0, 0xcb, 0x3a, 0x90, 0x47, 0xa9, 0xa7, 0x2c, 0x87, 0xd5, 0x04, 0x8c, 0xd1,
-	0xc4, 0xdf, 0x27, 0x4e, 0x89, 0xb8, 0x31, 0x94, 0x50, 0x1c, 0xdf, 0xd7, 0x39, 0x9a, 0x3d, 0xcf,
-	0xfa, 0xd9, 0x73, 0xcd, 0xd4, 0x77, 0x44, 0x67, 0x2f, 0xd6, 0xb2, 0x29, 0xfe, 0xc9, 0xee, 0xca,
-	0x9f, 0x3d, 0x34, 0xbb, 0xdc, 0x65, 0x07, 0x7c, 0x72, 0x04, 0x3e, 0x23, 0x4d, 0xf2, 0xac, 0x4b,
-	0x52, 0x86, 0x17, 0xd0, 0x24, 0x8d, 0xfd, 0x67, 0x5d, 0x32, 0xe7, 0xbd, 0xe1, 0x5d, 0x9d, 0x5e,
-	0x7c, 0xad, 0xca, 0x57, 0x97, 0x64, 0x82, 0x9d, 0xea, 0x86, 0x00, 0x34, 0x01, 0x88, 0x31, 0x9a,
-	0xe0, 0xfd, 0x73, 0x63, 0x6f, 0x78, 0x57, 0xa7, 0x9a, 0xe2, 0x37, 0x7e, 0x1d, 0x4d, 0x05, 0xed,
-	0x90, 0x44, 0x6c, 0x27, 0x6c, 0xcd, 0x8d, 0x8b, 0x8e, 0x13, 0xb2, 0xa1, 0xd1, 0xc2, 0x97, 0xd0,
-	0x0c, 0x74, 0xa6, 0x24, 0x48, 0x08, 0x9b, 0x9b, 0x10, 0x80, 0x93, 0xb2, 0x71, 0x4b, 0xb4, 0x55,
-	0xfe, 0xee, 0xa1, 0x73, 0xa6, 0xc0, 0x34, 0xa6, 0x51, 0x4a, 0x70, 0x0d, 0x4d, 0xca, 0xf1, 0x06,
-	0x85, 0x17, 0x84, 0xc2, 0x24, 0x0e, 0x32, 0x7d, 0x5b, 0xa2, 0xbb, 0x09, 0x30, 0x2d, 0xa4, 0x31,
-	0xd7, 0x90, 0xce, 0xa1, 0x57, 0x18, 0x7d, 0x4a, 0x22, 0x90, 0x2e, 0xff, 0xe0, 0x25, 0x34, 0xc1,
-	0xd7, 0x8d, 0x90, 0x3b, 0xbd, 0xf8, 0x5d, 0x61, 0x46, 0x2d, 0xaf, 0x2a, 0xef, 0xc9, 0xcc, 0x3d,
-	0x4a, 0x49, 0xd2, 0x14, 0xe0, 0xca, 0xa7, 0x68, 0xe6, 0xc9, 0x01, 0x5d, 0xee, 0x34, 0xbe, 0x41,
-	0x86, 0x33, 0x39, 0x63, 0x9a, 0x9c, 0xca, 0x5f, 0x3d, 0x74, 0x4a, 0x99, 0x7e, 0x81, 0xb9, 0x51,
-	0x59, 0x18, 0x1f, 0x25, 0x0b, 0x3f, 0x45, 0xa7, 0xeb, 0x84, 0x7d, 0xd2, 0xa5, 0xcc, 0xff, 0x06,
-	0x79, 0xb8, 0x8b, 0xc6, 0x13, 0xb2, 0x07, 0x52, 0xaf, 0x08, 0x3c, 0x2c, 0x96, 0xaa, 0x5a, 0x2c,
-	0x19, 0xb5, 0xa9, 0x76, 0x8e, 0x26, 0xe7, 0x54, 0xfe, 0xe3, 0x21, 0xfc, 0x30, 0x4c, 0x59, 0x93,
-	0x04, 0xbd, 0xa0, 0x4d, 0x5e, 0x8a, 0x08, 0x7c, 0x1b, 0xbd, 0xba, 0x97, 0xd0, 0xce, 0x0e, 0x4b,
-	0x21, 0x7b, 0x17, 0x2d, 0xee, 0xb6, 0xc3, 0x0e, 0x49, 0x99, 0xdf, 0x89, 0x9b, 0x93, 0x1c, 0xbc,
-	0xcd, 0x07, 0xe9, 0x15, 0x46, 0x39, 0x69, 0xc2, 0x81, 0x34, 0xc1, 0xe8, 0x76, 0x5a, 0xf9, 0xaf,
-	0x87, 0xe6, 0xb4, 0x70, 0xb7, 0x58, 0x42, 0xfc, 0xce, 0xff, 0x7b, 0xd0, 0x5f, 0x79, 0x68, 0x76,
-	0xb3, 0x9b, 0xec, 0x93, 0x97, 0x39, 0xc8, 0x95, 0x7f, 0x79, 0xe8, 0x62, 0x23, 0x0a, 0x59, 0xe8,
-	0x33, 0xf2, 0x20, 0x6c, 0x93, 0x35, 0x7a, 0x14, 0xb5, 0xa9, 0xdf, 0x7a, 0xa1, 0x8b, 0xb4, 0x8e,
-	0xa6, 0xc4, 0x3e, 0x1f, 0xd0, 0x36, 0x4f, 0xfb, 0xf8, 0xd5, 0xe9, 0xc5, 0x6b, 0x55, 0x4b, 0x9d,
-	0x54, 0xd5, 0x15, 0x6e, 0x02, 0xa3, 0x99, 0x73, 0x2b, 0xff, 0xf0, 0xd0, 0xbc, 0x1e, 0xcd, 0xa3,
-	0xf8, 0x85, 0xc7, 0x72, 0xbf, 0x3f, 0x96, 0x2b, 0x03, 0x63, 0x91, 0xfa, 0x6c, 0x91, 0xfc, 0xc9,
-	0x43, 0xaf, 0xf1, 0x25, 0xc1, 0x0f, 0x95, 0x4d, 0x18, 0xc3, 0xf4, 0x85, 0x9f, 0x2a, 0xbc, 0x5f,
-	0x04, 0xc1, 0xb7, 0x71, 0xfe, 0xa7, 0xf2, 0xef, 0x31, 0x74, 0x71, 0x23, 0x26, 0x11, 0x57, 0xdf,
-	0x88, 0x96, 0xe3, 0x58, 0x89, 0x7b, 0x39, 0xcb, 0xf5, 0x09, 0x9a, 0x3a, 0x0c, 0xc9, 0xd1, 0x4e,
-	0x87, 0xb6, 0x88, 0x58, 0xb0, 0xa7, 0x16, 0xef, 0x59, 0xb3, 0x3d, 0x4c, 0x73, 0xf5, 0x71, 0x48,
-	0x8e, 0xd6, 0x69, 0x8b, 0x34, 0x4f, 0x1c, 0xc2, 0xaf, 0x4a, 0x07, 0x9d, 0x50, 0xad, 0xf8, 0x3c,
-	0x3a, 0xfb, 0xb8, 0x71, 0xff, 0xc9, 0xce, 0xfa, 0xc6, 0xda, 0xfd, 0x9d, 0xc6, 0xc7, 0x8f, 0x97,
-	0x1f, 0x36, 0xd6, 0xce, 0x7c, 0x0b, 0x5f, 0x40, 0xb3, 0x79, 0xb3, 0xf8, 0xb5, 0xf1, 0xf1, 0xc3,
-	0xcf, 0xce, 0x78, 0x66, 0x47, 0xf3, 0xfe, 0xf2, 0x9a, 0xec, 0x18, 0xc3, 0x73, 0xe8, 0x5c, 0xa1,
-	0xe3, 0x49, 0xb3, 0xb1, 0x7d, 0xff, 0xcc, 0xf8, 0xe2, 0xd7, 0x75, 0x84, 0xea, 0x52, 0xf2, 0xf2,
-	0x66, 0x03, 0x07, 0xe8, 0xa4, 0x5e, 0x4d, 0xe0, 0xab, 0xd6, 0x98, 0x2c, 0x15, 0xd1, 0xfc, 0x35,
-	0x07, 0x24, 0x4c, 0xa2, 0x4f, 0xd0, 0xa4, 0x3c, 0x90, 0x71, 0xc5, 0x4a, 0x32, 0x0a, 0x81, 0xf9,
-	0x4b, 0x43, 0x31, 0x60, 0xf2, 0x4b, 0x74, 0x7a, 0x35, 0x21, 0x3e, 0x23, 0xab, 0x34, 0x62, 0x7e,
-	0x18, 0x91, 0x04, 0xbf, 0x3d, 0x7c, 0x3c, 0x0b, 0x70, 0xe5, 0xed, 0xf6, 0x88, 0x2c, 0xf0, 0x1f,
-	0xa0, 0xc9, 0x35, 0xd2, 0x26, 0x8c, 0xe0, 0xeb, 0xc3, 0x0d, 0x48, 0x94, 0xf2, 0x76, 0xc3, 0x0d,
-	0x0c, 0x4e, 0xf6, 0xd0, 0xab, 0x75, 0xc2, 0x36, 0x7d, 0x76, 0x80, 0x4b, 0x88, 0x00, 0x53, 0x6e,
-	0x6e, 0x3a, 0xa2, 0xc1, 0xcf, 0x8f, 0xd0, 0x09, 0x55, 0x85, 0xe0, 0xef, 0x59, 0xb3, 0x5f, 0x28,
-	0x52, 0xe6, 0xab, 0xa5, 0x0e, 0x00, 0x0e, 0x1e, 0x7e, 0xe1, 0xa1, 0x73, 0xb6, 0xcd, 0x1f, 0xdf,
-	0x1d, 0x6e, 0xc8, 0x7e, 0x60, 0x48, 0x0d, 0x0b, 0x56, 0xa5, 0x43, 0x8f, 0x98, 0x2f, 0x11, 0xee,
-	0xdf, 0xb4, 0xf1, 0x3b, 0xee, 0x1a, 0xd4, 0x36, 0x2f, 0x15, 0xd4, 0x4a, 0x15, 0x14, 0x8e, 0x85,
-	0xdf, 0x79, 0x68, 0x96, 0xef, 0xb5, 0xd9, 0x7c, 0x92, 0x05, 0x08, 0x7e, 0x77, 0xb8, 0x02, 0x0b,
-	0x45, 0x49, 0xb8, 0x7b, 0x0c, 0xa6, 0x14, 0x73, 0xcb, 0xc3, 0xcf, 0xd1, 0x8c, 0x01, 0xc0, 0x8b,
-	0x23, 0x58, 0x53, 0x0a, 0x96, 0x46, 0xe2, 0x40, 0x22, 0x7e, 0xee, 0xa1, 0x33, 0xbc, 0x87, 0xe7,
-	0xe8, 0x31, 0x49, 0xd2, 0x90, 0x46, 0x29, 0xbe, 0x5d, 0x6e, 0x49, 0xc7, 0x2b, 0x01, 0x77, 0x46,
-	0xa5, 0x81, 0x86, 0x9f, 0xa0, 0xb3, 0x7d, 0xa5, 0x20, 0xbe, 0x69, 0x1d, 0xd2, 0x41, 0x25, 0xe3,
-	0xfc, 0x3b, 0xe5, 0xbe, 0x0b, 0xbc, 0x2c, 0xf9, 0x21, 0x9a, 0xd6, 0xba, 0xf1, 0x95, 0x32, 0xc7,
-	0xe6, 0xb4, 0x77, 0x71, 0x99, 0x45, 0xfa, 0x43, 0x34, 0xb1, 0x4e, 0x0f, 0x09, 0xbe, 0x36, 0x9c,
-	0xca, 0x31, 0xca, 0xcb, 0x5b, 0x2e, 0x50, 0x30, 0xdf, 0x46, 0x27, 0xf5, 0xf2, 0x72, 0xc0, 0x19,
-	0x62, 0xa9, 0x40, 0xe7, 0x4b, 0xe6, 0x9b, 0x49, 0x01, 0x6f, 0xbf, 0xf2, 0x10, 0x6e, 0x12, 0xce,
-	0x21, 0xda, 0xb0, 0x96, 0x2d, 0xe2, 0x7e, 0x86, 0xd2, 0xf0, 0xee, 0xe8, 0xc4, 0x7e, 0x25, 0x20,
-	0xb2, 0xc1, 0x48, 0xc7, 0x51, 0x89, 0xc6, 0x18, 0x4d, 0x89, 0x41, 0xcc, 0x07, 0x98, 0x97, 0x61,
-	0x65, 0x03, 0xcc, 0x31, 0x8e, 0x03, 0x2c, 0xa1, 0x60, 0xfe, 0x39, 0x9a, 0x91, 0xe7, 0xe0, 0x56,
-	0xaf, 0xd3, 0x0e, 0xa3, 0xa7, 0x65, 0xfb, 0x84, 0x01, 0x76, 0xdc, 0x27, 0x0a, 0x1c, 0xf0, 0xfc,
-	0x7b, 0x0f, 0x9d, 0xdb, 0x22, 0x6c, 0x39, 0xd9, 0x0d, 0x59, 0xe2, 0x27, 0xbd, 0x75, 0xc2, 0xfc,
-	0x96, 0xcf, 0xfc, 0xb2, 0x73, 0xc3, 0xc6, 0x51, 0x42, 0xee, 0x1d, 0x87, 0x0a, 0x7a, 0xfe, 0xe8,
-	0xa1, 0x6f, 0x3f, 0x8a, 0x52, 0x9b, 0xa2, 0xf7, 0x86, 0x9b, 0xb5, 0xb3, 0x94, 0xa6, 0xf7, 0x8f,
-	0x47, 0x06, 0x55, 0x14, 0x21, 0x99, 0xbe, 0x0f, 0x69, 0x87, 0xe0, 0x9a, 0x4b, 0xa2, 0x39, 0x52,
-	0x39, 0xbf, 0xe5, 0x4e, 0xd0, 0x66, 0x3e, 0x0c, 0x98, 0x64, 0x6d, 0xc5, 0x7e, 0x40, 0xca, 0x66,
-	0x7e, 0x3f, 0xc3, 0x71, 0xe6, 0xdb, 0x88, 0x79, 0x61, 0x21, 0x76, 0x71, 0xbd, 0x33, 0xc5, 0x0e,
-	0x47, 0x82, 0x41, 0x18, 0x61, 0x3b, 0x2f, 0xf0, 0xb4, 0x84, 0x3c, 0x8a, 0x5b, 0x23, 0x26, 0xa4,
-	0x9f, 0xe1, 0x98, 0x10, 0x1b, 0x51, 0x53, 0x22, 0xcb, 0xc8, 0x51, 0x94, 0xf4, 0x33, 0x1c, 0x95,
-	0xd8, 0x88, 0xa0, 0xe4, 0x2b, 0x0f, 0x9d, 0xb7, 0x3e, 0x0c, 0xe1, 0x85, 0x91, 0x1f, 0x9c, 0x60,
-	0x64, 0xfc, 0x38, 0xee, 0x97, 0x30, 0x80, 0x07, 0x2a, 0xbe, 0x40, 0xd3, 0x30, 0x7d, 0x0e, 0xfc,
-	0x84, 0xa8, 0x1a, 0x43, 0x5e, 0x51, 0x57, 0x8d, 0x0b, 0xef, 0xe2, 0x74, 0xe3, 0xf8, 0x42, 0x8d,
-	0xe1, 0x4e, 0xcb, 0xbd, 0x37, 0x49, 0x87, 0x1e, 0x8e, 0xe0, 0x5d, 0xc3, 0x8f, 0xe2, 0xdd, 0xa0,
-	0x81, 0xf7, 0x54, 0xd4, 0xf5, 0xd2, 0xf5, 0xa2, 0x83, 0x0d, 0x05, 0x2e, 0x6c, 0xd9, 0x8e, 0x1c,
-	0x70, 0xda, 0x43, 0x48, 0xac, 0x13, 0xde, 0x98, 0xaa, 0x87, 0xb2, 0xa1, 0x26, 0x72, 0x78, 0xe1,
-	0xa1, 0xcc, 0x99, 0x95, 0x67, 0x1b, 0x56, 0x86, 0x73, 0xb6, 0x35, 0xfc, 0x28, 0xd9, 0x36, 0x68,
-	0xe0, 0xfd, 0x0f, 0xf9, 0x55, 0x2a, 0x09, 0x0f, 0x49, 0x0b, 0x32, 0xf0, 0xbe, 0x63, 0x2c, 0x26,
-	0x4d, 0x89, 0xf9, 0xe0, 0x98, 0x6c, 0xd0, 0xf4, 0xb5, 0x87, 0x66, 0xa5, 0x56, 0x03, 0x80, 0x3f,
-	0x70, 0x8e, 0xd1, 0xe0, 0x29, 0x55, 0xdf, 0x3f, 0x2e, 0x1d, 0x64, 0xfd, 0xd6, 0x43, 0x67, 0xea,
-	0xc4, 0x14, 0x8d, 0xef, 0xb9, 0xcd, 0x36, 0xab, 0xa0, 0xf7, 0x8e, 0xc5, 0x05, 0x35, 0x9f, 0xa1,
-	0xc9, 0x2d, 0xc2, 0x3e, 0x22, 0x3d, 0xfc, 0xa6, 0x30, 0xa3, 0xbd, 0x5d, 0xd3, 0xab, 0x82, 0x8f,
-	0x48, 0x4f, 0xb9, 0xbb, 0x52, 0x8a, 0xcb, 0x4d, 0xd7, 0xcb, 0x4c, 0xd7, 0x1d, 0x4d, 0xd7, 0x4d,
-	0xd3, 0x5f, 0xa0, 0xb3, 0x72, 0xc7, 0xd9, 0xec, 0xee, 0xb6, 0xc3, 0xc0, 0xb6, 0xca, 0x79, 0x29,
-	0x55, 0xd8, 0x9e, 0x34, 0xb0, 0x7d, 0x95, 0x97, 0x71, 0x72, 0xef, 0x72, 0xc7, 0x71, 0xf4, 0xde,
-	0x07, 0x76, 0xf0, 0x6e, 0xe1, 0x64, 0x1b, 0xdb, 0xa9, 0x3a, 0x61, 0xba, 0xeb, 0xda, 0x60, 0x33,
-	0x26, 0xb2, 0x50, 0xf4, 0xb8, 0x10, 0xc0, 0xe9, 0xaf, 0x3d, 0x74, 0xde, 0xec, 0x5a, 0xe9, 0x6d,
-	0x8b, 0x17, 0x60, 0x77, 0x5c, 0x6d, 0x01, 0xa1, 0x50, 0x6e, 0x8c, 0xc0, 0xcb, 0xf6, 0x58, 0xf1,
-	0xf4, 0xac, 0x21, 0x52, 0x38, 0x54, 0xad, 0xc6, 0x8a, 0xd8, 0xc2, 0xe3, 0x97, 0x1b, 0x25, 0x1f,
-	0x78, 0xb9, 0xb2, 0x1d, 0x07, 0xbe, 0x0f, 0xec, 0x30, 0xf0, 0x16, 0x0e, 0x78, 0x7f, 0x86, 0x4e,
-	0xc9, 0x39, 0xb9, 0xb1, 0xba, 0x2e, 0x5d, 0x57, 0x0d, 0x33, 0x34, 0xe8, 0x14, 0x26, 0xaf, 0x02,
-	0x9a, 0x77, 0x36, 0x2e, 0xf8, 0xdc, 0xa5, 0x9c, 0x88, 0x0e, 0x2e, 0x4d, 0x60, 0xb9, 0xcb, 0x22,
-	0x1e, 0x5c, 0x1e, 0xa0, 0xe9, 0x3a, 0x61, 0x99, 0xbf, 0xeb, 0x03, 0xf9, 0x1a, 0xaa, 0x70, 0xc3,
-	0x58, 0x06, 0x06, 0x4f, 0x91, 0xbc, 0x01, 0x52, 0xed, 0x29, 0xdc, 0x7f, 0xd8, 0xe8, 0x06, 0xae,
-	0x70, 0x0f, 0x58, 0x0e, 0xcf, 0x93, 0x29, 0x07, 0xd7, 0x21, 0x99, 0x26, 0xb0, 0x3c, 0x99, 0x45,
-	0x3c, 0xb8, 0xfc, 0xa5, 0x87, 0xce, 0xeb, 0x27, 0x64, 0x1e, 0xeb, 0xed, 0xa1, 0xe2, 0xfb, 0xf0,
-	0xf6, 0xfa, 0xc0, 0x81, 0x06, 0x42, 0x7e, 0xc3, 0x9f, 0x1d, 0x8d, 0x43, 0x31, 0x4b, 0xc2, 0x9d,
-	0x92, 0xa0, 0x8a, 0x04, 0xfb, 0x06, 0xe2, 0xc2, 0x03, 0x2d, 0x3f, 0xf3, 0xd0, 0xac, 0x76, 0x1e,
-	0x66, 0x42, 0x96, 0x86, 0xcd, 0x9e, 0x41, 0x2a, 0xde, 0x1e, 0x8d, 0x04, 0x12, 0x0e, 0xc5, 0xab,
-	0x6f, 0xad, 0x64, 0x4f, 0xf1, 0xad, 0xac, 0xc8, 0x57, 0x5f, 0x0c, 0xe9, 0x96, 0x74, 0xa8, 0x79,
-	0x19, 0xe6, 0xc6, 0x30, 0xf7, 0x4e, 0xc3, 0xf1, 0x10, 0x33, 0x45, 0xac, 0xb9, 0x77, 0x3a, 0x52,
-	0xb2, 0x7b, 0xf6, 0x57, 0xeb, 0x84, 0x3d, 0x4a, 0x49, 0x02, 0x37, 0x35, 0xf6, 0xef, 0x03, 0x00,
-	0x63, 0xde, 0xd4, 0x94, 0x40, 0xc1, 0x43, 0x57, 0x1c, 0x8c, 0xbc, 0x69, 0xa5, 0xb7, 0xda, 0xf6,
-	0xc3, 0x0e, 0xe4, 0x74, 0x28, 0x1b, 0xa0, 0x66, 0x4e, 0xdd, 0x18, 0xe0, 0x36, 0x41, 0x33, 0xd0,
-	0x53, 0x4f, 0x68, 0x37, 0x4e, 0xe1, 0x38, 0x1e, 0x6a, 0x43, 0x22, 0xcd, 0xe3, 0xd8, 0x89, 0x90,
-	0xbd, 0x1c, 0x99, 0x7a, 0x10, 0x46, 0x2d, 0xde, 0x93, 0xc2, 0x16, 0x69, 0xa7, 0x67, 0x28, 0x73,
-	0x8b, 0x2c, 0x05, 0x83, 0x1f, 0x22, 0x1e, 0xa2, 0x84, 0xf3, 0xa2, 0x1b, 0xf1, 0x0d, 0x9a, 0x2e,
-	0x53, 0xa0, 0x06, 0xb8, 0x19, 0x04, 0x06, 0x37, 0x3f, 0x16, 0xcb, 0x41, 0xb4, 0xa9, 0xa1, 0x5b,
-	0x74, 0x31, 0x50, 0x18, 0xbc, 0xa5, 0x91, 0x38, 0xe0, 0xfb, 0x29, 0x42, 0x75, 0xc2, 0xd6, 0x49,
-	0x67, 0x97, 0xe7, 0xf2, 0x66, 0x89, 0x09, 0xc0, 0x99, 0x47, 0x80, 0x03, 0x3c, 0x3b, 0xdc, 0xa6,
-	0x3e, 0xf4, 0x53, 0xd9, 0x8a, 0x87, 0xe6, 0x28, 0x83, 0x99, 0xaf, 0xb5, 0xca, 0xd1, 0x79, 0x58,
-	0x7c, 0x38, 0x61, 0x4a, 0x0e, 0x25, 0xe7, 0x38, 0xa7, 0xb0, 0x74, 0x78, 0x76, 0x47, 0x7a, 0xb6,
-	0xef, 0x2d, 0x3a, 0x6c, 0xa7, 0x7e, 0x97, 0x1d, 0x0c, 0xd8, 0x25, 0xcc, 0x77, 0xee, 0xba, 0x67,
-	0xdb, 0x9b, 0x00, 0xfb, 0x2b, 0x7a, 0xf9, 0x96, 0x50, 0x5c, 0xfd, 0x95, 0xbf, 0x25, 0xd4, 0xef,
-	0xfd, 0x6e, 0x3a, 0xa2, 0xb3, 0x97, 0x67, 0xb3, 0x75, 0x12, 0x91, 0xc4, 0x67, 0xa4, 0x21, 0x3e,
-	0x6b, 0x94, 0xc5, 0xaf, 0x9c, 0xa5, 0x7c, 0xd7, 0x97, 0x1f, 0x3b, 0x6a, 0xfc, 0x3e, 0xb0, 0x39,
-	0x4b, 0x5d, 0x39, 0xd9, 0x6b, 0x86, 0x99, 0x07, 0x34, 0x39, 0xf2, 0x93, 0x96, 0xec, 0x85, 0x68,
-	0x2d, 0x56, 0x0c, 0x98, 0x19, 0x6d, 0x39, 0x1a, 0xbc, 0x85, 0xe8, 0xe4, 0x72, 0x10, 0x90, 0x98,
-	0x81, 0xb3, 0xeb, 0x83, 0xe8, 0x3a, 0xca, 0x5c, 0xfa, 0xa5, 0xe0, 0x6c, 0xf7, 0x14, 0x27, 0xa1,
-	0xe8, 0x22, 0x62, 0xf7, 0x81, 0xaa, 0xc8, 0x9a, 0x20, 0x03, 0x68, 0x56, 0x45, 0x2e, 0xf8, 0x7c,
-	0xba, 0xf2, 0x49, 0xac, 0xf7, 0xa9, 0xf3, 0xd7, 0x96, 0xa2, 0x22, 0xd4, 0x3c, 0x2b, 0xdc, 0x18,
-	0xf9, 0x03, 0x44, 0x23, 0x55, 0xb3, 0x78, 0xb9, 0xdd, 0xa6, 0x47, 0xa4, 0xa5, 0x4d, 0xa2, 0xfe,
-	0xd7, 0xaf, 0x45, 0x70, 0xff, 0x24, 0x72, 0xe1, 0x18, 0x55, 0x47, 0x23, 0xda, 0xa3, 0x2b, 0xbd,
-	0x35, 0xda, 0xf1, 0xc3, 0x48, 0x8b, 0xda, 0xb6, 0x04, 0x74, 0x68, 0x7f, 0xd4, 0xe5, 0x8c, 0x42,
-	0xd5, 0xd1, 0x6e, 0x17, 0xab, 0x0e, 0xab, 0x99, 0x22, 0xd6, 0xac, 0x3a, 0x1c, 0x29, 0xe0, 0xfa,
-	0x48, 0xdd, 0xd5, 0x6f, 0xac, 0xae, 0xaf, 0xd2, 0x84, 0xe8, 0x0f, 0xcc, 0xdc, 0x52, 0x40, 0x13,
-	0xd2, 0xff, 0x10, 0x94, 0x21, 0xcd, 0x13, 0xda, 0x89, 0x00, 0x8e, 0x77, 0xd4, 0xc3, 0xda, 0x76,
-	0xe2, 0x47, 0xe9, 0x1e, 0x49, 0xf0, 0x65, 0xf9, 0x89, 0xce, 0xf3, 0x02, 0x5b, 0xf5, 0x2b, 0x57,
-	0x6f, 0x96, 0xc1, 0xb2, 0xa3, 0xe4, 0x6c, 0x9d, 0x30, 0xd5, 0x2c, 0x3f, 0x44, 0x82, 0xb7, 0x8f,
-	0x1a, 0xb9, 0x0f, 0x62, 0x7e, 0xc1, 0x32, 0x1c, 0xa9, 0x85, 0xe2, 0x47, 0x01, 0x69, 0x0f, 0x09,
-	0xc5, 0xe8, 0x1f, 0x1c, 0x4a, 0x01, 0x26, 0x1d, 0xac, 0x44, 0xe8, 0x42, 0x40, 0x3b, 0xb6, 0x9d,
-	0x7f, 0xe5, 0xb4, 0xfa, 0x5c, 0x27, 0x0e, 0xc5, 0xf7, 0x5b, 0x9b, 0xde, 0x0f, 0x4e, 0x01, 0x06,
-	0x20, 0x7f, 0x19, 0x1b, 0x5f, 0xad, 0x7f, 0xfa, 0xb7, 0xb1, 0xd9, 0xd5, 0x74, 0xa9, 0x0a, 0xe8,
-	0xea, 0xe3, 0x85, 0x15, 0xde, 0xf7, 0x4f, 0xd1, 0xfa, 0x39, 0xb4, 0x7e, 0x0e, 0xad, 0xbb, 0x93,
-	0xe2, 0x03, 0xb0, 0xa5, 0xff, 0x05, 0x00, 0x00, 0xff, 0xff, 0x6c, 0x89, 0x38, 0x2d, 0x4c, 0x30,
-	0x00, 0x00,
+	// 2541 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xdc, 0x5a, 0x5b, 0x6f, 0x1c, 0xb7,
+	0x15, 0xee, 0x48, 0x8a, 0x6c, 0x51, 0x96, 0x6c, 0x53, 0x76, 0xad, 0x28, 0x2e, 0x1a, 0xac, 0xeb,
+	0xd8, 0x8e, 0xed, 0x5d, 0x4b, 0xf2, 0x25, 0xb6, 0x93, 0x02, 0xba, 0xd8, 0x9b, 0x85, 0xad, 0x48,
+	0x59, 0xc9, 0x76, 0x52, 0xa4, 0x50, 0x47, 0xb3, 0x94, 0x34, 0xf0, 0xee, 0xcc, 0x78, 0x86, 0x2b,
+	0x79, 0x8b, 0x34, 0x6d, 0x91, 0xa2, 0x17, 0xb4, 0x7d, 0xe8, 0xed, 0xb5, 0x0f, 0x7d, 0x6b, 0xff,
+	0x43, 0x1f, 0x8b, 0x02, 0xed, 0x6b, 0x7f, 0x46, 0x9f, 0xfa, 0x0b, 0x0a, 0x92, 0x87, 0x33, 0xe4,
+	0x2c, 0x77, 0x87, 0xa3, 0x00, 0x36, 0x90, 0xb7, 0x5d, 0xf2, 0xfb, 0xce, 0xf9, 0x78, 0x78, 0x3b,
+	0x1c, 0x12, 0x5d, 0xf4, 0x92, 0xc5, 0xda, 0x9e, 0x4b, 0xc9, 0xa1, 0xdb, 0xab, 0x1d, 0xcc, 0xef,
+	0x10, 0xea, 0xce, 0xcb, 0xff, 0xdb, 0x6e, 0xe4, 0x57, 0xa3, 0x38, 0xa4, 0x21, 0x9e, 0xf1, 0x92,
+	0xc5, 0x2a, 0x14, 0x57, 0x01, 0x36, 0x77, 0x95, 0x71, 0xdd, 0x28, 0xaa, 0x45, 0x71, 0x78, 0xe0,
+	0xb7, 0x48, 0x9c, 0x1a, 0x90, 0x05, 0x99, 0x85, 0x0c, 0x1c, 0x93, 0x3d, 0x3f, 0xa1, 0x71, 0xe6,
+	0x4d, 0x16, 0x28, 0xe0, 0x9b, 0x1c, 0xdc, 0xa5, 0xfb, 0x8c, 0xd1, 0xf6, 0x3d, 0x97, 0xfa, 0x61,
+	0x90, 0xa4, 0x0c, 0xb5, 0x50, 0x61, 0x5d, 0x4b, 0x59, 0x36, 0x3e, 0x2e, 0x98, 0x5a, 0x1e, 0x93,
+	0x24, 0xec, 0xc6, 0x1e, 0x49, 0x00, 0xf4, 0x2e, 0x03, 0xf9, 0x2d, 0x12, 0x50, 0x9f, 0xf6, 0x6a,
+	0x7b, 0x71, 0xd8, 0x8d, 0xb2, 0x28, 0xb1, 0x7f, 0x8a, 0xc1, 0x2b, 0x1a, 0xb6, 0x9b, 0x28, 0xf1,
+	0xc8, 0x9b, 0xbd, 0x3c, 0x18, 0xca, 0xfe, 0x28, 0x46, 0x2f, 0x31, 0x64, 0xe8, 0x75, 0x6a, 0x5e,
+	0x18, 0x93, 0x14, 0x14, 0x7a, 0x9d, 0x6d, 0x56, 0x60, 0x02, 0xfa, 0xc1, 0x81, 0x4f, 0x33, 0xa8,
+	0xf8, 0x9b, 0xef, 0x08, 0x06, 0xb4, 0xe9, 0xb5, 0xeb, 0x0c, 0x1c, 0xc5, 0x64, 0x97, 0xc4, 0x24,
+	0xf0, 0x48, 0xa2, 0x60, 0xd3, 0x32, 0x05, 0x7e, 0x9e, 0xc1, 0xe3, 0xc8, 0x4b, 0x61, 0x09, 0x75,
+	0x69, 0x57, 0xb6, 0xfa, 0x2e, 0xab, 0x4d, 0xf6, 0xdd, 0xd8, 0x0f, 0xf6, 0x6a, 0x5e, 0xd8, 0x6e,
+	0xbb, 0x3b, 0x61, 0xcc, 0x7b, 0x31, 0xc5, 0x6b, 0xa5, 0xf9, 0xd6, 0x49, 0x6a, 0xdb, 0x0f, 0x9e,
+	0xa7, 0x0c, 0xf6, 0x47, 0x01, 0x5e, 0x54, 0x81, 0xac, 0x95, 0x6a, 0xc8, 0x32, 0x58, 0x8d, 0xc3,
+	0x68, 0x18, 0xbb, 0x7b, 0xc4, 0x2a, 0x10, 0xd7, 0x86, 0x12, 0xf2, 0xfd, 0xfb, 0x16, 0x43, 0xd3,
+	0x97, 0x69, 0x3d, 0x7d, 0xa9, 0x98, 0xfa, 0x16, 0xaf, 0xec, 0x45, 0x4a, 0x34, 0xf9, 0x3f, 0x51,
+	0x5d, 0xf9, 0xb3, 0x83, 0x66, 0x96, 0xba, 0x74, 0x9f, 0x0d, 0x0e, 0xcf, 0xa5, 0xa4, 0x49, 0x5e,
+	0x74, 0x49, 0x42, 0xf1, 0x3c, 0x1a, 0x0f, 0x23, 0xf7, 0x45, 0x97, 0xcc, 0x3a, 0x6f, 0x3b, 0x97,
+	0x27, 0x17, 0xde, 0xac, 0xb2, 0x39, 0x29, 0x98, 0x60, 0xa7, 0xba, 0xce, 0x01, 0x4d, 0x00, 0x62,
+	0x8c, 0xc6, 0x58, 0xfd, 0xec, 0xc8, 0xdb, 0xce, 0xe5, 0x89, 0x26, 0xff, 0x8d, 0xdf, 0x42, 0x13,
+	0x5e, 0xdb, 0x27, 0x01, 0xdd, 0xf6, 0x5b, 0xb3, 0xa3, 0xbc, 0xe2, 0xb8, 0x28, 0x68, 0xb4, 0xf0,
+	0x05, 0x34, 0x05, 0x95, 0x09, 0xf1, 0x62, 0x42, 0x67, 0xc7, 0x38, 0xe0, 0x84, 0x28, 0xdc, 0xe4,
+	0x65, 0x95, 0x7f, 0x38, 0xe8, 0x8c, 0x2e, 0x30, 0x89, 0xc2, 0x20, 0x21, 0xb8, 0x86, 0xc6, 0x45,
+	0x7f, 0x83, 0xc2, 0x73, 0x5c, 0x61, 0x1c, 0x79, 0xa9, 0xbe, 0x4d, 0x5e, 0xdd, 0x04, 0x98, 0xd2,
+	0xa4, 0x11, 0xdb, 0x26, 0x9d, 0x41, 0x6f, 0xd0, 0xf0, 0x39, 0x09, 0x40, 0xba, 0xf8, 0x83, 0x17,
+	0xd1, 0x18, 0x9b, 0x37, 0x5c, 0xee, 0xe4, 0xc2, 0xb7, 0xb9, 0x19, 0x39, 0xbd, 0xaa, 0xac, 0x26,
+	0x35, 0xf7, 0x24, 0x21, 0x71, 0x93, 0x83, 0x2b, 0x9f, 0xa0, 0xa9, 0x67, 0xfb, 0xe1, 0x52, 0xa7,
+	0xf1, 0x15, 0x22, 0x9c, 0xca, 0x19, 0x51, 0xe4, 0x54, 0xfe, 0xea, 0xa0, 0x69, 0x69, 0xfa, 0x15,
+	0xc6, 0x46, 0x46, 0x61, 0xb4, 0x4c, 0x14, 0x7e, 0x8c, 0x4e, 0xd6, 0x09, 0xfd, 0xb8, 0x1b, 0x52,
+	0xf7, 0x2b, 0xc4, 0xe1, 0x2e, 0x1a, 0x8d, 0xc9, 0x2e, 0x48, 0xbd, 0xc4, 0xf1, 0x30, 0x59, 0xaa,
+	0x72, 0xb2, 0xa4, 0xd4, 0xa6, 0x5c, 0x39, 0x9a, 0x8c, 0x53, 0xf9, 0xaf, 0x83, 0xf0, 0x63, 0x3f,
+	0xa1, 0x4d, 0xe2, 0xf5, 0xbc, 0x36, 0x79, 0x2d, 0x22, 0xf0, 0x2d, 0x74, 0x6c, 0x37, 0x0e, 0x3b,
+	0xdb, 0x34, 0x81, 0xe8, 0x9d, 0x37, 0xb8, 0xdb, 0xf2, 0x3b, 0x24, 0xa1, 0x6e, 0x27, 0x6a, 0x8e,
+	0x33, 0xf0, 0x16, 0xeb, 0xa4, 0x37, 0x68, 0xc8, 0x48, 0x63, 0x16, 0xa4, 0x31, 0x1a, 0x6e, 0x25,
+	0x95, 0xff, 0x39, 0x68, 0x56, 0x69, 0xee, 0x26, 0x8d, 0x89, 0xdb, 0xf9, 0xba, 0x37, 0xfa, 0x4b,
+	0x07, 0xcd, 0x6c, 0x74, 0xe3, 0x3d, 0xf2, 0x3a, 0x3b, 0xb9, 0xf2, 0x6f, 0x07, 0x9d, 0x6f, 0x04,
+	0x3e, 0xf5, 0x5d, 0x4a, 0x1e, 0xfa, 0x6d, 0xb2, 0x1a, 0x1e, 0x06, 0xed, 0xd0, 0x6d, 0xbd, 0xd2,
+	0x49, 0x5a, 0x47, 0x13, 0x7c, 0x9d, 0xf7, 0xc2, 0x36, 0x0b, 0xfb, 0xe8, 0xe5, 0xc9, 0x85, 0x2b,
+	0x55, 0x43, 0x76, 0x55, 0x55, 0x15, 0x6e, 0x00, 0xa3, 0x99, 0x71, 0x2b, 0xff, 0x74, 0xd0, 0x9c,
+	0xda, 0x9a, 0x27, 0xd1, 0x2b, 0x6f, 0xcb, 0x83, 0xfe, 0xb6, 0x5c, 0x1a, 0xd8, 0x16, 0xa1, 0xcf,
+	0xd4, 0x92, 0x3f, 0x39, 0xe8, 0x4d, 0x36, 0x25, 0xd8, 0xa6, 0xb2, 0x01, 0x7d, 0x98, 0xbc, 0xf2,
+	0x5d, 0x85, 0xd5, 0xf3, 0x46, 0xb0, 0x65, 0x9c, 0xfd, 0xa9, 0xfc, 0x67, 0x04, 0x9d, 0x5f, 0x8f,
+	0x48, 0xc0, 0xd4, 0x37, 0x82, 0xa5, 0x28, 0x92, 0xe2, 0x5e, 0xcf, 0x74, 0x7d, 0x86, 0x26, 0x0e,
+	0x7c, 0x72, 0xb8, 0xdd, 0x09, 0x5b, 0x84, 0x4f, 0xd8, 0xe9, 0x85, 0x7b, 0xc6, 0x68, 0x0f, 0xd3,
+	0x5c, 0x7d, 0xea, 0x93, 0xc3, 0xb5, 0xb0, 0x45, 0x9a, 0xc7, 0x0f, 0xe0, 0x57, 0xa5, 0x83, 0x8e,
+	0xcb, 0x52, 0x7c, 0x16, 0x9d, 0x7e, 0xda, 0x78, 0xf0, 0x6c, 0x7b, 0x6d, 0x7d, 0xf5, 0xc1, 0x76,
+	0xe3, 0xa3, 0xa7, 0x4b, 0x8f, 0x1b, 0xab, 0xa7, 0xbe, 0x81, 0xcf, 0xa1, 0x99, 0xac, 0x98, 0xff,
+	0x5a, 0xff, 0xe8, 0xf1, 0xa7, 0xa7, 0x1c, 0xbd, 0xa2, 0xf9, 0x60, 0x69, 0x55, 0x54, 0x8c, 0xe0,
+	0x59, 0x74, 0x26, 0x57, 0xf1, 0xac, 0xd9, 0xd8, 0x7a, 0x70, 0x6a, 0x74, 0xe1, 0xef, 0x8f, 0x10,
+	0xaa, 0x0b, 0xc9, 0x4b, 0x1b, 0x0d, 0xec, 0xa1, 0x13, 0x6a, 0x36, 0x81, 0x2f, 0x1b, 0xdb, 0x64,
+	0xc8, 0x88, 0xe6, 0xae, 0x58, 0x20, 0x61, 0x10, 0x7d, 0x8c, 0xc6, 0xc5, 0x86, 0x8c, 0x2b, 0x46,
+	0x92, 0x96, 0x08, 0xcc, 0x5d, 0x18, 0x8a, 0x01, 0x93, 0xbf, 0x71, 0xd0, 0x4c, 0x9d, 0x04, 0x24,
+	0x76, 0x29, 0x61, 0x71, 0x76, 0x93, 0xe4, 0x30, 0x8c, 0x5b, 0xf8, 0x2e, 0x27, 0xb3, 0x63, 0x48,
+	0x55, 0x3d, 0xa7, 0xa4, 0x66, 0x0c, 0x1c, 0xe9, 0xf7, 0xde, 0x51, 0xa8, 0x20, 0xe7, 0x4b, 0x07,
+	0x9d, 0xe2, 0x93, 0x28, 0xab, 0x4b, 0xf0, 0xed, 0x02, 0x83, 0x79, 0x82, 0x14, 0x72, 0xa7, 0x34,
+	0x0f, 0x54, 0xfc, 0xde, 0x41, 0x67, 0x1b, 0xc1, 0x81, 0xdb, 0xf6, 0x5b, 0xb9, 0xb0, 0xdc, 0x2f,
+	0x30, 0x69, 0x64, 0x49, 0x3d, 0xef, 0x1f, 0x8d, 0x0c, 0xa2, 0x7e, 0x84, 0xa6, 0xeb, 0x44, 0xd5,
+	0x8b, 0x6f, 0x16, 0x06, 0x9a, 0x1a, 0x54, 0xdc, 0x2a, 0xc9, 0x02, 0xf7, 0x5f, 0xa0, 0x93, 0x2b,
+	0x31, 0x71, 0x29, 0x59, 0x09, 0x03, 0xea, 0xfa, 0x01, 0x89, 0xc1, 0xff, 0xc0, 0x89, 0x9f, 0x83,
+	0xeb, 0xfe, 0xed, 0x59, 0xe0, 0xdf, 0x43, 0xe3, 0xab, 0xa4, 0x4d, 0x28, 0xc1, 0x57, 0x87, 0x1b,
+	0x10, 0x28, 0xe9, 0xed, 0x9a, 0x1d, 0x18, 0x9c, 0xec, 0xa2, 0x63, 0x75, 0x42, 0x37, 0x5c, 0xba,
+	0x8f, 0x0b, 0x88, 0x00, 0x93, 0x6e, 0xae, 0x5b, 0xa2, 0xc1, 0xcf, 0x0f, 0xd0, 0x71, 0x99, 0xae,
+	0xe2, 0xef, 0x18, 0xa7, 0x69, 0x2e, 0x9b, 0x9d, 0xab, 0x16, 0x3a, 0x00, 0x38, 0x78, 0xf8, 0x99,
+	0x83, 0xce, 0x98, 0xb2, 0x04, 0x98, 0xd8, 0x03, 0x0d, 0x99, 0x33, 0x0b, 0xa1, 0x61, 0xde, 0xa8,
+	0x74, 0x68, 0x2e, 0xf2, 0x05, 0xc2, 0xfd, 0xbb, 0x3b, 0xbe, 0x63, 0xaf, 0x41, 0xe6, 0x03, 0x42,
+	0x41, 0xad, 0x50, 0x41, 0x2e, 0x7f, 0x60, 0xcb, 0x1b, 0x9b, 0xe6, 0xe9, 0x78, 0x12, 0x99, 0x2a,
+	0x7e, 0x6f, 0xb8, 0x02, 0x03, 0x45, 0x4a, 0xb8, 0x7b, 0x04, 0xa6, 0x10, 0x73, 0xc3, 0xc1, 0x2f,
+	0xd1, 0x94, 0x06, 0xc0, 0x0b, 0x25, 0xac, 0x49, 0x05, 0x8b, 0xa5, 0x38, 0x10, 0x88, 0x9f, 0xc2,
+	0xc2, 0xca, 0x62, 0xf4, 0x94, 0xc4, 0x09, 0x9b, 0xf2, 0xf8, 0x56, 0xb1, 0x25, 0x15, 0x2f, 0x05,
+	0xdc, 0x2e, 0x4b, 0x4b, 0x57, 0xb0, 0xd3, 0x7d, 0x67, 0x06, 0x7c, 0xdd, 0xd8, 0xa5, 0x83, 0xce,
+	0x16, 0x73, 0x77, 0x8a, 0x7d, 0xe7, 0x78, 0x69, 0xf0, 0x7d, 0x34, 0xa9, 0x54, 0xe3, 0x4b, 0x45,
+	0x8e, 0xf5, 0x61, 0x6f, 0xe3, 0x32, 0x6d, 0xe9, 0xf7, 0xd1, 0xd8, 0x5a, 0x78, 0x40, 0xf0, 0x95,
+	0xe1, 0x54, 0x86, 0x91, 0x5e, 0xde, 0xb5, 0x81, 0x82, 0xf9, 0x36, 0x3a, 0xa1, 0x9e, 0x43, 0x06,
+	0x24, 0x1b, 0x86, 0xa3, 0xca, 0x5c, 0xc1, 0x78, 0xd3, 0x29, 0xe0, 0xed, 0x17, 0x0e, 0xc2, 0x4d,
+	0xc2, 0x38, 0x44, 0xe9, 0xd6, 0xa2, 0x49, 0xdc, 0xcf, 0x90, 0x1a, 0xde, 0x2b, 0x4f, 0xec, 0x57,
+	0x02, 0x22, 0x1b, 0x94, 0x74, 0x2c, 0x95, 0x28, 0x8c, 0x72, 0x4a, 0x34, 0x62, 0xd6, 0xc1, 0x2c,
+	0x5f, 0x2f, 0xea, 0x60, 0x86, 0xb1, 0xec, 0x60, 0x01, 0x05, 0xf3, 0x2f, 0xd1, 0x94, 0xd8, 0x07,
+	0x37, 0x7b, 0x9d, 0xb6, 0x1f, 0x3c, 0x2f, 0x5a, 0x27, 0x34, 0xb0, 0xe5, 0x3a, 0x91, 0xe3, 0x80,
+	0xe7, 0xdf, 0x3a, 0xe8, 0xcc, 0x26, 0xa1, 0x4b, 0xf1, 0x8e, 0x4f, 0x63, 0x37, 0xee, 0xad, 0x11,
+	0xea, 0xb6, 0x5c, 0xea, 0x16, 0xed, 0x1b, 0x26, 0x8e, 0x9e, 0x10, 0x96, 0xa4, 0x82, 0x9e, 0x3f,
+	0x38, 0xe8, 0x9b, 0x4f, 0x82, 0xc4, 0xa4, 0xe8, 0xfe, 0x70, 0xb3, 0x66, 0x96, 0x9e, 0x8b, 0x95,
+	0x26, 0x83, 0xaa, 0x10, 0x21, 0x11, 0xbe, 0x0f, 0xc3, 0x0e, 0xc1, 0x35, 0x9b, 0x40, 0x33, 0xa4,
+	0x74, 0x7e, 0xc3, 0x9e, 0xa0, 0x8c, 0x7c, 0xe8, 0x30, 0xc1, 0xda, 0x8c, 0x5c, 0x8f, 0x14, 0x8d,
+	0xfc, 0x7e, 0x86, 0xe5, 0xc8, 0x37, 0x11, 0xb3, 0xc4, 0x82, 0xaf, 0xe2, 0x6a, 0xa5, 0x4c, 0xd1,
+	0x87, 0xae, 0x91, 0x1a, 0xa1, 0xc4, 0x72, 0x9e, 0xe3, 0x29, 0x01, 0x79, 0x12, 0xb5, 0x4a, 0x06,
+	0xa4, 0x9f, 0x61, 0x19, 0x10, 0x13, 0x51, 0x51, 0x22, 0xd2, 0xc8, 0x32, 0x4a, 0xfa, 0x19, 0x96,
+	0x4a, 0x4c, 0xc4, 0xec, 0xf0, 0x74, 0xd6, 0x78, 0x6a, 0xc6, 0xf3, 0xa5, 0x4f, 0xd8, 0xf2, 0xf0,
+	0x14, 0x45, 0xfd, 0x12, 0x06, 0xf0, 0x40, 0xc5, 0xe7, 0x68, 0x12, 0x86, 0xcf, 0xbe, 0x1b, 0x13,
+	0x99, 0x63, 0x88, 0xbb, 0x8c, 0xaa, 0x76, 0x33, 0x92, 0x1f, 0x6e, 0x0c, 0x9f, 0xcb, 0x31, 0xec,
+	0x69, 0x99, 0xf7, 0x26, 0xe9, 0x84, 0x07, 0x25, 0xbc, 0x2b, 0xf8, 0x32, 0xde, 0x35, 0x1a, 0x78,
+	0x4f, 0x78, 0x5e, 0x2f, 0x5c, 0x2f, 0x58, 0xd8, 0x90, 0xe0, 0xdc, 0x92, 0x6d, 0xc9, 0x01, 0xa7,
+	0x3d, 0x84, 0xf8, 0x3c, 0x61, 0x85, 0x89, 0x3c, 0x94, 0x0d, 0x35, 0x91, 0xc1, 0x73, 0x87, 0x32,
+	0x6b, 0x56, 0x16, 0x6d, 0x98, 0x19, 0xd6, 0xd1, 0x56, 0xf0, 0x65, 0xa2, 0xad, 0xd1, 0xc0, 0xfb,
+	0xef, 0xb2, 0x6f, 0xee, 0xc4, 0x3f, 0x20, 0x2d, 0x88, 0xc0, 0xfb, 0x96, 0x6d, 0xd1, 0x69, 0x52,
+	0xcc, 0x07, 0x47, 0x64, 0x83, 0xa6, 0x3f, 0x3a, 0x68, 0x46, 0x68, 0xd5, 0x00, 0xf8, 0x03, 0xeb,
+	0x36, 0x6a, 0x3c, 0xa9, 0xea, 0xbb, 0x47, 0xa5, 0x83, 0xac, 0x5f, 0x3b, 0xe8, 0x54, 0x9d, 0xe8,
+	0xa2, 0xf1, 0x3d, 0xbb, 0xd1, 0x66, 0x14, 0x74, 0xff, 0x48, 0x5c, 0x50, 0xf3, 0x29, 0x1a, 0xdf,
+	0x24, 0xf4, 0x11, 0xe9, 0xe1, 0x77, 0xb8, 0x19, 0xe5, 0x1a, 0x56, 0xcd, 0x0a, 0x1e, 0x91, 0x9e,
+	0x74, 0x77, 0xa9, 0x10, 0x97, 0x99, 0xae, 0x17, 0x99, 0xae, 0x5b, 0x9a, 0xae, 0xeb, 0xa6, 0x3f,
+	0x47, 0xa7, 0xc5, 0x8a, 0xb3, 0xd1, 0xdd, 0x69, 0xfb, 0x9e, 0x69, 0x96, 0xb3, 0x54, 0x2a, 0xb7,
+	0x3c, 0x29, 0x60, 0xf3, 0x2c, 0x2f, 0xe2, 0x64, 0xde, 0xc5, 0x8a, 0x63, 0xe9, 0xbd, 0x0f, 0x6c,
+	0xe1, 0xdd, 0xc0, 0x49, 0x17, 0xb6, 0xe9, 0x3a, 0xa1, 0xaa, 0xeb, 0xda, 0x60, 0x33, 0x3a, 0x32,
+	0x97, 0xf4, 0xd8, 0x10, 0xc0, 0xe9, 0x2f, 0x1d, 0x74, 0x56, 0xaf, 0x5a, 0xee, 0x6d, 0xf1, 0x9b,
+	0xd2, 0xdb, 0xb6, 0xb6, 0x80, 0x90, 0x4b, 0x37, 0x4a, 0xf0, 0xd2, 0x35, 0x96, 0x9f, 0x9e, 0x15,
+	0x44, 0x02, 0x9b, 0xaa, 0xd1, 0x58, 0x1e, 0x9b, 0x3b, 0x7e, 0xd9, 0x51, 0xb2, 0x8e, 0x17, 0x33,
+	0xdb, 0xb2, 0xe3, 0xfb, 0xc0, 0x16, 0x1d, 0x6f, 0xe0, 0x80, 0xf7, 0x17, 0x68, 0x5a, 0x8c, 0xc9,
+	0xf5, 0x95, 0x35, 0xe1, 0xba, 0xaa, 0x99, 0x09, 0xbd, 0x4e, 0x6e, 0xf0, 0x4a, 0xa0, 0xfe, 0xcd,
+	0xc6, 0x06, 0x9f, 0xb9, 0x14, 0x03, 0xd1, 0xc2, 0xa5, 0x0e, 0x2c, 0x76, 0x99, 0xc7, 0x83, 0xcb,
+	0x7d, 0x34, 0x59, 0x27, 0x34, 0xf5, 0x77, 0x75, 0x20, 0x5f, 0x41, 0xe5, 0xbe, 0x30, 0x16, 0x81,
+	0xc1, 0x53, 0x20, 0xbe, 0x00, 0xc9, 0xf2, 0x04, 0xbe, 0x7f, 0x98, 0xe8, 0x1a, 0x2e, 0xf7, 0x1d,
+	0xb0, 0x18, 0x9e, 0x05, 0x53, 0x74, 0xae, 0x45, 0x30, 0x75, 0x60, 0x71, 0x30, 0xf3, 0x78, 0x70,
+	0xf9, 0x73, 0x07, 0x9d, 0x55, 0x77, 0xc8, 0xac, 0xad, 0xb7, 0x86, 0x8a, 0xef, 0xc3, 0x9b, 0xf3,
+	0x03, 0x0b, 0x1a, 0x08, 0xf9, 0x15, 0x3b, 0x3b, 0x6a, 0x9b, 0x62, 0x1a, 0x84, 0xdb, 0x05, 0x8d,
+	0xca, 0x13, 0xcc, 0x0b, 0x88, 0x0d, 0x0f, 0xb4, 0xfc, 0x84, 0xdf, 0xb3, 0xf4, 0x89, 0xc5, 0x8b,
+	0xc3, 0x46, 0xcf, 0x20, 0x15, 0x37, 0xcb, 0x91, 0x40, 0xc2, 0x01, 0x7f, 0x23, 0xa1, 0xa4, 0xec,
+	0x09, 0xbe, 0x91, 0x26, 0xf9, 0xf2, 0x69, 0x59, 0xfe, 0x1a, 0x20, 0xbb, 0xc8, 0x54, 0x3f, 0x86,
+	0xd9, 0x31, 0xf4, 0xb5, 0x53, 0x73, 0x3c, 0xc4, 0x4c, 0x1e, 0xab, 0xaf, 0x9d, 0x96, 0x94, 0xf4,
+	0x3b, 0xfb, 0xb1, 0x3a, 0xa1, 0x4f, 0x12, 0x12, 0xc3, 0x97, 0x1a, 0xf3, 0x43, 0x12, 0xc0, 0xe8,
+	0x5f, 0x6a, 0x0a, 0xa0, 0xe0, 0xa1, 0xcb, 0x37, 0x46, 0x56, 0xb4, 0xdc, 0x5b, 0x69, 0xbb, 0x7e,
+	0x07, 0x62, 0x3a, 0x94, 0x0d, 0x50, 0x3d, 0xa6, 0x76, 0x0c, 0x70, 0x1b, 0xa3, 0x29, 0xa8, 0xa9,
+	0xc7, 0x61, 0x37, 0x4a, 0x60, 0x3b, 0x1e, 0x6a, 0x43, 0x20, 0xf5, 0xed, 0xd8, 0x8a, 0x90, 0x5e,
+	0x8e, 0x4c, 0x3c, 0xf4, 0x83, 0x16, 0xab, 0x49, 0x60, 0x89, 0x34, 0xd3, 0x53, 0x94, 0xbe, 0x44,
+	0x16, 0x82, 0xc1, 0x0f, 0xe1, 0x87, 0x28, 0xee, 0x3c, 0xef, 0x86, 0x3f, 0x56, 0x54, 0x65, 0x72,
+	0xd4, 0x00, 0x37, 0x83, 0xc0, 0xe0, 0xe6, 0x87, 0x7c, 0x3a, 0xf0, 0x32, 0xd9, 0x75, 0x0b, 0x36,
+	0x06, 0x72, 0x9d, 0xb7, 0x58, 0x8a, 0x03, 0xbe, 0x9f, 0x23, 0x54, 0x27, 0x74, 0x8d, 0x74, 0x76,
+	0x58, 0x2c, 0xaf, 0x17, 0x98, 0x00, 0x9c, 0xbe, 0x05, 0x58, 0xc0, 0xd3, 0xcd, 0x6d, 0xe2, 0x43,
+	0x37, 0x11, 0xa5, 0x78, 0x68, 0x8c, 0x52, 0x98, 0x7e, 0xad, 0x55, 0x8c, 0xce, 0x9a, 0xc5, 0xba,
+	0x13, 0x86, 0xe4, 0x50, 0x72, 0x86, 0xb3, 0x6a, 0x96, 0x0a, 0x4f, 0xbf, 0x91, 0x9e, 0xee, 0x7b,
+	0x6e, 0x01, 0xcb, 0x29, 0xbf, 0xdc, 0x34, 0xaf, 0x12, 0xfa, 0xe3, 0x0c, 0xd5, 0xb3, 0xe9, 0x26,
+	0xc0, 0xfc, 0x96, 0x43, 0xdc, 0x12, 0xf2, 0x4f, 0x7f, 0xc5, 0xb7, 0x84, 0xea, 0x77, 0xbf, 0xeb,
+	0x96, 0xe8, 0xf4, 0xf2, 0x2c, 0xbd, 0x9a, 0x6f, 0xf0, 0xf7, 0xaf, 0x22, 0xf9, 0x15, 0xa3, 0x94,
+	0xad, 0xfa, 0xe2, 0x55, 0x6c, 0xdf, 0xc5, 0xba, 0x02, 0xd6, 0x47, 0xa9, 0x2d, 0x27, 0xbd, 0x66,
+	0x98, 0x7a, 0x18, 0xc6, 0x87, 0x6e, 0xdc, 0x12, 0xb5, 0xd0, 0x5a, 0x83, 0x15, 0x0d, 0xa6, 0xb7,
+	0xb6, 0x18, 0x0d, 0xde, 0x7c, 0x74, 0x62, 0xc9, 0xf3, 0x48, 0x44, 0xc1, 0xd9, 0xd5, 0x41, 0x74,
+	0x15, 0xa5, 0x4f, 0xfd, 0x42, 0x70, 0xba, 0x7a, 0xf2, 0x9d, 0x90, 0x57, 0x11, 0xbe, 0xfa, 0x40,
+	0x56, 0x64, 0x0c, 0x90, 0x06, 0xd4, 0xb3, 0x22, 0x1b, 0x7c, 0x36, 0x5c, 0xd9, 0x20, 0x56, 0xeb,
+	0xe4, 0xfe, 0x6b, 0x0a, 0x51, 0x1e, 0xaa, 0xef, 0x15, 0x76, 0x8c, 0xec, 0x00, 0xd1, 0x48, 0xe4,
+	0x28, 0x5e, 0x6a, 0xb7, 0xc3, 0x43, 0xd2, 0x52, 0x06, 0x51, 0xff, 0xf5, 0x6b, 0x1e, 0xdc, 0x3f,
+	0x88, 0x6c, 0x38, 0x5a, 0xd6, 0xd1, 0x08, 0x76, 0xc3, 0xe5, 0xde, 0x6a, 0xd8, 0x71, 0xfd, 0x40,
+	0x69, 0xb5, 0x69, 0x0a, 0xa8, 0xd0, 0xfe, 0x56, 0x17, 0x33, 0x72, 0x59, 0x47, 0xbb, 0x9d, 0xcf,
+	0x3a, 0x8c, 0x66, 0xf2, 0x58, 0x3d, 0xeb, 0xb0, 0xa4, 0x80, 0xeb, 0x43, 0xf9, 0xad, 0x7e, 0x7d,
+	0x65, 0x6d, 0x25, 0x8c, 0x89, 0x7a, 0x60, 0x66, 0x96, 0xbc, 0x30, 0x26, 0xfd, 0x87, 0xa0, 0x14,
+	0xa9, 0xef, 0xd0, 0x56, 0x04, 0x70, 0xbc, 0x2d, 0x0f, 0x6b, 0x5b, 0xb1, 0x1b, 0x24, 0xbb, 0x24,
+	0xc6, 0x17, 0xc5, 0x5b, 0xae, 0x97, 0x39, 0xb6, 0xac, 0x97, 0xae, 0xde, 0x29, 0x82, 0xa5, 0x5b,
+	0xc9, 0xe9, 0x3a, 0xa1, 0xb2, 0x58, 0xbc, 0x58, 0x83, 0xdb, 0x47, 0x85, 0xdc, 0x07, 0xd1, 0x9f,
+	0x3a, 0x0d, 0x47, 0x2a, 0x4d, 0x71, 0x03, 0x8f, 0xb4, 0x87, 0x34, 0x45, 0xab, 0x1f, 0xdc, 0x94,
+	0x1c, 0x4c, 0x38, 0x58, 0x0e, 0xd0, 0x39, 0x2f, 0xec, 0x98, 0x56, 0xfe, 0xe5, 0x93, 0xf2, 0x5d,
+	0x57, 0xe4, 0xf3, 0x87, 0x7e, 0x1b, 0xce, 0xf7, 0xa6, 0x01, 0x03, 0x90, 0xbf, 0x8c, 0x8c, 0xae,
+	0xd4, 0x3f, 0xf9, 0xdb, 0xc8, 0xcc, 0x4a, 0xb2, 0x58, 0x05, 0x74, 0xf5, 0xe9, 0xfc, 0x32, 0xab,
+	0xfb, 0x17, 0x2f, 0xfd, 0x0c, 0x4a, 0x3f, 0x83, 0xd2, 0x9d, 0x71, 0xfe, 0x52, 0x70, 0xf1, 0xff,
+	0x01, 0x00, 0x00, 0xff, 0xff, 0xe6, 0xcd, 0x71, 0x27, 0xab, 0x32, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -1022,6 +1029,15 @@ type GatewayAPIClient interface {
 	Authenticate(ctx context.Context, in *AuthenticateRequest, opts ...grpc.CallOption) (*AuthenticateResponse, error)
 	// WhoAmI returns the information for a user.
 	WhoAmI(ctx context.Context, in *WhoAmIRequest, opts ...grpc.CallOption) (*WhoAmIResponse, error)
+	// GenerateAppPassword creates a password with specified scope to be used by
+	// third-party applications.
+	GenerateAppPassword(ctx context.Context, in *v1beta14.GenerateAppPasswordRequest, opts ...grpc.CallOption) (*v1beta14.GenerateAppPasswordResponse, error)
+	// ListAppPasswords lists the application passwords created by a user.
+	ListAppPasswords(ctx context.Context, in *v1beta14.ListAppPasswordsRequest, opts ...grpc.CallOption) (*v1beta14.ListAppPasswordsResponse, error)
+	// InvalidateAppPassword invalidates a generated password.
+	InvalidateAppPassword(ctx context.Context, in *v1beta14.InvalidateAppPasswordRequest, opts ...grpc.CallOption) (*v1beta14.InvalidateAppPasswordResponse, error)
+	// GetAppPassword retrieves the password information by the combination of username and password.
+	GetAppPassword(ctx context.Context, in *v1beta14.GetAppPasswordRequest, opts ...grpc.CallOption) (*v1beta14.GetAppPasswordResponse, error)
 	// Creates a new resource of type container.
 	// MUST return CODE_PRECONDITION_FAILED if the container
 	// cannot be created at the specified reference.
@@ -1106,93 +1122,93 @@ type GatewayAPIClient interface {
 	// Deletes a storage space.
 	DeleteStorageSpace(ctx context.Context, in *v1beta13.DeleteStorageSpaceRequest, opts ...grpc.CallOption) (*v1beta13.DeleteStorageSpaceResponse, error)
 	// Returns the App provider URL, which lets the user open a file in the correct online document editor.
-	OpenFileInAppProvider(ctx context.Context, in *OpenFileInAppProviderRequest, opts ...grpc.CallOption) (*v1beta14.OpenFileInAppProviderResponse, error)
+	OpenFileInAppProvider(ctx context.Context, in *OpenFileInAppProviderRequest, opts ...grpc.CallOption) (*v1beta15.OpenFileInAppProviderResponse, error)
 	// Creates a new share.
 	// MUST return CODE_NOT_FOUND if the resource reference does not exist.
 	// MUST return CODE_ALREADY_EXISTS if the share already exists for the 4-tuple consisting of
 	// (owner, shared_resource, grantee).
 	// New shares MUST be created in the state SHARE_STATE_PENDING.
-	CreateShare(ctx context.Context, in *v1beta15.CreateShareRequest, opts ...grpc.CallOption) (*v1beta15.CreateShareResponse, error)
+	CreateShare(ctx context.Context, in *v1beta16.CreateShareRequest, opts ...grpc.CallOption) (*v1beta16.CreateShareResponse, error)
 	// Removes a share.
 	// MUST return CODE_NOT_FOUND if the share reference does not exist.
-	RemoveShare(ctx context.Context, in *v1beta15.RemoveShareRequest, opts ...grpc.CallOption) (*v1beta15.RemoveShareResponse, error)
+	RemoveShare(ctx context.Context, in *v1beta16.RemoveShareRequest, opts ...grpc.CallOption) (*v1beta16.RemoveShareResponse, error)
 	// Gets share information for a single share.
 	// MUST return CODE_NOT_FOUND if the share reference does not exist.
-	GetShare(ctx context.Context, in *v1beta15.GetShareRequest, opts ...grpc.CallOption) (*v1beta15.GetShareResponse, error)
+	GetShare(ctx context.Context, in *v1beta16.GetShareRequest, opts ...grpc.CallOption) (*v1beta16.GetShareResponse, error)
 	// List the shares the authproviderenticated principal has created,
 	// both as owner and creator. If a filter is specified, only
 	// shares satisfying the filter MUST be returned.
-	ListShares(ctx context.Context, in *v1beta15.ListSharesRequest, opts ...grpc.CallOption) (*v1beta15.ListSharesResponse, error)
+	ListShares(ctx context.Context, in *v1beta16.ListSharesRequest, opts ...grpc.CallOption) (*v1beta16.ListSharesResponse, error)
 	// Updates a share.
 	// MUST return CODE_NOT_FOUND if the share reference does not exist.
-	UpdateShare(ctx context.Context, in *v1beta15.UpdateShareRequest, opts ...grpc.CallOption) (*v1beta15.UpdateShareResponse, error)
+	UpdateShare(ctx context.Context, in *v1beta16.UpdateShareRequest, opts ...grpc.CallOption) (*v1beta16.UpdateShareResponse, error)
 	// List all shares the authproviderenticated principal has received.
-	ListReceivedShares(ctx context.Context, in *v1beta15.ListReceivedSharesRequest, opts ...grpc.CallOption) (*v1beta15.ListReceivedSharesResponse, error)
+	ListReceivedShares(ctx context.Context, in *v1beta16.ListReceivedSharesRequest, opts ...grpc.CallOption) (*v1beta16.ListReceivedSharesResponse, error)
 	// Update the received share to change the share state or the display name.
 	// MUST return CODE_NOT_FOUND if the share reference does not exist.
-	UpdateReceivedShare(ctx context.Context, in *v1beta15.UpdateReceivedShareRequest, opts ...grpc.CallOption) (*v1beta15.UpdateReceivedShareResponse, error)
+	UpdateReceivedShare(ctx context.Context, in *v1beta16.UpdateReceivedShareRequest, opts ...grpc.CallOption) (*v1beta16.UpdateReceivedShareResponse, error)
 	// Get the information for the given received share reference.
 	// MUST return CODE_NOT_FOUND if the received share reference does not exist.
-	GetReceivedShare(ctx context.Context, in *v1beta15.GetReceivedShareRequest, opts ...grpc.CallOption) (*v1beta15.GetReceivedShareResponse, error)
+	GetReceivedShare(ctx context.Context, in *v1beta16.GetReceivedShareRequest, opts ...grpc.CallOption) (*v1beta16.GetReceivedShareResponse, error)
 	// Maps the key-value pair.
-	SetKey(ctx context.Context, in *v1beta16.SetKeyRequest, opts ...grpc.CallOption) (*v1beta16.SetKeyResponse, error)
+	SetKey(ctx context.Context, in *v1beta17.SetKeyRequest, opts ...grpc.CallOption) (*v1beta17.SetKeyResponse, error)
 	// Returns the value associated with the
 	// requested key.
-	GetKey(ctx context.Context, in *v1beta16.GetKeyRequest, opts ...grpc.CallOption) (*v1beta16.GetKeyResponse, error)
+	GetKey(ctx context.Context, in *v1beta17.GetKeyRequest, opts ...grpc.CallOption) (*v1beta17.GetKeyResponse, error)
 	// Creates a new share.
 	// MUST return CODE_NOT_FOUND if the resource reference does not exist.
 	// MUST return CODE_ALREADY_EXISTS if the share already exists for the 4-tuple consisting of
 	// (owner, shared_resource, grantee).
 	// New shares MUST be created in the state SHARE_STATE_PENDING.
-	CreatePublicShare(ctx context.Context, in *v1beta17.CreatePublicShareRequest, opts ...grpc.CallOption) (*v1beta17.CreatePublicShareResponse, error)
+	CreatePublicShare(ctx context.Context, in *v1beta18.CreatePublicShareRequest, opts ...grpc.CallOption) (*v1beta18.CreatePublicShareResponse, error)
 	// Removes a share.
 	// MUST return CODE_NOT_FOUND if the share reference does not exist.
-	RemovePublicShare(ctx context.Context, in *v1beta17.RemovePublicShareRequest, opts ...grpc.CallOption) (*v1beta17.RemovePublicShareResponse, error)
+	RemovePublicShare(ctx context.Context, in *v1beta18.RemovePublicShareRequest, opts ...grpc.CallOption) (*v1beta18.RemovePublicShareResponse, error)
 	// Gets share information for a single share.
 	// MUST return CODE_NOT_FOUND if the share reference does not exist.
-	GetPublicShare(ctx context.Context, in *v1beta17.GetPublicShareRequest, opts ...grpc.CallOption) (*v1beta17.GetPublicShareResponse, error)
+	GetPublicShare(ctx context.Context, in *v1beta18.GetPublicShareRequest, opts ...grpc.CallOption) (*v1beta18.GetPublicShareResponse, error)
 	// Gets share information for a single share by its unlisted token.
 	// MUST return CODE_NOT_FOUND if the share does not exist.
-	GetPublicShareByToken(ctx context.Context, in *v1beta17.GetPublicShareByTokenRequest, opts ...grpc.CallOption) (*v1beta17.GetPublicShareByTokenResponse, error)
+	GetPublicShareByToken(ctx context.Context, in *v1beta18.GetPublicShareByTokenRequest, opts ...grpc.CallOption) (*v1beta18.GetPublicShareByTokenResponse, error)
 	// List the shares the authproviderenticated principal has created,
 	// both as owner and creator. If a filter is specified, only
 	// shares satisfying the filter MUST be returned.
-	ListPublicShares(ctx context.Context, in *v1beta17.ListPublicSharesRequest, opts ...grpc.CallOption) (*v1beta17.ListPublicSharesResponse, error)
+	ListPublicShares(ctx context.Context, in *v1beta18.ListPublicSharesRequest, opts ...grpc.CallOption) (*v1beta18.ListPublicSharesResponse, error)
 	// Updates a share.
 	// MUST return CODE_NOT_FOUND if the share reference does not exist.
-	UpdatePublicShare(ctx context.Context, in *v1beta17.UpdatePublicShareRequest, opts ...grpc.CallOption) (*v1beta17.UpdatePublicShareResponse, error)
+	UpdatePublicShare(ctx context.Context, in *v1beta18.UpdatePublicShareRequest, opts ...grpc.CallOption) (*v1beta18.UpdatePublicShareResponse, error)
 	// Creates a new ocm share.
 	// MUST return CODE_NOT_FOUND if the resource reference does not exist.
 	// MUST return CODE_ALREADY_EXISTS if the share already exists for the 4-tuple consisting of
 	// (owner, shared_resource, grantee).
 	// New shares MUST be created in the state SHARE_STATE_PENDING.
-	CreateOCMShare(ctx context.Context, in *v1beta18.CreateOCMShareRequest, opts ...grpc.CallOption) (*v1beta18.CreateOCMShareResponse, error)
+	CreateOCMShare(ctx context.Context, in *v1beta19.CreateOCMShareRequest, opts ...grpc.CallOption) (*v1beta19.CreateOCMShareResponse, error)
 	// Removes a share.
 	// MUST return CODE_NOT_FOUND if the share reference does not exist.
-	RemoveOCMShare(ctx context.Context, in *v1beta18.RemoveOCMShareRequest, opts ...grpc.CallOption) (*v1beta18.RemoveOCMShareResponse, error)
+	RemoveOCMShare(ctx context.Context, in *v1beta19.RemoveOCMShareRequest, opts ...grpc.CallOption) (*v1beta19.RemoveOCMShareResponse, error)
 	// Gets share information for a single share.
 	// MUST return CODE_NOT_FOUND if the share reference does not exist.
-	GetOCMShare(ctx context.Context, in *v1beta18.GetOCMShareRequest, opts ...grpc.CallOption) (*v1beta18.GetOCMShareResponse, error)
+	GetOCMShare(ctx context.Context, in *v1beta19.GetOCMShareRequest, opts ...grpc.CallOption) (*v1beta19.GetOCMShareResponse, error)
 	// List the shares the authproviderenticated principal has created,
 	// both as owner and creator. If a filter is specified, only
 	// shares satisfying the filter MUST be returned.
-	ListOCMShares(ctx context.Context, in *v1beta18.ListOCMSharesRequest, opts ...grpc.CallOption) (*v1beta18.ListOCMSharesResponse, error)
+	ListOCMShares(ctx context.Context, in *v1beta19.ListOCMSharesRequest, opts ...grpc.CallOption) (*v1beta19.ListOCMSharesResponse, error)
 	// Updates a share.
 	// MUST return CODE_NOT_FOUND if the share reference does not exist.
-	UpdateOCMShare(ctx context.Context, in *v1beta18.UpdateOCMShareRequest, opts ...grpc.CallOption) (*v1beta18.UpdateOCMShareResponse, error)
+	UpdateOCMShare(ctx context.Context, in *v1beta19.UpdateOCMShareRequest, opts ...grpc.CallOption) (*v1beta19.UpdateOCMShareResponse, error)
 	// List all shares the authproviderenticated principal has received.
-	ListReceivedOCMShares(ctx context.Context, in *v1beta18.ListReceivedOCMSharesRequest, opts ...grpc.CallOption) (*v1beta18.ListReceivedOCMSharesResponse, error)
+	ListReceivedOCMShares(ctx context.Context, in *v1beta19.ListReceivedOCMSharesRequest, opts ...grpc.CallOption) (*v1beta19.ListReceivedOCMSharesResponse, error)
 	// Update the received share to change the share state or the display name.
 	// MUST return CODE_NOT_FOUND if the share reference does not exist.
-	UpdateReceivedOCMShare(ctx context.Context, in *v1beta18.UpdateReceivedOCMShareRequest, opts ...grpc.CallOption) (*v1beta18.UpdateReceivedOCMShareResponse, error)
+	UpdateReceivedOCMShare(ctx context.Context, in *v1beta19.UpdateReceivedOCMShareRequest, opts ...grpc.CallOption) (*v1beta19.UpdateReceivedOCMShareResponse, error)
 	// Get the information for the given received share reference.
 	// MUST return CODE_NOT_FOUND if the received share reference does not exist.
-	GetReceivedOCMShare(ctx context.Context, in *v1beta18.GetReceivedOCMShareRequest, opts ...grpc.CallOption) (*v1beta18.GetReceivedOCMShareResponse, error)
+	GetReceivedOCMShare(ctx context.Context, in *v1beta19.GetReceivedOCMShareRequest, opts ...grpc.CallOption) (*v1beta19.GetReceivedOCMShareResponse, error)
 	// Returns the app providers that are capable of handling this resource info.
 	// MUST return CODE_NOT_FOUND if no providers are available.
-	GetAppProviders(ctx context.Context, in *v1beta19.GetAppProvidersRequest, opts ...grpc.CallOption) (*v1beta19.GetAppProvidersResponse, error)
+	GetAppProviders(ctx context.Context, in *v1beta110.GetAppProvidersRequest, opts ...grpc.CallOption) (*v1beta110.GetAppProvidersResponse, error)
 	// Returns a list of the available app providers known by this registry.
-	ListAppProviders(ctx context.Context, in *v1beta19.ListAppProvidersRequest, opts ...grpc.CallOption) (*v1beta19.ListAppProvidersResponse, error)
+	ListAppProviders(ctx context.Context, in *v1beta110.ListAppProvidersRequest, opts ...grpc.CallOption) (*v1beta110.ListAppProvidersResponse, error)
 	// Gets the information about a user by the user id.
 	GetUser(ctx context.Context, in *v1beta12.GetUserRequest, opts ...grpc.CallOption) (*v1beta12.GetUserResponse, error)
 	// Gets the information about a user based on a specified claim.
@@ -1203,47 +1219,47 @@ type GatewayAPIClient interface {
 	// TODO(labkode): to define the filters that make more sense.
 	FindUsers(ctx context.Context, in *v1beta12.FindUsersRequest, opts ...grpc.CallOption) (*v1beta12.FindUsersResponse, error)
 	// Gets the information about a group by the group id.
-	GetGroup(ctx context.Context, in *v1beta110.GetGroupRequest, opts ...grpc.CallOption) (*v1beta110.GetGroupResponse, error)
+	GetGroup(ctx context.Context, in *v1beta111.GetGroupRequest, opts ...grpc.CallOption) (*v1beta111.GetGroupResponse, error)
 	// Gets the information about a group based on a specified claim.
-	GetGroupByClaim(ctx context.Context, in *v1beta110.GetGroupByClaimRequest, opts ...grpc.CallOption) (*v1beta110.GetGroupByClaimResponse, error)
+	GetGroupByClaim(ctx context.Context, in *v1beta111.GetGroupByClaimRequest, opts ...grpc.CallOption) (*v1beta111.GetGroupByClaimResponse, error)
 	// Gets the members of a group.
-	GetMembers(ctx context.Context, in *v1beta110.GetMembersRequest, opts ...grpc.CallOption) (*v1beta110.GetMembersResponse, error)
+	GetMembers(ctx context.Context, in *v1beta111.GetMembersRequest, opts ...grpc.CallOption) (*v1beta111.GetMembersResponse, error)
 	// Tells if the group has a certain member.
-	HasMember(ctx context.Context, in *v1beta110.HasMemberRequest, opts ...grpc.CallOption) (*v1beta110.HasMemberResponse, error)
+	HasMember(ctx context.Context, in *v1beta111.HasMemberRequest, opts ...grpc.CallOption) (*v1beta111.HasMemberResponse, error)
 	// TODO(labkode): to define the filters that make more sense.
 	// Finds groups whose names match the specified filter.
-	FindGroups(ctx context.Context, in *v1beta110.FindGroupsRequest, opts ...grpc.CallOption) (*v1beta110.FindGroupsResponse, error)
+	FindGroups(ctx context.Context, in *v1beta111.FindGroupsRequest, opts ...grpc.CallOption) (*v1beta111.FindGroupsResponse, error)
 	// Returns a list of the available auth providers known by this registry.
-	ListAuthProviders(ctx context.Context, in *v1beta111.ListAuthProvidersRequest, opts ...grpc.CallOption) (*ListAuthProvidersResponse, error)
+	ListAuthProviders(ctx context.Context, in *v1beta112.ListAuthProvidersRequest, opts ...grpc.CallOption) (*ListAuthProvidersResponse, error)
 	// Returns the home path for the given authenticated user.
 	// When a user has access to multiple storage providers, one of them is the home.
 	GetHome(ctx context.Context, in *v1beta13.GetHomeRequest, opts ...grpc.CallOption) (*v1beta13.GetHomeResponse, error)
 	// Generates a new token for the user with a validity of 24 hours.
-	GenerateInviteToken(ctx context.Context, in *v1beta112.GenerateInviteTokenRequest, opts ...grpc.CallOption) (*v1beta112.GenerateInviteTokenResponse, error)
+	GenerateInviteToken(ctx context.Context, in *v1beta113.GenerateInviteTokenRequest, opts ...grpc.CallOption) (*v1beta113.GenerateInviteTokenResponse, error)
 	// Forwards a received invite to the sync'n'share system provider.
-	ForwardInvite(ctx context.Context, in *v1beta112.ForwardInviteRequest, opts ...grpc.CallOption) (*v1beta112.ForwardInviteResponse, error)
+	ForwardInvite(ctx context.Context, in *v1beta113.ForwardInviteRequest, opts ...grpc.CallOption) (*v1beta113.ForwardInviteResponse, error)
 	// Completes an invitation acceptance.
-	AcceptInvite(ctx context.Context, in *v1beta112.AcceptInviteRequest, opts ...grpc.CallOption) (*v1beta112.AcceptInviteResponse, error)
+	AcceptInvite(ctx context.Context, in *v1beta113.AcceptInviteRequest, opts ...grpc.CallOption) (*v1beta113.AcceptInviteResponse, error)
 	// Retrieves details about a remote user who has accepted an invite to share.
-	GetAcceptedUser(ctx context.Context, in *v1beta112.GetAcceptedUserRequest, opts ...grpc.CallOption) (*v1beta112.GetAcceptedUserResponse, error)
+	GetAcceptedUser(ctx context.Context, in *v1beta113.GetAcceptedUserRequest, opts ...grpc.CallOption) (*v1beta113.GetAcceptedUserResponse, error)
 	// Finds users who accepted invite tokens by their attributes.
-	FindAcceptedUsers(ctx context.Context, in *v1beta112.FindAcceptedUsersRequest, opts ...grpc.CallOption) (*v1beta112.FindAcceptedUsersResponse, error)
+	FindAcceptedUsers(ctx context.Context, in *v1beta113.FindAcceptedUsersRequest, opts ...grpc.CallOption) (*v1beta113.FindAcceptedUsersResponse, error)
 	// Check if a given system provider is registered in the mesh or not.
 	// MUST return CODE_UNAUTHENTICATED if the system is not registered
-	IsProviderAllowed(ctx context.Context, in *v1beta113.IsProviderAllowedRequest, opts ...grpc.CallOption) (*v1beta113.IsProviderAllowedResponse, error)
+	IsProviderAllowed(ctx context.Context, in *v1beta114.IsProviderAllowedRequest, opts ...grpc.CallOption) (*v1beta114.IsProviderAllowedResponse, error)
 	// Get the information of the provider identified by a specific domain.
 	// MUST return CODE_NOT_FOUND if the sync'n'share system provider does not exist.
-	GetInfoByDomain(ctx context.Context, in *v1beta113.GetInfoByDomainRequest, opts ...grpc.CallOption) (*v1beta113.GetInfoByDomainResponse, error)
+	GetInfoByDomain(ctx context.Context, in *v1beta114.GetInfoByDomainRequest, opts ...grpc.CallOption) (*v1beta114.GetInfoByDomainResponse, error)
 	// Get the information of all the providers registered in the mesh.
-	ListAllProviders(ctx context.Context, in *v1beta113.ListAllProvidersRequest, opts ...grpc.CallOption) (*v1beta113.ListAllProvidersResponse, error)
+	ListAllProviders(ctx context.Context, in *v1beta114.ListAllProvidersRequest, opts ...grpc.CallOption) (*v1beta114.ListAllProvidersResponse, error)
 	// Creates a new ocm share.
-	CreateOCMCoreShare(ctx context.Context, in *v1beta114.CreateOCMCoreShareRequest, opts ...grpc.CallOption) (*v1beta114.CreateOCMCoreShareResponse, error)
+	CreateOCMCoreShare(ctx context.Context, in *v1beta115.CreateOCMCoreShareRequest, opts ...grpc.CallOption) (*v1beta115.CreateOCMCoreShareResponse, error)
 	// Returns a response containing a TxInfo (transfer info) object.
-	CreateTransfer(ctx context.Context, in *v1beta115.CreateTransferRequest, opts ...grpc.CallOption) (*v1beta115.CreateTransferResponse, error)
+	CreateTransfer(ctx context.Context, in *v1beta116.CreateTransferRequest, opts ...grpc.CallOption) (*v1beta116.CreateTransferResponse, error)
 	// Requests a transfer status.
-	GetTransferStatus(ctx context.Context, in *v1beta115.GetTransferStatusRequest, opts ...grpc.CallOption) (*v1beta115.GetTransferStatusResponse, error)
+	GetTransferStatus(ctx context.Context, in *v1beta116.GetTransferStatusRequest, opts ...grpc.CallOption) (*v1beta116.GetTransferStatusResponse, error)
 	// Requests to cancel a transfer.
-	CancelTransfer(ctx context.Context, in *v1beta115.CancelTransferRequest, opts ...grpc.CallOption) (*v1beta115.CancelTransferResponse, error)
+	CancelTransfer(ctx context.Context, in *v1beta116.CancelTransferRequest, opts ...grpc.CallOption) (*v1beta116.CancelTransferResponse, error)
 }
 
 type gatewayAPIClient struct {
@@ -1266,6 +1282,42 @@ func (c *gatewayAPIClient) Authenticate(ctx context.Context, in *AuthenticateReq
 func (c *gatewayAPIClient) WhoAmI(ctx context.Context, in *WhoAmIRequest, opts ...grpc.CallOption) (*WhoAmIResponse, error) {
 	out := new(WhoAmIResponse)
 	err := c.cc.Invoke(ctx, "/cs3.gateway.v1beta1.GatewayAPI/WhoAmI", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *gatewayAPIClient) GenerateAppPassword(ctx context.Context, in *v1beta14.GenerateAppPasswordRequest, opts ...grpc.CallOption) (*v1beta14.GenerateAppPasswordResponse, error) {
+	out := new(v1beta14.GenerateAppPasswordResponse)
+	err := c.cc.Invoke(ctx, "/cs3.gateway.v1beta1.GatewayAPI/GenerateAppPassword", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *gatewayAPIClient) ListAppPasswords(ctx context.Context, in *v1beta14.ListAppPasswordsRequest, opts ...grpc.CallOption) (*v1beta14.ListAppPasswordsResponse, error) {
+	out := new(v1beta14.ListAppPasswordsResponse)
+	err := c.cc.Invoke(ctx, "/cs3.gateway.v1beta1.GatewayAPI/ListAppPasswords", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *gatewayAPIClient) InvalidateAppPassword(ctx context.Context, in *v1beta14.InvalidateAppPasswordRequest, opts ...grpc.CallOption) (*v1beta14.InvalidateAppPasswordResponse, error) {
+	out := new(v1beta14.InvalidateAppPasswordResponse)
+	err := c.cc.Invoke(ctx, "/cs3.gateway.v1beta1.GatewayAPI/InvalidateAppPassword", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *gatewayAPIClient) GetAppPassword(ctx context.Context, in *v1beta14.GetAppPasswordRequest, opts ...grpc.CallOption) (*v1beta14.GetAppPasswordResponse, error) {
+	out := new(v1beta14.GetAppPasswordResponse)
+	err := c.cc.Invoke(ctx, "/cs3.gateway.v1beta1.GatewayAPI/GetAppPassword", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1534,8 +1586,8 @@ func (c *gatewayAPIClient) DeleteStorageSpace(ctx context.Context, in *v1beta13.
 	return out, nil
 }
 
-func (c *gatewayAPIClient) OpenFileInAppProvider(ctx context.Context, in *OpenFileInAppProviderRequest, opts ...grpc.CallOption) (*v1beta14.OpenFileInAppProviderResponse, error) {
-	out := new(v1beta14.OpenFileInAppProviderResponse)
+func (c *gatewayAPIClient) OpenFileInAppProvider(ctx context.Context, in *OpenFileInAppProviderRequest, opts ...grpc.CallOption) (*v1beta15.OpenFileInAppProviderResponse, error) {
+	out := new(v1beta15.OpenFileInAppProviderResponse)
 	err := c.cc.Invoke(ctx, "/cs3.gateway.v1beta1.GatewayAPI/OpenFileInAppProvider", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -1543,8 +1595,8 @@ func (c *gatewayAPIClient) OpenFileInAppProvider(ctx context.Context, in *OpenFi
 	return out, nil
 }
 
-func (c *gatewayAPIClient) CreateShare(ctx context.Context, in *v1beta15.CreateShareRequest, opts ...grpc.CallOption) (*v1beta15.CreateShareResponse, error) {
-	out := new(v1beta15.CreateShareResponse)
+func (c *gatewayAPIClient) CreateShare(ctx context.Context, in *v1beta16.CreateShareRequest, opts ...grpc.CallOption) (*v1beta16.CreateShareResponse, error) {
+	out := new(v1beta16.CreateShareResponse)
 	err := c.cc.Invoke(ctx, "/cs3.gateway.v1beta1.GatewayAPI/CreateShare", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -1552,8 +1604,8 @@ func (c *gatewayAPIClient) CreateShare(ctx context.Context, in *v1beta15.CreateS
 	return out, nil
 }
 
-func (c *gatewayAPIClient) RemoveShare(ctx context.Context, in *v1beta15.RemoveShareRequest, opts ...grpc.CallOption) (*v1beta15.RemoveShareResponse, error) {
-	out := new(v1beta15.RemoveShareResponse)
+func (c *gatewayAPIClient) RemoveShare(ctx context.Context, in *v1beta16.RemoveShareRequest, opts ...grpc.CallOption) (*v1beta16.RemoveShareResponse, error) {
+	out := new(v1beta16.RemoveShareResponse)
 	err := c.cc.Invoke(ctx, "/cs3.gateway.v1beta1.GatewayAPI/RemoveShare", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -1561,8 +1613,8 @@ func (c *gatewayAPIClient) RemoveShare(ctx context.Context, in *v1beta15.RemoveS
 	return out, nil
 }
 
-func (c *gatewayAPIClient) GetShare(ctx context.Context, in *v1beta15.GetShareRequest, opts ...grpc.CallOption) (*v1beta15.GetShareResponse, error) {
-	out := new(v1beta15.GetShareResponse)
+func (c *gatewayAPIClient) GetShare(ctx context.Context, in *v1beta16.GetShareRequest, opts ...grpc.CallOption) (*v1beta16.GetShareResponse, error) {
+	out := new(v1beta16.GetShareResponse)
 	err := c.cc.Invoke(ctx, "/cs3.gateway.v1beta1.GatewayAPI/GetShare", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -1570,8 +1622,8 @@ func (c *gatewayAPIClient) GetShare(ctx context.Context, in *v1beta15.GetShareRe
 	return out, nil
 }
 
-func (c *gatewayAPIClient) ListShares(ctx context.Context, in *v1beta15.ListSharesRequest, opts ...grpc.CallOption) (*v1beta15.ListSharesResponse, error) {
-	out := new(v1beta15.ListSharesResponse)
+func (c *gatewayAPIClient) ListShares(ctx context.Context, in *v1beta16.ListSharesRequest, opts ...grpc.CallOption) (*v1beta16.ListSharesResponse, error) {
+	out := new(v1beta16.ListSharesResponse)
 	err := c.cc.Invoke(ctx, "/cs3.gateway.v1beta1.GatewayAPI/ListShares", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -1579,8 +1631,8 @@ func (c *gatewayAPIClient) ListShares(ctx context.Context, in *v1beta15.ListShar
 	return out, nil
 }
 
-func (c *gatewayAPIClient) UpdateShare(ctx context.Context, in *v1beta15.UpdateShareRequest, opts ...grpc.CallOption) (*v1beta15.UpdateShareResponse, error) {
-	out := new(v1beta15.UpdateShareResponse)
+func (c *gatewayAPIClient) UpdateShare(ctx context.Context, in *v1beta16.UpdateShareRequest, opts ...grpc.CallOption) (*v1beta16.UpdateShareResponse, error) {
+	out := new(v1beta16.UpdateShareResponse)
 	err := c.cc.Invoke(ctx, "/cs3.gateway.v1beta1.GatewayAPI/UpdateShare", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -1588,8 +1640,8 @@ func (c *gatewayAPIClient) UpdateShare(ctx context.Context, in *v1beta15.UpdateS
 	return out, nil
 }
 
-func (c *gatewayAPIClient) ListReceivedShares(ctx context.Context, in *v1beta15.ListReceivedSharesRequest, opts ...grpc.CallOption) (*v1beta15.ListReceivedSharesResponse, error) {
-	out := new(v1beta15.ListReceivedSharesResponse)
+func (c *gatewayAPIClient) ListReceivedShares(ctx context.Context, in *v1beta16.ListReceivedSharesRequest, opts ...grpc.CallOption) (*v1beta16.ListReceivedSharesResponse, error) {
+	out := new(v1beta16.ListReceivedSharesResponse)
 	err := c.cc.Invoke(ctx, "/cs3.gateway.v1beta1.GatewayAPI/ListReceivedShares", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -1597,8 +1649,8 @@ func (c *gatewayAPIClient) ListReceivedShares(ctx context.Context, in *v1beta15.
 	return out, nil
 }
 
-func (c *gatewayAPIClient) UpdateReceivedShare(ctx context.Context, in *v1beta15.UpdateReceivedShareRequest, opts ...grpc.CallOption) (*v1beta15.UpdateReceivedShareResponse, error) {
-	out := new(v1beta15.UpdateReceivedShareResponse)
+func (c *gatewayAPIClient) UpdateReceivedShare(ctx context.Context, in *v1beta16.UpdateReceivedShareRequest, opts ...grpc.CallOption) (*v1beta16.UpdateReceivedShareResponse, error) {
+	out := new(v1beta16.UpdateReceivedShareResponse)
 	err := c.cc.Invoke(ctx, "/cs3.gateway.v1beta1.GatewayAPI/UpdateReceivedShare", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -1606,8 +1658,8 @@ func (c *gatewayAPIClient) UpdateReceivedShare(ctx context.Context, in *v1beta15
 	return out, nil
 }
 
-func (c *gatewayAPIClient) GetReceivedShare(ctx context.Context, in *v1beta15.GetReceivedShareRequest, opts ...grpc.CallOption) (*v1beta15.GetReceivedShareResponse, error) {
-	out := new(v1beta15.GetReceivedShareResponse)
+func (c *gatewayAPIClient) GetReceivedShare(ctx context.Context, in *v1beta16.GetReceivedShareRequest, opts ...grpc.CallOption) (*v1beta16.GetReceivedShareResponse, error) {
+	out := new(v1beta16.GetReceivedShareResponse)
 	err := c.cc.Invoke(ctx, "/cs3.gateway.v1beta1.GatewayAPI/GetReceivedShare", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -1615,8 +1667,8 @@ func (c *gatewayAPIClient) GetReceivedShare(ctx context.Context, in *v1beta15.Ge
 	return out, nil
 }
 
-func (c *gatewayAPIClient) SetKey(ctx context.Context, in *v1beta16.SetKeyRequest, opts ...grpc.CallOption) (*v1beta16.SetKeyResponse, error) {
-	out := new(v1beta16.SetKeyResponse)
+func (c *gatewayAPIClient) SetKey(ctx context.Context, in *v1beta17.SetKeyRequest, opts ...grpc.CallOption) (*v1beta17.SetKeyResponse, error) {
+	out := new(v1beta17.SetKeyResponse)
 	err := c.cc.Invoke(ctx, "/cs3.gateway.v1beta1.GatewayAPI/SetKey", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -1624,8 +1676,8 @@ func (c *gatewayAPIClient) SetKey(ctx context.Context, in *v1beta16.SetKeyReques
 	return out, nil
 }
 
-func (c *gatewayAPIClient) GetKey(ctx context.Context, in *v1beta16.GetKeyRequest, opts ...grpc.CallOption) (*v1beta16.GetKeyResponse, error) {
-	out := new(v1beta16.GetKeyResponse)
+func (c *gatewayAPIClient) GetKey(ctx context.Context, in *v1beta17.GetKeyRequest, opts ...grpc.CallOption) (*v1beta17.GetKeyResponse, error) {
+	out := new(v1beta17.GetKeyResponse)
 	err := c.cc.Invoke(ctx, "/cs3.gateway.v1beta1.GatewayAPI/GetKey", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -1633,8 +1685,8 @@ func (c *gatewayAPIClient) GetKey(ctx context.Context, in *v1beta16.GetKeyReques
 	return out, nil
 }
 
-func (c *gatewayAPIClient) CreatePublicShare(ctx context.Context, in *v1beta17.CreatePublicShareRequest, opts ...grpc.CallOption) (*v1beta17.CreatePublicShareResponse, error) {
-	out := new(v1beta17.CreatePublicShareResponse)
+func (c *gatewayAPIClient) CreatePublicShare(ctx context.Context, in *v1beta18.CreatePublicShareRequest, opts ...grpc.CallOption) (*v1beta18.CreatePublicShareResponse, error) {
+	out := new(v1beta18.CreatePublicShareResponse)
 	err := c.cc.Invoke(ctx, "/cs3.gateway.v1beta1.GatewayAPI/CreatePublicShare", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -1642,8 +1694,8 @@ func (c *gatewayAPIClient) CreatePublicShare(ctx context.Context, in *v1beta17.C
 	return out, nil
 }
 
-func (c *gatewayAPIClient) RemovePublicShare(ctx context.Context, in *v1beta17.RemovePublicShareRequest, opts ...grpc.CallOption) (*v1beta17.RemovePublicShareResponse, error) {
-	out := new(v1beta17.RemovePublicShareResponse)
+func (c *gatewayAPIClient) RemovePublicShare(ctx context.Context, in *v1beta18.RemovePublicShareRequest, opts ...grpc.CallOption) (*v1beta18.RemovePublicShareResponse, error) {
+	out := new(v1beta18.RemovePublicShareResponse)
 	err := c.cc.Invoke(ctx, "/cs3.gateway.v1beta1.GatewayAPI/RemovePublicShare", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -1651,8 +1703,8 @@ func (c *gatewayAPIClient) RemovePublicShare(ctx context.Context, in *v1beta17.R
 	return out, nil
 }
 
-func (c *gatewayAPIClient) GetPublicShare(ctx context.Context, in *v1beta17.GetPublicShareRequest, opts ...grpc.CallOption) (*v1beta17.GetPublicShareResponse, error) {
-	out := new(v1beta17.GetPublicShareResponse)
+func (c *gatewayAPIClient) GetPublicShare(ctx context.Context, in *v1beta18.GetPublicShareRequest, opts ...grpc.CallOption) (*v1beta18.GetPublicShareResponse, error) {
+	out := new(v1beta18.GetPublicShareResponse)
 	err := c.cc.Invoke(ctx, "/cs3.gateway.v1beta1.GatewayAPI/GetPublicShare", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -1660,8 +1712,8 @@ func (c *gatewayAPIClient) GetPublicShare(ctx context.Context, in *v1beta17.GetP
 	return out, nil
 }
 
-func (c *gatewayAPIClient) GetPublicShareByToken(ctx context.Context, in *v1beta17.GetPublicShareByTokenRequest, opts ...grpc.CallOption) (*v1beta17.GetPublicShareByTokenResponse, error) {
-	out := new(v1beta17.GetPublicShareByTokenResponse)
+func (c *gatewayAPIClient) GetPublicShareByToken(ctx context.Context, in *v1beta18.GetPublicShareByTokenRequest, opts ...grpc.CallOption) (*v1beta18.GetPublicShareByTokenResponse, error) {
+	out := new(v1beta18.GetPublicShareByTokenResponse)
 	err := c.cc.Invoke(ctx, "/cs3.gateway.v1beta1.GatewayAPI/GetPublicShareByToken", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -1669,8 +1721,8 @@ func (c *gatewayAPIClient) GetPublicShareByToken(ctx context.Context, in *v1beta
 	return out, nil
 }
 
-func (c *gatewayAPIClient) ListPublicShares(ctx context.Context, in *v1beta17.ListPublicSharesRequest, opts ...grpc.CallOption) (*v1beta17.ListPublicSharesResponse, error) {
-	out := new(v1beta17.ListPublicSharesResponse)
+func (c *gatewayAPIClient) ListPublicShares(ctx context.Context, in *v1beta18.ListPublicSharesRequest, opts ...grpc.CallOption) (*v1beta18.ListPublicSharesResponse, error) {
+	out := new(v1beta18.ListPublicSharesResponse)
 	err := c.cc.Invoke(ctx, "/cs3.gateway.v1beta1.GatewayAPI/ListPublicShares", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -1678,8 +1730,8 @@ func (c *gatewayAPIClient) ListPublicShares(ctx context.Context, in *v1beta17.Li
 	return out, nil
 }
 
-func (c *gatewayAPIClient) UpdatePublicShare(ctx context.Context, in *v1beta17.UpdatePublicShareRequest, opts ...grpc.CallOption) (*v1beta17.UpdatePublicShareResponse, error) {
-	out := new(v1beta17.UpdatePublicShareResponse)
+func (c *gatewayAPIClient) UpdatePublicShare(ctx context.Context, in *v1beta18.UpdatePublicShareRequest, opts ...grpc.CallOption) (*v1beta18.UpdatePublicShareResponse, error) {
+	out := new(v1beta18.UpdatePublicShareResponse)
 	err := c.cc.Invoke(ctx, "/cs3.gateway.v1beta1.GatewayAPI/UpdatePublicShare", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -1687,8 +1739,8 @@ func (c *gatewayAPIClient) UpdatePublicShare(ctx context.Context, in *v1beta17.U
 	return out, nil
 }
 
-func (c *gatewayAPIClient) CreateOCMShare(ctx context.Context, in *v1beta18.CreateOCMShareRequest, opts ...grpc.CallOption) (*v1beta18.CreateOCMShareResponse, error) {
-	out := new(v1beta18.CreateOCMShareResponse)
+func (c *gatewayAPIClient) CreateOCMShare(ctx context.Context, in *v1beta19.CreateOCMShareRequest, opts ...grpc.CallOption) (*v1beta19.CreateOCMShareResponse, error) {
+	out := new(v1beta19.CreateOCMShareResponse)
 	err := c.cc.Invoke(ctx, "/cs3.gateway.v1beta1.GatewayAPI/CreateOCMShare", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -1696,8 +1748,8 @@ func (c *gatewayAPIClient) CreateOCMShare(ctx context.Context, in *v1beta18.Crea
 	return out, nil
 }
 
-func (c *gatewayAPIClient) RemoveOCMShare(ctx context.Context, in *v1beta18.RemoveOCMShareRequest, opts ...grpc.CallOption) (*v1beta18.RemoveOCMShareResponse, error) {
-	out := new(v1beta18.RemoveOCMShareResponse)
+func (c *gatewayAPIClient) RemoveOCMShare(ctx context.Context, in *v1beta19.RemoveOCMShareRequest, opts ...grpc.CallOption) (*v1beta19.RemoveOCMShareResponse, error) {
+	out := new(v1beta19.RemoveOCMShareResponse)
 	err := c.cc.Invoke(ctx, "/cs3.gateway.v1beta1.GatewayAPI/RemoveOCMShare", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -1705,8 +1757,8 @@ func (c *gatewayAPIClient) RemoveOCMShare(ctx context.Context, in *v1beta18.Remo
 	return out, nil
 }
 
-func (c *gatewayAPIClient) GetOCMShare(ctx context.Context, in *v1beta18.GetOCMShareRequest, opts ...grpc.CallOption) (*v1beta18.GetOCMShareResponse, error) {
-	out := new(v1beta18.GetOCMShareResponse)
+func (c *gatewayAPIClient) GetOCMShare(ctx context.Context, in *v1beta19.GetOCMShareRequest, opts ...grpc.CallOption) (*v1beta19.GetOCMShareResponse, error) {
+	out := new(v1beta19.GetOCMShareResponse)
 	err := c.cc.Invoke(ctx, "/cs3.gateway.v1beta1.GatewayAPI/GetOCMShare", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -1714,8 +1766,8 @@ func (c *gatewayAPIClient) GetOCMShare(ctx context.Context, in *v1beta18.GetOCMS
 	return out, nil
 }
 
-func (c *gatewayAPIClient) ListOCMShares(ctx context.Context, in *v1beta18.ListOCMSharesRequest, opts ...grpc.CallOption) (*v1beta18.ListOCMSharesResponse, error) {
-	out := new(v1beta18.ListOCMSharesResponse)
+func (c *gatewayAPIClient) ListOCMShares(ctx context.Context, in *v1beta19.ListOCMSharesRequest, opts ...grpc.CallOption) (*v1beta19.ListOCMSharesResponse, error) {
+	out := new(v1beta19.ListOCMSharesResponse)
 	err := c.cc.Invoke(ctx, "/cs3.gateway.v1beta1.GatewayAPI/ListOCMShares", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -1723,8 +1775,8 @@ func (c *gatewayAPIClient) ListOCMShares(ctx context.Context, in *v1beta18.ListO
 	return out, nil
 }
 
-func (c *gatewayAPIClient) UpdateOCMShare(ctx context.Context, in *v1beta18.UpdateOCMShareRequest, opts ...grpc.CallOption) (*v1beta18.UpdateOCMShareResponse, error) {
-	out := new(v1beta18.UpdateOCMShareResponse)
+func (c *gatewayAPIClient) UpdateOCMShare(ctx context.Context, in *v1beta19.UpdateOCMShareRequest, opts ...grpc.CallOption) (*v1beta19.UpdateOCMShareResponse, error) {
+	out := new(v1beta19.UpdateOCMShareResponse)
 	err := c.cc.Invoke(ctx, "/cs3.gateway.v1beta1.GatewayAPI/UpdateOCMShare", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -1732,8 +1784,8 @@ func (c *gatewayAPIClient) UpdateOCMShare(ctx context.Context, in *v1beta18.Upda
 	return out, nil
 }
 
-func (c *gatewayAPIClient) ListReceivedOCMShares(ctx context.Context, in *v1beta18.ListReceivedOCMSharesRequest, opts ...grpc.CallOption) (*v1beta18.ListReceivedOCMSharesResponse, error) {
-	out := new(v1beta18.ListReceivedOCMSharesResponse)
+func (c *gatewayAPIClient) ListReceivedOCMShares(ctx context.Context, in *v1beta19.ListReceivedOCMSharesRequest, opts ...grpc.CallOption) (*v1beta19.ListReceivedOCMSharesResponse, error) {
+	out := new(v1beta19.ListReceivedOCMSharesResponse)
 	err := c.cc.Invoke(ctx, "/cs3.gateway.v1beta1.GatewayAPI/ListReceivedOCMShares", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -1741,8 +1793,8 @@ func (c *gatewayAPIClient) ListReceivedOCMShares(ctx context.Context, in *v1beta
 	return out, nil
 }
 
-func (c *gatewayAPIClient) UpdateReceivedOCMShare(ctx context.Context, in *v1beta18.UpdateReceivedOCMShareRequest, opts ...grpc.CallOption) (*v1beta18.UpdateReceivedOCMShareResponse, error) {
-	out := new(v1beta18.UpdateReceivedOCMShareResponse)
+func (c *gatewayAPIClient) UpdateReceivedOCMShare(ctx context.Context, in *v1beta19.UpdateReceivedOCMShareRequest, opts ...grpc.CallOption) (*v1beta19.UpdateReceivedOCMShareResponse, error) {
+	out := new(v1beta19.UpdateReceivedOCMShareResponse)
 	err := c.cc.Invoke(ctx, "/cs3.gateway.v1beta1.GatewayAPI/UpdateReceivedOCMShare", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -1750,8 +1802,8 @@ func (c *gatewayAPIClient) UpdateReceivedOCMShare(ctx context.Context, in *v1bet
 	return out, nil
 }
 
-func (c *gatewayAPIClient) GetReceivedOCMShare(ctx context.Context, in *v1beta18.GetReceivedOCMShareRequest, opts ...grpc.CallOption) (*v1beta18.GetReceivedOCMShareResponse, error) {
-	out := new(v1beta18.GetReceivedOCMShareResponse)
+func (c *gatewayAPIClient) GetReceivedOCMShare(ctx context.Context, in *v1beta19.GetReceivedOCMShareRequest, opts ...grpc.CallOption) (*v1beta19.GetReceivedOCMShareResponse, error) {
+	out := new(v1beta19.GetReceivedOCMShareResponse)
 	err := c.cc.Invoke(ctx, "/cs3.gateway.v1beta1.GatewayAPI/GetReceivedOCMShare", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -1759,8 +1811,8 @@ func (c *gatewayAPIClient) GetReceivedOCMShare(ctx context.Context, in *v1beta18
 	return out, nil
 }
 
-func (c *gatewayAPIClient) GetAppProviders(ctx context.Context, in *v1beta19.GetAppProvidersRequest, opts ...grpc.CallOption) (*v1beta19.GetAppProvidersResponse, error) {
-	out := new(v1beta19.GetAppProvidersResponse)
+func (c *gatewayAPIClient) GetAppProviders(ctx context.Context, in *v1beta110.GetAppProvidersRequest, opts ...grpc.CallOption) (*v1beta110.GetAppProvidersResponse, error) {
+	out := new(v1beta110.GetAppProvidersResponse)
 	err := c.cc.Invoke(ctx, "/cs3.gateway.v1beta1.GatewayAPI/GetAppProviders", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -1768,8 +1820,8 @@ func (c *gatewayAPIClient) GetAppProviders(ctx context.Context, in *v1beta19.Get
 	return out, nil
 }
 
-func (c *gatewayAPIClient) ListAppProviders(ctx context.Context, in *v1beta19.ListAppProvidersRequest, opts ...grpc.CallOption) (*v1beta19.ListAppProvidersResponse, error) {
-	out := new(v1beta19.ListAppProvidersResponse)
+func (c *gatewayAPIClient) ListAppProviders(ctx context.Context, in *v1beta110.ListAppProvidersRequest, opts ...grpc.CallOption) (*v1beta110.ListAppProvidersResponse, error) {
+	out := new(v1beta110.ListAppProvidersResponse)
 	err := c.cc.Invoke(ctx, "/cs3.gateway.v1beta1.GatewayAPI/ListAppProviders", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -1813,8 +1865,8 @@ func (c *gatewayAPIClient) FindUsers(ctx context.Context, in *v1beta12.FindUsers
 	return out, nil
 }
 
-func (c *gatewayAPIClient) GetGroup(ctx context.Context, in *v1beta110.GetGroupRequest, opts ...grpc.CallOption) (*v1beta110.GetGroupResponse, error) {
-	out := new(v1beta110.GetGroupResponse)
+func (c *gatewayAPIClient) GetGroup(ctx context.Context, in *v1beta111.GetGroupRequest, opts ...grpc.CallOption) (*v1beta111.GetGroupResponse, error) {
+	out := new(v1beta111.GetGroupResponse)
 	err := c.cc.Invoke(ctx, "/cs3.gateway.v1beta1.GatewayAPI/GetGroup", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -1822,8 +1874,8 @@ func (c *gatewayAPIClient) GetGroup(ctx context.Context, in *v1beta110.GetGroupR
 	return out, nil
 }
 
-func (c *gatewayAPIClient) GetGroupByClaim(ctx context.Context, in *v1beta110.GetGroupByClaimRequest, opts ...grpc.CallOption) (*v1beta110.GetGroupByClaimResponse, error) {
-	out := new(v1beta110.GetGroupByClaimResponse)
+func (c *gatewayAPIClient) GetGroupByClaim(ctx context.Context, in *v1beta111.GetGroupByClaimRequest, opts ...grpc.CallOption) (*v1beta111.GetGroupByClaimResponse, error) {
+	out := new(v1beta111.GetGroupByClaimResponse)
 	err := c.cc.Invoke(ctx, "/cs3.gateway.v1beta1.GatewayAPI/GetGroupByClaim", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -1831,8 +1883,8 @@ func (c *gatewayAPIClient) GetGroupByClaim(ctx context.Context, in *v1beta110.Ge
 	return out, nil
 }
 
-func (c *gatewayAPIClient) GetMembers(ctx context.Context, in *v1beta110.GetMembersRequest, opts ...grpc.CallOption) (*v1beta110.GetMembersResponse, error) {
-	out := new(v1beta110.GetMembersResponse)
+func (c *gatewayAPIClient) GetMembers(ctx context.Context, in *v1beta111.GetMembersRequest, opts ...grpc.CallOption) (*v1beta111.GetMembersResponse, error) {
+	out := new(v1beta111.GetMembersResponse)
 	err := c.cc.Invoke(ctx, "/cs3.gateway.v1beta1.GatewayAPI/GetMembers", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -1840,8 +1892,8 @@ func (c *gatewayAPIClient) GetMembers(ctx context.Context, in *v1beta110.GetMemb
 	return out, nil
 }
 
-func (c *gatewayAPIClient) HasMember(ctx context.Context, in *v1beta110.HasMemberRequest, opts ...grpc.CallOption) (*v1beta110.HasMemberResponse, error) {
-	out := new(v1beta110.HasMemberResponse)
+func (c *gatewayAPIClient) HasMember(ctx context.Context, in *v1beta111.HasMemberRequest, opts ...grpc.CallOption) (*v1beta111.HasMemberResponse, error) {
+	out := new(v1beta111.HasMemberResponse)
 	err := c.cc.Invoke(ctx, "/cs3.gateway.v1beta1.GatewayAPI/HasMember", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -1849,8 +1901,8 @@ func (c *gatewayAPIClient) HasMember(ctx context.Context, in *v1beta110.HasMembe
 	return out, nil
 }
 
-func (c *gatewayAPIClient) FindGroups(ctx context.Context, in *v1beta110.FindGroupsRequest, opts ...grpc.CallOption) (*v1beta110.FindGroupsResponse, error) {
-	out := new(v1beta110.FindGroupsResponse)
+func (c *gatewayAPIClient) FindGroups(ctx context.Context, in *v1beta111.FindGroupsRequest, opts ...grpc.CallOption) (*v1beta111.FindGroupsResponse, error) {
+	out := new(v1beta111.FindGroupsResponse)
 	err := c.cc.Invoke(ctx, "/cs3.gateway.v1beta1.GatewayAPI/FindGroups", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -1858,7 +1910,7 @@ func (c *gatewayAPIClient) FindGroups(ctx context.Context, in *v1beta110.FindGro
 	return out, nil
 }
 
-func (c *gatewayAPIClient) ListAuthProviders(ctx context.Context, in *v1beta111.ListAuthProvidersRequest, opts ...grpc.CallOption) (*ListAuthProvidersResponse, error) {
+func (c *gatewayAPIClient) ListAuthProviders(ctx context.Context, in *v1beta112.ListAuthProvidersRequest, opts ...grpc.CallOption) (*ListAuthProvidersResponse, error) {
 	out := new(ListAuthProvidersResponse)
 	err := c.cc.Invoke(ctx, "/cs3.gateway.v1beta1.GatewayAPI/ListAuthProviders", in, out, opts...)
 	if err != nil {
@@ -1876,8 +1928,8 @@ func (c *gatewayAPIClient) GetHome(ctx context.Context, in *v1beta13.GetHomeRequ
 	return out, nil
 }
 
-func (c *gatewayAPIClient) GenerateInviteToken(ctx context.Context, in *v1beta112.GenerateInviteTokenRequest, opts ...grpc.CallOption) (*v1beta112.GenerateInviteTokenResponse, error) {
-	out := new(v1beta112.GenerateInviteTokenResponse)
+func (c *gatewayAPIClient) GenerateInviteToken(ctx context.Context, in *v1beta113.GenerateInviteTokenRequest, opts ...grpc.CallOption) (*v1beta113.GenerateInviteTokenResponse, error) {
+	out := new(v1beta113.GenerateInviteTokenResponse)
 	err := c.cc.Invoke(ctx, "/cs3.gateway.v1beta1.GatewayAPI/GenerateInviteToken", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -1885,8 +1937,8 @@ func (c *gatewayAPIClient) GenerateInviteToken(ctx context.Context, in *v1beta11
 	return out, nil
 }
 
-func (c *gatewayAPIClient) ForwardInvite(ctx context.Context, in *v1beta112.ForwardInviteRequest, opts ...grpc.CallOption) (*v1beta112.ForwardInviteResponse, error) {
-	out := new(v1beta112.ForwardInviteResponse)
+func (c *gatewayAPIClient) ForwardInvite(ctx context.Context, in *v1beta113.ForwardInviteRequest, opts ...grpc.CallOption) (*v1beta113.ForwardInviteResponse, error) {
+	out := new(v1beta113.ForwardInviteResponse)
 	err := c.cc.Invoke(ctx, "/cs3.gateway.v1beta1.GatewayAPI/ForwardInvite", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -1894,8 +1946,8 @@ func (c *gatewayAPIClient) ForwardInvite(ctx context.Context, in *v1beta112.Forw
 	return out, nil
 }
 
-func (c *gatewayAPIClient) AcceptInvite(ctx context.Context, in *v1beta112.AcceptInviteRequest, opts ...grpc.CallOption) (*v1beta112.AcceptInviteResponse, error) {
-	out := new(v1beta112.AcceptInviteResponse)
+func (c *gatewayAPIClient) AcceptInvite(ctx context.Context, in *v1beta113.AcceptInviteRequest, opts ...grpc.CallOption) (*v1beta113.AcceptInviteResponse, error) {
+	out := new(v1beta113.AcceptInviteResponse)
 	err := c.cc.Invoke(ctx, "/cs3.gateway.v1beta1.GatewayAPI/AcceptInvite", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -1903,8 +1955,8 @@ func (c *gatewayAPIClient) AcceptInvite(ctx context.Context, in *v1beta112.Accep
 	return out, nil
 }
 
-func (c *gatewayAPIClient) GetAcceptedUser(ctx context.Context, in *v1beta112.GetAcceptedUserRequest, opts ...grpc.CallOption) (*v1beta112.GetAcceptedUserResponse, error) {
-	out := new(v1beta112.GetAcceptedUserResponse)
+func (c *gatewayAPIClient) GetAcceptedUser(ctx context.Context, in *v1beta113.GetAcceptedUserRequest, opts ...grpc.CallOption) (*v1beta113.GetAcceptedUserResponse, error) {
+	out := new(v1beta113.GetAcceptedUserResponse)
 	err := c.cc.Invoke(ctx, "/cs3.gateway.v1beta1.GatewayAPI/GetAcceptedUser", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -1912,8 +1964,8 @@ func (c *gatewayAPIClient) GetAcceptedUser(ctx context.Context, in *v1beta112.Ge
 	return out, nil
 }
 
-func (c *gatewayAPIClient) FindAcceptedUsers(ctx context.Context, in *v1beta112.FindAcceptedUsersRequest, opts ...grpc.CallOption) (*v1beta112.FindAcceptedUsersResponse, error) {
-	out := new(v1beta112.FindAcceptedUsersResponse)
+func (c *gatewayAPIClient) FindAcceptedUsers(ctx context.Context, in *v1beta113.FindAcceptedUsersRequest, opts ...grpc.CallOption) (*v1beta113.FindAcceptedUsersResponse, error) {
+	out := new(v1beta113.FindAcceptedUsersResponse)
 	err := c.cc.Invoke(ctx, "/cs3.gateway.v1beta1.GatewayAPI/FindAcceptedUsers", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -1921,8 +1973,8 @@ func (c *gatewayAPIClient) FindAcceptedUsers(ctx context.Context, in *v1beta112.
 	return out, nil
 }
 
-func (c *gatewayAPIClient) IsProviderAllowed(ctx context.Context, in *v1beta113.IsProviderAllowedRequest, opts ...grpc.CallOption) (*v1beta113.IsProviderAllowedResponse, error) {
-	out := new(v1beta113.IsProviderAllowedResponse)
+func (c *gatewayAPIClient) IsProviderAllowed(ctx context.Context, in *v1beta114.IsProviderAllowedRequest, opts ...grpc.CallOption) (*v1beta114.IsProviderAllowedResponse, error) {
+	out := new(v1beta114.IsProviderAllowedResponse)
 	err := c.cc.Invoke(ctx, "/cs3.gateway.v1beta1.GatewayAPI/IsProviderAllowed", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -1930,8 +1982,8 @@ func (c *gatewayAPIClient) IsProviderAllowed(ctx context.Context, in *v1beta113.
 	return out, nil
 }
 
-func (c *gatewayAPIClient) GetInfoByDomain(ctx context.Context, in *v1beta113.GetInfoByDomainRequest, opts ...grpc.CallOption) (*v1beta113.GetInfoByDomainResponse, error) {
-	out := new(v1beta113.GetInfoByDomainResponse)
+func (c *gatewayAPIClient) GetInfoByDomain(ctx context.Context, in *v1beta114.GetInfoByDomainRequest, opts ...grpc.CallOption) (*v1beta114.GetInfoByDomainResponse, error) {
+	out := new(v1beta114.GetInfoByDomainResponse)
 	err := c.cc.Invoke(ctx, "/cs3.gateway.v1beta1.GatewayAPI/GetInfoByDomain", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -1939,8 +1991,8 @@ func (c *gatewayAPIClient) GetInfoByDomain(ctx context.Context, in *v1beta113.Ge
 	return out, nil
 }
 
-func (c *gatewayAPIClient) ListAllProviders(ctx context.Context, in *v1beta113.ListAllProvidersRequest, opts ...grpc.CallOption) (*v1beta113.ListAllProvidersResponse, error) {
-	out := new(v1beta113.ListAllProvidersResponse)
+func (c *gatewayAPIClient) ListAllProviders(ctx context.Context, in *v1beta114.ListAllProvidersRequest, opts ...grpc.CallOption) (*v1beta114.ListAllProvidersResponse, error) {
+	out := new(v1beta114.ListAllProvidersResponse)
 	err := c.cc.Invoke(ctx, "/cs3.gateway.v1beta1.GatewayAPI/ListAllProviders", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -1948,8 +2000,8 @@ func (c *gatewayAPIClient) ListAllProviders(ctx context.Context, in *v1beta113.L
 	return out, nil
 }
 
-func (c *gatewayAPIClient) CreateOCMCoreShare(ctx context.Context, in *v1beta114.CreateOCMCoreShareRequest, opts ...grpc.CallOption) (*v1beta114.CreateOCMCoreShareResponse, error) {
-	out := new(v1beta114.CreateOCMCoreShareResponse)
+func (c *gatewayAPIClient) CreateOCMCoreShare(ctx context.Context, in *v1beta115.CreateOCMCoreShareRequest, opts ...grpc.CallOption) (*v1beta115.CreateOCMCoreShareResponse, error) {
+	out := new(v1beta115.CreateOCMCoreShareResponse)
 	err := c.cc.Invoke(ctx, "/cs3.gateway.v1beta1.GatewayAPI/CreateOCMCoreShare", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -1957,8 +2009,8 @@ func (c *gatewayAPIClient) CreateOCMCoreShare(ctx context.Context, in *v1beta114
 	return out, nil
 }
 
-func (c *gatewayAPIClient) CreateTransfer(ctx context.Context, in *v1beta115.CreateTransferRequest, opts ...grpc.CallOption) (*v1beta115.CreateTransferResponse, error) {
-	out := new(v1beta115.CreateTransferResponse)
+func (c *gatewayAPIClient) CreateTransfer(ctx context.Context, in *v1beta116.CreateTransferRequest, opts ...grpc.CallOption) (*v1beta116.CreateTransferResponse, error) {
+	out := new(v1beta116.CreateTransferResponse)
 	err := c.cc.Invoke(ctx, "/cs3.gateway.v1beta1.GatewayAPI/CreateTransfer", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -1966,8 +2018,8 @@ func (c *gatewayAPIClient) CreateTransfer(ctx context.Context, in *v1beta115.Cre
 	return out, nil
 }
 
-func (c *gatewayAPIClient) GetTransferStatus(ctx context.Context, in *v1beta115.GetTransferStatusRequest, opts ...grpc.CallOption) (*v1beta115.GetTransferStatusResponse, error) {
-	out := new(v1beta115.GetTransferStatusResponse)
+func (c *gatewayAPIClient) GetTransferStatus(ctx context.Context, in *v1beta116.GetTransferStatusRequest, opts ...grpc.CallOption) (*v1beta116.GetTransferStatusResponse, error) {
+	out := new(v1beta116.GetTransferStatusResponse)
 	err := c.cc.Invoke(ctx, "/cs3.gateway.v1beta1.GatewayAPI/GetTransferStatus", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -1975,8 +2027,8 @@ func (c *gatewayAPIClient) GetTransferStatus(ctx context.Context, in *v1beta115.
 	return out, nil
 }
 
-func (c *gatewayAPIClient) CancelTransfer(ctx context.Context, in *v1beta115.CancelTransferRequest, opts ...grpc.CallOption) (*v1beta115.CancelTransferResponse, error) {
-	out := new(v1beta115.CancelTransferResponse)
+func (c *gatewayAPIClient) CancelTransfer(ctx context.Context, in *v1beta116.CancelTransferRequest, opts ...grpc.CallOption) (*v1beta116.CancelTransferResponse, error) {
+	out := new(v1beta116.CancelTransferResponse)
 	err := c.cc.Invoke(ctx, "/cs3.gateway.v1beta1.GatewayAPI/CancelTransfer", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -1990,6 +2042,15 @@ type GatewayAPIServer interface {
 	Authenticate(context.Context, *AuthenticateRequest) (*AuthenticateResponse, error)
 	// WhoAmI returns the information for a user.
 	WhoAmI(context.Context, *WhoAmIRequest) (*WhoAmIResponse, error)
+	// GenerateAppPassword creates a password with specified scope to be used by
+	// third-party applications.
+	GenerateAppPassword(context.Context, *v1beta14.GenerateAppPasswordRequest) (*v1beta14.GenerateAppPasswordResponse, error)
+	// ListAppPasswords lists the application passwords created by a user.
+	ListAppPasswords(context.Context, *v1beta14.ListAppPasswordsRequest) (*v1beta14.ListAppPasswordsResponse, error)
+	// InvalidateAppPassword invalidates a generated password.
+	InvalidateAppPassword(context.Context, *v1beta14.InvalidateAppPasswordRequest) (*v1beta14.InvalidateAppPasswordResponse, error)
+	// GetAppPassword retrieves the password information by the combination of username and password.
+	GetAppPassword(context.Context, *v1beta14.GetAppPasswordRequest) (*v1beta14.GetAppPasswordResponse, error)
 	// Creates a new resource of type container.
 	// MUST return CODE_PRECONDITION_FAILED if the container
 	// cannot be created at the specified reference.
@@ -2074,93 +2135,93 @@ type GatewayAPIServer interface {
 	// Deletes a storage space.
 	DeleteStorageSpace(context.Context, *v1beta13.DeleteStorageSpaceRequest) (*v1beta13.DeleteStorageSpaceResponse, error)
 	// Returns the App provider URL, which lets the user open a file in the correct online document editor.
-	OpenFileInAppProvider(context.Context, *OpenFileInAppProviderRequest) (*v1beta14.OpenFileInAppProviderResponse, error)
+	OpenFileInAppProvider(context.Context, *OpenFileInAppProviderRequest) (*v1beta15.OpenFileInAppProviderResponse, error)
 	// Creates a new share.
 	// MUST return CODE_NOT_FOUND if the resource reference does not exist.
 	// MUST return CODE_ALREADY_EXISTS if the share already exists for the 4-tuple consisting of
 	// (owner, shared_resource, grantee).
 	// New shares MUST be created in the state SHARE_STATE_PENDING.
-	CreateShare(context.Context, *v1beta15.CreateShareRequest) (*v1beta15.CreateShareResponse, error)
+	CreateShare(context.Context, *v1beta16.CreateShareRequest) (*v1beta16.CreateShareResponse, error)
 	// Removes a share.
 	// MUST return CODE_NOT_FOUND if the share reference does not exist.
-	RemoveShare(context.Context, *v1beta15.RemoveShareRequest) (*v1beta15.RemoveShareResponse, error)
+	RemoveShare(context.Context, *v1beta16.RemoveShareRequest) (*v1beta16.RemoveShareResponse, error)
 	// Gets share information for a single share.
 	// MUST return CODE_NOT_FOUND if the share reference does not exist.
-	GetShare(context.Context, *v1beta15.GetShareRequest) (*v1beta15.GetShareResponse, error)
+	GetShare(context.Context, *v1beta16.GetShareRequest) (*v1beta16.GetShareResponse, error)
 	// List the shares the authproviderenticated principal has created,
 	// both as owner and creator. If a filter is specified, only
 	// shares satisfying the filter MUST be returned.
-	ListShares(context.Context, *v1beta15.ListSharesRequest) (*v1beta15.ListSharesResponse, error)
+	ListShares(context.Context, *v1beta16.ListSharesRequest) (*v1beta16.ListSharesResponse, error)
 	// Updates a share.
 	// MUST return CODE_NOT_FOUND if the share reference does not exist.
-	UpdateShare(context.Context, *v1beta15.UpdateShareRequest) (*v1beta15.UpdateShareResponse, error)
+	UpdateShare(context.Context, *v1beta16.UpdateShareRequest) (*v1beta16.UpdateShareResponse, error)
 	// List all shares the authproviderenticated principal has received.
-	ListReceivedShares(context.Context, *v1beta15.ListReceivedSharesRequest) (*v1beta15.ListReceivedSharesResponse, error)
+	ListReceivedShares(context.Context, *v1beta16.ListReceivedSharesRequest) (*v1beta16.ListReceivedSharesResponse, error)
 	// Update the received share to change the share state or the display name.
 	// MUST return CODE_NOT_FOUND if the share reference does not exist.
-	UpdateReceivedShare(context.Context, *v1beta15.UpdateReceivedShareRequest) (*v1beta15.UpdateReceivedShareResponse, error)
+	UpdateReceivedShare(context.Context, *v1beta16.UpdateReceivedShareRequest) (*v1beta16.UpdateReceivedShareResponse, error)
 	// Get the information for the given received share reference.
 	// MUST return CODE_NOT_FOUND if the received share reference does not exist.
-	GetReceivedShare(context.Context, *v1beta15.GetReceivedShareRequest) (*v1beta15.GetReceivedShareResponse, error)
+	GetReceivedShare(context.Context, *v1beta16.GetReceivedShareRequest) (*v1beta16.GetReceivedShareResponse, error)
 	// Maps the key-value pair.
-	SetKey(context.Context, *v1beta16.SetKeyRequest) (*v1beta16.SetKeyResponse, error)
+	SetKey(context.Context, *v1beta17.SetKeyRequest) (*v1beta17.SetKeyResponse, error)
 	// Returns the value associated with the
 	// requested key.
-	GetKey(context.Context, *v1beta16.GetKeyRequest) (*v1beta16.GetKeyResponse, error)
+	GetKey(context.Context, *v1beta17.GetKeyRequest) (*v1beta17.GetKeyResponse, error)
 	// Creates a new share.
 	// MUST return CODE_NOT_FOUND if the resource reference does not exist.
 	// MUST return CODE_ALREADY_EXISTS if the share already exists for the 4-tuple consisting of
 	// (owner, shared_resource, grantee).
 	// New shares MUST be created in the state SHARE_STATE_PENDING.
-	CreatePublicShare(context.Context, *v1beta17.CreatePublicShareRequest) (*v1beta17.CreatePublicShareResponse, error)
+	CreatePublicShare(context.Context, *v1beta18.CreatePublicShareRequest) (*v1beta18.CreatePublicShareResponse, error)
 	// Removes a share.
 	// MUST return CODE_NOT_FOUND if the share reference does not exist.
-	RemovePublicShare(context.Context, *v1beta17.RemovePublicShareRequest) (*v1beta17.RemovePublicShareResponse, error)
+	RemovePublicShare(context.Context, *v1beta18.RemovePublicShareRequest) (*v1beta18.RemovePublicShareResponse, error)
 	// Gets share information for a single share.
 	// MUST return CODE_NOT_FOUND if the share reference does not exist.
-	GetPublicShare(context.Context, *v1beta17.GetPublicShareRequest) (*v1beta17.GetPublicShareResponse, error)
+	GetPublicShare(context.Context, *v1beta18.GetPublicShareRequest) (*v1beta18.GetPublicShareResponse, error)
 	// Gets share information for a single share by its unlisted token.
 	// MUST return CODE_NOT_FOUND if the share does not exist.
-	GetPublicShareByToken(context.Context, *v1beta17.GetPublicShareByTokenRequest) (*v1beta17.GetPublicShareByTokenResponse, error)
+	GetPublicShareByToken(context.Context, *v1beta18.GetPublicShareByTokenRequest) (*v1beta18.GetPublicShareByTokenResponse, error)
 	// List the shares the authproviderenticated principal has created,
 	// both as owner and creator. If a filter is specified, only
 	// shares satisfying the filter MUST be returned.
-	ListPublicShares(context.Context, *v1beta17.ListPublicSharesRequest) (*v1beta17.ListPublicSharesResponse, error)
+	ListPublicShares(context.Context, *v1beta18.ListPublicSharesRequest) (*v1beta18.ListPublicSharesResponse, error)
 	// Updates a share.
 	// MUST return CODE_NOT_FOUND if the share reference does not exist.
-	UpdatePublicShare(context.Context, *v1beta17.UpdatePublicShareRequest) (*v1beta17.UpdatePublicShareResponse, error)
+	UpdatePublicShare(context.Context, *v1beta18.UpdatePublicShareRequest) (*v1beta18.UpdatePublicShareResponse, error)
 	// Creates a new ocm share.
 	// MUST return CODE_NOT_FOUND if the resource reference does not exist.
 	// MUST return CODE_ALREADY_EXISTS if the share already exists for the 4-tuple consisting of
 	// (owner, shared_resource, grantee).
 	// New shares MUST be created in the state SHARE_STATE_PENDING.
-	CreateOCMShare(context.Context, *v1beta18.CreateOCMShareRequest) (*v1beta18.CreateOCMShareResponse, error)
+	CreateOCMShare(context.Context, *v1beta19.CreateOCMShareRequest) (*v1beta19.CreateOCMShareResponse, error)
 	// Removes a share.
 	// MUST return CODE_NOT_FOUND if the share reference does not exist.
-	RemoveOCMShare(context.Context, *v1beta18.RemoveOCMShareRequest) (*v1beta18.RemoveOCMShareResponse, error)
+	RemoveOCMShare(context.Context, *v1beta19.RemoveOCMShareRequest) (*v1beta19.RemoveOCMShareResponse, error)
 	// Gets share information for a single share.
 	// MUST return CODE_NOT_FOUND if the share reference does not exist.
-	GetOCMShare(context.Context, *v1beta18.GetOCMShareRequest) (*v1beta18.GetOCMShareResponse, error)
+	GetOCMShare(context.Context, *v1beta19.GetOCMShareRequest) (*v1beta19.GetOCMShareResponse, error)
 	// List the shares the authproviderenticated principal has created,
 	// both as owner and creator. If a filter is specified, only
 	// shares satisfying the filter MUST be returned.
-	ListOCMShares(context.Context, *v1beta18.ListOCMSharesRequest) (*v1beta18.ListOCMSharesResponse, error)
+	ListOCMShares(context.Context, *v1beta19.ListOCMSharesRequest) (*v1beta19.ListOCMSharesResponse, error)
 	// Updates a share.
 	// MUST return CODE_NOT_FOUND if the share reference does not exist.
-	UpdateOCMShare(context.Context, *v1beta18.UpdateOCMShareRequest) (*v1beta18.UpdateOCMShareResponse, error)
+	UpdateOCMShare(context.Context, *v1beta19.UpdateOCMShareRequest) (*v1beta19.UpdateOCMShareResponse, error)
 	// List all shares the authproviderenticated principal has received.
-	ListReceivedOCMShares(context.Context, *v1beta18.ListReceivedOCMSharesRequest) (*v1beta18.ListReceivedOCMSharesResponse, error)
+	ListReceivedOCMShares(context.Context, *v1beta19.ListReceivedOCMSharesRequest) (*v1beta19.ListReceivedOCMSharesResponse, error)
 	// Update the received share to change the share state or the display name.
 	// MUST return CODE_NOT_FOUND if the share reference does not exist.
-	UpdateReceivedOCMShare(context.Context, *v1beta18.UpdateReceivedOCMShareRequest) (*v1beta18.UpdateReceivedOCMShareResponse, error)
+	UpdateReceivedOCMShare(context.Context, *v1beta19.UpdateReceivedOCMShareRequest) (*v1beta19.UpdateReceivedOCMShareResponse, error)
 	// Get the information for the given received share reference.
 	// MUST return CODE_NOT_FOUND if the received share reference does not exist.
-	GetReceivedOCMShare(context.Context, *v1beta18.GetReceivedOCMShareRequest) (*v1beta18.GetReceivedOCMShareResponse, error)
+	GetReceivedOCMShare(context.Context, *v1beta19.GetReceivedOCMShareRequest) (*v1beta19.GetReceivedOCMShareResponse, error)
 	// Returns the app providers that are capable of handling this resource info.
 	// MUST return CODE_NOT_FOUND if no providers are available.
-	GetAppProviders(context.Context, *v1beta19.GetAppProvidersRequest) (*v1beta19.GetAppProvidersResponse, error)
+	GetAppProviders(context.Context, *v1beta110.GetAppProvidersRequest) (*v1beta110.GetAppProvidersResponse, error)
 	// Returns a list of the available app providers known by this registry.
-	ListAppProviders(context.Context, *v1beta19.ListAppProvidersRequest) (*v1beta19.ListAppProvidersResponse, error)
+	ListAppProviders(context.Context, *v1beta110.ListAppProvidersRequest) (*v1beta110.ListAppProvidersResponse, error)
 	// Gets the information about a user by the user id.
 	GetUser(context.Context, *v1beta12.GetUserRequest) (*v1beta12.GetUserResponse, error)
 	// Gets the information about a user based on a specified claim.
@@ -2171,47 +2232,47 @@ type GatewayAPIServer interface {
 	// TODO(labkode): to define the filters that make more sense.
 	FindUsers(context.Context, *v1beta12.FindUsersRequest) (*v1beta12.FindUsersResponse, error)
 	// Gets the information about a group by the group id.
-	GetGroup(context.Context, *v1beta110.GetGroupRequest) (*v1beta110.GetGroupResponse, error)
+	GetGroup(context.Context, *v1beta111.GetGroupRequest) (*v1beta111.GetGroupResponse, error)
 	// Gets the information about a group based on a specified claim.
-	GetGroupByClaim(context.Context, *v1beta110.GetGroupByClaimRequest) (*v1beta110.GetGroupByClaimResponse, error)
+	GetGroupByClaim(context.Context, *v1beta111.GetGroupByClaimRequest) (*v1beta111.GetGroupByClaimResponse, error)
 	// Gets the members of a group.
-	GetMembers(context.Context, *v1beta110.GetMembersRequest) (*v1beta110.GetMembersResponse, error)
+	GetMembers(context.Context, *v1beta111.GetMembersRequest) (*v1beta111.GetMembersResponse, error)
 	// Tells if the group has a certain member.
-	HasMember(context.Context, *v1beta110.HasMemberRequest) (*v1beta110.HasMemberResponse, error)
+	HasMember(context.Context, *v1beta111.HasMemberRequest) (*v1beta111.HasMemberResponse, error)
 	// TODO(labkode): to define the filters that make more sense.
 	// Finds groups whose names match the specified filter.
-	FindGroups(context.Context, *v1beta110.FindGroupsRequest) (*v1beta110.FindGroupsResponse, error)
+	FindGroups(context.Context, *v1beta111.FindGroupsRequest) (*v1beta111.FindGroupsResponse, error)
 	// Returns a list of the available auth providers known by this registry.
-	ListAuthProviders(context.Context, *v1beta111.ListAuthProvidersRequest) (*ListAuthProvidersResponse, error)
+	ListAuthProviders(context.Context, *v1beta112.ListAuthProvidersRequest) (*ListAuthProvidersResponse, error)
 	// Returns the home path for the given authenticated user.
 	// When a user has access to multiple storage providers, one of them is the home.
 	GetHome(context.Context, *v1beta13.GetHomeRequest) (*v1beta13.GetHomeResponse, error)
 	// Generates a new token for the user with a validity of 24 hours.
-	GenerateInviteToken(context.Context, *v1beta112.GenerateInviteTokenRequest) (*v1beta112.GenerateInviteTokenResponse, error)
+	GenerateInviteToken(context.Context, *v1beta113.GenerateInviteTokenRequest) (*v1beta113.GenerateInviteTokenResponse, error)
 	// Forwards a received invite to the sync'n'share system provider.
-	ForwardInvite(context.Context, *v1beta112.ForwardInviteRequest) (*v1beta112.ForwardInviteResponse, error)
+	ForwardInvite(context.Context, *v1beta113.ForwardInviteRequest) (*v1beta113.ForwardInviteResponse, error)
 	// Completes an invitation acceptance.
-	AcceptInvite(context.Context, *v1beta112.AcceptInviteRequest) (*v1beta112.AcceptInviteResponse, error)
+	AcceptInvite(context.Context, *v1beta113.AcceptInviteRequest) (*v1beta113.AcceptInviteResponse, error)
 	// Retrieves details about a remote user who has accepted an invite to share.
-	GetAcceptedUser(context.Context, *v1beta112.GetAcceptedUserRequest) (*v1beta112.GetAcceptedUserResponse, error)
+	GetAcceptedUser(context.Context, *v1beta113.GetAcceptedUserRequest) (*v1beta113.GetAcceptedUserResponse, error)
 	// Finds users who accepted invite tokens by their attributes.
-	FindAcceptedUsers(context.Context, *v1beta112.FindAcceptedUsersRequest) (*v1beta112.FindAcceptedUsersResponse, error)
+	FindAcceptedUsers(context.Context, *v1beta113.FindAcceptedUsersRequest) (*v1beta113.FindAcceptedUsersResponse, error)
 	// Check if a given system provider is registered in the mesh or not.
 	// MUST return CODE_UNAUTHENTICATED if the system is not registered
-	IsProviderAllowed(context.Context, *v1beta113.IsProviderAllowedRequest) (*v1beta113.IsProviderAllowedResponse, error)
+	IsProviderAllowed(context.Context, *v1beta114.IsProviderAllowedRequest) (*v1beta114.IsProviderAllowedResponse, error)
 	// Get the information of the provider identified by a specific domain.
 	// MUST return CODE_NOT_FOUND if the sync'n'share system provider does not exist.
-	GetInfoByDomain(context.Context, *v1beta113.GetInfoByDomainRequest) (*v1beta113.GetInfoByDomainResponse, error)
+	GetInfoByDomain(context.Context, *v1beta114.GetInfoByDomainRequest) (*v1beta114.GetInfoByDomainResponse, error)
 	// Get the information of all the providers registered in the mesh.
-	ListAllProviders(context.Context, *v1beta113.ListAllProvidersRequest) (*v1beta113.ListAllProvidersResponse, error)
+	ListAllProviders(context.Context, *v1beta114.ListAllProvidersRequest) (*v1beta114.ListAllProvidersResponse, error)
 	// Creates a new ocm share.
-	CreateOCMCoreShare(context.Context, *v1beta114.CreateOCMCoreShareRequest) (*v1beta114.CreateOCMCoreShareResponse, error)
+	CreateOCMCoreShare(context.Context, *v1beta115.CreateOCMCoreShareRequest) (*v1beta115.CreateOCMCoreShareResponse, error)
 	// Returns a response containing a TxInfo (transfer info) object.
-	CreateTransfer(context.Context, *v1beta115.CreateTransferRequest) (*v1beta115.CreateTransferResponse, error)
+	CreateTransfer(context.Context, *v1beta116.CreateTransferRequest) (*v1beta116.CreateTransferResponse, error)
 	// Requests a transfer status.
-	GetTransferStatus(context.Context, *v1beta115.GetTransferStatusRequest) (*v1beta115.GetTransferStatusResponse, error)
+	GetTransferStatus(context.Context, *v1beta116.GetTransferStatusRequest) (*v1beta116.GetTransferStatusResponse, error)
 	// Requests to cancel a transfer.
-	CancelTransfer(context.Context, *v1beta115.CancelTransferRequest) (*v1beta115.CancelTransferResponse, error)
+	CancelTransfer(context.Context, *v1beta116.CancelTransferRequest) (*v1beta116.CancelTransferResponse, error)
 }
 
 // UnimplementedGatewayAPIServer can be embedded to have forward compatible implementations.
@@ -2223,6 +2284,18 @@ func (*UnimplementedGatewayAPIServer) Authenticate(ctx context.Context, req *Aut
 }
 func (*UnimplementedGatewayAPIServer) WhoAmI(ctx context.Context, req *WhoAmIRequest) (*WhoAmIResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method WhoAmI not implemented")
+}
+func (*UnimplementedGatewayAPIServer) GenerateAppPassword(ctx context.Context, req *v1beta14.GenerateAppPasswordRequest) (*v1beta14.GenerateAppPasswordResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GenerateAppPassword not implemented")
+}
+func (*UnimplementedGatewayAPIServer) ListAppPasswords(ctx context.Context, req *v1beta14.ListAppPasswordsRequest) (*v1beta14.ListAppPasswordsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListAppPasswords not implemented")
+}
+func (*UnimplementedGatewayAPIServer) InvalidateAppPassword(ctx context.Context, req *v1beta14.InvalidateAppPasswordRequest) (*v1beta14.InvalidateAppPasswordResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method InvalidateAppPassword not implemented")
+}
+func (*UnimplementedGatewayAPIServer) GetAppPassword(ctx context.Context, req *v1beta14.GetAppPasswordRequest) (*v1beta14.GetAppPasswordResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetAppPassword not implemented")
 }
 func (*UnimplementedGatewayAPIServer) CreateContainer(ctx context.Context, req *v1beta13.CreateContainerRequest) (*v1beta13.CreateContainerResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateContainer not implemented")
@@ -2296,85 +2369,85 @@ func (*UnimplementedGatewayAPIServer) UpdateStorageSpace(ctx context.Context, re
 func (*UnimplementedGatewayAPIServer) DeleteStorageSpace(ctx context.Context, req *v1beta13.DeleteStorageSpaceRequest) (*v1beta13.DeleteStorageSpaceResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteStorageSpace not implemented")
 }
-func (*UnimplementedGatewayAPIServer) OpenFileInAppProvider(ctx context.Context, req *OpenFileInAppProviderRequest) (*v1beta14.OpenFileInAppProviderResponse, error) {
+func (*UnimplementedGatewayAPIServer) OpenFileInAppProvider(ctx context.Context, req *OpenFileInAppProviderRequest) (*v1beta15.OpenFileInAppProviderResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method OpenFileInAppProvider not implemented")
 }
-func (*UnimplementedGatewayAPIServer) CreateShare(ctx context.Context, req *v1beta15.CreateShareRequest) (*v1beta15.CreateShareResponse, error) {
+func (*UnimplementedGatewayAPIServer) CreateShare(ctx context.Context, req *v1beta16.CreateShareRequest) (*v1beta16.CreateShareResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateShare not implemented")
 }
-func (*UnimplementedGatewayAPIServer) RemoveShare(ctx context.Context, req *v1beta15.RemoveShareRequest) (*v1beta15.RemoveShareResponse, error) {
+func (*UnimplementedGatewayAPIServer) RemoveShare(ctx context.Context, req *v1beta16.RemoveShareRequest) (*v1beta16.RemoveShareResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RemoveShare not implemented")
 }
-func (*UnimplementedGatewayAPIServer) GetShare(ctx context.Context, req *v1beta15.GetShareRequest) (*v1beta15.GetShareResponse, error) {
+func (*UnimplementedGatewayAPIServer) GetShare(ctx context.Context, req *v1beta16.GetShareRequest) (*v1beta16.GetShareResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetShare not implemented")
 }
-func (*UnimplementedGatewayAPIServer) ListShares(ctx context.Context, req *v1beta15.ListSharesRequest) (*v1beta15.ListSharesResponse, error) {
+func (*UnimplementedGatewayAPIServer) ListShares(ctx context.Context, req *v1beta16.ListSharesRequest) (*v1beta16.ListSharesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListShares not implemented")
 }
-func (*UnimplementedGatewayAPIServer) UpdateShare(ctx context.Context, req *v1beta15.UpdateShareRequest) (*v1beta15.UpdateShareResponse, error) {
+func (*UnimplementedGatewayAPIServer) UpdateShare(ctx context.Context, req *v1beta16.UpdateShareRequest) (*v1beta16.UpdateShareResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateShare not implemented")
 }
-func (*UnimplementedGatewayAPIServer) ListReceivedShares(ctx context.Context, req *v1beta15.ListReceivedSharesRequest) (*v1beta15.ListReceivedSharesResponse, error) {
+func (*UnimplementedGatewayAPIServer) ListReceivedShares(ctx context.Context, req *v1beta16.ListReceivedSharesRequest) (*v1beta16.ListReceivedSharesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListReceivedShares not implemented")
 }
-func (*UnimplementedGatewayAPIServer) UpdateReceivedShare(ctx context.Context, req *v1beta15.UpdateReceivedShareRequest) (*v1beta15.UpdateReceivedShareResponse, error) {
+func (*UnimplementedGatewayAPIServer) UpdateReceivedShare(ctx context.Context, req *v1beta16.UpdateReceivedShareRequest) (*v1beta16.UpdateReceivedShareResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateReceivedShare not implemented")
 }
-func (*UnimplementedGatewayAPIServer) GetReceivedShare(ctx context.Context, req *v1beta15.GetReceivedShareRequest) (*v1beta15.GetReceivedShareResponse, error) {
+func (*UnimplementedGatewayAPIServer) GetReceivedShare(ctx context.Context, req *v1beta16.GetReceivedShareRequest) (*v1beta16.GetReceivedShareResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetReceivedShare not implemented")
 }
-func (*UnimplementedGatewayAPIServer) SetKey(ctx context.Context, req *v1beta16.SetKeyRequest) (*v1beta16.SetKeyResponse, error) {
+func (*UnimplementedGatewayAPIServer) SetKey(ctx context.Context, req *v1beta17.SetKeyRequest) (*v1beta17.SetKeyResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SetKey not implemented")
 }
-func (*UnimplementedGatewayAPIServer) GetKey(ctx context.Context, req *v1beta16.GetKeyRequest) (*v1beta16.GetKeyResponse, error) {
+func (*UnimplementedGatewayAPIServer) GetKey(ctx context.Context, req *v1beta17.GetKeyRequest) (*v1beta17.GetKeyResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetKey not implemented")
 }
-func (*UnimplementedGatewayAPIServer) CreatePublicShare(ctx context.Context, req *v1beta17.CreatePublicShareRequest) (*v1beta17.CreatePublicShareResponse, error) {
+func (*UnimplementedGatewayAPIServer) CreatePublicShare(ctx context.Context, req *v1beta18.CreatePublicShareRequest) (*v1beta18.CreatePublicShareResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreatePublicShare not implemented")
 }
-func (*UnimplementedGatewayAPIServer) RemovePublicShare(ctx context.Context, req *v1beta17.RemovePublicShareRequest) (*v1beta17.RemovePublicShareResponse, error) {
+func (*UnimplementedGatewayAPIServer) RemovePublicShare(ctx context.Context, req *v1beta18.RemovePublicShareRequest) (*v1beta18.RemovePublicShareResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RemovePublicShare not implemented")
 }
-func (*UnimplementedGatewayAPIServer) GetPublicShare(ctx context.Context, req *v1beta17.GetPublicShareRequest) (*v1beta17.GetPublicShareResponse, error) {
+func (*UnimplementedGatewayAPIServer) GetPublicShare(ctx context.Context, req *v1beta18.GetPublicShareRequest) (*v1beta18.GetPublicShareResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetPublicShare not implemented")
 }
-func (*UnimplementedGatewayAPIServer) GetPublicShareByToken(ctx context.Context, req *v1beta17.GetPublicShareByTokenRequest) (*v1beta17.GetPublicShareByTokenResponse, error) {
+func (*UnimplementedGatewayAPIServer) GetPublicShareByToken(ctx context.Context, req *v1beta18.GetPublicShareByTokenRequest) (*v1beta18.GetPublicShareByTokenResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetPublicShareByToken not implemented")
 }
-func (*UnimplementedGatewayAPIServer) ListPublicShares(ctx context.Context, req *v1beta17.ListPublicSharesRequest) (*v1beta17.ListPublicSharesResponse, error) {
+func (*UnimplementedGatewayAPIServer) ListPublicShares(ctx context.Context, req *v1beta18.ListPublicSharesRequest) (*v1beta18.ListPublicSharesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListPublicShares not implemented")
 }
-func (*UnimplementedGatewayAPIServer) UpdatePublicShare(ctx context.Context, req *v1beta17.UpdatePublicShareRequest) (*v1beta17.UpdatePublicShareResponse, error) {
+func (*UnimplementedGatewayAPIServer) UpdatePublicShare(ctx context.Context, req *v1beta18.UpdatePublicShareRequest) (*v1beta18.UpdatePublicShareResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdatePublicShare not implemented")
 }
-func (*UnimplementedGatewayAPIServer) CreateOCMShare(ctx context.Context, req *v1beta18.CreateOCMShareRequest) (*v1beta18.CreateOCMShareResponse, error) {
+func (*UnimplementedGatewayAPIServer) CreateOCMShare(ctx context.Context, req *v1beta19.CreateOCMShareRequest) (*v1beta19.CreateOCMShareResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateOCMShare not implemented")
 }
-func (*UnimplementedGatewayAPIServer) RemoveOCMShare(ctx context.Context, req *v1beta18.RemoveOCMShareRequest) (*v1beta18.RemoveOCMShareResponse, error) {
+func (*UnimplementedGatewayAPIServer) RemoveOCMShare(ctx context.Context, req *v1beta19.RemoveOCMShareRequest) (*v1beta19.RemoveOCMShareResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RemoveOCMShare not implemented")
 }
-func (*UnimplementedGatewayAPIServer) GetOCMShare(ctx context.Context, req *v1beta18.GetOCMShareRequest) (*v1beta18.GetOCMShareResponse, error) {
+func (*UnimplementedGatewayAPIServer) GetOCMShare(ctx context.Context, req *v1beta19.GetOCMShareRequest) (*v1beta19.GetOCMShareResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetOCMShare not implemented")
 }
-func (*UnimplementedGatewayAPIServer) ListOCMShares(ctx context.Context, req *v1beta18.ListOCMSharesRequest) (*v1beta18.ListOCMSharesResponse, error) {
+func (*UnimplementedGatewayAPIServer) ListOCMShares(ctx context.Context, req *v1beta19.ListOCMSharesRequest) (*v1beta19.ListOCMSharesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListOCMShares not implemented")
 }
-func (*UnimplementedGatewayAPIServer) UpdateOCMShare(ctx context.Context, req *v1beta18.UpdateOCMShareRequest) (*v1beta18.UpdateOCMShareResponse, error) {
+func (*UnimplementedGatewayAPIServer) UpdateOCMShare(ctx context.Context, req *v1beta19.UpdateOCMShareRequest) (*v1beta19.UpdateOCMShareResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateOCMShare not implemented")
 }
-func (*UnimplementedGatewayAPIServer) ListReceivedOCMShares(ctx context.Context, req *v1beta18.ListReceivedOCMSharesRequest) (*v1beta18.ListReceivedOCMSharesResponse, error) {
+func (*UnimplementedGatewayAPIServer) ListReceivedOCMShares(ctx context.Context, req *v1beta19.ListReceivedOCMSharesRequest) (*v1beta19.ListReceivedOCMSharesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListReceivedOCMShares not implemented")
 }
-func (*UnimplementedGatewayAPIServer) UpdateReceivedOCMShare(ctx context.Context, req *v1beta18.UpdateReceivedOCMShareRequest) (*v1beta18.UpdateReceivedOCMShareResponse, error) {
+func (*UnimplementedGatewayAPIServer) UpdateReceivedOCMShare(ctx context.Context, req *v1beta19.UpdateReceivedOCMShareRequest) (*v1beta19.UpdateReceivedOCMShareResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateReceivedOCMShare not implemented")
 }
-func (*UnimplementedGatewayAPIServer) GetReceivedOCMShare(ctx context.Context, req *v1beta18.GetReceivedOCMShareRequest) (*v1beta18.GetReceivedOCMShareResponse, error) {
+func (*UnimplementedGatewayAPIServer) GetReceivedOCMShare(ctx context.Context, req *v1beta19.GetReceivedOCMShareRequest) (*v1beta19.GetReceivedOCMShareResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetReceivedOCMShare not implemented")
 }
-func (*UnimplementedGatewayAPIServer) GetAppProviders(ctx context.Context, req *v1beta19.GetAppProvidersRequest) (*v1beta19.GetAppProvidersResponse, error) {
+func (*UnimplementedGatewayAPIServer) GetAppProviders(ctx context.Context, req *v1beta110.GetAppProvidersRequest) (*v1beta110.GetAppProvidersResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetAppProviders not implemented")
 }
-func (*UnimplementedGatewayAPIServer) ListAppProviders(ctx context.Context, req *v1beta19.ListAppProvidersRequest) (*v1beta19.ListAppProvidersResponse, error) {
+func (*UnimplementedGatewayAPIServer) ListAppProviders(ctx context.Context, req *v1beta110.ListAppProvidersRequest) (*v1beta110.ListAppProvidersResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListAppProviders not implemented")
 }
 func (*UnimplementedGatewayAPIServer) GetUser(ctx context.Context, req *v1beta12.GetUserRequest) (*v1beta12.GetUserResponse, error) {
@@ -2389,61 +2462,61 @@ func (*UnimplementedGatewayAPIServer) GetUserGroups(ctx context.Context, req *v1
 func (*UnimplementedGatewayAPIServer) FindUsers(ctx context.Context, req *v1beta12.FindUsersRequest) (*v1beta12.FindUsersResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindUsers not implemented")
 }
-func (*UnimplementedGatewayAPIServer) GetGroup(ctx context.Context, req *v1beta110.GetGroupRequest) (*v1beta110.GetGroupResponse, error) {
+func (*UnimplementedGatewayAPIServer) GetGroup(ctx context.Context, req *v1beta111.GetGroupRequest) (*v1beta111.GetGroupResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetGroup not implemented")
 }
-func (*UnimplementedGatewayAPIServer) GetGroupByClaim(ctx context.Context, req *v1beta110.GetGroupByClaimRequest) (*v1beta110.GetGroupByClaimResponse, error) {
+func (*UnimplementedGatewayAPIServer) GetGroupByClaim(ctx context.Context, req *v1beta111.GetGroupByClaimRequest) (*v1beta111.GetGroupByClaimResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetGroupByClaim not implemented")
 }
-func (*UnimplementedGatewayAPIServer) GetMembers(ctx context.Context, req *v1beta110.GetMembersRequest) (*v1beta110.GetMembersResponse, error) {
+func (*UnimplementedGatewayAPIServer) GetMembers(ctx context.Context, req *v1beta111.GetMembersRequest) (*v1beta111.GetMembersResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetMembers not implemented")
 }
-func (*UnimplementedGatewayAPIServer) HasMember(ctx context.Context, req *v1beta110.HasMemberRequest) (*v1beta110.HasMemberResponse, error) {
+func (*UnimplementedGatewayAPIServer) HasMember(ctx context.Context, req *v1beta111.HasMemberRequest) (*v1beta111.HasMemberResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method HasMember not implemented")
 }
-func (*UnimplementedGatewayAPIServer) FindGroups(ctx context.Context, req *v1beta110.FindGroupsRequest) (*v1beta110.FindGroupsResponse, error) {
+func (*UnimplementedGatewayAPIServer) FindGroups(ctx context.Context, req *v1beta111.FindGroupsRequest) (*v1beta111.FindGroupsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindGroups not implemented")
 }
-func (*UnimplementedGatewayAPIServer) ListAuthProviders(ctx context.Context, req *v1beta111.ListAuthProvidersRequest) (*ListAuthProvidersResponse, error) {
+func (*UnimplementedGatewayAPIServer) ListAuthProviders(ctx context.Context, req *v1beta112.ListAuthProvidersRequest) (*ListAuthProvidersResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListAuthProviders not implemented")
 }
 func (*UnimplementedGatewayAPIServer) GetHome(ctx context.Context, req *v1beta13.GetHomeRequest) (*v1beta13.GetHomeResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetHome not implemented")
 }
-func (*UnimplementedGatewayAPIServer) GenerateInviteToken(ctx context.Context, req *v1beta112.GenerateInviteTokenRequest) (*v1beta112.GenerateInviteTokenResponse, error) {
+func (*UnimplementedGatewayAPIServer) GenerateInviteToken(ctx context.Context, req *v1beta113.GenerateInviteTokenRequest) (*v1beta113.GenerateInviteTokenResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GenerateInviteToken not implemented")
 }
-func (*UnimplementedGatewayAPIServer) ForwardInvite(ctx context.Context, req *v1beta112.ForwardInviteRequest) (*v1beta112.ForwardInviteResponse, error) {
+func (*UnimplementedGatewayAPIServer) ForwardInvite(ctx context.Context, req *v1beta113.ForwardInviteRequest) (*v1beta113.ForwardInviteResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ForwardInvite not implemented")
 }
-func (*UnimplementedGatewayAPIServer) AcceptInvite(ctx context.Context, req *v1beta112.AcceptInviteRequest) (*v1beta112.AcceptInviteResponse, error) {
+func (*UnimplementedGatewayAPIServer) AcceptInvite(ctx context.Context, req *v1beta113.AcceptInviteRequest) (*v1beta113.AcceptInviteResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AcceptInvite not implemented")
 }
-func (*UnimplementedGatewayAPIServer) GetAcceptedUser(ctx context.Context, req *v1beta112.GetAcceptedUserRequest) (*v1beta112.GetAcceptedUserResponse, error) {
+func (*UnimplementedGatewayAPIServer) GetAcceptedUser(ctx context.Context, req *v1beta113.GetAcceptedUserRequest) (*v1beta113.GetAcceptedUserResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetAcceptedUser not implemented")
 }
-func (*UnimplementedGatewayAPIServer) FindAcceptedUsers(ctx context.Context, req *v1beta112.FindAcceptedUsersRequest) (*v1beta112.FindAcceptedUsersResponse, error) {
+func (*UnimplementedGatewayAPIServer) FindAcceptedUsers(ctx context.Context, req *v1beta113.FindAcceptedUsersRequest) (*v1beta113.FindAcceptedUsersResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindAcceptedUsers not implemented")
 }
-func (*UnimplementedGatewayAPIServer) IsProviderAllowed(ctx context.Context, req *v1beta113.IsProviderAllowedRequest) (*v1beta113.IsProviderAllowedResponse, error) {
+func (*UnimplementedGatewayAPIServer) IsProviderAllowed(ctx context.Context, req *v1beta114.IsProviderAllowedRequest) (*v1beta114.IsProviderAllowedResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method IsProviderAllowed not implemented")
 }
-func (*UnimplementedGatewayAPIServer) GetInfoByDomain(ctx context.Context, req *v1beta113.GetInfoByDomainRequest) (*v1beta113.GetInfoByDomainResponse, error) {
+func (*UnimplementedGatewayAPIServer) GetInfoByDomain(ctx context.Context, req *v1beta114.GetInfoByDomainRequest) (*v1beta114.GetInfoByDomainResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetInfoByDomain not implemented")
 }
-func (*UnimplementedGatewayAPIServer) ListAllProviders(ctx context.Context, req *v1beta113.ListAllProvidersRequest) (*v1beta113.ListAllProvidersResponse, error) {
+func (*UnimplementedGatewayAPIServer) ListAllProviders(ctx context.Context, req *v1beta114.ListAllProvidersRequest) (*v1beta114.ListAllProvidersResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListAllProviders not implemented")
 }
-func (*UnimplementedGatewayAPIServer) CreateOCMCoreShare(ctx context.Context, req *v1beta114.CreateOCMCoreShareRequest) (*v1beta114.CreateOCMCoreShareResponse, error) {
+func (*UnimplementedGatewayAPIServer) CreateOCMCoreShare(ctx context.Context, req *v1beta115.CreateOCMCoreShareRequest) (*v1beta115.CreateOCMCoreShareResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateOCMCoreShare not implemented")
 }
-func (*UnimplementedGatewayAPIServer) CreateTransfer(ctx context.Context, req *v1beta115.CreateTransferRequest) (*v1beta115.CreateTransferResponse, error) {
+func (*UnimplementedGatewayAPIServer) CreateTransfer(ctx context.Context, req *v1beta116.CreateTransferRequest) (*v1beta116.CreateTransferResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateTransfer not implemented")
 }
-func (*UnimplementedGatewayAPIServer) GetTransferStatus(ctx context.Context, req *v1beta115.GetTransferStatusRequest) (*v1beta115.GetTransferStatusResponse, error) {
+func (*UnimplementedGatewayAPIServer) GetTransferStatus(ctx context.Context, req *v1beta116.GetTransferStatusRequest) (*v1beta116.GetTransferStatusResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetTransferStatus not implemented")
 }
-func (*UnimplementedGatewayAPIServer) CancelTransfer(ctx context.Context, req *v1beta115.CancelTransferRequest) (*v1beta115.CancelTransferResponse, error) {
+func (*UnimplementedGatewayAPIServer) CancelTransfer(ctx context.Context, req *v1beta116.CancelTransferRequest) (*v1beta116.CancelTransferResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CancelTransfer not implemented")
 }
 
@@ -2483,6 +2556,78 @@ func _GatewayAPI_WhoAmI_Handler(srv interface{}, ctx context.Context, dec func(i
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(GatewayAPIServer).WhoAmI(ctx, req.(*WhoAmIRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _GatewayAPI_GenerateAppPassword_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(v1beta14.GenerateAppPasswordRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GatewayAPIServer).GenerateAppPassword(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/cs3.gateway.v1beta1.GatewayAPI/GenerateAppPassword",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GatewayAPIServer).GenerateAppPassword(ctx, req.(*v1beta14.GenerateAppPasswordRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _GatewayAPI_ListAppPasswords_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(v1beta14.ListAppPasswordsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GatewayAPIServer).ListAppPasswords(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/cs3.gateway.v1beta1.GatewayAPI/ListAppPasswords",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GatewayAPIServer).ListAppPasswords(ctx, req.(*v1beta14.ListAppPasswordsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _GatewayAPI_InvalidateAppPassword_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(v1beta14.InvalidateAppPasswordRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GatewayAPIServer).InvalidateAppPassword(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/cs3.gateway.v1beta1.GatewayAPI/InvalidateAppPassword",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GatewayAPIServer).InvalidateAppPassword(ctx, req.(*v1beta14.InvalidateAppPasswordRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _GatewayAPI_GetAppPassword_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(v1beta14.GetAppPasswordRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GatewayAPIServer).GetAppPassword(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/cs3.gateway.v1beta1.GatewayAPI/GetAppPassword",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GatewayAPIServer).GetAppPassword(ctx, req.(*v1beta14.GetAppPasswordRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -2944,7 +3089,7 @@ func _GatewayAPI_OpenFileInAppProvider_Handler(srv interface{}, ctx context.Cont
 }
 
 func _GatewayAPI_CreateShare_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(v1beta15.CreateShareRequest)
+	in := new(v1beta16.CreateShareRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -2956,13 +3101,13 @@ func _GatewayAPI_CreateShare_Handler(srv interface{}, ctx context.Context, dec f
 		FullMethod: "/cs3.gateway.v1beta1.GatewayAPI/CreateShare",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GatewayAPIServer).CreateShare(ctx, req.(*v1beta15.CreateShareRequest))
+		return srv.(GatewayAPIServer).CreateShare(ctx, req.(*v1beta16.CreateShareRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _GatewayAPI_RemoveShare_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(v1beta15.RemoveShareRequest)
+	in := new(v1beta16.RemoveShareRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -2974,13 +3119,13 @@ func _GatewayAPI_RemoveShare_Handler(srv interface{}, ctx context.Context, dec f
 		FullMethod: "/cs3.gateway.v1beta1.GatewayAPI/RemoveShare",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GatewayAPIServer).RemoveShare(ctx, req.(*v1beta15.RemoveShareRequest))
+		return srv.(GatewayAPIServer).RemoveShare(ctx, req.(*v1beta16.RemoveShareRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _GatewayAPI_GetShare_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(v1beta15.GetShareRequest)
+	in := new(v1beta16.GetShareRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -2992,13 +3137,13 @@ func _GatewayAPI_GetShare_Handler(srv interface{}, ctx context.Context, dec func
 		FullMethod: "/cs3.gateway.v1beta1.GatewayAPI/GetShare",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GatewayAPIServer).GetShare(ctx, req.(*v1beta15.GetShareRequest))
+		return srv.(GatewayAPIServer).GetShare(ctx, req.(*v1beta16.GetShareRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _GatewayAPI_ListShares_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(v1beta15.ListSharesRequest)
+	in := new(v1beta16.ListSharesRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -3010,13 +3155,13 @@ func _GatewayAPI_ListShares_Handler(srv interface{}, ctx context.Context, dec fu
 		FullMethod: "/cs3.gateway.v1beta1.GatewayAPI/ListShares",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GatewayAPIServer).ListShares(ctx, req.(*v1beta15.ListSharesRequest))
+		return srv.(GatewayAPIServer).ListShares(ctx, req.(*v1beta16.ListSharesRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _GatewayAPI_UpdateShare_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(v1beta15.UpdateShareRequest)
+	in := new(v1beta16.UpdateShareRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -3028,13 +3173,13 @@ func _GatewayAPI_UpdateShare_Handler(srv interface{}, ctx context.Context, dec f
 		FullMethod: "/cs3.gateway.v1beta1.GatewayAPI/UpdateShare",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GatewayAPIServer).UpdateShare(ctx, req.(*v1beta15.UpdateShareRequest))
+		return srv.(GatewayAPIServer).UpdateShare(ctx, req.(*v1beta16.UpdateShareRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _GatewayAPI_ListReceivedShares_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(v1beta15.ListReceivedSharesRequest)
+	in := new(v1beta16.ListReceivedSharesRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -3046,13 +3191,13 @@ func _GatewayAPI_ListReceivedShares_Handler(srv interface{}, ctx context.Context
 		FullMethod: "/cs3.gateway.v1beta1.GatewayAPI/ListReceivedShares",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GatewayAPIServer).ListReceivedShares(ctx, req.(*v1beta15.ListReceivedSharesRequest))
+		return srv.(GatewayAPIServer).ListReceivedShares(ctx, req.(*v1beta16.ListReceivedSharesRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _GatewayAPI_UpdateReceivedShare_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(v1beta15.UpdateReceivedShareRequest)
+	in := new(v1beta16.UpdateReceivedShareRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -3064,13 +3209,13 @@ func _GatewayAPI_UpdateReceivedShare_Handler(srv interface{}, ctx context.Contex
 		FullMethod: "/cs3.gateway.v1beta1.GatewayAPI/UpdateReceivedShare",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GatewayAPIServer).UpdateReceivedShare(ctx, req.(*v1beta15.UpdateReceivedShareRequest))
+		return srv.(GatewayAPIServer).UpdateReceivedShare(ctx, req.(*v1beta16.UpdateReceivedShareRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _GatewayAPI_GetReceivedShare_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(v1beta15.GetReceivedShareRequest)
+	in := new(v1beta16.GetReceivedShareRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -3082,13 +3227,13 @@ func _GatewayAPI_GetReceivedShare_Handler(srv interface{}, ctx context.Context, 
 		FullMethod: "/cs3.gateway.v1beta1.GatewayAPI/GetReceivedShare",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GatewayAPIServer).GetReceivedShare(ctx, req.(*v1beta15.GetReceivedShareRequest))
+		return srv.(GatewayAPIServer).GetReceivedShare(ctx, req.(*v1beta16.GetReceivedShareRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _GatewayAPI_SetKey_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(v1beta16.SetKeyRequest)
+	in := new(v1beta17.SetKeyRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -3100,13 +3245,13 @@ func _GatewayAPI_SetKey_Handler(srv interface{}, ctx context.Context, dec func(i
 		FullMethod: "/cs3.gateway.v1beta1.GatewayAPI/SetKey",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GatewayAPIServer).SetKey(ctx, req.(*v1beta16.SetKeyRequest))
+		return srv.(GatewayAPIServer).SetKey(ctx, req.(*v1beta17.SetKeyRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _GatewayAPI_GetKey_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(v1beta16.GetKeyRequest)
+	in := new(v1beta17.GetKeyRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -3118,13 +3263,13 @@ func _GatewayAPI_GetKey_Handler(srv interface{}, ctx context.Context, dec func(i
 		FullMethod: "/cs3.gateway.v1beta1.GatewayAPI/GetKey",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GatewayAPIServer).GetKey(ctx, req.(*v1beta16.GetKeyRequest))
+		return srv.(GatewayAPIServer).GetKey(ctx, req.(*v1beta17.GetKeyRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _GatewayAPI_CreatePublicShare_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(v1beta17.CreatePublicShareRequest)
+	in := new(v1beta18.CreatePublicShareRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -3136,13 +3281,13 @@ func _GatewayAPI_CreatePublicShare_Handler(srv interface{}, ctx context.Context,
 		FullMethod: "/cs3.gateway.v1beta1.GatewayAPI/CreatePublicShare",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GatewayAPIServer).CreatePublicShare(ctx, req.(*v1beta17.CreatePublicShareRequest))
+		return srv.(GatewayAPIServer).CreatePublicShare(ctx, req.(*v1beta18.CreatePublicShareRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _GatewayAPI_RemovePublicShare_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(v1beta17.RemovePublicShareRequest)
+	in := new(v1beta18.RemovePublicShareRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -3154,13 +3299,13 @@ func _GatewayAPI_RemovePublicShare_Handler(srv interface{}, ctx context.Context,
 		FullMethod: "/cs3.gateway.v1beta1.GatewayAPI/RemovePublicShare",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GatewayAPIServer).RemovePublicShare(ctx, req.(*v1beta17.RemovePublicShareRequest))
+		return srv.(GatewayAPIServer).RemovePublicShare(ctx, req.(*v1beta18.RemovePublicShareRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _GatewayAPI_GetPublicShare_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(v1beta17.GetPublicShareRequest)
+	in := new(v1beta18.GetPublicShareRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -3172,13 +3317,13 @@ func _GatewayAPI_GetPublicShare_Handler(srv interface{}, ctx context.Context, de
 		FullMethod: "/cs3.gateway.v1beta1.GatewayAPI/GetPublicShare",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GatewayAPIServer).GetPublicShare(ctx, req.(*v1beta17.GetPublicShareRequest))
+		return srv.(GatewayAPIServer).GetPublicShare(ctx, req.(*v1beta18.GetPublicShareRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _GatewayAPI_GetPublicShareByToken_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(v1beta17.GetPublicShareByTokenRequest)
+	in := new(v1beta18.GetPublicShareByTokenRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -3190,13 +3335,13 @@ func _GatewayAPI_GetPublicShareByToken_Handler(srv interface{}, ctx context.Cont
 		FullMethod: "/cs3.gateway.v1beta1.GatewayAPI/GetPublicShareByToken",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GatewayAPIServer).GetPublicShareByToken(ctx, req.(*v1beta17.GetPublicShareByTokenRequest))
+		return srv.(GatewayAPIServer).GetPublicShareByToken(ctx, req.(*v1beta18.GetPublicShareByTokenRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _GatewayAPI_ListPublicShares_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(v1beta17.ListPublicSharesRequest)
+	in := new(v1beta18.ListPublicSharesRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -3208,13 +3353,13 @@ func _GatewayAPI_ListPublicShares_Handler(srv interface{}, ctx context.Context, 
 		FullMethod: "/cs3.gateway.v1beta1.GatewayAPI/ListPublicShares",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GatewayAPIServer).ListPublicShares(ctx, req.(*v1beta17.ListPublicSharesRequest))
+		return srv.(GatewayAPIServer).ListPublicShares(ctx, req.(*v1beta18.ListPublicSharesRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _GatewayAPI_UpdatePublicShare_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(v1beta17.UpdatePublicShareRequest)
+	in := new(v1beta18.UpdatePublicShareRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -3226,13 +3371,13 @@ func _GatewayAPI_UpdatePublicShare_Handler(srv interface{}, ctx context.Context,
 		FullMethod: "/cs3.gateway.v1beta1.GatewayAPI/UpdatePublicShare",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GatewayAPIServer).UpdatePublicShare(ctx, req.(*v1beta17.UpdatePublicShareRequest))
+		return srv.(GatewayAPIServer).UpdatePublicShare(ctx, req.(*v1beta18.UpdatePublicShareRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _GatewayAPI_CreateOCMShare_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(v1beta18.CreateOCMShareRequest)
+	in := new(v1beta19.CreateOCMShareRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -3244,13 +3389,13 @@ func _GatewayAPI_CreateOCMShare_Handler(srv interface{}, ctx context.Context, de
 		FullMethod: "/cs3.gateway.v1beta1.GatewayAPI/CreateOCMShare",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GatewayAPIServer).CreateOCMShare(ctx, req.(*v1beta18.CreateOCMShareRequest))
+		return srv.(GatewayAPIServer).CreateOCMShare(ctx, req.(*v1beta19.CreateOCMShareRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _GatewayAPI_RemoveOCMShare_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(v1beta18.RemoveOCMShareRequest)
+	in := new(v1beta19.RemoveOCMShareRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -3262,13 +3407,13 @@ func _GatewayAPI_RemoveOCMShare_Handler(srv interface{}, ctx context.Context, de
 		FullMethod: "/cs3.gateway.v1beta1.GatewayAPI/RemoveOCMShare",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GatewayAPIServer).RemoveOCMShare(ctx, req.(*v1beta18.RemoveOCMShareRequest))
+		return srv.(GatewayAPIServer).RemoveOCMShare(ctx, req.(*v1beta19.RemoveOCMShareRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _GatewayAPI_GetOCMShare_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(v1beta18.GetOCMShareRequest)
+	in := new(v1beta19.GetOCMShareRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -3280,13 +3425,13 @@ func _GatewayAPI_GetOCMShare_Handler(srv interface{}, ctx context.Context, dec f
 		FullMethod: "/cs3.gateway.v1beta1.GatewayAPI/GetOCMShare",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GatewayAPIServer).GetOCMShare(ctx, req.(*v1beta18.GetOCMShareRequest))
+		return srv.(GatewayAPIServer).GetOCMShare(ctx, req.(*v1beta19.GetOCMShareRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _GatewayAPI_ListOCMShares_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(v1beta18.ListOCMSharesRequest)
+	in := new(v1beta19.ListOCMSharesRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -3298,13 +3443,13 @@ func _GatewayAPI_ListOCMShares_Handler(srv interface{}, ctx context.Context, dec
 		FullMethod: "/cs3.gateway.v1beta1.GatewayAPI/ListOCMShares",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GatewayAPIServer).ListOCMShares(ctx, req.(*v1beta18.ListOCMSharesRequest))
+		return srv.(GatewayAPIServer).ListOCMShares(ctx, req.(*v1beta19.ListOCMSharesRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _GatewayAPI_UpdateOCMShare_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(v1beta18.UpdateOCMShareRequest)
+	in := new(v1beta19.UpdateOCMShareRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -3316,13 +3461,13 @@ func _GatewayAPI_UpdateOCMShare_Handler(srv interface{}, ctx context.Context, de
 		FullMethod: "/cs3.gateway.v1beta1.GatewayAPI/UpdateOCMShare",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GatewayAPIServer).UpdateOCMShare(ctx, req.(*v1beta18.UpdateOCMShareRequest))
+		return srv.(GatewayAPIServer).UpdateOCMShare(ctx, req.(*v1beta19.UpdateOCMShareRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _GatewayAPI_ListReceivedOCMShares_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(v1beta18.ListReceivedOCMSharesRequest)
+	in := new(v1beta19.ListReceivedOCMSharesRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -3334,13 +3479,13 @@ func _GatewayAPI_ListReceivedOCMShares_Handler(srv interface{}, ctx context.Cont
 		FullMethod: "/cs3.gateway.v1beta1.GatewayAPI/ListReceivedOCMShares",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GatewayAPIServer).ListReceivedOCMShares(ctx, req.(*v1beta18.ListReceivedOCMSharesRequest))
+		return srv.(GatewayAPIServer).ListReceivedOCMShares(ctx, req.(*v1beta19.ListReceivedOCMSharesRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _GatewayAPI_UpdateReceivedOCMShare_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(v1beta18.UpdateReceivedOCMShareRequest)
+	in := new(v1beta19.UpdateReceivedOCMShareRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -3352,13 +3497,13 @@ func _GatewayAPI_UpdateReceivedOCMShare_Handler(srv interface{}, ctx context.Con
 		FullMethod: "/cs3.gateway.v1beta1.GatewayAPI/UpdateReceivedOCMShare",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GatewayAPIServer).UpdateReceivedOCMShare(ctx, req.(*v1beta18.UpdateReceivedOCMShareRequest))
+		return srv.(GatewayAPIServer).UpdateReceivedOCMShare(ctx, req.(*v1beta19.UpdateReceivedOCMShareRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _GatewayAPI_GetReceivedOCMShare_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(v1beta18.GetReceivedOCMShareRequest)
+	in := new(v1beta19.GetReceivedOCMShareRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -3370,13 +3515,13 @@ func _GatewayAPI_GetReceivedOCMShare_Handler(srv interface{}, ctx context.Contex
 		FullMethod: "/cs3.gateway.v1beta1.GatewayAPI/GetReceivedOCMShare",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GatewayAPIServer).GetReceivedOCMShare(ctx, req.(*v1beta18.GetReceivedOCMShareRequest))
+		return srv.(GatewayAPIServer).GetReceivedOCMShare(ctx, req.(*v1beta19.GetReceivedOCMShareRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _GatewayAPI_GetAppProviders_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(v1beta19.GetAppProvidersRequest)
+	in := new(v1beta110.GetAppProvidersRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -3388,13 +3533,13 @@ func _GatewayAPI_GetAppProviders_Handler(srv interface{}, ctx context.Context, d
 		FullMethod: "/cs3.gateway.v1beta1.GatewayAPI/GetAppProviders",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GatewayAPIServer).GetAppProviders(ctx, req.(*v1beta19.GetAppProvidersRequest))
+		return srv.(GatewayAPIServer).GetAppProviders(ctx, req.(*v1beta110.GetAppProvidersRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _GatewayAPI_ListAppProviders_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(v1beta19.ListAppProvidersRequest)
+	in := new(v1beta110.ListAppProvidersRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -3406,7 +3551,7 @@ func _GatewayAPI_ListAppProviders_Handler(srv interface{}, ctx context.Context, 
 		FullMethod: "/cs3.gateway.v1beta1.GatewayAPI/ListAppProviders",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GatewayAPIServer).ListAppProviders(ctx, req.(*v1beta19.ListAppProvidersRequest))
+		return srv.(GatewayAPIServer).ListAppProviders(ctx, req.(*v1beta110.ListAppProvidersRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -3484,7 +3629,7 @@ func _GatewayAPI_FindUsers_Handler(srv interface{}, ctx context.Context, dec fun
 }
 
 func _GatewayAPI_GetGroup_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(v1beta110.GetGroupRequest)
+	in := new(v1beta111.GetGroupRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -3496,13 +3641,13 @@ func _GatewayAPI_GetGroup_Handler(srv interface{}, ctx context.Context, dec func
 		FullMethod: "/cs3.gateway.v1beta1.GatewayAPI/GetGroup",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GatewayAPIServer).GetGroup(ctx, req.(*v1beta110.GetGroupRequest))
+		return srv.(GatewayAPIServer).GetGroup(ctx, req.(*v1beta111.GetGroupRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _GatewayAPI_GetGroupByClaim_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(v1beta110.GetGroupByClaimRequest)
+	in := new(v1beta111.GetGroupByClaimRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -3514,13 +3659,13 @@ func _GatewayAPI_GetGroupByClaim_Handler(srv interface{}, ctx context.Context, d
 		FullMethod: "/cs3.gateway.v1beta1.GatewayAPI/GetGroupByClaim",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GatewayAPIServer).GetGroupByClaim(ctx, req.(*v1beta110.GetGroupByClaimRequest))
+		return srv.(GatewayAPIServer).GetGroupByClaim(ctx, req.(*v1beta111.GetGroupByClaimRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _GatewayAPI_GetMembers_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(v1beta110.GetMembersRequest)
+	in := new(v1beta111.GetMembersRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -3532,13 +3677,13 @@ func _GatewayAPI_GetMembers_Handler(srv interface{}, ctx context.Context, dec fu
 		FullMethod: "/cs3.gateway.v1beta1.GatewayAPI/GetMembers",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GatewayAPIServer).GetMembers(ctx, req.(*v1beta110.GetMembersRequest))
+		return srv.(GatewayAPIServer).GetMembers(ctx, req.(*v1beta111.GetMembersRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _GatewayAPI_HasMember_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(v1beta110.HasMemberRequest)
+	in := new(v1beta111.HasMemberRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -3550,13 +3695,13 @@ func _GatewayAPI_HasMember_Handler(srv interface{}, ctx context.Context, dec fun
 		FullMethod: "/cs3.gateway.v1beta1.GatewayAPI/HasMember",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GatewayAPIServer).HasMember(ctx, req.(*v1beta110.HasMemberRequest))
+		return srv.(GatewayAPIServer).HasMember(ctx, req.(*v1beta111.HasMemberRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _GatewayAPI_FindGroups_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(v1beta110.FindGroupsRequest)
+	in := new(v1beta111.FindGroupsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -3568,13 +3713,13 @@ func _GatewayAPI_FindGroups_Handler(srv interface{}, ctx context.Context, dec fu
 		FullMethod: "/cs3.gateway.v1beta1.GatewayAPI/FindGroups",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GatewayAPIServer).FindGroups(ctx, req.(*v1beta110.FindGroupsRequest))
+		return srv.(GatewayAPIServer).FindGroups(ctx, req.(*v1beta111.FindGroupsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _GatewayAPI_ListAuthProviders_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(v1beta111.ListAuthProvidersRequest)
+	in := new(v1beta112.ListAuthProvidersRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -3586,7 +3731,7 @@ func _GatewayAPI_ListAuthProviders_Handler(srv interface{}, ctx context.Context,
 		FullMethod: "/cs3.gateway.v1beta1.GatewayAPI/ListAuthProviders",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GatewayAPIServer).ListAuthProviders(ctx, req.(*v1beta111.ListAuthProvidersRequest))
+		return srv.(GatewayAPIServer).ListAuthProviders(ctx, req.(*v1beta112.ListAuthProvidersRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -3610,7 +3755,7 @@ func _GatewayAPI_GetHome_Handler(srv interface{}, ctx context.Context, dec func(
 }
 
 func _GatewayAPI_GenerateInviteToken_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(v1beta112.GenerateInviteTokenRequest)
+	in := new(v1beta113.GenerateInviteTokenRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -3622,13 +3767,13 @@ func _GatewayAPI_GenerateInviteToken_Handler(srv interface{}, ctx context.Contex
 		FullMethod: "/cs3.gateway.v1beta1.GatewayAPI/GenerateInviteToken",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GatewayAPIServer).GenerateInviteToken(ctx, req.(*v1beta112.GenerateInviteTokenRequest))
+		return srv.(GatewayAPIServer).GenerateInviteToken(ctx, req.(*v1beta113.GenerateInviteTokenRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _GatewayAPI_ForwardInvite_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(v1beta112.ForwardInviteRequest)
+	in := new(v1beta113.ForwardInviteRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -3640,13 +3785,13 @@ func _GatewayAPI_ForwardInvite_Handler(srv interface{}, ctx context.Context, dec
 		FullMethod: "/cs3.gateway.v1beta1.GatewayAPI/ForwardInvite",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GatewayAPIServer).ForwardInvite(ctx, req.(*v1beta112.ForwardInviteRequest))
+		return srv.(GatewayAPIServer).ForwardInvite(ctx, req.(*v1beta113.ForwardInviteRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _GatewayAPI_AcceptInvite_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(v1beta112.AcceptInviteRequest)
+	in := new(v1beta113.AcceptInviteRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -3658,13 +3803,13 @@ func _GatewayAPI_AcceptInvite_Handler(srv interface{}, ctx context.Context, dec 
 		FullMethod: "/cs3.gateway.v1beta1.GatewayAPI/AcceptInvite",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GatewayAPIServer).AcceptInvite(ctx, req.(*v1beta112.AcceptInviteRequest))
+		return srv.(GatewayAPIServer).AcceptInvite(ctx, req.(*v1beta113.AcceptInviteRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _GatewayAPI_GetAcceptedUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(v1beta112.GetAcceptedUserRequest)
+	in := new(v1beta113.GetAcceptedUserRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -3676,13 +3821,13 @@ func _GatewayAPI_GetAcceptedUser_Handler(srv interface{}, ctx context.Context, d
 		FullMethod: "/cs3.gateway.v1beta1.GatewayAPI/GetAcceptedUser",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GatewayAPIServer).GetAcceptedUser(ctx, req.(*v1beta112.GetAcceptedUserRequest))
+		return srv.(GatewayAPIServer).GetAcceptedUser(ctx, req.(*v1beta113.GetAcceptedUserRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _GatewayAPI_FindAcceptedUsers_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(v1beta112.FindAcceptedUsersRequest)
+	in := new(v1beta113.FindAcceptedUsersRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -3694,13 +3839,13 @@ func _GatewayAPI_FindAcceptedUsers_Handler(srv interface{}, ctx context.Context,
 		FullMethod: "/cs3.gateway.v1beta1.GatewayAPI/FindAcceptedUsers",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GatewayAPIServer).FindAcceptedUsers(ctx, req.(*v1beta112.FindAcceptedUsersRequest))
+		return srv.(GatewayAPIServer).FindAcceptedUsers(ctx, req.(*v1beta113.FindAcceptedUsersRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _GatewayAPI_IsProviderAllowed_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(v1beta113.IsProviderAllowedRequest)
+	in := new(v1beta114.IsProviderAllowedRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -3712,13 +3857,13 @@ func _GatewayAPI_IsProviderAllowed_Handler(srv interface{}, ctx context.Context,
 		FullMethod: "/cs3.gateway.v1beta1.GatewayAPI/IsProviderAllowed",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GatewayAPIServer).IsProviderAllowed(ctx, req.(*v1beta113.IsProviderAllowedRequest))
+		return srv.(GatewayAPIServer).IsProviderAllowed(ctx, req.(*v1beta114.IsProviderAllowedRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _GatewayAPI_GetInfoByDomain_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(v1beta113.GetInfoByDomainRequest)
+	in := new(v1beta114.GetInfoByDomainRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -3730,13 +3875,13 @@ func _GatewayAPI_GetInfoByDomain_Handler(srv interface{}, ctx context.Context, d
 		FullMethod: "/cs3.gateway.v1beta1.GatewayAPI/GetInfoByDomain",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GatewayAPIServer).GetInfoByDomain(ctx, req.(*v1beta113.GetInfoByDomainRequest))
+		return srv.(GatewayAPIServer).GetInfoByDomain(ctx, req.(*v1beta114.GetInfoByDomainRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _GatewayAPI_ListAllProviders_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(v1beta113.ListAllProvidersRequest)
+	in := new(v1beta114.ListAllProvidersRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -3748,13 +3893,13 @@ func _GatewayAPI_ListAllProviders_Handler(srv interface{}, ctx context.Context, 
 		FullMethod: "/cs3.gateway.v1beta1.GatewayAPI/ListAllProviders",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GatewayAPIServer).ListAllProviders(ctx, req.(*v1beta113.ListAllProvidersRequest))
+		return srv.(GatewayAPIServer).ListAllProviders(ctx, req.(*v1beta114.ListAllProvidersRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _GatewayAPI_CreateOCMCoreShare_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(v1beta114.CreateOCMCoreShareRequest)
+	in := new(v1beta115.CreateOCMCoreShareRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -3766,13 +3911,13 @@ func _GatewayAPI_CreateOCMCoreShare_Handler(srv interface{}, ctx context.Context
 		FullMethod: "/cs3.gateway.v1beta1.GatewayAPI/CreateOCMCoreShare",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GatewayAPIServer).CreateOCMCoreShare(ctx, req.(*v1beta114.CreateOCMCoreShareRequest))
+		return srv.(GatewayAPIServer).CreateOCMCoreShare(ctx, req.(*v1beta115.CreateOCMCoreShareRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _GatewayAPI_CreateTransfer_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(v1beta115.CreateTransferRequest)
+	in := new(v1beta116.CreateTransferRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -3784,13 +3929,13 @@ func _GatewayAPI_CreateTransfer_Handler(srv interface{}, ctx context.Context, de
 		FullMethod: "/cs3.gateway.v1beta1.GatewayAPI/CreateTransfer",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GatewayAPIServer).CreateTransfer(ctx, req.(*v1beta115.CreateTransferRequest))
+		return srv.(GatewayAPIServer).CreateTransfer(ctx, req.(*v1beta116.CreateTransferRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _GatewayAPI_GetTransferStatus_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(v1beta115.GetTransferStatusRequest)
+	in := new(v1beta116.GetTransferStatusRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -3802,13 +3947,13 @@ func _GatewayAPI_GetTransferStatus_Handler(srv interface{}, ctx context.Context,
 		FullMethod: "/cs3.gateway.v1beta1.GatewayAPI/GetTransferStatus",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GatewayAPIServer).GetTransferStatus(ctx, req.(*v1beta115.GetTransferStatusRequest))
+		return srv.(GatewayAPIServer).GetTransferStatus(ctx, req.(*v1beta116.GetTransferStatusRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _GatewayAPI_CancelTransfer_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(v1beta115.CancelTransferRequest)
+	in := new(v1beta116.CancelTransferRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -3820,7 +3965,7 @@ func _GatewayAPI_CancelTransfer_Handler(srv interface{}, ctx context.Context, de
 		FullMethod: "/cs3.gateway.v1beta1.GatewayAPI/CancelTransfer",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GatewayAPIServer).CancelTransfer(ctx, req.(*v1beta115.CancelTransferRequest))
+		return srv.(GatewayAPIServer).CancelTransfer(ctx, req.(*v1beta116.CancelTransferRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -3836,6 +3981,22 @@ var _GatewayAPI_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "WhoAmI",
 			Handler:    _GatewayAPI_WhoAmI_Handler,
+		},
+		{
+			MethodName: "GenerateAppPassword",
+			Handler:    _GatewayAPI_GenerateAppPassword_Handler,
+		},
+		{
+			MethodName: "ListAppPasswords",
+			Handler:    _GatewayAPI_ListAppPasswords_Handler,
+		},
+		{
+			MethodName: "InvalidateAppPassword",
+			Handler:    _GatewayAPI_InvalidateAppPassword_Handler,
+		},
+		{
+			MethodName: "GetAppPassword",
+			Handler:    _GatewayAPI_GetAppPassword_Handler,
 		},
 		{
 			MethodName: "CreateContainer",
