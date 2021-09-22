@@ -259,7 +259,7 @@ const _ = grpc.SupportPackageIsVersion4
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type ProviderAPIClient interface {
-	// Returns the App provider URL
+	// Returns the App URL and all necessary info to open a resource in an online editor.
 	// MUST return CODE_NOT_FOUND if the resource does not exist.
 	OpenInApp(ctx context.Context, in *OpenInAppRequest, opts ...grpc.CallOption) (*OpenInAppResponse, error)
 }
@@ -283,7 +283,7 @@ func (c *providerAPIClient) OpenInApp(ctx context.Context, in *OpenInAppRequest,
 
 // ProviderAPIServer is the server API for ProviderAPI service.
 type ProviderAPIServer interface {
-	// Returns the App provider URL
+	// Returns the App URL and all necessary info to open a resource in an online editor.
 	// MUST return CODE_NOT_FOUND if the resource does not exist.
 	OpenInApp(context.Context, *OpenInAppRequest) (*OpenInAppResponse, error)
 }

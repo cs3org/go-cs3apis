@@ -1140,7 +1140,8 @@ type GatewayAPIClient interface {
 	UpdateStorageSpace(ctx context.Context, in *v1beta13.UpdateStorageSpaceRequest, opts ...grpc.CallOption) (*v1beta13.UpdateStorageSpaceResponse, error)
 	// Deletes a storage space.
 	DeleteStorageSpace(ctx context.Context, in *v1beta13.DeleteStorageSpaceRequest, opts ...grpc.CallOption) (*v1beta13.DeleteStorageSpaceResponse, error)
-	// Returns the App provider URL, which allows the user to open a resource in an online editor.
+	// Returns the App URL and all necessary info to open a resource in an online editor.
+	// MUST return CODE_NOT_FOUND if the resource does not exist.
 	OpenInApp(ctx context.Context, in *OpenInAppRequest, opts ...grpc.CallOption) (*v1beta15.OpenInAppResponse, error)
 	// Creates a new share.
 	// MUST return CODE_NOT_FOUND if the resource reference does not exist.
@@ -2197,7 +2198,8 @@ type GatewayAPIServer interface {
 	UpdateStorageSpace(context.Context, *v1beta13.UpdateStorageSpaceRequest) (*v1beta13.UpdateStorageSpaceResponse, error)
 	// Deletes a storage space.
 	DeleteStorageSpace(context.Context, *v1beta13.DeleteStorageSpaceRequest) (*v1beta13.DeleteStorageSpaceResponse, error)
-	// Returns the App provider URL, which allows the user to open a resource in an online editor.
+	// Returns the App URL and all necessary info to open a resource in an online editor.
+	// MUST return CODE_NOT_FOUND if the resource does not exist.
 	OpenInApp(context.Context, *OpenInAppRequest) (*v1beta15.OpenInAppResponse, error)
 	// Creates a new share.
 	// MUST return CODE_NOT_FOUND if the resource reference does not exist.
