@@ -2164,10 +2164,10 @@ type RestoreRecycleItemRequest struct {
 	// Opaque information.
 	Opaque *v1beta1.Opaque `protobuf:"bytes,1,opt,name=opaque,proto3" json:"opaque,omitempty"`
 	// REQUIRED.
-	// The reference to which the action should be performed.
+	// The reference to the user's home directory.
 	Ref *Reference `protobuf:"bytes,2,opt,name=ref,proto3" json:"ref,omitempty"`
 	// REQUIRED.
-	// The key for the recycle item to be restored.
+	// The path for the recycle item's original location.
 	Key string `protobuf:"bytes,3,opt,name=key,proto3" json:"key,omitempty"`
 	// OPTIONAL.
 	// An optional restore path for the deleted resource.
