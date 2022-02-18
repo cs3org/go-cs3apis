@@ -26,7 +26,7 @@ var _ = math.Inf
 // proto package needs to be updated.
 const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 
-type GetAuthProviderRequest struct {
+type GetAuthProvidersRequest struct {
 	// OPTIONAL.
 	// Opaque information.
 	Opaque *v1beta1.Opaque `protobuf:"bytes,1,opt,name=opaque,proto3" json:"opaque,omitempty"`
@@ -38,46 +38,46 @@ type GetAuthProviderRequest struct {
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *GetAuthProviderRequest) Reset()         { *m = GetAuthProviderRequest{} }
-func (m *GetAuthProviderRequest) String() string { return proto.CompactTextString(m) }
-func (*GetAuthProviderRequest) ProtoMessage()    {}
-func (*GetAuthProviderRequest) Descriptor() ([]byte, []int) {
+func (m *GetAuthProvidersRequest) Reset()         { *m = GetAuthProvidersRequest{} }
+func (m *GetAuthProvidersRequest) String() string { return proto.CompactTextString(m) }
+func (*GetAuthProvidersRequest) ProtoMessage()    {}
+func (*GetAuthProvidersRequest) Descriptor() ([]byte, []int) {
 	return fileDescriptor_154ff675d363d74d, []int{0}
 }
 
-func (m *GetAuthProviderRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_GetAuthProviderRequest.Unmarshal(m, b)
+func (m *GetAuthProvidersRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_GetAuthProvidersRequest.Unmarshal(m, b)
 }
-func (m *GetAuthProviderRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_GetAuthProviderRequest.Marshal(b, m, deterministic)
+func (m *GetAuthProvidersRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_GetAuthProvidersRequest.Marshal(b, m, deterministic)
 }
-func (m *GetAuthProviderRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_GetAuthProviderRequest.Merge(m, src)
+func (m *GetAuthProvidersRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_GetAuthProvidersRequest.Merge(m, src)
 }
-func (m *GetAuthProviderRequest) XXX_Size() int {
-	return xxx_messageInfo_GetAuthProviderRequest.Size(m)
+func (m *GetAuthProvidersRequest) XXX_Size() int {
+	return xxx_messageInfo_GetAuthProvidersRequest.Size(m)
 }
-func (m *GetAuthProviderRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_GetAuthProviderRequest.DiscardUnknown(m)
+func (m *GetAuthProvidersRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_GetAuthProvidersRequest.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_GetAuthProviderRequest proto.InternalMessageInfo
+var xxx_messageInfo_GetAuthProvidersRequest proto.InternalMessageInfo
 
-func (m *GetAuthProviderRequest) GetOpaque() *v1beta1.Opaque {
+func (m *GetAuthProvidersRequest) GetOpaque() *v1beta1.Opaque {
 	if m != nil {
 		return m.Opaque
 	}
 	return nil
 }
 
-func (m *GetAuthProviderRequest) GetType() string {
+func (m *GetAuthProvidersRequest) GetType() string {
 	if m != nil {
 		return m.Type
 	}
 	return ""
 }
 
-type GetAuthProviderResponse struct {
+type GetAuthProvidersResponse struct {
 	// REQUIRED.
 	// The response status.
 	Status *v1beta11.Status `protobuf:"bytes,1,opt,name=status,proto3" json:"status,omitempty"`
@@ -85,55 +85,55 @@ type GetAuthProviderResponse struct {
 	// Opaque information.
 	Opaque *v1beta1.Opaque `protobuf:"bytes,2,opt,name=opaque,proto3" json:"opaque,omitempty"`
 	// REQUIRED.
-	// The auth provider handling the requested auth call.
-	Provider             *ProviderInfo `protobuf:"bytes,3,opt,name=provider,proto3" json:"provider,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}      `json:"-"`
-	XXX_unrecognized     []byte        `json:"-"`
-	XXX_sizecache        int32         `json:"-"`
+	// The auth providers handling the requested auth call.
+	Providers            []*ProviderInfo `protobuf:"bytes,3,rep,name=providers,proto3" json:"providers,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}        `json:"-"`
+	XXX_unrecognized     []byte          `json:"-"`
+	XXX_sizecache        int32           `json:"-"`
 }
 
-func (m *GetAuthProviderResponse) Reset()         { *m = GetAuthProviderResponse{} }
-func (m *GetAuthProviderResponse) String() string { return proto.CompactTextString(m) }
-func (*GetAuthProviderResponse) ProtoMessage()    {}
-func (*GetAuthProviderResponse) Descriptor() ([]byte, []int) {
+func (m *GetAuthProvidersResponse) Reset()         { *m = GetAuthProvidersResponse{} }
+func (m *GetAuthProvidersResponse) String() string { return proto.CompactTextString(m) }
+func (*GetAuthProvidersResponse) ProtoMessage()    {}
+func (*GetAuthProvidersResponse) Descriptor() ([]byte, []int) {
 	return fileDescriptor_154ff675d363d74d, []int{1}
 }
 
-func (m *GetAuthProviderResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_GetAuthProviderResponse.Unmarshal(m, b)
+func (m *GetAuthProvidersResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_GetAuthProvidersResponse.Unmarshal(m, b)
 }
-func (m *GetAuthProviderResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_GetAuthProviderResponse.Marshal(b, m, deterministic)
+func (m *GetAuthProvidersResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_GetAuthProvidersResponse.Marshal(b, m, deterministic)
 }
-func (m *GetAuthProviderResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_GetAuthProviderResponse.Merge(m, src)
+func (m *GetAuthProvidersResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_GetAuthProvidersResponse.Merge(m, src)
 }
-func (m *GetAuthProviderResponse) XXX_Size() int {
-	return xxx_messageInfo_GetAuthProviderResponse.Size(m)
+func (m *GetAuthProvidersResponse) XXX_Size() int {
+	return xxx_messageInfo_GetAuthProvidersResponse.Size(m)
 }
-func (m *GetAuthProviderResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_GetAuthProviderResponse.DiscardUnknown(m)
+func (m *GetAuthProvidersResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_GetAuthProvidersResponse.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_GetAuthProviderResponse proto.InternalMessageInfo
+var xxx_messageInfo_GetAuthProvidersResponse proto.InternalMessageInfo
 
-func (m *GetAuthProviderResponse) GetStatus() *v1beta11.Status {
+func (m *GetAuthProvidersResponse) GetStatus() *v1beta11.Status {
 	if m != nil {
 		return m.Status
 	}
 	return nil
 }
 
-func (m *GetAuthProviderResponse) GetOpaque() *v1beta1.Opaque {
+func (m *GetAuthProvidersResponse) GetOpaque() *v1beta1.Opaque {
 	if m != nil {
 		return m.Opaque
 	}
 	return nil
 }
 
-func (m *GetAuthProviderResponse) GetProvider() *ProviderInfo {
+func (m *GetAuthProvidersResponse) GetProviders() []*ProviderInfo {
 	if m != nil {
-		return m.Provider
+		return m.Providers
 	}
 	return nil
 }
@@ -241,8 +241,8 @@ func (m *ListAuthProvidersResponse) GetProviders() []*ProviderInfo {
 }
 
 func init() {
-	proto.RegisterType((*GetAuthProviderRequest)(nil), "cs3.auth.registry.v1beta1.GetAuthProviderRequest")
-	proto.RegisterType((*GetAuthProviderResponse)(nil), "cs3.auth.registry.v1beta1.GetAuthProviderResponse")
+	proto.RegisterType((*GetAuthProvidersRequest)(nil), "cs3.auth.registry.v1beta1.GetAuthProvidersRequest")
+	proto.RegisterType((*GetAuthProvidersResponse)(nil), "cs3.auth.registry.v1beta1.GetAuthProvidersResponse")
 	proto.RegisterType((*ListAuthProvidersRequest)(nil), "cs3.auth.registry.v1beta1.ListAuthProvidersRequest")
 	proto.RegisterType((*ListAuthProvidersResponse)(nil), "cs3.auth.registry.v1beta1.ListAuthProvidersResponse")
 }
@@ -252,33 +252,32 @@ func init() {
 }
 
 var fileDescriptor_154ff675d363d74d = []byte{
-	// 411 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xbc, 0x53, 0xcd, 0x6a, 0xdb, 0x30,
-	0x1c, 0xc7, 0xf6, 0x08, 0x8b, 0x72, 0xc8, 0xa6, 0xc3, 0x62, 0x9b, 0x05, 0x82, 0x2f, 0xcb, 0x60,
-	0xc8, 0x38, 0xde, 0x0b, 0x24, 0x61, 0x8c, 0xc0, 0x46, 0x8d, 0x0b, 0x3d, 0x94, 0x40, 0x70, 0x5c,
-	0xb5, 0xf1, 0xa1, 0x91, 0x22, 0xc9, 0xa1, 0xb9, 0xf4, 0xd0, 0x4b, 0xdf, 0xa3, 0xc7, 0x3e, 0x46,
-	0x0f, 0x3d, 0xf4, 0xa9, 0x8a, 0x64, 0xd9, 0xfd, 0xc8, 0x07, 0x4d, 0x0f, 0xbd, 0xd9, 0xfe, 0x7d,
-	0xfd, 0xf5, 0x93, 0xff, 0xe0, 0x57, 0xca, 0x43, 0x3f, 0xc9, 0xc5, 0xcc, 0x67, 0xf8, 0x2c, 0xe3,
-	0x82, 0xad, 0xfc, 0x65, 0x30, 0xc5, 0x22, 0x09, 0xaa, 0x0f, 0x93, 0x84, 0x66, 0x88, 0x32, 0x22,
-	0x08, 0x74, 0x52, 0x1e, 0x22, 0xc9, 0x46, 0x25, 0x88, 0x34, 0xdb, 0xfd, 0xb9, 0xcb, 0x88, 0x93,
-	0x9c, 0xa5, 0x98, 0x17, 0x2e, 0xee, 0x77, 0x49, 0x65, 0x34, 0xad, 0x08, 0x5c, 0x24, 0x22, 0x2f,
-	0xd1, 0xb6, 0x44, 0xc5, 0x8a, 0x62, 0x5e, 0xe1, 0xea, 0xad, 0x80, 0xbd, 0x09, 0xf8, 0xf6, 0x17,
-	0x8b, 0x7e, 0x2e, 0x66, 0x11, 0x23, 0xcb, 0xec, 0x04, 0xb3, 0x18, 0x2f, 0x72, 0xcc, 0x05, 0x0c,
-	0x40, 0x8d, 0xd0, 0x64, 0x91, 0x63, 0xdb, 0xe8, 0x18, 0xdd, 0x46, 0xcf, 0x41, 0x72, 0xda, 0x42,
-	0xab, 0x9d, 0xd0, 0x81, 0x22, 0xc4, 0x9a, 0x08, 0x21, 0xf8, 0x24, 0x71, 0xdb, 0xec, 0x18, 0xdd,
-	0x7a, 0xac, 0x9e, 0xbd, 0x3b, 0x03, 0xb4, 0xd6, 0x12, 0x38, 0x25, 0x73, 0x8e, 0xa1, 0x0f, 0x6a,
-	0xc5, 0xac, 0x3a, 0xa2, 0xa5, 0x22, 0x18, 0x4d, 0xab, 0x80, 0x43, 0x05, 0xc7, 0x9a, 0xf6, 0x6c,
-	0x26, 0xf3, 0xad, 0x33, 0x0d, 0xc1, 0x67, 0xaa, 0x73, 0x6d, 0x4b, 0x89, 0x7e, 0xa0, 0xad, 0xb5,
-	0xa3, 0x72, 0xc4, 0xd1, 0xfc, 0x94, 0xc4, 0x95, 0xd0, 0xfb, 0x0f, 0xec, 0x7f, 0x19, 0x7f, 0x71,
-	0x08, 0xfe, 0xfe, 0x9e, 0xbc, 0x7b, 0x03, 0x38, 0x1b, 0xfc, 0x3e, 0xb0, 0x95, 0x3f, 0xa0, 0x5e,
-	0x1e, 0x8e, 0xdb, 0x56, 0xc7, 0xda, 0xa7, 0x96, 0x27, 0x65, 0xef, 0xda, 0x04, 0x8d, 0x58, 0x93,
-	0xfb, 0xd1, 0x08, 0x5e, 0x80, 0xe6, 0xab, 0xbb, 0x86, 0xc1, 0x0e, 0xdb, 0xcd, 0x7f, 0x9e, 0xdb,
-	0xdb, 0x47, 0xa2, 0x4b, 0xbb, 0x04, 0x5f, 0xd7, 0x1a, 0x85, 0xe1, 0x0e, 0xa3, 0x6d, 0xf7, 0xe9,
-	0xfe, 0xde, 0x4f, 0x54, 0xe4, 0x0f, 0xae, 0x0c, 0xd0, 0x4e, 0xc9, 0xf9, 0x76, 0xed, 0xe0, 0x4b,
-	0x55, 0x14, 0xcd, 0x22, 0xb9, 0x7b, 0x91, 0x71, 0xdc, 0x2c, 0x59, 0x9a, 0x74, 0x63, 0x5a, 0xc3,
-	0x7e, 0x7c, 0x6b, 0x3a, 0x43, 0x1e, 0x22, 0x19, 0x84, 0x4a, 0x11, 0x3a, 0x0a, 0x06, 0x92, 0xf1,
-	0xa0, 0xb0, 0xb1, 0xc4, 0xc6, 0x25, 0x36, 0xd6, 0xd8, 0xb4, 0xa6, 0x76, 0x3a, 0x7c, 0x0c, 0x00,
-	0x00, 0xff, 0xff, 0x4d, 0xe2, 0x79, 0x64, 0x86, 0x04, 0x00, 0x00,
+	// 395 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xd4, 0x93, 0x41, 0x4b, 0xf3, 0x30,
+	0x1c, 0xc6, 0x69, 0xf7, 0x32, 0x58, 0x76, 0x78, 0x67, 0x2e, 0x6b, 0x8b, 0x83, 0xd1, 0x8b, 0x13,
+	0x24, 0xa5, 0xad, 0x5f, 0x60, 0x1b, 0x22, 0x03, 0xc5, 0x52, 0xc1, 0x83, 0x0c, 0xb4, 0xab, 0xd1,
+	0xf5, 0xe0, 0x92, 0x25, 0xe9, 0x60, 0x08, 0x1e, 0x3c, 0xfa, 0x31, 0x3c, 0xfa, 0x3d, 0xf4, 0xe0,
+	0xa7, 0x92, 0xb4, 0x69, 0x15, 0x67, 0x87, 0x03, 0x2f, 0xde, 0xda, 0x3e, 0xbf, 0xff, 0xf3, 0xfc,
+	0x79, 0xd2, 0x80, 0xbd, 0x98, 0xfb, 0x4e, 0x94, 0x8a, 0xa9, 0xc3, 0xf0, 0x4d, 0xc2, 0x05, 0x5b,
+	0x3a, 0x0b, 0x77, 0x82, 0x45, 0xe4, 0x96, 0x1f, 0x2e, 0x22, 0x9a, 0x20, 0xca, 0x88, 0x20, 0xd0,
+	0x8c, 0xb9, 0x8f, 0x24, 0x8d, 0x0a, 0x11, 0x29, 0xda, 0xda, 0x5d, 0x67, 0xc4, 0x49, 0xca, 0x62,
+	0xcc, 0x73, 0x17, 0x6b, 0x5b, 0xa2, 0x8c, 0xc6, 0x25, 0xc0, 0x45, 0x24, 0xd2, 0x42, 0xed, 0x48,
+	0x55, 0x2c, 0x29, 0xe6, 0xa5, 0x9e, 0xbd, 0xe5, 0xb2, 0x7d, 0x09, 0xda, 0x87, 0x58, 0xf4, 0x53,
+	0x31, 0x0d, 0x18, 0x59, 0x24, 0x57, 0x98, 0xf1, 0x10, 0xcf, 0x53, 0xcc, 0x05, 0x74, 0x41, 0x9d,
+	0xd0, 0x68, 0x9e, 0x62, 0x43, 0xeb, 0x6a, 0xbd, 0xa6, 0x67, 0x22, 0xb9, 0x6e, 0x3e, 0xac, 0xac,
+	0xd0, 0x49, 0x06, 0x84, 0x0a, 0x84, 0x10, 0xfc, 0x93, 0xba, 0xa1, 0x77, 0xb5, 0x5e, 0x23, 0xcc,
+	0x9e, 0xed, 0x17, 0x0d, 0x18, 0xab, 0x11, 0x9c, 0x92, 0x19, 0xc7, 0xd0, 0x01, 0xf5, 0x7c, 0x5b,
+	0x95, 0xd1, 0xce, 0x32, 0x18, 0x8d, 0xcb, 0x84, 0xd3, 0x4c, 0x0e, 0x15, 0xf6, 0x69, 0x29, 0xfd,
+	0xa7, 0x4b, 0x1d, 0x80, 0x06, 0x2d, 0x82, 0x8d, 0x5a, 0xb7, 0xd6, 0x6b, 0x7a, 0x3b, 0xa8, 0xb2,
+	0x79, 0x54, 0x2c, 0x39, 0x9a, 0x5d, 0x93, 0xf0, 0x63, 0xd2, 0x3e, 0x06, 0xc6, 0x51, 0xc2, 0x7f,
+	0xab, 0x2a, 0xfb, 0x55, 0x03, 0xe6, 0x37, 0x7e, 0x7f, 0xae, 0x17, 0xef, 0x51, 0x07, 0xcd, 0x50,
+	0xc1, 0xfd, 0x60, 0x04, 0xef, 0x40, 0xeb, 0xeb, 0x71, 0x43, 0x6f, 0x8d, 0x6f, 0xc5, 0xef, 0x67,
+	0xf9, 0x1b, 0xcd, 0xa8, 0xde, 0xee, 0xc1, 0xd6, 0x4a, 0xa9, 0x70, 0x9d, 0x53, 0xd5, 0x91, 0x5a,
+	0xfb, 0x9b, 0x0d, 0xe5, 0xf9, 0x83, 0x07, 0x0d, 0x74, 0x62, 0x72, 0x5b, 0x3d, 0x3b, 0x68, 0x95,
+	0x5d, 0xd1, 0x24, 0x90, 0x57, 0x30, 0xd0, 0xce, 0xff, 0x17, 0x94, 0x82, 0x9e, 0xf4, 0xda, 0xb0,
+	0x1f, 0x3e, 0xeb, 0xe6, 0x90, 0xfb, 0x48, 0x06, 0xa1, 0x62, 0x08, 0x9d, 0xb9, 0x03, 0x49, 0xbc,
+	0x65, 0xda, 0x58, 0x6a, 0xe3, 0x42, 0x1b, 0x2b, 0x6d, 0x52, 0xcf, 0xae, 0xb6, 0xff, 0x1e, 0x00,
+	0x00, 0xff, 0xff, 0xd4, 0x56, 0xe4, 0xbd, 0x8d, 0x04, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -296,7 +295,7 @@ type RegistryAPIClient interface {
 	// Returns the auth provider that is reponsible for the given
 	// resource reference.
 	// MUST return CODE_NOT_FOUND if the reference does not exist.
-	GetAuthProvider(ctx context.Context, in *GetAuthProviderRequest, opts ...grpc.CallOption) (*GetAuthProviderResponse, error)
+	GetAuthProviders(ctx context.Context, in *GetAuthProvidersRequest, opts ...grpc.CallOption) (*GetAuthProvidersResponse, error)
 	// Returns a list of the available auth providers known by this registry.
 	ListAuthProviders(ctx context.Context, in *ListAuthProvidersRequest, opts ...grpc.CallOption) (*ListAuthProvidersResponse, error)
 }
@@ -309,9 +308,9 @@ func NewRegistryAPIClient(cc *grpc.ClientConn) RegistryAPIClient {
 	return &registryAPIClient{cc}
 }
 
-func (c *registryAPIClient) GetAuthProvider(ctx context.Context, in *GetAuthProviderRequest, opts ...grpc.CallOption) (*GetAuthProviderResponse, error) {
-	out := new(GetAuthProviderResponse)
-	err := c.cc.Invoke(ctx, "/cs3.auth.registry.v1beta1.RegistryAPI/GetAuthProvider", in, out, opts...)
+func (c *registryAPIClient) GetAuthProviders(ctx context.Context, in *GetAuthProvidersRequest, opts ...grpc.CallOption) (*GetAuthProvidersResponse, error) {
+	out := new(GetAuthProvidersResponse)
+	err := c.cc.Invoke(ctx, "/cs3.auth.registry.v1beta1.RegistryAPI/GetAuthProviders", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -332,7 +331,7 @@ type RegistryAPIServer interface {
 	// Returns the auth provider that is reponsible for the given
 	// resource reference.
 	// MUST return CODE_NOT_FOUND if the reference does not exist.
-	GetAuthProvider(context.Context, *GetAuthProviderRequest) (*GetAuthProviderResponse, error)
+	GetAuthProviders(context.Context, *GetAuthProvidersRequest) (*GetAuthProvidersResponse, error)
 	// Returns a list of the available auth providers known by this registry.
 	ListAuthProviders(context.Context, *ListAuthProvidersRequest) (*ListAuthProvidersResponse, error)
 }
@@ -341,8 +340,8 @@ type RegistryAPIServer interface {
 type UnimplementedRegistryAPIServer struct {
 }
 
-func (*UnimplementedRegistryAPIServer) GetAuthProvider(ctx context.Context, req *GetAuthProviderRequest) (*GetAuthProviderResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetAuthProvider not implemented")
+func (*UnimplementedRegistryAPIServer) GetAuthProviders(ctx context.Context, req *GetAuthProvidersRequest) (*GetAuthProvidersResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetAuthProviders not implemented")
 }
 func (*UnimplementedRegistryAPIServer) ListAuthProviders(ctx context.Context, req *ListAuthProvidersRequest) (*ListAuthProvidersResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListAuthProviders not implemented")
@@ -352,20 +351,20 @@ func RegisterRegistryAPIServer(s *grpc.Server, srv RegistryAPIServer) {
 	s.RegisterService(&_RegistryAPI_serviceDesc, srv)
 }
 
-func _RegistryAPI_GetAuthProvider_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetAuthProviderRequest)
+func _RegistryAPI_GetAuthProviders_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetAuthProvidersRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(RegistryAPIServer).GetAuthProvider(ctx, in)
+		return srv.(RegistryAPIServer).GetAuthProviders(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/cs3.auth.registry.v1beta1.RegistryAPI/GetAuthProvider",
+		FullMethod: "/cs3.auth.registry.v1beta1.RegistryAPI/GetAuthProviders",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(RegistryAPIServer).GetAuthProvider(ctx, req.(*GetAuthProviderRequest))
+		return srv.(RegistryAPIServer).GetAuthProviders(ctx, req.(*GetAuthProvidersRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -393,8 +392,8 @@ var _RegistryAPI_serviceDesc = grpc.ServiceDesc{
 	HandlerType: (*RegistryAPIServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "GetAuthProvider",
-			Handler:    _RegistryAPI_GetAuthProvider_Handler,
+			MethodName: "GetAuthProviders",
+			Handler:    _RegistryAPI_GetAuthProviders_Handler,
 		},
 		{
 			MethodName: "ListAuthProviders",
