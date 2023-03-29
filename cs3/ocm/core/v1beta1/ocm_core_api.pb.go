@@ -66,6 +66,8 @@ type CreateOCMCoreShareRequest struct {
 	Expiration *v1beta1.Timestamp `protobuf:"bytes,10,opt,name=expiration,proto3" json:"expiration,omitempty"`
 	// REQUIRED.
 	// The protocols which are used to establish synchronisation.
+	// See also cs3/sharing/ocm/v1beta1/resources.proto for how to map
+	// this to the OCM share payload.
 	Protocols            []*v1beta13.Protocol `protobuf:"bytes,11,rep,name=protocols,proto3" json:"protocols,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
 	XXX_unrecognized     []byte               `json:"-"`

@@ -134,7 +134,7 @@ type Share struct {
 	// Last modification time of the share.
 	Mtime *v1beta12.Timestamp `protobuf:"bytes,9,opt,name=mtime,proto3" json:"mtime,omitempty"`
 	// OPTIONAL.
-	// The expiration time for the ocm share.
+	// The expiration time for the OCM share.
 	Expiration *v1beta12.Timestamp `protobuf:"bytes,10,opt,name=expiration,proto3" json:"expiration,omitempty"`
 	// REQUIRED.
 	// Recipient share type.
@@ -350,6 +350,13 @@ type ReceivedShare struct {
 	// Recipient share type.
 	ShareType ShareType `protobuf:"varint,10,opt,name=share_type,json=shareType,proto3,enum=cs3.sharing.ocm.v1beta1.ShareType" json:"share_type,omitempty"`
 	// REQUIRED.
+	// List of protocols offered for this share.
+	// In the OCM specifications, this corresponds to the `protocol`
+	// property, to maintain backwards compatibility with OCM v1 where
+	// only a single protocol was implemented. Furthermore,
+	// `protocol.name` MAY be set to `multi` and `protocol.options`
+	// MAY be left empty in the OCM share payload, in order to use
+	// the `protocol.webdav` and similar properties.
 	Protocols []*Protocol `protobuf:"bytes,11,rep,name=protocols,proto3" json:"protocols,omitempty"`
 	// REQUIRED.
 	// The state of the share.
@@ -558,13 +565,14 @@ func (m *ShareKey) GetGrantee() *v1beta1.Grantee {
 	return nil
 }
 
-// A share id identifies uniquely a // share in the share provider namespace.
+// A share id identifies uniquely a share in the share provider namespace.
 // A ShareId MUST be unique inside the share provider.
 type ShareId struct {
 	// REQUIRED.
 	// The internal id used by service implementor to
-	// uniquely identity the share in the internal
+	// uniquely identify the share in the internal
 	// implementation of the service.
+	// In the OCM specifications, this corresponds to the `providerId`.
 	OpaqueId             string   `protobuf:"bytes,1,opt,name=opaque_id,json=opaqueId,proto3" json:"opaque_id,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
