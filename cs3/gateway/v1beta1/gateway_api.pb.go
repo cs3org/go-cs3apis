@@ -997,6 +997,7 @@ type GatewayAPIClient interface {
 	OpenInApp(ctx context.Context, in *OpenInAppRequest, opts ...grpc.CallOption) (*v1beta15.OpenInAppResponse, error)
 	// Creates a new share.
 	// MUST return CODE_NOT_FOUND if the resource reference does not exist.
+	// MUST return CODE_LOCKED if the resource reference already locked.
 	// MUST return CODE_ALREADY_EXISTS if the share already exists for the 4-tuple consisting of
 	// (owner, shared_resource, grantee).
 	// New shares MUST be created in the state SHARE_STATE_PENDING.
@@ -2183,6 +2184,7 @@ type GatewayAPIServer interface {
 	OpenInApp(context.Context, *OpenInAppRequest) (*v1beta15.OpenInAppResponse, error)
 	// Creates a new share.
 	// MUST return CODE_NOT_FOUND if the resource reference does not exist.
+	// MUST return CODE_LOCKED if the resource reference already locked.
 	// MUST return CODE_ALREADY_EXISTS if the share already exists for the 4-tuple consisting of
 	// (owner, shared_resource, grantee).
 	// New shares MUST be created in the state SHARE_STATE_PENDING.
