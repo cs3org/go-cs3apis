@@ -103,7 +103,7 @@ func (c *userAPIClient) FindUsers(ctx context.Context, in *FindUsersRequest, opt
 }
 
 // UserAPIServer is the server API for UserAPI service.
-// All implementations must embed UnimplementedUserAPIServer
+// All implementations should embed UnimplementedUserAPIServer
 // for forward compatibility
 type UserAPIServer interface {
 	// Gets the information about a user by the user id.
@@ -115,10 +115,9 @@ type UserAPIServer interface {
 	// Finds users by any attribute of the user.
 	// TODO(labkode): to define the filters that make more sense.
 	FindUsers(context.Context, *FindUsersRequest) (*FindUsersResponse, error)
-	mustEmbedUnimplementedUserAPIServer()
 }
 
-// UnimplementedUserAPIServer must be embedded to have forward compatible implementations.
+// UnimplementedUserAPIServer should be embedded to have forward compatible implementations.
 type UnimplementedUserAPIServer struct {
 }
 
@@ -134,7 +133,6 @@ func (UnimplementedUserAPIServer) GetUserGroups(context.Context, *GetUserGroupsR
 func (UnimplementedUserAPIServer) FindUsers(context.Context, *FindUsersRequest) (*FindUsersResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindUsers not implemented")
 }
-func (UnimplementedUserAPIServer) mustEmbedUnimplementedUserAPIServer() {}
 
 // UnsafeUserAPIServer may be embedded to opt out of forward compatibility for this service.
 // Use of this interface is not recommended, as added methods to UserAPIServer will

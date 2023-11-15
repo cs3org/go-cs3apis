@@ -136,7 +136,7 @@ func (c *linkAPIClient) UpdatePublicShare(ctx context.Context, in *UpdatePublicS
 }
 
 // LinkAPIServer is the server API for LinkAPI service.
-// All implementations must embed UnimplementedLinkAPIServer
+// All implementations should embed UnimplementedLinkAPIServer
 // for forward compatibility
 type LinkAPIServer interface {
 	// Creates a new share.
@@ -161,10 +161,9 @@ type LinkAPIServer interface {
 	// Updates a share.
 	// MUST return CODE_NOT_FOUND if the share reference does not exist.
 	UpdatePublicShare(context.Context, *UpdatePublicShareRequest) (*UpdatePublicShareResponse, error)
-	mustEmbedUnimplementedLinkAPIServer()
 }
 
-// UnimplementedLinkAPIServer must be embedded to have forward compatible implementations.
+// UnimplementedLinkAPIServer should be embedded to have forward compatible implementations.
 type UnimplementedLinkAPIServer struct {
 }
 
@@ -186,7 +185,6 @@ func (UnimplementedLinkAPIServer) ListPublicShares(context.Context, *ListPublicS
 func (UnimplementedLinkAPIServer) UpdatePublicShare(context.Context, *UpdatePublicShareRequest) (*UpdatePublicShareResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdatePublicShare not implemented")
 }
-func (UnimplementedLinkAPIServer) mustEmbedUnimplementedLinkAPIServer() {}
 
 // UnsafeLinkAPIServer may be embedded to opt out of forward compatibility for this service.
 // Use of this interface is not recommended, as added methods to LinkAPIServer will

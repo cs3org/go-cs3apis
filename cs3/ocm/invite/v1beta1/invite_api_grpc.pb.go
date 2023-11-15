@@ -149,7 +149,7 @@ func (c *inviteAPIClient) DeleteAcceptedUser(ctx context.Context, in *DeleteAcce
 }
 
 // InviteAPIServer is the server API for InviteAPI service.
-// All implementations must embed UnimplementedInviteAPIServer
+// All implementations should embed UnimplementedInviteAPIServer
 // for forward compatibility
 type InviteAPIServer interface {
 	// Generates a new token for the user with a validity of 24 hours.
@@ -177,10 +177,9 @@ type InviteAPIServer interface {
 	// Delete a previously accepted remote user, that is unfriend that user.
 	// MUST return CODE_NOT_FOUND if the user does not exist.
 	DeleteAcceptedUser(context.Context, *DeleteAcceptedUserRequest) (*DeleteAcceptedUserResponse, error)
-	mustEmbedUnimplementedInviteAPIServer()
 }
 
-// UnimplementedInviteAPIServer must be embedded to have forward compatible implementations.
+// UnimplementedInviteAPIServer should be embedded to have forward compatible implementations.
 type UnimplementedInviteAPIServer struct {
 }
 
@@ -205,7 +204,6 @@ func (UnimplementedInviteAPIServer) FindAcceptedUsers(context.Context, *FindAcce
 func (UnimplementedInviteAPIServer) DeleteAcceptedUser(context.Context, *DeleteAcceptedUserRequest) (*DeleteAcceptedUserResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteAcceptedUser not implemented")
 }
-func (UnimplementedInviteAPIServer) mustEmbedUnimplementedInviteAPIServer() {}
 
 // UnsafeInviteAPIServer may be embedded to opt out of forward compatibility for this service.
 // Use of this interface is not recommended, as added methods to InviteAPIServer will

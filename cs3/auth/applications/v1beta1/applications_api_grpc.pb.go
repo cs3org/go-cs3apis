@@ -103,7 +103,7 @@ func (c *applicationsAPIClient) GetAppPassword(ctx context.Context, in *GetAppPa
 }
 
 // ApplicationsAPIServer is the server API for ApplicationsAPI service.
-// All implementations must embed UnimplementedApplicationsAPIServer
+// All implementations should embed UnimplementedApplicationsAPIServer
 // for forward compatibility
 type ApplicationsAPIServer interface {
 	// GenerateAppPassword creates a password with specified scope to be used by
@@ -115,10 +115,9 @@ type ApplicationsAPIServer interface {
 	InvalidateAppPassword(context.Context, *InvalidateAppPasswordRequest) (*InvalidateAppPasswordResponse, error)
 	// GetAppPassword retrieves the password information by the combination of username and password.
 	GetAppPassword(context.Context, *GetAppPasswordRequest) (*GetAppPasswordResponse, error)
-	mustEmbedUnimplementedApplicationsAPIServer()
 }
 
-// UnimplementedApplicationsAPIServer must be embedded to have forward compatible implementations.
+// UnimplementedApplicationsAPIServer should be embedded to have forward compatible implementations.
 type UnimplementedApplicationsAPIServer struct {
 }
 
@@ -134,7 +133,6 @@ func (UnimplementedApplicationsAPIServer) InvalidateAppPassword(context.Context,
 func (UnimplementedApplicationsAPIServer) GetAppPassword(context.Context, *GetAppPasswordRequest) (*GetAppPasswordResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetAppPassword not implemented")
 }
-func (UnimplementedApplicationsAPIServer) mustEmbedUnimplementedApplicationsAPIServer() {}
 
 // UnsafeApplicationsAPIServer may be embedded to opt out of forward compatibility for this service.
 // Use of this interface is not recommended, as added methods to ApplicationsAPIServer will

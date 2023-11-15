@@ -162,7 +162,7 @@ func (c *collaborationAPIClient) GetReceivedShare(ctx context.Context, in *GetRe
 }
 
 // CollaborationAPIServer is the server API for CollaborationAPI service.
-// All implementations must embed UnimplementedCollaborationAPIServer
+// All implementations should embed UnimplementedCollaborationAPIServer
 // for forward compatibility
 type CollaborationAPIServer interface {
 	// Creates a new share.
@@ -193,10 +193,9 @@ type CollaborationAPIServer interface {
 	// Get the information for the given received share reference.
 	// MUST return CODE_NOT_FOUND if the received share reference does not exist.
 	GetReceivedShare(context.Context, *GetReceivedShareRequest) (*GetReceivedShareResponse, error)
-	mustEmbedUnimplementedCollaborationAPIServer()
 }
 
-// UnimplementedCollaborationAPIServer must be embedded to have forward compatible implementations.
+// UnimplementedCollaborationAPIServer should be embedded to have forward compatible implementations.
 type UnimplementedCollaborationAPIServer struct {
 }
 
@@ -224,7 +223,6 @@ func (UnimplementedCollaborationAPIServer) UpdateReceivedShare(context.Context, 
 func (UnimplementedCollaborationAPIServer) GetReceivedShare(context.Context, *GetReceivedShareRequest) (*GetReceivedShareResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetReceivedShare not implemented")
 }
-func (UnimplementedCollaborationAPIServer) mustEmbedUnimplementedCollaborationAPIServer() {}
 
 // UnsafeCollaborationAPIServer may be embedded to opt out of forward compatibility for this service.
 // Use of this interface is not recommended, as added methods to CollaborationAPIServer will

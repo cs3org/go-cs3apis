@@ -1375,7 +1375,7 @@ func (c *gatewayAPIClient) CheckPermission(ctx context.Context, in *v1beta115.Ch
 }
 
 // GatewayAPIServer is the server API for GatewayAPI service.
-// All implementations must embed UnimplementedGatewayAPIServer
+// All implementations should embed UnimplementedGatewayAPIServer
 // for forward compatibility
 type GatewayAPIServer interface {
 	// Authenticates a user.
@@ -1667,10 +1667,9 @@ type GatewayAPIServer interface {
 	RetryTransfer(context.Context, *v1beta114.RetryTransferRequest) (*v1beta114.RetryTransferResponse, error)
 	// CheckPermission checks if a user or group has a certain permission.
 	CheckPermission(context.Context, *v1beta115.CheckPermissionRequest) (*v1beta115.CheckPermissionResponse, error)
-	mustEmbedUnimplementedGatewayAPIServer()
 }
 
-// UnimplementedGatewayAPIServer must be embedded to have forward compatible implementations.
+// UnimplementedGatewayAPIServer should be embedded to have forward compatible implementations.
 type UnimplementedGatewayAPIServer struct {
 }
 
@@ -1965,7 +1964,6 @@ func (UnimplementedGatewayAPIServer) RetryTransfer(context.Context, *v1beta114.R
 func (UnimplementedGatewayAPIServer) CheckPermission(context.Context, *v1beta115.CheckPermissionRequest) (*v1beta115.CheckPermissionResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CheckPermission not implemented")
 }
-func (UnimplementedGatewayAPIServer) mustEmbedUnimplementedGatewayAPIServer() {}
 
 // UnsafeGatewayAPIServer may be embedded to opt out of forward compatibility for this service.
 // Use of this interface is not recommended, as added methods to GatewayAPIServer will

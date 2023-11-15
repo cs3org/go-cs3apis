@@ -80,7 +80,7 @@ func (c *registryAPIClient) ListAuthProviders(ctx context.Context, in *ListAuthP
 }
 
 // RegistryAPIServer is the server API for RegistryAPI service.
-// All implementations must embed UnimplementedRegistryAPIServer
+// All implementations should embed UnimplementedRegistryAPIServer
 // for forward compatibility
 type RegistryAPIServer interface {
 	// Returns the auth provider that is reponsible for the given
@@ -89,10 +89,9 @@ type RegistryAPIServer interface {
 	GetAuthProviders(context.Context, *GetAuthProvidersRequest) (*GetAuthProvidersResponse, error)
 	// Returns a list of the available auth providers known by this registry.
 	ListAuthProviders(context.Context, *ListAuthProvidersRequest) (*ListAuthProvidersResponse, error)
-	mustEmbedUnimplementedRegistryAPIServer()
 }
 
-// UnimplementedRegistryAPIServer must be embedded to have forward compatible implementations.
+// UnimplementedRegistryAPIServer should be embedded to have forward compatible implementations.
 type UnimplementedRegistryAPIServer struct {
 }
 
@@ -102,7 +101,6 @@ func (UnimplementedRegistryAPIServer) GetAuthProviders(context.Context, *GetAuth
 func (UnimplementedRegistryAPIServer) ListAuthProviders(context.Context, *ListAuthProvidersRequest) (*ListAuthProvidersResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListAuthProviders not implemented")
 }
-func (UnimplementedRegistryAPIServer) mustEmbedUnimplementedRegistryAPIServer() {}
 
 // UnsafeRegistryAPIServer may be embedded to opt out of forward compatibility for this service.
 // Use of this interface is not recommended, as added methods to RegistryAPIServer will

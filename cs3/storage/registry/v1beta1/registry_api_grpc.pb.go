@@ -92,7 +92,7 @@ func (c *registryAPIClient) GetHome(ctx context.Context, in *GetHomeRequest, opt
 }
 
 // RegistryAPIServer is the server API for RegistryAPI service.
-// All implementations must embed UnimplementedRegistryAPIServer
+// All implementations should embed UnimplementedRegistryAPIServer
 // for forward compatibility
 type RegistryAPIServer interface {
 	// Returns the storage provider that is reponsible for the given
@@ -103,10 +103,9 @@ type RegistryAPIServer interface {
 	ListStorageProviders(context.Context, *ListStorageProvidersRequest) (*ListStorageProvidersResponse, error)
 	// Gets the user home storage provider.
 	GetHome(context.Context, *GetHomeRequest) (*GetHomeResponse, error)
-	mustEmbedUnimplementedRegistryAPIServer()
 }
 
-// UnimplementedRegistryAPIServer must be embedded to have forward compatible implementations.
+// UnimplementedRegistryAPIServer should be embedded to have forward compatible implementations.
 type UnimplementedRegistryAPIServer struct {
 }
 
@@ -119,7 +118,6 @@ func (UnimplementedRegistryAPIServer) ListStorageProviders(context.Context, *Lis
 func (UnimplementedRegistryAPIServer) GetHome(context.Context, *GetHomeRequest) (*GetHomeResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetHome not implemented")
 }
-func (UnimplementedRegistryAPIServer) mustEmbedUnimplementedRegistryAPIServer() {}
 
 // UnsafeRegistryAPIServer may be embedded to opt out of forward compatibility for this service.
 // Use of this interface is not recommended, as added methods to RegistryAPIServer will

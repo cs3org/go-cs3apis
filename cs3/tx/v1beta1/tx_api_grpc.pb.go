@@ -116,7 +116,7 @@ func (c *txAPIClient) RetryTransfer(ctx context.Context, in *RetryTransferReques
 }
 
 // TxAPIServer is the server API for TxAPI service.
-// All implementations must embed UnimplementedTxAPIServer
+// All implementations should embed UnimplementedTxAPIServer
 // for forward compatibility
 type TxAPIServer interface {
 	// Requests creation of a transfer.
@@ -131,10 +131,9 @@ type TxAPIServer interface {
 	ListTransfers(context.Context, *ListTransfersRequest) (*ListTransfersResponse, error)
 	// Requests retrying a transfer.
 	RetryTransfer(context.Context, *RetryTransferRequest) (*RetryTransferResponse, error)
-	mustEmbedUnimplementedTxAPIServer()
 }
 
-// UnimplementedTxAPIServer must be embedded to have forward compatible implementations.
+// UnimplementedTxAPIServer should be embedded to have forward compatible implementations.
 type UnimplementedTxAPIServer struct {
 }
 
@@ -153,7 +152,6 @@ func (UnimplementedTxAPIServer) ListTransfers(context.Context, *ListTransfersReq
 func (UnimplementedTxAPIServer) RetryTransfer(context.Context, *RetryTransferRequest) (*RetryTransferResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RetryTransfer not implemented")
 }
-func (UnimplementedTxAPIServer) mustEmbedUnimplementedTxAPIServer() {}
 
 // UnsafeTxAPIServer may be embedded to opt out of forward compatibility for this service.
 // Use of this interface is not recommended, as added methods to TxAPIServer will

@@ -594,7 +594,7 @@ func (c *providerAPIClient) DeleteStorageSpace(ctx context.Context, in *DeleteSt
 }
 
 // ProviderAPIServer is the server API for ProviderAPI service.
-// All implementations must embed UnimplementedProviderAPIServer
+// All implementations should embed UnimplementedProviderAPIServer
 // for forward compatibility
 type ProviderAPIServer interface {
 	// Adds a new grant for the provided reference.
@@ -731,10 +731,9 @@ type ProviderAPIServer interface {
 	UpdateStorageSpace(context.Context, *UpdateStorageSpaceRequest) (*UpdateStorageSpaceResponse, error)
 	// Deletes a storage space.
 	DeleteStorageSpace(context.Context, *DeleteStorageSpaceRequest) (*DeleteStorageSpaceResponse, error)
-	mustEmbedUnimplementedProviderAPIServer()
 }
 
-// UnimplementedProviderAPIServer must be embedded to have forward compatible implementations.
+// UnimplementedProviderAPIServer should be embedded to have forward compatible implementations.
 type UnimplementedProviderAPIServer struct {
 }
 
@@ -846,7 +845,6 @@ func (UnimplementedProviderAPIServer) UpdateStorageSpace(context.Context, *Updat
 func (UnimplementedProviderAPIServer) DeleteStorageSpace(context.Context, *DeleteStorageSpaceRequest) (*DeleteStorageSpaceResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteStorageSpace not implemented")
 }
-func (UnimplementedProviderAPIServer) mustEmbedUnimplementedProviderAPIServer() {}
 
 // UnsafeProviderAPIServer may be embedded to opt out of forward compatibility for this service.
 // Use of this interface is not recommended, as added methods to ProviderAPIServer will

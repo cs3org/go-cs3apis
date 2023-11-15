@@ -67,23 +67,21 @@ func (c *providerAPIClient) OpenInApp(ctx context.Context, in *OpenInAppRequest,
 }
 
 // ProviderAPIServer is the server API for ProviderAPI service.
-// All implementations must embed UnimplementedProviderAPIServer
+// All implementations should embed UnimplementedProviderAPIServer
 // for forward compatibility
 type ProviderAPIServer interface {
 	// Returns the App URL and all necessary info to open a resource in an online editor.
 	// MUST return CODE_NOT_FOUND if the resource does not exist.
 	OpenInApp(context.Context, *OpenInAppRequest) (*OpenInAppResponse, error)
-	mustEmbedUnimplementedProviderAPIServer()
 }
 
-// UnimplementedProviderAPIServer must be embedded to have forward compatible implementations.
+// UnimplementedProviderAPIServer should be embedded to have forward compatible implementations.
 type UnimplementedProviderAPIServer struct {
 }
 
 func (UnimplementedProviderAPIServer) OpenInApp(context.Context, *OpenInAppRequest) (*OpenInAppResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method OpenInApp not implemented")
 }
-func (UnimplementedProviderAPIServer) mustEmbedUnimplementedProviderAPIServer() {}
 
 // UnsafeProviderAPIServer may be embedded to opt out of forward compatibility for this service.
 // Use of this interface is not recommended, as added methods to ProviderAPIServer will

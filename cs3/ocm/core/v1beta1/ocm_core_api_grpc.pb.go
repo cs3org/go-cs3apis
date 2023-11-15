@@ -93,7 +93,7 @@ func (c *ocmCoreAPIClient) DeleteOCMCoreShare(ctx context.Context, in *DeleteOCM
 }
 
 // OcmCoreAPIServer is the server API for OcmCoreAPI service.
-// All implementations must embed UnimplementedOcmCoreAPIServer
+// All implementations should embed UnimplementedOcmCoreAPIServer
 // for forward compatibility
 type OcmCoreAPIServer interface {
 	// Creates a new OCM share, in response to a call from remote to:
@@ -105,10 +105,9 @@ type OcmCoreAPIServer interface {
 	// Deletes an OCM share, in response to a notification from the remote system to:
 	// https://cs3org.github.io/OCM-API/docs.html?branch=v1.1.0&repo=OCM-API&user=cs3org#/paths/~1notifications/post
 	DeleteOCMCoreShare(context.Context, *DeleteOCMCoreShareRequest) (*DeleteOCMCoreShareResponse, error)
-	mustEmbedUnimplementedOcmCoreAPIServer()
 }
 
-// UnimplementedOcmCoreAPIServer must be embedded to have forward compatible implementations.
+// UnimplementedOcmCoreAPIServer should be embedded to have forward compatible implementations.
 type UnimplementedOcmCoreAPIServer struct {
 }
 
@@ -121,7 +120,6 @@ func (UnimplementedOcmCoreAPIServer) UpdateOCMCoreShare(context.Context, *Update
 func (UnimplementedOcmCoreAPIServer) DeleteOCMCoreShare(context.Context, *DeleteOCMCoreShareRequest) (*DeleteOCMCoreShareResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteOCMCoreShare not implemented")
 }
-func (UnimplementedOcmCoreAPIServer) mustEmbedUnimplementedOcmCoreAPIServer() {}
 
 // UnsafeOcmCoreAPIServer may be embedded to opt out of forward compatibility for this service.
 // Use of this interface is not recommended, as added methods to OcmCoreAPIServer will

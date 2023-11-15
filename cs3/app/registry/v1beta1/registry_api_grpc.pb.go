@@ -127,7 +127,7 @@ func (c *registryAPIClient) SetDefaultAppProviderForMimeType(ctx context.Context
 }
 
 // RegistryAPIServer is the server API for RegistryAPI service.
-// All implementations must embed UnimplementedRegistryAPIServer
+// All implementations should embed UnimplementedRegistryAPIServer
 // for forward compatibility
 type RegistryAPIServer interface {
 	// Returns the app providers that are capable of handling this resource info.
@@ -143,10 +143,9 @@ type RegistryAPIServer interface {
 	GetDefaultAppProviderForMimeType(context.Context, *GetDefaultAppProviderForMimeTypeRequest) (*GetDefaultAppProviderForMimeTypeResponse, error)
 	// Sets the default app provider for a specified mime type.
 	SetDefaultAppProviderForMimeType(context.Context, *SetDefaultAppProviderForMimeTypeRequest) (*SetDefaultAppProviderForMimeTypeResponse, error)
-	mustEmbedUnimplementedRegistryAPIServer()
 }
 
-// UnimplementedRegistryAPIServer must be embedded to have forward compatible implementations.
+// UnimplementedRegistryAPIServer should be embedded to have forward compatible implementations.
 type UnimplementedRegistryAPIServer struct {
 }
 
@@ -168,7 +167,6 @@ func (UnimplementedRegistryAPIServer) GetDefaultAppProviderForMimeType(context.C
 func (UnimplementedRegistryAPIServer) SetDefaultAppProviderForMimeType(context.Context, *SetDefaultAppProviderForMimeTypeRequest) (*SetDefaultAppProviderForMimeTypeResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SetDefaultAppProviderForMimeType not implemented")
 }
-func (UnimplementedRegistryAPIServer) mustEmbedUnimplementedRegistryAPIServer() {}
 
 // UnsafeRegistryAPIServer may be embedded to opt out of forward compatibility for this service.
 // Use of this interface is not recommended, as added methods to RegistryAPIServer will

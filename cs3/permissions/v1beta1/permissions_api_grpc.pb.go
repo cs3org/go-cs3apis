@@ -66,22 +66,20 @@ func (c *permissionsAPIClient) CheckPermission(ctx context.Context, in *CheckPer
 }
 
 // PermissionsAPIServer is the server API for PermissionsAPI service.
-// All implementations must embed UnimplementedPermissionsAPIServer
+// All implementations should embed UnimplementedPermissionsAPIServer
 // for forward compatibility
 type PermissionsAPIServer interface {
 	// CheckPermission defines a method to check permission/role.
 	CheckPermission(context.Context, *CheckPermissionRequest) (*CheckPermissionResponse, error)
-	mustEmbedUnimplementedPermissionsAPIServer()
 }
 
-// UnimplementedPermissionsAPIServer must be embedded to have forward compatible implementations.
+// UnimplementedPermissionsAPIServer should be embedded to have forward compatible implementations.
 type UnimplementedPermissionsAPIServer struct {
 }
 
 func (UnimplementedPermissionsAPIServer) CheckPermission(context.Context, *CheckPermissionRequest) (*CheckPermissionResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CheckPermission not implemented")
 }
-func (UnimplementedPermissionsAPIServer) mustEmbedUnimplementedPermissionsAPIServer() {}
 
 // UnsafePermissionsAPIServer may be embedded to opt out of forward compatibility for this service.
 // Use of this interface is not recommended, as added methods to PermissionsAPIServer will

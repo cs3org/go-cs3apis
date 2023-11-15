@@ -79,7 +79,7 @@ func (c *preferencesAPIClient) GetKey(ctx context.Context, in *GetKeyRequest, op
 }
 
 // PreferencesAPIServer is the server API for PreferencesAPI service.
-// All implementations must embed UnimplementedPreferencesAPIServer
+// All implementations should embed UnimplementedPreferencesAPIServer
 // for forward compatibility
 type PreferencesAPIServer interface {
 	// Maps the key-value pair.
@@ -87,10 +87,9 @@ type PreferencesAPIServer interface {
 	// Returns the value associated with the
 	// requested key.
 	GetKey(context.Context, *GetKeyRequest) (*GetKeyResponse, error)
-	mustEmbedUnimplementedPreferencesAPIServer()
 }
 
-// UnimplementedPreferencesAPIServer must be embedded to have forward compatible implementations.
+// UnimplementedPreferencesAPIServer should be embedded to have forward compatible implementations.
 type UnimplementedPreferencesAPIServer struct {
 }
 
@@ -100,7 +99,6 @@ func (UnimplementedPreferencesAPIServer) SetKey(context.Context, *SetKeyRequest)
 func (UnimplementedPreferencesAPIServer) GetKey(context.Context, *GetKeyRequest) (*GetKeyResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetKey not implemented")
 }
-func (UnimplementedPreferencesAPIServer) mustEmbedUnimplementedPreferencesAPIServer() {}
 
 // UnsafePreferencesAPIServer may be embedded to opt out of forward compatibility for this service.
 // Use of this interface is not recommended, as added methods to PreferencesAPIServer will

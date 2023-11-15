@@ -92,7 +92,7 @@ func (c *providerAPIClient) ListAllProviders(ctx context.Context, in *ListAllPro
 }
 
 // ProviderAPIServer is the server API for ProviderAPI service.
-// All implementations must embed UnimplementedProviderAPIServer
+// All implementations should embed UnimplementedProviderAPIServer
 // for forward compatibility
 type ProviderAPIServer interface {
 	// Check if a given system provider is registered in the mesh or not.
@@ -103,10 +103,9 @@ type ProviderAPIServer interface {
 	GetInfoByDomain(context.Context, *GetInfoByDomainRequest) (*GetInfoByDomainResponse, error)
 	// Get the information of all the providers registered in the mesh.
 	ListAllProviders(context.Context, *ListAllProvidersRequest) (*ListAllProvidersResponse, error)
-	mustEmbedUnimplementedProviderAPIServer()
 }
 
-// UnimplementedProviderAPIServer must be embedded to have forward compatible implementations.
+// UnimplementedProviderAPIServer should be embedded to have forward compatible implementations.
 type UnimplementedProviderAPIServer struct {
 }
 
@@ -119,7 +118,6 @@ func (UnimplementedProviderAPIServer) GetInfoByDomain(context.Context, *GetInfoB
 func (UnimplementedProviderAPIServer) ListAllProviders(context.Context, *ListAllProvidersRequest) (*ListAllProvidersResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListAllProviders not implemented")
 }
-func (UnimplementedProviderAPIServer) mustEmbedUnimplementedProviderAPIServer() {}
 
 // UnsafeProviderAPIServer may be embedded to opt out of forward compatibility for this service.
 // Use of this interface is not recommended, as added methods to ProviderAPIServer will

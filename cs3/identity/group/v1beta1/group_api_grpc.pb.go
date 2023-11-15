@@ -114,7 +114,7 @@ func (c *groupAPIClient) FindGroups(ctx context.Context, in *FindGroupsRequest, 
 }
 
 // GroupAPIServer is the server API for GroupAPI service.
-// All implementations must embed UnimplementedGroupAPIServer
+// All implementations should embed UnimplementedGroupAPIServer
 // for forward compatibility
 type GroupAPIServer interface {
 	// Gets the information about a group by the group id.
@@ -127,10 +127,9 @@ type GroupAPIServer interface {
 	HasMember(context.Context, *HasMemberRequest) (*HasMemberResponse, error)
 	// Finds groups whose names match the specified filter.
 	FindGroups(context.Context, *FindGroupsRequest) (*FindGroupsResponse, error)
-	mustEmbedUnimplementedGroupAPIServer()
 }
 
-// UnimplementedGroupAPIServer must be embedded to have forward compatible implementations.
+// UnimplementedGroupAPIServer should be embedded to have forward compatible implementations.
 type UnimplementedGroupAPIServer struct {
 }
 
@@ -149,7 +148,6 @@ func (UnimplementedGroupAPIServer) HasMember(context.Context, *HasMemberRequest)
 func (UnimplementedGroupAPIServer) FindGroups(context.Context, *FindGroupsRequest) (*FindGroupsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindGroups not implemented")
 }
-func (UnimplementedGroupAPIServer) mustEmbedUnimplementedGroupAPIServer() {}
 
 // UnsafeGroupAPIServer may be embedded to opt out of forward compatibility for this service.
 // Use of this interface is not recommended, as added methods to GroupAPIServer will

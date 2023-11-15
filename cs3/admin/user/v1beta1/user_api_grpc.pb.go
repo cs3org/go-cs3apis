@@ -78,17 +78,16 @@ func (c *userAPIClient) DeleteUser(ctx context.Context, in *DeleteUserRequest, o
 }
 
 // UserAPIServer is the server API for UserAPI service.
-// All implementations must embed UnimplementedUserAPIServer
+// All implementations should embed UnimplementedUserAPIServer
 // for forward compatibility
 type UserAPIServer interface {
 	// Create a user account.
 	CreateUser(context.Context, *CreateUserRequest) (*CreateUserResponse, error)
 	// Delete a user account.
 	DeleteUser(context.Context, *DeleteUserRequest) (*DeleteUserResponse, error)
-	mustEmbedUnimplementedUserAPIServer()
 }
 
-// UnimplementedUserAPIServer must be embedded to have forward compatible implementations.
+// UnimplementedUserAPIServer should be embedded to have forward compatible implementations.
 type UnimplementedUserAPIServer struct {
 }
 
@@ -98,7 +97,6 @@ func (UnimplementedUserAPIServer) CreateUser(context.Context, *CreateUserRequest
 func (UnimplementedUserAPIServer) DeleteUser(context.Context, *DeleteUserRequest) (*DeleteUserResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteUser not implemented")
 }
-func (UnimplementedUserAPIServer) mustEmbedUnimplementedUserAPIServer() {}
 
 // UnsafeUserAPIServer may be embedded to opt out of forward compatibility for this service.
 // Use of this interface is not recommended, as added methods to UserAPIServer will

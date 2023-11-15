@@ -182,7 +182,7 @@ func (c *ocmAPIClient) GetReceivedOCMShare(ctx context.Context, in *GetReceivedO
 }
 
 // OcmAPIServer is the server API for OcmAPI service.
-// All implementations must embed UnimplementedOcmAPIServer
+// All implementations should embed UnimplementedOcmAPIServer
 // for forward compatibility
 type OcmAPIServer interface {
 	// Creates a new ocm share.
@@ -223,10 +223,9 @@ type OcmAPIServer interface {
 	// Get the information for the given received share reference.
 	// MUST return CODE_NOT_FOUND if the received share reference does not exist.
 	GetReceivedOCMShare(context.Context, *GetReceivedOCMShareRequest) (*GetReceivedOCMShareResponse, error)
-	mustEmbedUnimplementedOcmAPIServer()
 }
 
-// UnimplementedOcmAPIServer must be embedded to have forward compatible implementations.
+// UnimplementedOcmAPIServer should be embedded to have forward compatible implementations.
 type UnimplementedOcmAPIServer struct {
 }
 
@@ -257,7 +256,6 @@ func (UnimplementedOcmAPIServer) UpdateReceivedOCMShare(context.Context, *Update
 func (UnimplementedOcmAPIServer) GetReceivedOCMShare(context.Context, *GetReceivedOCMShareRequest) (*GetReceivedOCMShareResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetReceivedOCMShare not implemented")
 }
-func (UnimplementedOcmAPIServer) mustEmbedUnimplementedOcmAPIServer() {}
 
 // UnsafeOcmAPIServer may be embedded to opt out of forward compatibility for this service.
 // Use of this interface is not recommended, as added methods to OcmAPIServer will
