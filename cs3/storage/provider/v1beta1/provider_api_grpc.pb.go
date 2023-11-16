@@ -69,10 +69,6 @@ const (
 	ProviderAPI_Unlock_FullMethodName                 = "/cs3.storage.provider.v1beta1.ProviderAPI/Unlock"
 	ProviderAPI_CreateHome_FullMethodName             = "/cs3.storage.provider.v1beta1.ProviderAPI/CreateHome"
 	ProviderAPI_GetHome_FullMethodName                = "/cs3.storage.provider.v1beta1.ProviderAPI/GetHome"
-	ProviderAPI_CreateStorageSpace_FullMethodName     = "/cs3.storage.provider.v1beta1.ProviderAPI/CreateStorageSpace"
-	ProviderAPI_ListStorageSpaces_FullMethodName      = "/cs3.storage.provider.v1beta1.ProviderAPI/ListStorageSpaces"
-	ProviderAPI_UpdateStorageSpace_FullMethodName     = "/cs3.storage.provider.v1beta1.ProviderAPI/UpdateStorageSpace"
-	ProviderAPI_DeleteStorageSpace_FullMethodName     = "/cs3.storage.provider.v1beta1.ProviderAPI/DeleteStorageSpace"
 )
 
 // ProviderAPIClient is the client API for ProviderAPI service.
@@ -205,14 +201,6 @@ type ProviderAPIClient interface {
 	CreateHome(ctx context.Context, in *CreateHomeRequest, opts ...grpc.CallOption) (*CreateHomeResponse, error)
 	// Gets the home path for the user.
 	GetHome(ctx context.Context, in *GetHomeRequest, opts ...grpc.CallOption) (*GetHomeResponse, error)
-	// Creates a storage space.
-	CreateStorageSpace(ctx context.Context, in *CreateStorageSpaceRequest, opts ...grpc.CallOption) (*CreateStorageSpaceResponse, error)
-	// Lists storage spaces.
-	ListStorageSpaces(ctx context.Context, in *ListStorageSpacesRequest, opts ...grpc.CallOption) (*ListStorageSpacesResponse, error)
-	// Updates a storage space.
-	UpdateStorageSpace(ctx context.Context, in *UpdateStorageSpaceRequest, opts ...grpc.CallOption) (*UpdateStorageSpaceResponse, error)
-	// Deletes a storage space.
-	DeleteStorageSpace(ctx context.Context, in *DeleteStorageSpaceRequest, opts ...grpc.CallOption) (*DeleteStorageSpaceResponse, error)
 }
 
 type providerAPIClient struct {
@@ -557,42 +545,6 @@ func (c *providerAPIClient) GetHome(ctx context.Context, in *GetHomeRequest, opt
 	return out, nil
 }
 
-func (c *providerAPIClient) CreateStorageSpace(ctx context.Context, in *CreateStorageSpaceRequest, opts ...grpc.CallOption) (*CreateStorageSpaceResponse, error) {
-	out := new(CreateStorageSpaceResponse)
-	err := c.cc.Invoke(ctx, ProviderAPI_CreateStorageSpace_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *providerAPIClient) ListStorageSpaces(ctx context.Context, in *ListStorageSpacesRequest, opts ...grpc.CallOption) (*ListStorageSpacesResponse, error) {
-	out := new(ListStorageSpacesResponse)
-	err := c.cc.Invoke(ctx, ProviderAPI_ListStorageSpaces_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *providerAPIClient) UpdateStorageSpace(ctx context.Context, in *UpdateStorageSpaceRequest, opts ...grpc.CallOption) (*UpdateStorageSpaceResponse, error) {
-	out := new(UpdateStorageSpaceResponse)
-	err := c.cc.Invoke(ctx, ProviderAPI_UpdateStorageSpace_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *providerAPIClient) DeleteStorageSpace(ctx context.Context, in *DeleteStorageSpaceRequest, opts ...grpc.CallOption) (*DeleteStorageSpaceResponse, error) {
-	out := new(DeleteStorageSpaceResponse)
-	err := c.cc.Invoke(ctx, ProviderAPI_DeleteStorageSpace_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 // ProviderAPIServer is the server API for ProviderAPI service.
 // All implementations should embed UnimplementedProviderAPIServer
 // for forward compatibility
@@ -723,14 +675,6 @@ type ProviderAPIServer interface {
 	CreateHome(context.Context, *CreateHomeRequest) (*CreateHomeResponse, error)
 	// Gets the home path for the user.
 	GetHome(context.Context, *GetHomeRequest) (*GetHomeResponse, error)
-	// Creates a storage space.
-	CreateStorageSpace(context.Context, *CreateStorageSpaceRequest) (*CreateStorageSpaceResponse, error)
-	// Lists storage spaces.
-	ListStorageSpaces(context.Context, *ListStorageSpacesRequest) (*ListStorageSpacesResponse, error)
-	// Updates a storage space.
-	UpdateStorageSpace(context.Context, *UpdateStorageSpaceRequest) (*UpdateStorageSpaceResponse, error)
-	// Deletes a storage space.
-	DeleteStorageSpace(context.Context, *DeleteStorageSpaceRequest) (*DeleteStorageSpaceResponse, error)
 }
 
 // UnimplementedProviderAPIServer should be embedded to have forward compatible implementations.
@@ -832,18 +776,6 @@ func (UnimplementedProviderAPIServer) CreateHome(context.Context, *CreateHomeReq
 }
 func (UnimplementedProviderAPIServer) GetHome(context.Context, *GetHomeRequest) (*GetHomeResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetHome not implemented")
-}
-func (UnimplementedProviderAPIServer) CreateStorageSpace(context.Context, *CreateStorageSpaceRequest) (*CreateStorageSpaceResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateStorageSpace not implemented")
-}
-func (UnimplementedProviderAPIServer) ListStorageSpaces(context.Context, *ListStorageSpacesRequest) (*ListStorageSpacesResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListStorageSpaces not implemented")
-}
-func (UnimplementedProviderAPIServer) UpdateStorageSpace(context.Context, *UpdateStorageSpaceRequest) (*UpdateStorageSpaceResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdateStorageSpace not implemented")
-}
-func (UnimplementedProviderAPIServer) DeleteStorageSpace(context.Context, *DeleteStorageSpaceRequest) (*DeleteStorageSpaceResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DeleteStorageSpace not implemented")
 }
 
 // UnsafeProviderAPIServer may be embedded to opt out of forward compatibility for this service.
@@ -1439,78 +1371,6 @@ func _ProviderAPI_GetHome_Handler(srv interface{}, ctx context.Context, dec func
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ProviderAPI_CreateStorageSpace_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateStorageSpaceRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ProviderAPIServer).CreateStorageSpace(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: ProviderAPI_CreateStorageSpace_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ProviderAPIServer).CreateStorageSpace(ctx, req.(*CreateStorageSpaceRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _ProviderAPI_ListStorageSpaces_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListStorageSpacesRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ProviderAPIServer).ListStorageSpaces(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: ProviderAPI_ListStorageSpaces_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ProviderAPIServer).ListStorageSpaces(ctx, req.(*ListStorageSpacesRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _ProviderAPI_UpdateStorageSpace_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateStorageSpaceRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ProviderAPIServer).UpdateStorageSpace(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: ProviderAPI_UpdateStorageSpace_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ProviderAPIServer).UpdateStorageSpace(ctx, req.(*UpdateStorageSpaceRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _ProviderAPI_DeleteStorageSpace_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DeleteStorageSpaceRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ProviderAPIServer).DeleteStorageSpace(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: ProviderAPI_DeleteStorageSpace_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ProviderAPIServer).DeleteStorageSpace(ctx, req.(*DeleteStorageSpaceRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 // ProviderAPI_ServiceDesc is the grpc.ServiceDesc for ProviderAPI service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -1637,22 +1497,6 @@ var ProviderAPI_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetHome",
 			Handler:    _ProviderAPI_GetHome_Handler,
-		},
-		{
-			MethodName: "CreateStorageSpace",
-			Handler:    _ProviderAPI_CreateStorageSpace_Handler,
-		},
-		{
-			MethodName: "ListStorageSpaces",
-			Handler:    _ProviderAPI_ListStorageSpaces_Handler,
-		},
-		{
-			MethodName: "UpdateStorageSpace",
-			Handler:    _ProviderAPI_UpdateStorageSpace_Handler,
-		},
-		{
-			MethodName: "DeleteStorageSpace",
-			Handler:    _ProviderAPI_DeleteStorageSpace_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{
