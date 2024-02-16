@@ -107,8 +107,11 @@ type ProviderAPIClient interface {
 	// Initiates the download of a file using an
 	// out-of-band data transfer mechanism.
 	InitiateFileDownload(ctx context.Context, in *InitiateFileDownloadRequest, opts ...grpc.CallOption) (*InitiateFileDownloadResponse, error)
-	// Initiates the upload of a file using an
-	// out-of-band data transfer mechanism.
+	// Initiates the upload of a file using an out-of-band data
+	// transfer mechanism. SHOULD return CODE_FAILED_PRECONDITION
+	// if the reference is already locked with a mismatched lock.
+	// Additionally, the lock check MUST be enforced by the data
+	// transfer protocol returned in response.
 	InitiateFileUpload(ctx context.Context, in *InitiateFileUploadRequest, opts ...grpc.CallOption) (*InitiateFileUploadResponse, error)
 	// Returns the list of grants for the provided reference.
 	// MUST return CODE_NOT_FOUND if the reference does not exists.
@@ -581,8 +584,11 @@ type ProviderAPIServer interface {
 	// Initiates the download of a file using an
 	// out-of-band data transfer mechanism.
 	InitiateFileDownload(context.Context, *InitiateFileDownloadRequest) (*InitiateFileDownloadResponse, error)
-	// Initiates the upload of a file using an
-	// out-of-band data transfer mechanism.
+	// Initiates the upload of a file using an out-of-band data
+	// transfer mechanism. SHOULD return CODE_FAILED_PRECONDITION
+	// if the reference is already locked with a mismatched lock.
+	// Additionally, the lock check MUST be enforced by the data
+	// transfer protocol returned in response.
 	InitiateFileUpload(context.Context, *InitiateFileUploadRequest) (*InitiateFileUploadResponse, error)
 	// Returns the list of grants for the provided reference.
 	// MUST return CODE_NOT_FOUND if the reference does not exists.

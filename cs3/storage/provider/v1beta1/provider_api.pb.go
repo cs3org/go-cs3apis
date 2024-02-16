@@ -1089,7 +1089,8 @@ type InitiateFileUploadRequest struct {
 	Options isInitiateFileUploadRequest_Options `protobuf_oneof:"options"`
 	// OPTIONAL.
 	// A lock_id: should the reference exist and be locked, the stored
-	// lock_id MUST be equal to the given value.
+	// lock_id SHOULD be equal to the given value. Additionally, the
+	// check MUST be enforced by the out-of-band transfer protocol.
 	LockId string `protobuf:"bytes,5,opt,name=lock_id,json=lockId,proto3" json:"lock_id,omitempty"`
 }
 
