@@ -177,7 +177,9 @@ type AddGrantRequest struct {
 	Grant *Grant `protobuf:"bytes,3,opt,name=grant,proto3" json:"grant,omitempty"`
 	// OPTIONAL.
 	// A lock_id: should the reference be locked, the stored
-	// lock_id MUST be equal to the given value.
+	// lock_id SHOULD be equal to the given value. However,
+	// storage implementations MAY allow for setting grants
+	// even if the lock does not match.
 	LockId string `protobuf:"bytes,4,opt,name=lock_id,json=lockId,proto3" json:"lock_id,omitempty"`
 }
 
@@ -316,7 +318,9 @@ type DenyGrantRequest struct {
 	Grantee *Grantee `protobuf:"bytes,3,opt,name=grantee,proto3" json:"grantee,omitempty"`
 	// OPTIONAL.
 	// A lock_id: should the reference be locked, the stored
-	// lock_id MUST be equal to the given value.
+	// lock_id SHOULD be equal to the given value. However,
+	// storage implementations MAY allow for setting grants
+	// even if the lock does not match.
 	LockId string `protobuf:"bytes,4,opt,name=lock_id,json=lockId,proto3" json:"lock_id,omitempty"`
 }
 
@@ -3087,7 +3091,9 @@ type RemoveGrantRequest struct {
 	Grant *Grant `protobuf:"bytes,3,opt,name=grant,proto3" json:"grant,omitempty"`
 	// OPTIONAL.
 	// A lock_id: should the reference be locked, the stored
-	// lock_id MUST be equal to the given value.
+	// lock_id SHOULD be equal to the given value. However,
+	// storage implementations MAY allow for unsetting grants
+	// even if the lock does not match.
 	LockId string `protobuf:"bytes,4,opt,name=lock_id,json=lockId,proto3" json:"lock_id,omitempty"`
 }
 
@@ -3376,7 +3382,9 @@ type UpdateGrantRequest struct {
 	Grant *Grant `protobuf:"bytes,3,opt,name=grant,proto3" json:"grant,omitempty"`
 	// OPTIONAL.
 	// A lock_id: should the reference be locked, the stored
-	// lock_id MUST be equal to the given value.
+	// lock_id SHOULD be equal to the given value. However,
+	// storage implementations MAY allow for updating grants
+	// even if the lock does not match.
 	LockId string `protobuf:"bytes,4,opt,name=lock_id,json=lockId,proto3" json:"lock_id,omitempty"`
 }
 
@@ -3772,7 +3780,9 @@ type SetArbitraryMetadataRequest struct {
 	ArbitraryMetadata *ArbitraryMetadata `protobuf:"bytes,3,opt,name=arbitrary_metadata,json=arbitraryMetadata,proto3" json:"arbitrary_metadata,omitempty"`
 	// OPTIONAL.
 	// A lock_id: should the reference be locked, the stored
-	// lock_id MUST be equal to the given value.
+	// lock_id SHOULD be equal to the given value. However,
+	// storage implementations MAY allow for setting attributes
+	// even if the lock does not match.
 	LockId string `protobuf:"bytes,4,opt,name=lock_id,json=lockId,proto3" json:"lock_id,omitempty"`
 }
 
@@ -3911,7 +3921,9 @@ type UnsetArbitraryMetadataRequest struct {
 	ArbitraryMetadataKeys []string `protobuf:"bytes,3,rep,name=arbitrary_metadata_keys,json=arbitraryMetadataKeys,proto3" json:"arbitrary_metadata_keys,omitempty"`
 	// OPTIONAL.
 	// A lock_id: should the reference be locked, the stored
-	// lock_id MUST be equal to the given value.
+	// lock_id SHOULD be equal to the given value. However,
+	// storage implementations MAY allow for unsetting attributes
+	// even if the lock does not match.
 	LockId string `protobuf:"bytes,4,opt,name=lock_id,json=lockId,proto3" json:"lock_id,omitempty"`
 }
 
