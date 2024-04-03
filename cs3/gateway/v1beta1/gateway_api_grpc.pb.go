@@ -95,6 +95,7 @@ const (
 	GatewayAPI_ListShares_FullMethodName                       = "/cs3.gateway.v1beta1.GatewayAPI/ListShares"
 	GatewayAPI_UpdateShare_FullMethodName                      = "/cs3.gateway.v1beta1.GatewayAPI/UpdateShare"
 	GatewayAPI_ListReceivedShares_FullMethodName               = "/cs3.gateway.v1beta1.GatewayAPI/ListReceivedShares"
+	GatewayAPI_ListExistingReceivedShares_FullMethodName       = "/cs3.gateway.v1beta1.GatewayAPI/ListExistingReceivedShares"
 	GatewayAPI_UpdateReceivedShare_FullMethodName              = "/cs3.gateway.v1beta1.GatewayAPI/UpdateReceivedShare"
 	GatewayAPI_GetReceivedShare_FullMethodName                 = "/cs3.gateway.v1beta1.GatewayAPI/GetReceivedShare"
 	GatewayAPI_SetKey_FullMethodName                           = "/cs3.gateway.v1beta1.GatewayAPI/SetKey"
@@ -295,15 +296,18 @@ type GatewayAPIClient interface {
 	// Gets share information for a single share.
 	// MUST return CODE_NOT_FOUND if the share reference does not exist.
 	GetShare(ctx context.Context, in *v1beta13.GetShareRequest, opts ...grpc.CallOption) (*v1beta13.GetShareResponse, error)
-	// List the shares the authproviderenticated principal has created,
+	// List the shares the authenticated principal has created,
 	// both as owner and creator. If a filter is specified, only
 	// shares satisfying the filter MUST be returned.
 	ListShares(ctx context.Context, in *v1beta13.ListSharesRequest, opts ...grpc.CallOption) (*v1beta13.ListSharesResponse, error)
 	// Updates a share.
 	// MUST return CODE_NOT_FOUND if the share reference does not exist.
 	UpdateShare(ctx context.Context, in *v1beta13.UpdateShareRequest, opts ...grpc.CallOption) (*v1beta13.UpdateShareResponse, error)
-	// List all shares the authproviderenticated principal has received.
+	// List all shares the authenticated principal has received.
 	ListReceivedShares(ctx context.Context, in *v1beta13.ListReceivedSharesRequest, opts ...grpc.CallOption) (*v1beta13.ListReceivedSharesResponse, error)
+	// List all existing shares the authenticated principal has received,
+	// including their storage resource information.
+	ListExistingReceivedShares(ctx context.Context, in *v1beta13.ListReceivedSharesRequest, opts ...grpc.CallOption) (*ListExistingReceivedSharesResponse, error)
 	// Update the received share to change the share state or the display name.
 	// MUST return CODE_NOT_FOUND if the share reference does not exist.
 	UpdateReceivedShare(ctx context.Context, in *v1beta13.UpdateReceivedShareRequest, opts ...grpc.CallOption) (*v1beta13.UpdateReceivedShareResponse, error)
@@ -330,7 +334,7 @@ type GatewayAPIClient interface {
 	// Gets share information for a single share by its unlisted token.
 	// MUST return CODE_NOT_FOUND if the share does not exist.
 	GetPublicShareByToken(ctx context.Context, in *v1beta15.GetPublicShareByTokenRequest, opts ...grpc.CallOption) (*v1beta15.GetPublicShareByTokenResponse, error)
-	// List the shares the authproviderenticated principal has created,
+	// List the shares the authenticated principal has created,
 	// both as owner and creator. If a filter is specified, only
 	// shares satisfying the filter MUST be returned.
 	ListPublicShares(ctx context.Context, in *v1beta15.ListPublicSharesRequest, opts ...grpc.CallOption) (*v1beta15.ListPublicSharesResponse, error)
@@ -352,14 +356,14 @@ type GatewayAPIClient interface {
 	// Gets share information for a single share by its unlisted token.
 	// MUST return CODE_NOT_FOUND if the share does not exist.
 	GetOCMShareByToken(ctx context.Context, in *v1beta16.GetOCMShareByTokenRequest, opts ...grpc.CallOption) (*v1beta16.GetOCMShareByTokenResponse, error)
-	// List the shares the authproviderenticated principal has created,
+	// List the shares the authenticated principal has created,
 	// both as owner and creator. If a filter is specified, only
 	// shares satisfying the filter MUST be returned.
 	ListOCMShares(ctx context.Context, in *v1beta16.ListOCMSharesRequest, opts ...grpc.CallOption) (*v1beta16.ListOCMSharesResponse, error)
 	// Updates a share.
 	// MUST return CODE_NOT_FOUND if the share reference does not exist.
 	UpdateOCMShare(ctx context.Context, in *v1beta16.UpdateOCMShareRequest, opts ...grpc.CallOption) (*v1beta16.UpdateOCMShareResponse, error)
-	// List all shares the authproviderenticated principal has received.
+	// List all shares the authenticated principal has received.
 	ListReceivedOCMShares(ctx context.Context, in *v1beta16.ListReceivedOCMSharesRequest, opts ...grpc.CallOption) (*v1beta16.ListReceivedOCMSharesResponse, error)
 	// Update the received share to change the share state or the display name.
 	// MUST return CODE_NOT_FOUND if the share reference does not exist.
@@ -873,6 +877,15 @@ func (c *gatewayAPIClient) UpdateShare(ctx context.Context, in *v1beta13.UpdateS
 func (c *gatewayAPIClient) ListReceivedShares(ctx context.Context, in *v1beta13.ListReceivedSharesRequest, opts ...grpc.CallOption) (*v1beta13.ListReceivedSharesResponse, error) {
 	out := new(v1beta13.ListReceivedSharesResponse)
 	err := c.cc.Invoke(ctx, GatewayAPI_ListReceivedShares_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *gatewayAPIClient) ListExistingReceivedShares(ctx context.Context, in *v1beta13.ListReceivedSharesRequest, opts ...grpc.CallOption) (*ListExistingReceivedSharesResponse, error) {
+	out := new(ListExistingReceivedSharesResponse)
+	err := c.cc.Invoke(ctx, GatewayAPI_ListExistingReceivedShares_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1517,15 +1530,18 @@ type GatewayAPIServer interface {
 	// Gets share information for a single share.
 	// MUST return CODE_NOT_FOUND if the share reference does not exist.
 	GetShare(context.Context, *v1beta13.GetShareRequest) (*v1beta13.GetShareResponse, error)
-	// List the shares the authproviderenticated principal has created,
+	// List the shares the authenticated principal has created,
 	// both as owner and creator. If a filter is specified, only
 	// shares satisfying the filter MUST be returned.
 	ListShares(context.Context, *v1beta13.ListSharesRequest) (*v1beta13.ListSharesResponse, error)
 	// Updates a share.
 	// MUST return CODE_NOT_FOUND if the share reference does not exist.
 	UpdateShare(context.Context, *v1beta13.UpdateShareRequest) (*v1beta13.UpdateShareResponse, error)
-	// List all shares the authproviderenticated principal has received.
+	// List all shares the authenticated principal has received.
 	ListReceivedShares(context.Context, *v1beta13.ListReceivedSharesRequest) (*v1beta13.ListReceivedSharesResponse, error)
+	// List all existing shares the authenticated principal has received,
+	// including their storage resource information.
+	ListExistingReceivedShares(context.Context, *v1beta13.ListReceivedSharesRequest) (*ListExistingReceivedSharesResponse, error)
 	// Update the received share to change the share state or the display name.
 	// MUST return CODE_NOT_FOUND if the share reference does not exist.
 	UpdateReceivedShare(context.Context, *v1beta13.UpdateReceivedShareRequest) (*v1beta13.UpdateReceivedShareResponse, error)
@@ -1552,7 +1568,7 @@ type GatewayAPIServer interface {
 	// Gets share information for a single share by its unlisted token.
 	// MUST return CODE_NOT_FOUND if the share does not exist.
 	GetPublicShareByToken(context.Context, *v1beta15.GetPublicShareByTokenRequest) (*v1beta15.GetPublicShareByTokenResponse, error)
-	// List the shares the authproviderenticated principal has created,
+	// List the shares the authenticated principal has created,
 	// both as owner and creator. If a filter is specified, only
 	// shares satisfying the filter MUST be returned.
 	ListPublicShares(context.Context, *v1beta15.ListPublicSharesRequest) (*v1beta15.ListPublicSharesResponse, error)
@@ -1574,14 +1590,14 @@ type GatewayAPIServer interface {
 	// Gets share information for a single share by its unlisted token.
 	// MUST return CODE_NOT_FOUND if the share does not exist.
 	GetOCMShareByToken(context.Context, *v1beta16.GetOCMShareByTokenRequest) (*v1beta16.GetOCMShareByTokenResponse, error)
-	// List the shares the authproviderenticated principal has created,
+	// List the shares the authenticated principal has created,
 	// both as owner and creator. If a filter is specified, only
 	// shares satisfying the filter MUST be returned.
 	ListOCMShares(context.Context, *v1beta16.ListOCMSharesRequest) (*v1beta16.ListOCMSharesResponse, error)
 	// Updates a share.
 	// MUST return CODE_NOT_FOUND if the share reference does not exist.
 	UpdateOCMShare(context.Context, *v1beta16.UpdateOCMShareRequest) (*v1beta16.UpdateOCMShareResponse, error)
-	// List all shares the authproviderenticated principal has received.
+	// List all shares the authenticated principal has received.
 	ListReceivedOCMShares(context.Context, *v1beta16.ListReceivedOCMSharesRequest) (*v1beta16.ListReceivedOCMSharesResponse, error)
 	// Update the received share to change the share state or the display name.
 	// MUST return CODE_NOT_FOUND if the share reference does not exist.
@@ -1798,6 +1814,9 @@ func (UnimplementedGatewayAPIServer) UpdateShare(context.Context, *v1beta13.Upda
 }
 func (UnimplementedGatewayAPIServer) ListReceivedShares(context.Context, *v1beta13.ListReceivedSharesRequest) (*v1beta13.ListReceivedSharesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListReceivedShares not implemented")
+}
+func (UnimplementedGatewayAPIServer) ListExistingReceivedShares(context.Context, *v1beta13.ListReceivedSharesRequest) (*ListExistingReceivedSharesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListExistingReceivedShares not implemented")
 }
 func (UnimplementedGatewayAPIServer) UpdateReceivedShare(context.Context, *v1beta13.UpdateReceivedShareRequest) (*v1beta13.UpdateReceivedShareResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateReceivedShare not implemented")
@@ -2734,6 +2753,24 @@ func _GatewayAPI_ListReceivedShares_Handler(srv interface{}, ctx context.Context
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(GatewayAPIServer).ListReceivedShares(ctx, req.(*v1beta13.ListReceivedSharesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _GatewayAPI_ListExistingReceivedShares_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(v1beta13.ListReceivedSharesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GatewayAPIServer).ListExistingReceivedShares(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: GatewayAPI_ListExistingReceivedShares_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GatewayAPIServer).ListExistingReceivedShares(ctx, req.(*v1beta13.ListReceivedSharesRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -3894,6 +3931,10 @@ var GatewayAPI_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListReceivedShares",
 			Handler:    _GatewayAPI_ListReceivedShares_Handler,
+		},
+		{
+			MethodName: "ListExistingReceivedShares",
+			Handler:    _GatewayAPI_ListExistingReceivedShares_Handler,
 		},
 		{
 			MethodName: "UpdateReceivedShare",
