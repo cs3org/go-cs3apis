@@ -20,13 +20,7 @@ jobs:
       uses: actions/setup-go@v4
       with:
         go-version: '1.21'
-
-    - name: Install mockery
-      run: go install github.com/vektra/mockery/v2@v2.40.0 # Later versions are incompatible with Go 1.21
-
-    - name: Run mockery
-      run: mockery
-
+        
     - name: Build
       run: go build -v ./...
 
