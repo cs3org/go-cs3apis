@@ -1,0 +1,7 @@
+# See https://vektra.github.io/mockery/latest/configuration/ for more info
+with-expecter: true
+packages:
+    github.com/cs3org/go-cs3apis/cs3/gateway/v1beta1:
+        config:
+        interfaces:
+            GatewayAPIClient:
