@@ -127,9 +127,9 @@ type ProviderInfo struct {
 	// The action to be displayed to the user on the context menu.
 	// By default this is "Open with".
 	Action string `protobuf:"bytes,9,opt,name=action,proto3" json:"action,omitempty"`
-	// OPTIONAL.
-	// Specifies the kind of app provider.
-	// A product property that could be used to handle product-specific differences.
+	// REQUIRED.
+	// The product name of the underlying app, to be used to handle
+	// product-specific differences.
 	// For example: Collabora, OnlyOffice, Microsoft365 or MicrosoftOfficeOnline
 	ProductName string `protobuf:"bytes,10,opt,name=product_name,json=productName,proto3" json:"product_name,omitempty"`
 }
