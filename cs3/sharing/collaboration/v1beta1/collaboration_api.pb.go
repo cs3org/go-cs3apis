@@ -1,4 +1,4 @@
-// Copyright 2018-2019 CERN
+// Copyright 2018-2025 CERN
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -1189,6 +1189,7 @@ type UpdateShareRequest_UpdateField struct {
 	//
 	//	*UpdateShareRequest_UpdateField_Permissions
 	//	*UpdateShareRequest_UpdateField_DisplayName
+	//	*UpdateShareRequest_UpdateField_Expiration
 	Field isUpdateShareRequest_UpdateField_Field `protobuf_oneof:"field"`
 }
 
@@ -1245,6 +1246,13 @@ func (x *UpdateShareRequest_UpdateField) GetDisplayName() string {
 	return ""
 }
 
+func (x *UpdateShareRequest_UpdateField) GetExpiration() *v1beta1.Timestamp {
+	if x, ok := x.GetField().(*UpdateShareRequest_UpdateField_Expiration); ok {
+		return x.Expiration
+	}
+	return nil
+}
+
 type isUpdateShareRequest_UpdateField_Field interface {
 	isUpdateShareRequest_UpdateField_Field()
 }
@@ -1259,9 +1267,16 @@ type UpdateShareRequest_UpdateField_DisplayName struct {
 	DisplayName string `protobuf:"bytes,3,opt,name=display_name,json=displayName,proto3,oneof"`
 }
 
+type UpdateShareRequest_UpdateField_Expiration struct {
+	// Update the expiration time.
+	Expiration *v1beta1.Timestamp `protobuf:"bytes,4,opt,name=expiration,proto3,oneof"`
+}
+
 func (*UpdateShareRequest_UpdateField_Permissions) isUpdateShareRequest_UpdateField_Field() {}
 
 func (*UpdateShareRequest_UpdateField_DisplayName) isUpdateShareRequest_UpdateField_Field() {}
+
+func (*UpdateShareRequest_UpdateField_Expiration) isUpdateShareRequest_UpdateField_Field() {}
 
 var File_cs3_sharing_collaboration_v1beta1_collaboration_api_proto protoreflect.FileDescriptor
 
@@ -1309,7 +1324,7 @@ var file_cs3_sharing_collaboration_v1beta1_collaboration_api_proto_rawDesc = []b
 	0x61, 0x72, 0x65, 0x18, 0x03, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x28, 0x2e, 0x63, 0x73, 0x33, 0x2e,
 	0x73, 0x68, 0x61, 0x72, 0x69, 0x6e, 0x67, 0x2e, 0x63, 0x6f, 0x6c, 0x6c, 0x61, 0x62, 0x6f, 0x72,
 	0x61, 0x74, 0x69, 0x6f, 0x6e, 0x2e, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x31, 0x2e, 0x53, 0x68,
-	0x61, 0x72, 0x65, 0x52, 0x05, 0x73, 0x68, 0x61, 0x72, 0x65, 0x22, 0xf9, 0x03, 0x0a, 0x12, 0x55,
+	0x61, 0x72, 0x65, 0x52, 0x05, 0x73, 0x68, 0x61, 0x72, 0x65, 0x22, 0xb9, 0x04, 0x0a, 0x12, 0x55,
 	0x70, 0x64, 0x61, 0x74, 0x65, 0x53, 0x68, 0x61, 0x72, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
 	0x74, 0x12, 0x31, 0x0a, 0x06, 0x6f, 0x70, 0x61, 0x71, 0x75, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28,
 	0x0b, 0x32, 0x19, 0x2e, 0x63, 0x73, 0x33, 0x2e, 0x74, 0x79, 0x70, 0x65, 0x73, 0x2e, 0x76, 0x31,
@@ -1332,7 +1347,7 @@ var file_cs3_sharing_collaboration_v1beta1_collaboration_api_proto_rawDesc = []b
 	0x2e, 0x63, 0x73, 0x33, 0x2e, 0x73, 0x68, 0x61, 0x72, 0x69, 0x6e, 0x67, 0x2e, 0x63, 0x6f, 0x6c,
 	0x6c, 0x61, 0x62, 0x6f, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x2e, 0x76, 0x31, 0x62, 0x65, 0x74,
 	0x61, 0x31, 0x2e, 0x53, 0x68, 0x61, 0x72, 0x65, 0x52, 0x05, 0x73, 0x68, 0x61, 0x72, 0x65, 0x1a,
-	0x94, 0x01, 0x0a, 0x0b, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x46, 0x69, 0x65, 0x6c, 0x64, 0x12,
+	0xd4, 0x01, 0x0a, 0x0b, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x46, 0x69, 0x65, 0x6c, 0x64, 0x12,
 	0x57, 0x0a, 0x0b, 0x70, 0x65, 0x72, 0x6d, 0x69, 0x73, 0x73, 0x69, 0x6f, 0x6e, 0x73, 0x18, 0x02,
 	0x20, 0x01, 0x28, 0x0b, 0x32, 0x33, 0x2e, 0x63, 0x73, 0x33, 0x2e, 0x73, 0x68, 0x61, 0x72, 0x69,
 	0x6e, 0x67, 0x2e, 0x63, 0x6f, 0x6c, 0x6c, 0x61, 0x62, 0x6f, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e,
@@ -1340,7 +1355,11 @@ var file_cs3_sharing_collaboration_v1beta1_collaboration_api_proto_rawDesc = []b
 	0x72, 0x6d, 0x69, 0x73, 0x73, 0x69, 0x6f, 0x6e, 0x73, 0x48, 0x00, 0x52, 0x0b, 0x70, 0x65, 0x72,
 	0x6d, 0x69, 0x73, 0x73, 0x69, 0x6f, 0x6e, 0x73, 0x12, 0x23, 0x0a, 0x0c, 0x64, 0x69, 0x73, 0x70,
 	0x6c, 0x61, 0x79, 0x5f, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x48, 0x00,
-	0x52, 0x0b, 0x64, 0x69, 0x73, 0x70, 0x6c, 0x61, 0x79, 0x4e, 0x61, 0x6d, 0x65, 0x42, 0x07, 0x0a,
+	0x52, 0x0b, 0x64, 0x69, 0x73, 0x70, 0x6c, 0x61, 0x79, 0x4e, 0x61, 0x6d, 0x65, 0x12, 0x3e, 0x0a,
+	0x0a, 0x65, 0x78, 0x70, 0x69, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x04, 0x20, 0x01, 0x28,
+	0x0b, 0x32, 0x1c, 0x2e, 0x63, 0x73, 0x33, 0x2e, 0x74, 0x79, 0x70, 0x65, 0x73, 0x2e, 0x76, 0x31,
+	0x62, 0x65, 0x74, 0x61, 0x31, 0x2e, 0x54, 0x69, 0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d, 0x70, 0x48,
+	0x00, 0x52, 0x0a, 0x65, 0x78, 0x70, 0x69, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x42, 0x07, 0x0a,
 	0x05, 0x66, 0x69, 0x65, 0x6c, 0x64, 0x22, 0xb9, 0x01, 0x0a, 0x13, 0x55, 0x70, 0x64, 0x61, 0x74,
 	0x65, 0x53, 0x68, 0x61, 0x72, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x2f,
 	0x0a, 0x06, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x17,
@@ -1625,6 +1644,7 @@ var file_cs3_sharing_collaboration_v1beta1_collaboration_api_proto_goTypes = []i
 	(*Filter)(nil),                         // 24: cs3.sharing.collaboration.v1beta1.Filter
 	(*ReceivedShare)(nil),                  // 25: cs3.sharing.collaboration.v1beta1.ReceivedShare
 	(*SharePermissions)(nil),               // 26: cs3.sharing.collaboration.v1beta1.SharePermissions
+	(*v1beta1.Timestamp)(nil),              // 27: cs3.types.v1beta1.Timestamp
 }
 var file_cs3_sharing_collaboration_v1beta1_collaboration_api_proto_depIdxs = []int32{
 	17, // 0: cs3.sharing.collaboration.v1beta1.CreateShareRequest.opaque:type_name -> cs3.types.v1beta1.Opaque
@@ -1672,27 +1692,28 @@ var file_cs3_sharing_collaboration_v1beta1_collaboration_api_proto_depIdxs = []i
 	17, // 42: cs3.sharing.collaboration.v1beta1.GetReceivedShareResponse.opaque:type_name -> cs3.types.v1beta1.Opaque
 	25, // 43: cs3.sharing.collaboration.v1beta1.GetReceivedShareResponse.share:type_name -> cs3.sharing.collaboration.v1beta1.ReceivedShare
 	26, // 44: cs3.sharing.collaboration.v1beta1.UpdateShareRequest.UpdateField.permissions:type_name -> cs3.sharing.collaboration.v1beta1.SharePermissions
-	0,  // 45: cs3.sharing.collaboration.v1beta1.CollaborationAPI.CreateShare:input_type -> cs3.sharing.collaboration.v1beta1.CreateShareRequest
-	6,  // 46: cs3.sharing.collaboration.v1beta1.CollaborationAPI.RemoveShare:input_type -> cs3.sharing.collaboration.v1beta1.RemoveShareRequest
-	8,  // 47: cs3.sharing.collaboration.v1beta1.CollaborationAPI.GetShare:input_type -> cs3.sharing.collaboration.v1beta1.GetShareRequest
-	4,  // 48: cs3.sharing.collaboration.v1beta1.CollaborationAPI.ListShares:input_type -> cs3.sharing.collaboration.v1beta1.ListSharesRequest
-	2,  // 49: cs3.sharing.collaboration.v1beta1.CollaborationAPI.UpdateShare:input_type -> cs3.sharing.collaboration.v1beta1.UpdateShareRequest
-	10, // 50: cs3.sharing.collaboration.v1beta1.CollaborationAPI.ListReceivedShares:input_type -> cs3.sharing.collaboration.v1beta1.ListReceivedSharesRequest
-	12, // 51: cs3.sharing.collaboration.v1beta1.CollaborationAPI.UpdateReceivedShare:input_type -> cs3.sharing.collaboration.v1beta1.UpdateReceivedShareRequest
-	14, // 52: cs3.sharing.collaboration.v1beta1.CollaborationAPI.GetReceivedShare:input_type -> cs3.sharing.collaboration.v1beta1.GetReceivedShareRequest
-	1,  // 53: cs3.sharing.collaboration.v1beta1.CollaborationAPI.CreateShare:output_type -> cs3.sharing.collaboration.v1beta1.CreateShareResponse
-	7,  // 54: cs3.sharing.collaboration.v1beta1.CollaborationAPI.RemoveShare:output_type -> cs3.sharing.collaboration.v1beta1.RemoveShareResponse
-	9,  // 55: cs3.sharing.collaboration.v1beta1.CollaborationAPI.GetShare:output_type -> cs3.sharing.collaboration.v1beta1.GetShareResponse
-	5,  // 56: cs3.sharing.collaboration.v1beta1.CollaborationAPI.ListShares:output_type -> cs3.sharing.collaboration.v1beta1.ListSharesResponse
-	3,  // 57: cs3.sharing.collaboration.v1beta1.CollaborationAPI.UpdateShare:output_type -> cs3.sharing.collaboration.v1beta1.UpdateShareResponse
-	11, // 58: cs3.sharing.collaboration.v1beta1.CollaborationAPI.ListReceivedShares:output_type -> cs3.sharing.collaboration.v1beta1.ListReceivedSharesResponse
-	13, // 59: cs3.sharing.collaboration.v1beta1.CollaborationAPI.UpdateReceivedShare:output_type -> cs3.sharing.collaboration.v1beta1.UpdateReceivedShareResponse
-	15, // 60: cs3.sharing.collaboration.v1beta1.CollaborationAPI.GetReceivedShare:output_type -> cs3.sharing.collaboration.v1beta1.GetReceivedShareResponse
-	53, // [53:61] is the sub-list for method output_type
-	45, // [45:53] is the sub-list for method input_type
-	45, // [45:45] is the sub-list for extension type_name
-	45, // [45:45] is the sub-list for extension extendee
-	0,  // [0:45] is the sub-list for field type_name
+	27, // 45: cs3.sharing.collaboration.v1beta1.UpdateShareRequest.UpdateField.expiration:type_name -> cs3.types.v1beta1.Timestamp
+	0,  // 46: cs3.sharing.collaboration.v1beta1.CollaborationAPI.CreateShare:input_type -> cs3.sharing.collaboration.v1beta1.CreateShareRequest
+	6,  // 47: cs3.sharing.collaboration.v1beta1.CollaborationAPI.RemoveShare:input_type -> cs3.sharing.collaboration.v1beta1.RemoveShareRequest
+	8,  // 48: cs3.sharing.collaboration.v1beta1.CollaborationAPI.GetShare:input_type -> cs3.sharing.collaboration.v1beta1.GetShareRequest
+	4,  // 49: cs3.sharing.collaboration.v1beta1.CollaborationAPI.ListShares:input_type -> cs3.sharing.collaboration.v1beta1.ListSharesRequest
+	2,  // 50: cs3.sharing.collaboration.v1beta1.CollaborationAPI.UpdateShare:input_type -> cs3.sharing.collaboration.v1beta1.UpdateShareRequest
+	10, // 51: cs3.sharing.collaboration.v1beta1.CollaborationAPI.ListReceivedShares:input_type -> cs3.sharing.collaboration.v1beta1.ListReceivedSharesRequest
+	12, // 52: cs3.sharing.collaboration.v1beta1.CollaborationAPI.UpdateReceivedShare:input_type -> cs3.sharing.collaboration.v1beta1.UpdateReceivedShareRequest
+	14, // 53: cs3.sharing.collaboration.v1beta1.CollaborationAPI.GetReceivedShare:input_type -> cs3.sharing.collaboration.v1beta1.GetReceivedShareRequest
+	1,  // 54: cs3.sharing.collaboration.v1beta1.CollaborationAPI.CreateShare:output_type -> cs3.sharing.collaboration.v1beta1.CreateShareResponse
+	7,  // 55: cs3.sharing.collaboration.v1beta1.CollaborationAPI.RemoveShare:output_type -> cs3.sharing.collaboration.v1beta1.RemoveShareResponse
+	9,  // 56: cs3.sharing.collaboration.v1beta1.CollaborationAPI.GetShare:output_type -> cs3.sharing.collaboration.v1beta1.GetShareResponse
+	5,  // 57: cs3.sharing.collaboration.v1beta1.CollaborationAPI.ListShares:output_type -> cs3.sharing.collaboration.v1beta1.ListSharesResponse
+	3,  // 58: cs3.sharing.collaboration.v1beta1.CollaborationAPI.UpdateShare:output_type -> cs3.sharing.collaboration.v1beta1.UpdateShareResponse
+	11, // 59: cs3.sharing.collaboration.v1beta1.CollaborationAPI.ListReceivedShares:output_type -> cs3.sharing.collaboration.v1beta1.ListReceivedSharesResponse
+	13, // 60: cs3.sharing.collaboration.v1beta1.CollaborationAPI.UpdateReceivedShare:output_type -> cs3.sharing.collaboration.v1beta1.UpdateReceivedShareResponse
+	15, // 61: cs3.sharing.collaboration.v1beta1.CollaborationAPI.GetReceivedShare:output_type -> cs3.sharing.collaboration.v1beta1.GetReceivedShareResponse
+	54, // [54:62] is the sub-list for method output_type
+	46, // [46:54] is the sub-list for method input_type
+	46, // [46:46] is the sub-list for extension type_name
+	46, // [46:46] is the sub-list for extension extendee
+	0,  // [0:46] is the sub-list for field type_name
 }
 
 func init() { file_cs3_sharing_collaboration_v1beta1_collaboration_api_proto_init() }
@@ -1910,6 +1931,7 @@ func file_cs3_sharing_collaboration_v1beta1_collaboration_api_proto_init() {
 	file_cs3_sharing_collaboration_v1beta1_collaboration_api_proto_msgTypes[16].OneofWrappers = []interface{}{
 		(*UpdateShareRequest_UpdateField_Permissions)(nil),
 		(*UpdateShareRequest_UpdateField_DisplayName)(nil),
+		(*UpdateShareRequest_UpdateField_Expiration)(nil),
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
