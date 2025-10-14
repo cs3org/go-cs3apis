@@ -4422,6 +4422,80 @@ func (_c *MockGatewayAPIClient_ListContainerStream_Call) RunAndReturn(run func(c
 	return _c
 }
 
+// ListExistingOCMShares provides a mock function with given fields: ctx, in, opts
+func (_m *MockGatewayAPIClient) ListExistingOCMShares(ctx context.Context, in *ocmv1beta1.ListOCMSharesRequest, opts ...grpc.CallOption) (*gatewayv1beta1.ListExistingOCMSharesResponse, error) {
+	_va := make([]interface{}, len(opts))
+	for _i := range opts {
+		_va[_i] = opts[_i]
+	}
+	var _ca []interface{}
+	_ca = append(_ca, ctx, in)
+	_ca = append(_ca, _va...)
+	ret := _m.Called(_ca...)
+
+	if len(ret) == 0 {
+		panic("no return value specified for ListExistingOCMShares")
+	}
+
+	var r0 *gatewayv1beta1.ListExistingOCMSharesResponse
+	var r1 error
+	if rf, ok := ret.Get(0).(func(context.Context, *ocmv1beta1.ListOCMSharesRequest, ...grpc.CallOption) (*gatewayv1beta1.ListExistingOCMSharesResponse, error)); ok {
+		return rf(ctx, in, opts...)
+	}
+	if rf, ok := ret.Get(0).(func(context.Context, *ocmv1beta1.ListOCMSharesRequest, ...grpc.CallOption) *gatewayv1beta1.ListExistingOCMSharesResponse); ok {
+		r0 = rf(ctx, in, opts...)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*gatewayv1beta1.ListExistingOCMSharesResponse)
+		}
+	}
+
+	if rf, ok := ret.Get(1).(func(context.Context, *ocmv1beta1.ListOCMSharesRequest, ...grpc.CallOption) error); ok {
+		r1 = rf(ctx, in, opts...)
+	} else {
+		r1 = ret.Error(1)
+	}
+
+	return r0, r1
+}
+
+// MockGatewayAPIClient_ListExistingOCMShares_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'ListExistingOCMShares'
+type MockGatewayAPIClient_ListExistingOCMShares_Call struct {
+	*mock.Call
+}
+
+// ListExistingOCMShares is a helper method to define mock.On call
+//   - ctx context.Context
+//   - in *ocmv1beta1.ListOCMSharesRequest
+//   - opts ...grpc.CallOption
+func (_e *MockGatewayAPIClient_Expecter) ListExistingOCMShares(ctx interface{}, in interface{}, opts ...interface{}) *MockGatewayAPIClient_ListExistingOCMShares_Call {
+	return &MockGatewayAPIClient_ListExistingOCMShares_Call{Call: _e.mock.On("ListExistingOCMShares",
+		append([]interface{}{ctx, in}, opts...)...)}
+}
+
+func (_c *MockGatewayAPIClient_ListExistingOCMShares_Call) Run(run func(ctx context.Context, in *ocmv1beta1.ListOCMSharesRequest, opts ...grpc.CallOption)) *MockGatewayAPIClient_ListExistingOCMShares_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		variadicArgs := make([]grpc.CallOption, len(args)-2)
+		for i, a := range args[2:] {
+			if a != nil {
+				variadicArgs[i] = a.(grpc.CallOption)
+			}
+		}
+		run(args[0].(context.Context), args[1].(*ocmv1beta1.ListOCMSharesRequest), variadicArgs...)
+	})
+	return _c
+}
+
+func (_c *MockGatewayAPIClient_ListExistingOCMShares_Call) Return(_a0 *gatewayv1beta1.ListExistingOCMSharesResponse, _a1 error) *MockGatewayAPIClient_ListExistingOCMShares_Call {
+	_c.Call.Return(_a0, _a1)
+	return _c
+}
+
+func (_c *MockGatewayAPIClient_ListExistingOCMShares_Call) RunAndReturn(run func(context.Context, *ocmv1beta1.ListOCMSharesRequest, ...grpc.CallOption) (*gatewayv1beta1.ListExistingOCMSharesResponse, error)) *MockGatewayAPIClient_ListExistingOCMShares_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
 // ListExistingPublicShares provides a mock function with given fields: ctx, in, opts
 func (_m *MockGatewayAPIClient) ListExistingPublicShares(ctx context.Context, in *linkv1beta1.ListPublicSharesRequest, opts ...grpc.CallOption) (*gatewayv1beta1.ListExistingPublicSharesResponse, error) {
 	_va := make([]interface{}, len(opts))
