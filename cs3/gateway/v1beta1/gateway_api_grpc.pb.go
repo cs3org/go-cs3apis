@@ -113,6 +113,7 @@ const (
 	GatewayAPI_GetOCMShare_FullMethodName                      = "/cs3.gateway.v1beta1.GatewayAPI/GetOCMShare"
 	GatewayAPI_GetOCMShareByToken_FullMethodName               = "/cs3.gateway.v1beta1.GatewayAPI/GetOCMShareByToken"
 	GatewayAPI_ListOCMShares_FullMethodName                    = "/cs3.gateway.v1beta1.GatewayAPI/ListOCMShares"
+	GatewayAPI_ListExistingOCMShares_FullMethodName            = "/cs3.gateway.v1beta1.GatewayAPI/ListExistingOCMShares"
 	GatewayAPI_UpdateOCMShare_FullMethodName                   = "/cs3.gateway.v1beta1.GatewayAPI/UpdateOCMShare"
 	GatewayAPI_ListReceivedOCMShares_FullMethodName            = "/cs3.gateway.v1beta1.GatewayAPI/ListReceivedOCMShares"
 	GatewayAPI_UpdateReceivedOCMShare_FullMethodName           = "/cs3.gateway.v1beta1.GatewayAPI/UpdateReceivedOCMShare"
@@ -371,6 +372,9 @@ type GatewayAPIClient interface {
 	// both as owner and creator. If a filter is specified, only
 	// shares satisfying the filter MUST be returned.
 	ListOCMShares(ctx context.Context, in *v1beta16.ListOCMSharesRequest, opts ...grpc.CallOption) (*v1beta16.ListOCMSharesResponse, error)
+	// List all existing shares the authenticated principal has created,
+	// including their storage resource information.
+	ListExistingOCMShares(ctx context.Context, in *v1beta16.ListOCMSharesRequest, opts ...grpc.CallOption) (*ListExistingOCMSharesResponse, error)
 	// Updates a share.
 	// MUST return CODE_NOT_FOUND if the share reference does not exist.
 	UpdateOCMShare(ctx context.Context, in *v1beta16.UpdateOCMShareRequest, opts ...grpc.CallOption) (*v1beta16.UpdateOCMShareResponse, error)
@@ -1056,6 +1060,15 @@ func (c *gatewayAPIClient) ListOCMShares(ctx context.Context, in *v1beta16.ListO
 	return out, nil
 }
 
+func (c *gatewayAPIClient) ListExistingOCMShares(ctx context.Context, in *v1beta16.ListOCMSharesRequest, opts ...grpc.CallOption) (*ListExistingOCMSharesResponse, error) {
+	out := new(ListExistingOCMSharesResponse)
+	err := c.cc.Invoke(ctx, GatewayAPI_ListExistingOCMShares_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *gatewayAPIClient) UpdateOCMShare(ctx context.Context, in *v1beta16.UpdateOCMShareRequest, opts ...grpc.CallOption) (*v1beta16.UpdateOCMShareResponse, error) {
 	out := new(v1beta16.UpdateOCMShareResponse)
 	err := c.cc.Invoke(ctx, GatewayAPI_UpdateOCMShare_FullMethodName, in, out, opts...)
@@ -1632,6 +1645,9 @@ type GatewayAPIServer interface {
 	// both as owner and creator. If a filter is specified, only
 	// shares satisfying the filter MUST be returned.
 	ListOCMShares(context.Context, *v1beta16.ListOCMSharesRequest) (*v1beta16.ListOCMSharesResponse, error)
+	// List all existing shares the authenticated principal has created,
+	// including their storage resource information.
+	ListExistingOCMShares(context.Context, *v1beta16.ListOCMSharesRequest) (*ListExistingOCMSharesResponse, error)
 	// Updates a share.
 	// MUST return CODE_NOT_FOUND if the share reference does not exist.
 	UpdateOCMShare(context.Context, *v1beta16.UpdateOCMShareRequest) (*v1beta16.UpdateOCMShareResponse, error)
@@ -1906,6 +1922,9 @@ func (UnimplementedGatewayAPIServer) GetOCMShareByToken(context.Context, *v1beta
 }
 func (UnimplementedGatewayAPIServer) ListOCMShares(context.Context, *v1beta16.ListOCMSharesRequest) (*v1beta16.ListOCMSharesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListOCMShares not implemented")
+}
+func (UnimplementedGatewayAPIServer) ListExistingOCMShares(context.Context, *v1beta16.ListOCMSharesRequest) (*ListExistingOCMSharesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListExistingOCMShares not implemented")
 }
 func (UnimplementedGatewayAPIServer) UpdateOCMShare(context.Context, *v1beta16.UpdateOCMShareRequest) (*v1beta16.UpdateOCMShareResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateOCMShare not implemented")
@@ -3125,6 +3144,24 @@ func _GatewayAPI_ListOCMShares_Handler(srv interface{}, ctx context.Context, dec
 	return interceptor(ctx, in, info, handler)
 }
 
+func _GatewayAPI_ListExistingOCMShares_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(v1beta16.ListOCMSharesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GatewayAPIServer).ListExistingOCMShares(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: GatewayAPI_ListExistingOCMShares_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GatewayAPIServer).ListExistingOCMShares(ctx, req.(*v1beta16.ListOCMSharesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _GatewayAPI_UpdateOCMShare_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(v1beta16.UpdateOCMShareRequest)
 	if err := dec(in); err != nil {
@@ -4083,6 +4120,10 @@ var GatewayAPI_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListOCMShares",
 			Handler:    _GatewayAPI_ListOCMShares_Handler,
+		},
+		{
+			MethodName: "ListExistingOCMShares",
+			Handler:    _GatewayAPI_ListExistingOCMShares_Handler,
 		},
 		{
 			MethodName: "UpdateOCMShare",
