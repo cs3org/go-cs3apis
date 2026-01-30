@@ -179,6 +179,7 @@ type CreateOCMShareRequest struct {
 	// The details of the recipient user's mesh provider.
 	RecipientMeshProvider *v1beta12.ProviderInfo `protobuf:"bytes,4,opt,name=recipient_mesh_provider,json=recipientMeshProvider,proto3" json:"recipient_mesh_provider,omitempty"`
 	// REQUIRED.
+	// The protocols used to access the resource from remote.
 	AccessMethods []*AccessMethod `protobuf:"bytes,5,rep,name=access_methods,json=accessMethods,proto3" json:"access_methods,omitempty"`
 	// OPTIONAL.
 	// The expiration time for the ocm share.
