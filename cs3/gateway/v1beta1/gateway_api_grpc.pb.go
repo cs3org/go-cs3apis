@@ -89,6 +89,8 @@ const (
 	GatewayAPI_ListStorageSpaces_FullMethodName                = "/cs3.gateway.v1beta1.GatewayAPI/ListStorageSpaces"
 	GatewayAPI_UpdateStorageSpace_FullMethodName               = "/cs3.gateway.v1beta1.GatewayAPI/UpdateStorageSpace"
 	GatewayAPI_DeleteStorageSpace_FullMethodName               = "/cs3.gateway.v1beta1.GatewayAPI/DeleteStorageSpace"
+	GatewayAPI_AddFavorite_FullMethodName                      = "/cs3.gateway.v1beta1.GatewayAPI/AddFavorite"
+	GatewayAPI_RemoveFavorite_FullMethodName                   = "/cs3.gateway.v1beta1.GatewayAPI/RemoveFavorite"
 	GatewayAPI_OpenInApp_FullMethodName                        = "/cs3.gateway.v1beta1.GatewayAPI/OpenInApp"
 	GatewayAPI_CreateShare_FullMethodName                      = "/cs3.gateway.v1beta1.GatewayAPI/CreateShare"
 	GatewayAPI_RemoveShare_FullMethodName                      = "/cs3.gateway.v1beta1.GatewayAPI/RemoveShare"
@@ -289,6 +291,10 @@ type GatewayAPIClient interface {
 	UpdateStorageSpace(ctx context.Context, in *v1beta11.UpdateStorageSpaceRequest, opts ...grpc.CallOption) (*v1beta11.UpdateStorageSpaceResponse, error)
 	// Deletes a storage space.
 	DeleteStorageSpace(ctx context.Context, in *v1beta11.DeleteStorageSpaceRequest, opts ...grpc.CallOption) (*v1beta11.DeleteStorageSpaceResponse, error)
+	// Adds a resource as a favorite for a user.
+	AddFavorite(ctx context.Context, in *v1beta11.AddFavoriteRequest, opts ...grpc.CallOption) (*v1beta11.AddFavoriteResponse, error)
+	// Removes a resource from favorites for a user.
+	RemoveFavorite(ctx context.Context, in *v1beta11.RemoveFavoriteRequest, opts ...grpc.CallOption) (*v1beta11.RemoveFavoriteResponse, error)
 	// Returns the App URL and all necessary info to open a resource in an online editor.
 	// MUST return CODE_NOT_FOUND if the resource does not exist.
 	OpenInApp(ctx context.Context, in *OpenInAppRequest, opts ...grpc.CallOption) (*v1beta12.OpenInAppResponse, error)
@@ -839,6 +845,24 @@ func (c *gatewayAPIClient) UpdateStorageSpace(ctx context.Context, in *v1beta11.
 func (c *gatewayAPIClient) DeleteStorageSpace(ctx context.Context, in *v1beta11.DeleteStorageSpaceRequest, opts ...grpc.CallOption) (*v1beta11.DeleteStorageSpaceResponse, error) {
 	out := new(v1beta11.DeleteStorageSpaceResponse)
 	err := c.cc.Invoke(ctx, GatewayAPI_DeleteStorageSpace_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *gatewayAPIClient) AddFavorite(ctx context.Context, in *v1beta11.AddFavoriteRequest, opts ...grpc.CallOption) (*v1beta11.AddFavoriteResponse, error) {
+	out := new(v1beta11.AddFavoriteResponse)
+	err := c.cc.Invoke(ctx, GatewayAPI_AddFavorite_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *gatewayAPIClient) RemoveFavorite(ctx context.Context, in *v1beta11.RemoveFavoriteRequest, opts ...grpc.CallOption) (*v1beta11.RemoveFavoriteResponse, error) {
+	out := new(v1beta11.RemoveFavoriteResponse)
+	err := c.cc.Invoke(ctx, GatewayAPI_RemoveFavorite_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1595,6 +1619,10 @@ type GatewayAPIServer interface {
 	UpdateStorageSpace(context.Context, *v1beta11.UpdateStorageSpaceRequest) (*v1beta11.UpdateStorageSpaceResponse, error)
 	// Deletes a storage space.
 	DeleteStorageSpace(context.Context, *v1beta11.DeleteStorageSpaceRequest) (*v1beta11.DeleteStorageSpaceResponse, error)
+	// Adds a resource as a favorite for a user.
+	AddFavorite(context.Context, *v1beta11.AddFavoriteRequest) (*v1beta11.AddFavoriteResponse, error)
+	// Removes a resource from favorites for a user.
+	RemoveFavorite(context.Context, *v1beta11.RemoveFavoriteRequest) (*v1beta11.RemoveFavoriteResponse, error)
 	// Returns the App URL and all necessary info to open a resource in an online editor.
 	// MUST return CODE_NOT_FOUND if the resource does not exist.
 	OpenInApp(context.Context, *OpenInAppRequest) (*v1beta12.OpenInAppResponse, error)
@@ -1890,6 +1918,12 @@ func (UnimplementedGatewayAPIServer) UpdateStorageSpace(context.Context, *v1beta
 }
 func (UnimplementedGatewayAPIServer) DeleteStorageSpace(context.Context, *v1beta11.DeleteStorageSpaceRequest) (*v1beta11.DeleteStorageSpaceResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteStorageSpace not implemented")
+}
+func (UnimplementedGatewayAPIServer) AddFavorite(context.Context, *v1beta11.AddFavoriteRequest) (*v1beta11.AddFavoriteResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddFavorite not implemented")
+}
+func (UnimplementedGatewayAPIServer) RemoveFavorite(context.Context, *v1beta11.RemoveFavoriteRequest) (*v1beta11.RemoveFavoriteResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RemoveFavorite not implemented")
 }
 func (UnimplementedGatewayAPIServer) OpenInApp(context.Context, *OpenInAppRequest) (*v1beta12.OpenInAppResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method OpenInApp not implemented")
@@ -2742,6 +2776,42 @@ func _GatewayAPI_DeleteStorageSpace_Handler(srv interface{}, ctx context.Context
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(GatewayAPIServer).DeleteStorageSpace(ctx, req.(*v1beta11.DeleteStorageSpaceRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _GatewayAPI_AddFavorite_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(v1beta11.AddFavoriteRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GatewayAPIServer).AddFavorite(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: GatewayAPI_AddFavorite_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GatewayAPIServer).AddFavorite(ctx, req.(*v1beta11.AddFavoriteRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _GatewayAPI_RemoveFavorite_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(v1beta11.RemoveFavoriteRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GatewayAPIServer).RemoveFavorite(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: GatewayAPI_RemoveFavorite_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GatewayAPIServer).RemoveFavorite(ctx, req.(*v1beta11.RemoveFavoriteRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -4126,6 +4196,14 @@ var GatewayAPI_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DeleteStorageSpace",
 			Handler:    _GatewayAPI_DeleteStorageSpace_Handler,
+		},
+		{
+			MethodName: "AddFavorite",
+			Handler:    _GatewayAPI_AddFavorite_Handler,
+		},
+		{
+			MethodName: "RemoveFavorite",
+			Handler:    _GatewayAPI_RemoveFavorite_Handler,
 		},
 		{
 			MethodName: "OpenInApp",
