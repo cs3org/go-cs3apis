@@ -69,8 +69,8 @@ const (
 	ProviderAPI_Unlock_FullMethodName                 = "/cs3.storage.provider.v1beta1.ProviderAPI/Unlock"
 	ProviderAPI_CreateHome_FullMethodName             = "/cs3.storage.provider.v1beta1.ProviderAPI/CreateHome"
 	ProviderAPI_GetHome_FullMethodName                = "/cs3.storage.provider.v1beta1.ProviderAPI/GetHome"
-	ProviderAPI_AddFavorite_FullMethodName            = "/cs3.storage.provider.v1beta1.ProviderAPI/AddFavorite"
-	ProviderAPI_RemoveFavorite_FullMethodName         = "/cs3.storage.provider.v1beta1.ProviderAPI/RemoveFavorite"
+	ProviderAPI_AddLabel_FullMethodName               = "/cs3.storage.provider.v1beta1.ProviderAPI/AddLabel"
+	ProviderAPI_RemoveLabel_FullMethodName            = "/cs3.storage.provider.v1beta1.ProviderAPI/RemoveLabel"
 )
 
 // ProviderAPIClient is the client API for ProviderAPI service.
@@ -206,10 +206,10 @@ type ProviderAPIClient interface {
 	CreateHome(ctx context.Context, in *CreateHomeRequest, opts ...grpc.CallOption) (*CreateHomeResponse, error)
 	// Gets the home path for the user.
 	GetHome(ctx context.Context, in *GetHomeRequest, opts ...grpc.CallOption) (*GetHomeResponse, error)
-	// Marks a resource as favorite for a user.
-	AddFavorite(ctx context.Context, in *AddFavoriteRequest, opts ...grpc.CallOption) (*AddFavoriteResponse, error)
-	// Unmarks a resource as favorite for a user.
-	RemoveFavorite(ctx context.Context, in *RemoveFavoriteRequest, opts ...grpc.CallOption) (*RemoveFavoriteResponse, error)
+	// Attach a label to a resource for a user.
+	AddLabel(ctx context.Context, in *AddLabelRequest, opts ...grpc.CallOption) (*AddLabelResponse, error)
+	// Removes a label from a resource for a user.
+	RemoveLabel(ctx context.Context, in *RemoveLabelRequest, opts ...grpc.CallOption) (*RemoveLabelResponse, error)
 }
 
 type providerAPIClient struct {
@@ -554,18 +554,18 @@ func (c *providerAPIClient) GetHome(ctx context.Context, in *GetHomeRequest, opt
 	return out, nil
 }
 
-func (c *providerAPIClient) AddFavorite(ctx context.Context, in *AddFavoriteRequest, opts ...grpc.CallOption) (*AddFavoriteResponse, error) {
-	out := new(AddFavoriteResponse)
-	err := c.cc.Invoke(ctx, ProviderAPI_AddFavorite_FullMethodName, in, out, opts...)
+func (c *providerAPIClient) AddLabel(ctx context.Context, in *AddLabelRequest, opts ...grpc.CallOption) (*AddLabelResponse, error) {
+	out := new(AddLabelResponse)
+	err := c.cc.Invoke(ctx, ProviderAPI_AddLabel_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *providerAPIClient) RemoveFavorite(ctx context.Context, in *RemoveFavoriteRequest, opts ...grpc.CallOption) (*RemoveFavoriteResponse, error) {
-	out := new(RemoveFavoriteResponse)
-	err := c.cc.Invoke(ctx, ProviderAPI_RemoveFavorite_FullMethodName, in, out, opts...)
+func (c *providerAPIClient) RemoveLabel(ctx context.Context, in *RemoveLabelRequest, opts ...grpc.CallOption) (*RemoveLabelResponse, error) {
+	out := new(RemoveLabelResponse)
+	err := c.cc.Invoke(ctx, ProviderAPI_RemoveLabel_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -705,10 +705,10 @@ type ProviderAPIServer interface {
 	CreateHome(context.Context, *CreateHomeRequest) (*CreateHomeResponse, error)
 	// Gets the home path for the user.
 	GetHome(context.Context, *GetHomeRequest) (*GetHomeResponse, error)
-	// Marks a resource as favorite for a user.
-	AddFavorite(context.Context, *AddFavoriteRequest) (*AddFavoriteResponse, error)
-	// Unmarks a resource as favorite for a user.
-	RemoveFavorite(context.Context, *RemoveFavoriteRequest) (*RemoveFavoriteResponse, error)
+	// Attach a label to a resource for a user.
+	AddLabel(context.Context, *AddLabelRequest) (*AddLabelResponse, error)
+	// Removes a label from a resource for a user.
+	RemoveLabel(context.Context, *RemoveLabelRequest) (*RemoveLabelResponse, error)
 }
 
 // UnimplementedProviderAPIServer should be embedded to have forward compatible implementations.
@@ -811,11 +811,11 @@ func (UnimplementedProviderAPIServer) CreateHome(context.Context, *CreateHomeReq
 func (UnimplementedProviderAPIServer) GetHome(context.Context, *GetHomeRequest) (*GetHomeResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetHome not implemented")
 }
-func (UnimplementedProviderAPIServer) AddFavorite(context.Context, *AddFavoriteRequest) (*AddFavoriteResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method AddFavorite not implemented")
+func (UnimplementedProviderAPIServer) AddLabel(context.Context, *AddLabelRequest) (*AddLabelResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddLabel not implemented")
 }
-func (UnimplementedProviderAPIServer) RemoveFavorite(context.Context, *RemoveFavoriteRequest) (*RemoveFavoriteResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method RemoveFavorite not implemented")
+func (UnimplementedProviderAPIServer) RemoveLabel(context.Context, *RemoveLabelRequest) (*RemoveLabelResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RemoveLabel not implemented")
 }
 
 // UnsafeProviderAPIServer may be embedded to opt out of forward compatibility for this service.
@@ -1411,38 +1411,38 @@ func _ProviderAPI_GetHome_Handler(srv interface{}, ctx context.Context, dec func
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ProviderAPI_AddFavorite_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(AddFavoriteRequest)
+func _ProviderAPI_AddLabel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddLabelRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ProviderAPIServer).AddFavorite(ctx, in)
+		return srv.(ProviderAPIServer).AddLabel(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ProviderAPI_AddFavorite_FullMethodName,
+		FullMethod: ProviderAPI_AddLabel_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ProviderAPIServer).AddFavorite(ctx, req.(*AddFavoriteRequest))
+		return srv.(ProviderAPIServer).AddLabel(ctx, req.(*AddLabelRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ProviderAPI_RemoveFavorite_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(RemoveFavoriteRequest)
+func _ProviderAPI_RemoveLabel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RemoveLabelRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ProviderAPIServer).RemoveFavorite(ctx, in)
+		return srv.(ProviderAPIServer).RemoveLabel(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ProviderAPI_RemoveFavorite_FullMethodName,
+		FullMethod: ProviderAPI_RemoveLabel_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ProviderAPIServer).RemoveFavorite(ctx, req.(*RemoveFavoriteRequest))
+		return srv.(ProviderAPIServer).RemoveLabel(ctx, req.(*RemoveLabelRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1575,12 +1575,12 @@ var ProviderAPI_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _ProviderAPI_GetHome_Handler,
 		},
 		{
-			MethodName: "AddFavorite",
-			Handler:    _ProviderAPI_AddFavorite_Handler,
+			MethodName: "AddLabel",
+			Handler:    _ProviderAPI_AddLabel_Handler,
 		},
 		{
-			MethodName: "RemoveFavorite",
-			Handler:    _ProviderAPI_RemoveFavorite_Handler,
+			MethodName: "RemoveLabel",
+			Handler:    _ProviderAPI_RemoveLabel_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{
