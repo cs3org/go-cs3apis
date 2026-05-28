@@ -54,7 +54,7 @@ const (
 	// The recipient of the share has accepted the share.
 	ShareState_SHARE_STATE_ACCEPTED ShareState = 2
 	// The recipient of the share has rejected the share.
-	// Do not means the share is removed, the recipient MAY
+	// Does not mean the share is removed, the recipient MAY
 	// change the state to accepted or pending.
 	ShareState_SHARE_STATE_REJECTED ShareState = 3
 )
