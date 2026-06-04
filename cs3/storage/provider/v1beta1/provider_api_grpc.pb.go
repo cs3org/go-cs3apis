@@ -67,6 +67,8 @@ const (
 	ProviderAPI_GetLock_FullMethodName                = "/cs3.storage.provider.v1beta1.ProviderAPI/GetLock"
 	ProviderAPI_RefreshLock_FullMethodName            = "/cs3.storage.provider.v1beta1.ProviderAPI/RefreshLock"
 	ProviderAPI_Unlock_FullMethodName                 = "/cs3.storage.provider.v1beta1.ProviderAPI/Unlock"
+	ProviderAPI_SetImmutable_FullMethodName           = "/cs3.storage.provider.v1beta1.ProviderAPI/SetImmutable"
+	ProviderAPI_UnsetImmutable_FullMethodName         = "/cs3.storage.provider.v1beta1.ProviderAPI/UnsetImmutable"
 	ProviderAPI_CreateHome_FullMethodName             = "/cs3.storage.provider.v1beta1.ProviderAPI/CreateHome"
 	ProviderAPI_GetHome_FullMethodName                = "/cs3.storage.provider.v1beta1.ProviderAPI/GetHome"
 )
@@ -200,6 +202,16 @@ type ProviderAPIClient interface {
 	// or if the caller does not hold the lock.
 	// The caller MUST have write permissions on the resource.
 	Unlock(ctx context.Context, in *UnlockRequest, opts ...grpc.CallOption) (*UnlockResponse, error)
+	// Sets the immutable (frozen) attribute on a resource.
+	// MUST return CODE_NOT_FOUND if the reference does not exist.
+	// The caller MUST have management permissions on the resource
+	// (space owner, space manager, or administrator).
+	SetImmutable(ctx context.Context, in *SetImmutableRequest, opts ...grpc.CallOption) (*SetImmutableResponse, error)
+	// Removes the immutable (frozen) attribute from a resource.
+	// MUST return CODE_NOT_FOUND if the reference does not exist.
+	// MUST return CODE_FAILED_PRECONDITION if the resource is not immutable.
+	// The caller MUST have management permissions on the resource.
+	UnsetImmutable(ctx context.Context, in *UnsetImmutableRequest, opts ...grpc.CallOption) (*UnsetImmutableResponse, error)
 	// Creates the home directory for a user.
 	CreateHome(ctx context.Context, in *CreateHomeRequest, opts ...grpc.CallOption) (*CreateHomeResponse, error)
 	// Gets the home path for the user.
@@ -530,6 +542,24 @@ func (c *providerAPIClient) Unlock(ctx context.Context, in *UnlockRequest, opts 
 	return out, nil
 }
 
+func (c *providerAPIClient) SetImmutable(ctx context.Context, in *SetImmutableRequest, opts ...grpc.CallOption) (*SetImmutableResponse, error) {
+	out := new(SetImmutableResponse)
+	err := c.cc.Invoke(ctx, ProviderAPI_SetImmutable_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *providerAPIClient) UnsetImmutable(ctx context.Context, in *UnsetImmutableRequest, opts ...grpc.CallOption) (*UnsetImmutableResponse, error) {
+	out := new(UnsetImmutableResponse)
+	err := c.cc.Invoke(ctx, ProviderAPI_UnsetImmutable_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *providerAPIClient) CreateHome(ctx context.Context, in *CreateHomeRequest, opts ...grpc.CallOption) (*CreateHomeResponse, error) {
 	out := new(CreateHomeResponse)
 	err := c.cc.Invoke(ctx, ProviderAPI_CreateHome_FullMethodName, in, out, opts...)
@@ -677,6 +707,16 @@ type ProviderAPIServer interface {
 	// or if the caller does not hold the lock.
 	// The caller MUST have write permissions on the resource.
 	Unlock(context.Context, *UnlockRequest) (*UnlockResponse, error)
+	// Sets the immutable (frozen) attribute on a resource.
+	// MUST return CODE_NOT_FOUND if the reference does not exist.
+	// The caller MUST have management permissions on the resource
+	// (space owner, space manager, or administrator).
+	SetImmutable(context.Context, *SetImmutableRequest) (*SetImmutableResponse, error)
+	// Removes the immutable (frozen) attribute from a resource.
+	// MUST return CODE_NOT_FOUND if the reference does not exist.
+	// MUST return CODE_FAILED_PRECONDITION if the resource is not immutable.
+	// The caller MUST have management permissions on the resource.
+	UnsetImmutable(context.Context, *UnsetImmutableRequest) (*UnsetImmutableResponse, error)
 	// Creates the home directory for a user.
 	CreateHome(context.Context, *CreateHomeRequest) (*CreateHomeResponse, error)
 	// Gets the home path for the user.
@@ -776,6 +816,12 @@ func (UnimplementedProviderAPIServer) RefreshLock(context.Context, *RefreshLockR
 }
 func (UnimplementedProviderAPIServer) Unlock(context.Context, *UnlockRequest) (*UnlockResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Unlock not implemented")
+}
+func (UnimplementedProviderAPIServer) SetImmutable(context.Context, *SetImmutableRequest) (*SetImmutableResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SetImmutable not implemented")
+}
+func (UnimplementedProviderAPIServer) UnsetImmutable(context.Context, *UnsetImmutableRequest) (*UnsetImmutableResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UnsetImmutable not implemented")
 }
 func (UnimplementedProviderAPIServer) CreateHome(context.Context, *CreateHomeRequest) (*CreateHomeResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateHome not implemented")
@@ -1341,6 +1387,42 @@ func _ProviderAPI_Unlock_Handler(srv interface{}, ctx context.Context, dec func(
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ProviderAPI_SetImmutable_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SetImmutableRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProviderAPIServer).SetImmutable(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ProviderAPI_SetImmutable_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProviderAPIServer).SetImmutable(ctx, req.(*SetImmutableRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ProviderAPI_UnsetImmutable_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UnsetImmutableRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProviderAPIServer).UnsetImmutable(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ProviderAPI_UnsetImmutable_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProviderAPIServer).UnsetImmutable(ctx, req.(*UnsetImmutableRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _ProviderAPI_CreateHome_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(CreateHomeRequest)
 	if err := dec(in); err != nil {
@@ -1495,6 +1577,14 @@ var ProviderAPI_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Unlock",
 			Handler:    _ProviderAPI_Unlock_Handler,
+		},
+		{
+			MethodName: "SetImmutable",
+			Handler:    _ProviderAPI_SetImmutable_Handler,
+		},
+		{
+			MethodName: "UnsetImmutable",
+			Handler:    _ProviderAPI_UnsetImmutable_Handler,
 		},
 		{
 			MethodName: "CreateHome",
