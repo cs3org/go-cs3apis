@@ -91,6 +91,8 @@ const (
 	GatewayAPI_ListStorageSpaces_FullMethodName                = "/cs3.gateway.v1beta1.GatewayAPI/ListStorageSpaces"
 	GatewayAPI_UpdateStorageSpace_FullMethodName               = "/cs3.gateway.v1beta1.GatewayAPI/UpdateStorageSpace"
 	GatewayAPI_DeleteStorageSpace_FullMethodName               = "/cs3.gateway.v1beta1.GatewayAPI/DeleteStorageSpace"
+	GatewayAPI_SetImmutable_FullMethodName                     = "/cs3.gateway.v1beta1.GatewayAPI/SetImmutable"
+	GatewayAPI_UnsetImmutable_FullMethodName                   = "/cs3.gateway.v1beta1.GatewayAPI/UnsetImmutable"
 	GatewayAPI_OpenInApp_FullMethodName                        = "/cs3.gateway.v1beta1.GatewayAPI/OpenInApp"
 	GatewayAPI_CreateShare_FullMethodName                      = "/cs3.gateway.v1beta1.GatewayAPI/CreateShare"
 	GatewayAPI_RemoveShare_FullMethodName                      = "/cs3.gateway.v1beta1.GatewayAPI/RemoveShare"
@@ -297,6 +299,13 @@ type GatewayAPIClient interface {
 	UpdateStorageSpace(ctx context.Context, in *v1beta11.UpdateStorageSpaceRequest, opts ...grpc.CallOption) (*v1beta11.UpdateStorageSpaceResponse, error)
 	// Deletes a storage space.
 	DeleteStorageSpace(ctx context.Context, in *v1beta11.DeleteStorageSpaceRequest, opts ...grpc.CallOption) (*v1beta11.DeleteStorageSpaceResponse, error)
+	// Set the immutable attribute on a resource.
+	// Files become frozen (irreversible), containers become protected (reversible).
+	// See cs3org/cs3apis#272 for the specification.
+	SetImmutable(ctx context.Context, in *v1beta11.SetImmutableRequest, opts ...grpc.CallOption) (*v1beta11.SetImmutableResponse, error)
+	// Remove the immutable attribute from a resource.
+	// Only applicable to containers (protected). Frozen files cannot be unfrozen.
+	UnsetImmutable(ctx context.Context, in *v1beta11.UnsetImmutableRequest, opts ...grpc.CallOption) (*v1beta11.UnsetImmutableResponse, error)
 	// Returns the App URL and all necessary info to open a resource in an online editor.
 	// MUST return CODE_NOT_FOUND if the resource does not exist.
 	OpenInApp(ctx context.Context, in *OpenInAppRequest, opts ...grpc.CallOption) (*v1beta12.OpenInAppResponse, error)
@@ -859,6 +868,24 @@ func (c *gatewayAPIClient) UpdateStorageSpace(ctx context.Context, in *v1beta11.
 func (c *gatewayAPIClient) DeleteStorageSpace(ctx context.Context, in *v1beta11.DeleteStorageSpaceRequest, opts ...grpc.CallOption) (*v1beta11.DeleteStorageSpaceResponse, error) {
 	out := new(v1beta11.DeleteStorageSpaceResponse)
 	err := c.cc.Invoke(ctx, GatewayAPI_DeleteStorageSpace_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *gatewayAPIClient) SetImmutable(ctx context.Context, in *v1beta11.SetImmutableRequest, opts ...grpc.CallOption) (*v1beta11.SetImmutableResponse, error) {
+	out := new(v1beta11.SetImmutableResponse)
+	err := c.cc.Invoke(ctx, GatewayAPI_SetImmutable_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *gatewayAPIClient) UnsetImmutable(ctx context.Context, in *v1beta11.UnsetImmutableRequest, opts ...grpc.CallOption) (*v1beta11.UnsetImmutableResponse, error) {
+	out := new(v1beta11.UnsetImmutableResponse)
+	err := c.cc.Invoke(ctx, GatewayAPI_UnsetImmutable_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1669,6 +1696,13 @@ type GatewayAPIServer interface {
 	UpdateStorageSpace(context.Context, *v1beta11.UpdateStorageSpaceRequest) (*v1beta11.UpdateStorageSpaceResponse, error)
 	// Deletes a storage space.
 	DeleteStorageSpace(context.Context, *v1beta11.DeleteStorageSpaceRequest) (*v1beta11.DeleteStorageSpaceResponse, error)
+	// Set the immutable attribute on a resource.
+	// Files become frozen (irreversible), containers become protected (reversible).
+	// See cs3org/cs3apis#272 for the specification.
+	SetImmutable(context.Context, *v1beta11.SetImmutableRequest) (*v1beta11.SetImmutableResponse, error)
+	// Remove the immutable attribute from a resource.
+	// Only applicable to containers (protected). Frozen files cannot be unfrozen.
+	UnsetImmutable(context.Context, *v1beta11.UnsetImmutableRequest) (*v1beta11.UnsetImmutableResponse, error)
 	// Returns the App URL and all necessary info to open a resource in an online editor.
 	// MUST return CODE_NOT_FOUND if the resource does not exist.
 	OpenInApp(context.Context, *OpenInAppRequest) (*v1beta12.OpenInAppResponse, error)
@@ -1976,6 +2010,12 @@ func (UnimplementedGatewayAPIServer) UpdateStorageSpace(context.Context, *v1beta
 }
 func (UnimplementedGatewayAPIServer) DeleteStorageSpace(context.Context, *v1beta11.DeleteStorageSpaceRequest) (*v1beta11.DeleteStorageSpaceResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteStorageSpace not implemented")
+}
+func (UnimplementedGatewayAPIServer) SetImmutable(context.Context, *v1beta11.SetImmutableRequest) (*v1beta11.SetImmutableResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SetImmutable not implemented")
+}
+func (UnimplementedGatewayAPIServer) UnsetImmutable(context.Context, *v1beta11.UnsetImmutableRequest) (*v1beta11.UnsetImmutableResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UnsetImmutable not implemented")
 }
 func (UnimplementedGatewayAPIServer) OpenInApp(context.Context, *OpenInAppRequest) (*v1beta12.OpenInAppResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method OpenInApp not implemented")
@@ -2846,6 +2886,42 @@ func _GatewayAPI_DeleteStorageSpace_Handler(srv interface{}, ctx context.Context
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(GatewayAPIServer).DeleteStorageSpace(ctx, req.(*v1beta11.DeleteStorageSpaceRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _GatewayAPI_SetImmutable_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(v1beta11.SetImmutableRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GatewayAPIServer).SetImmutable(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: GatewayAPI_SetImmutable_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GatewayAPIServer).SetImmutable(ctx, req.(*v1beta11.SetImmutableRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _GatewayAPI_UnsetImmutable_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(v1beta11.UnsetImmutableRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GatewayAPIServer).UnsetImmutable(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: GatewayAPI_UnsetImmutable_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GatewayAPIServer).UnsetImmutable(ctx, req.(*v1beta11.UnsetImmutableRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -4338,6 +4414,14 @@ var GatewayAPI_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DeleteStorageSpace",
 			Handler:    _GatewayAPI_DeleteStorageSpace_Handler,
+		},
+		{
+			MethodName: "SetImmutable",
+			Handler:    _GatewayAPI_SetImmutable_Handler,
+		},
+		{
+			MethodName: "UnsetImmutable",
+			Handler:    _GatewayAPI_UnsetImmutable_Handler,
 		},
 		{
 			MethodName: "OpenInApp",
