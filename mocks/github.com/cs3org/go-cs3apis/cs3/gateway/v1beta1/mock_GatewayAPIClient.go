@@ -7092,6 +7092,80 @@ func (_c *MockGatewayAPIClient_SetDefaultAppProviderForMimeType_Call) RunAndRetu
 	return _c
 }
 
+// SetImmutable provides a mock function with given fields: ctx, in, opts
+func (_m *MockGatewayAPIClient) SetImmutable(ctx context.Context, in *providerv1beta1.SetImmutableRequest, opts ...grpc.CallOption) (*providerv1beta1.SetImmutableResponse, error) {
+	_va := make([]interface{}, len(opts))
+	for _i := range opts {
+		_va[_i] = opts[_i]
+	}
+	var _ca []interface{}
+	_ca = append(_ca, ctx, in)
+	_ca = append(_ca, _va...)
+	ret := _m.Called(_ca...)
+
+	if len(ret) == 0 {
+		panic("no return value specified for SetImmutable")
+	}
+
+	var r0 *providerv1beta1.SetImmutableResponse
+	var r1 error
+	if rf, ok := ret.Get(0).(func(context.Context, *providerv1beta1.SetImmutableRequest, ...grpc.CallOption) (*providerv1beta1.SetImmutableResponse, error)); ok {
+		return rf(ctx, in, opts...)
+	}
+	if rf, ok := ret.Get(0).(func(context.Context, *providerv1beta1.SetImmutableRequest, ...grpc.CallOption) *providerv1beta1.SetImmutableResponse); ok {
+		r0 = rf(ctx, in, opts...)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*providerv1beta1.SetImmutableResponse)
+		}
+	}
+
+	if rf, ok := ret.Get(1).(func(context.Context, *providerv1beta1.SetImmutableRequest, ...grpc.CallOption) error); ok {
+		r1 = rf(ctx, in, opts...)
+	} else {
+		r1 = ret.Error(1)
+	}
+
+	return r0, r1
+}
+
+// MockGatewayAPIClient_SetImmutable_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'SetImmutable'
+type MockGatewayAPIClient_SetImmutable_Call struct {
+	*mock.Call
+}
+
+// SetImmutable is a helper method to define mock.On call
+//   - ctx context.Context
+//   - in *providerv1beta1.SetImmutableRequest
+//   - opts ...grpc.CallOption
+func (_e *MockGatewayAPIClient_Expecter) SetImmutable(ctx interface{}, in interface{}, opts ...interface{}) *MockGatewayAPIClient_SetImmutable_Call {
+	return &MockGatewayAPIClient_SetImmutable_Call{Call: _e.mock.On("SetImmutable",
+		append([]interface{}{ctx, in}, opts...)...)}
+}
+
+func (_c *MockGatewayAPIClient_SetImmutable_Call) Run(run func(ctx context.Context, in *providerv1beta1.SetImmutableRequest, opts ...grpc.CallOption)) *MockGatewayAPIClient_SetImmutable_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		variadicArgs := make([]grpc.CallOption, len(args)-2)
+		for i, a := range args[2:] {
+			if a != nil {
+				variadicArgs[i] = a.(grpc.CallOption)
+			}
+		}
+		run(args[0].(context.Context), args[1].(*providerv1beta1.SetImmutableRequest), variadicArgs...)
+	})
+	return _c
+}
+
+func (_c *MockGatewayAPIClient_SetImmutable_Call) Return(_a0 *providerv1beta1.SetImmutableResponse, _a1 error) *MockGatewayAPIClient_SetImmutable_Call {
+	_c.Call.Return(_a0, _a1)
+	return _c
+}
+
+func (_c *MockGatewayAPIClient_SetImmutable_Call) RunAndReturn(run func(context.Context, *providerv1beta1.SetImmutableRequest, ...grpc.CallOption) (*providerv1beta1.SetImmutableResponse, error)) *MockGatewayAPIClient_SetImmutable_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
 // SetKey provides a mock function with given fields: ctx, in, opts
 func (_m *MockGatewayAPIClient) SetKey(ctx context.Context, in *preferencesv1beta1.SetKeyRequest, opts ...grpc.CallOption) (*preferencesv1beta1.SetKeyResponse, error) {
 	_va := make([]interface{}, len(opts))
@@ -7532,6 +7606,80 @@ func (_c *MockGatewayAPIClient_UnsetArbitraryMetadata_Call) Return(_a0 *provider
 }
 
 func (_c *MockGatewayAPIClient_UnsetArbitraryMetadata_Call) RunAndReturn(run func(context.Context, *providerv1beta1.UnsetArbitraryMetadataRequest, ...grpc.CallOption) (*providerv1beta1.UnsetArbitraryMetadataResponse, error)) *MockGatewayAPIClient_UnsetArbitraryMetadata_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// UnsetImmutable provides a mock function with given fields: ctx, in, opts
+func (_m *MockGatewayAPIClient) UnsetImmutable(ctx context.Context, in *providerv1beta1.UnsetImmutableRequest, opts ...grpc.CallOption) (*providerv1beta1.UnsetImmutableResponse, error) {
+	_va := make([]interface{}, len(opts))
+	for _i := range opts {
+		_va[_i] = opts[_i]
+	}
+	var _ca []interface{}
+	_ca = append(_ca, ctx, in)
+	_ca = append(_ca, _va...)
+	ret := _m.Called(_ca...)
+
+	if len(ret) == 0 {
+		panic("no return value specified for UnsetImmutable")
+	}
+
+	var r0 *providerv1beta1.UnsetImmutableResponse
+	var r1 error
+	if rf, ok := ret.Get(0).(func(context.Context, *providerv1beta1.UnsetImmutableRequest, ...grpc.CallOption) (*providerv1beta1.UnsetImmutableResponse, error)); ok {
+		return rf(ctx, in, opts...)
+	}
+	if rf, ok := ret.Get(0).(func(context.Context, *providerv1beta1.UnsetImmutableRequest, ...grpc.CallOption) *providerv1beta1.UnsetImmutableResponse); ok {
+		r0 = rf(ctx, in, opts...)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*providerv1beta1.UnsetImmutableResponse)
+		}
+	}
+
+	if rf, ok := ret.Get(1).(func(context.Context, *providerv1beta1.UnsetImmutableRequest, ...grpc.CallOption) error); ok {
+		r1 = rf(ctx, in, opts...)
+	} else {
+		r1 = ret.Error(1)
+	}
+
+	return r0, r1
+}
+
+// MockGatewayAPIClient_UnsetImmutable_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'UnsetImmutable'
+type MockGatewayAPIClient_UnsetImmutable_Call struct {
+	*mock.Call
+}
+
+// UnsetImmutable is a helper method to define mock.On call
+//   - ctx context.Context
+//   - in *providerv1beta1.UnsetImmutableRequest
+//   - opts ...grpc.CallOption
+func (_e *MockGatewayAPIClient_Expecter) UnsetImmutable(ctx interface{}, in interface{}, opts ...interface{}) *MockGatewayAPIClient_UnsetImmutable_Call {
+	return &MockGatewayAPIClient_UnsetImmutable_Call{Call: _e.mock.On("UnsetImmutable",
+		append([]interface{}{ctx, in}, opts...)...)}
+}
+
+func (_c *MockGatewayAPIClient_UnsetImmutable_Call) Run(run func(ctx context.Context, in *providerv1beta1.UnsetImmutableRequest, opts ...grpc.CallOption)) *MockGatewayAPIClient_UnsetImmutable_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		variadicArgs := make([]grpc.CallOption, len(args)-2)
+		for i, a := range args[2:] {
+			if a != nil {
+				variadicArgs[i] = a.(grpc.CallOption)
+			}
+		}
+		run(args[0].(context.Context), args[1].(*providerv1beta1.UnsetImmutableRequest), variadicArgs...)
+	})
+	return _c
+}
+
+func (_c *MockGatewayAPIClient_UnsetImmutable_Call) Return(_a0 *providerv1beta1.UnsetImmutableResponse, _a1 error) *MockGatewayAPIClient_UnsetImmutable_Call {
+	_c.Call.Return(_a0, _a1)
+	return _c
+}
+
+func (_c *MockGatewayAPIClient_UnsetImmutable_Call) RunAndReturn(run func(context.Context, *providerv1beta1.UnsetImmutableRequest, ...grpc.CallOption) (*providerv1beta1.UnsetImmutableResponse, error)) *MockGatewayAPIClient_UnsetImmutable_Call {
 	_c.Call.Return(run)
 	return _c
 }
