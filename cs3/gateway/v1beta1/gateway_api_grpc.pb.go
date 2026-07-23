@@ -58,6 +58,7 @@ const _ = grpc.SupportPackageIsVersion7
 const (
 	GatewayAPI_Authenticate_FullMethodName                     = "/cs3.gateway.v1beta1.GatewayAPI/Authenticate"
 	GatewayAPI_WhoAmI_FullMethodName                           = "/cs3.gateway.v1beta1.GatewayAPI/WhoAmI"
+	GatewayAPI_PublishEvent_FullMethodName                     = "/cs3.gateway.v1beta1.GatewayAPI/PublishEvent"
 	GatewayAPI_GenerateAppPassword_FullMethodName              = "/cs3.gateway.v1beta1.GatewayAPI/GenerateAppPassword"
 	GatewayAPI_ListAppPasswords_FullMethodName                 = "/cs3.gateway.v1beta1.GatewayAPI/ListAppPasswords"
 	GatewayAPI_InvalidateAppPassword_FullMethodName            = "/cs3.gateway.v1beta1.GatewayAPI/InvalidateAppPassword"
@@ -178,6 +179,11 @@ type GatewayAPIClient interface {
 	Authenticate(ctx context.Context, in *AuthenticateRequest, opts ...grpc.CallOption) (*AuthenticateResponse, error)
 	// WhoAmI returns the information for a user.
 	WhoAmI(ctx context.Context, in *WhoAmIRequest, opts ...grpc.CallOption) (*WhoAmIResponse, error)
+	// Sends an event for asynchronous processing.
+	// The gateway MUST derive the sender and submitting user from the
+	// authenticated request context and SHOULD rate-limit this call per submitting
+	// user.
+	PublishEvent(ctx context.Context, in *PublishEventRequest, opts ...grpc.CallOption) (*PublishEventResponse, error)
 	// GenerateAppPassword creates a password with specified scope to be used by
 	// third-party applications.
 	GenerateAppPassword(ctx context.Context, in *v1beta1.GenerateAppPasswordRequest, opts ...grpc.CallOption) (*v1beta1.GenerateAppPasswordResponse, error)
@@ -525,6 +531,15 @@ func (c *gatewayAPIClient) Authenticate(ctx context.Context, in *AuthenticateReq
 func (c *gatewayAPIClient) WhoAmI(ctx context.Context, in *WhoAmIRequest, opts ...grpc.CallOption) (*WhoAmIResponse, error) {
 	out := new(WhoAmIResponse)
 	err := c.cc.Invoke(ctx, GatewayAPI_WhoAmI_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *gatewayAPIClient) PublishEvent(ctx context.Context, in *PublishEventRequest, opts ...grpc.CallOption) (*PublishEventResponse, error) {
+	out := new(PublishEventResponse)
+	err := c.cc.Invoke(ctx, GatewayAPI_PublishEvent_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1575,6 +1590,11 @@ type GatewayAPIServer interface {
 	Authenticate(context.Context, *AuthenticateRequest) (*AuthenticateResponse, error)
 	// WhoAmI returns the information for a user.
 	WhoAmI(context.Context, *WhoAmIRequest) (*WhoAmIResponse, error)
+	// Sends an event for asynchronous processing.
+	// The gateway MUST derive the sender and submitting user from the
+	// authenticated request context and SHOULD rate-limit this call per submitting
+	// user.
+	PublishEvent(context.Context, *PublishEventRequest) (*PublishEventResponse, error)
 	// GenerateAppPassword creates a password with specified scope to be used by
 	// third-party applications.
 	GenerateAppPassword(context.Context, *v1beta1.GenerateAppPasswordRequest) (*v1beta1.GenerateAppPasswordResponse, error)
@@ -1911,6 +1931,9 @@ func (UnimplementedGatewayAPIServer) Authenticate(context.Context, *Authenticate
 }
 func (UnimplementedGatewayAPIServer) WhoAmI(context.Context, *WhoAmIRequest) (*WhoAmIResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method WhoAmI not implemented")
+}
+func (UnimplementedGatewayAPIServer) PublishEvent(context.Context, *PublishEventRequest) (*PublishEventResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PublishEvent not implemented")
 }
 func (UnimplementedGatewayAPIServer) GenerateAppPassword(context.Context, *v1beta1.GenerateAppPasswordRequest) (*v1beta1.GenerateAppPasswordResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GenerateAppPassword not implemented")
@@ -2286,6 +2309,24 @@ func _GatewayAPI_WhoAmI_Handler(srv interface{}, ctx context.Context, dec func(i
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(GatewayAPIServer).WhoAmI(ctx, req.(*WhoAmIRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _GatewayAPI_PublishEvent_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PublishEventRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GatewayAPIServer).PublishEvent(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: GatewayAPI_PublishEvent_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GatewayAPIServer).PublishEvent(ctx, req.(*PublishEventRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -4290,6 +4331,10 @@ var GatewayAPI_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "WhoAmI",
 			Handler:    _GatewayAPI_WhoAmI_Handler,
+		},
+		{
+			MethodName: "PublishEvent",
+			Handler:    _GatewayAPI_PublishEvent_Handler,
 		},
 		{
 			MethodName: "GenerateAppPassword",

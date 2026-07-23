@@ -507,6 +507,67 @@ func (x *OCMShareResourceInfo) GetResourceInfo() *v1beta11.ResourceInfo {
 	return nil
 }
 
+// Event describes an event submitted through the gateway for
+// asynchronous processing.
+type Event struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// REQUIRED.
+	// The event type, for example "upload" or "share-creation".
+	Type string `protobuf:"bytes,1,opt,name=type,proto3" json:"type,omitempty"`
+	// OPTIONAL.
+	// Event-specific payload used by event rules and handlers.
+	Data *v1beta1.Opaque `protobuf:"bytes,2,opt,name=data,proto3" json:"data,omitempty"`
+}
+
+func (x *Event) Reset() {
+	*x = Event{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_cs3_gateway_v1beta1_resources_proto_msgTypes[6]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *Event) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Event) ProtoMessage() {}
+
+func (x *Event) ProtoReflect() protoreflect.Message {
+	mi := &file_cs3_gateway_v1beta1_resources_proto_msgTypes[6]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Event.ProtoReflect.Descriptor instead.
+func (*Event) Descriptor() ([]byte, []int) {
+	return file_cs3_gateway_v1beta1_resources_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *Event) GetType() string {
+	if x != nil {
+		return x.Type
+	}
+	return ""
+}
+
+func (x *Event) GetData() *v1beta1.Opaque {
+	if x != nil {
+		return x.Data
+	}
+	return nil
+}
+
 var File_cs3_gateway_v1beta1_resources_proto protoreflect.FileDescriptor
 
 var file_cs3_gateway_v1beta1_resources_proto_rawDesc = []byte{
@@ -611,22 +672,26 @@ var file_cs3_gateway_v1beta1_resources_proto_rawDesc = []byte{
 	0x03, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x2a, 0x2e, 0x63, 0x73, 0x33, 0x2e, 0x73, 0x74, 0x6f, 0x72,
 	0x61, 0x67, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x76, 0x69, 0x64, 0x65, 0x72, 0x2e, 0x76, 0x31, 0x62,
 	0x65, 0x74, 0x61, 0x31, 0x2e, 0x52, 0x65, 0x73, 0x6f, 0x75, 0x72, 0x63, 0x65, 0x49, 0x6e, 0x66,
-	0x6f, 0x52, 0x0c, 0x72, 0x65, 0x73, 0x6f, 0x75, 0x72, 0x63, 0x65, 0x49, 0x6e, 0x66, 0x6f, 0x42,
-	0xd8, 0x01, 0x0a, 0x17, 0x63, 0x6f, 0x6d, 0x2e, 0x63, 0x73, 0x33, 0x2e, 0x67, 0x61, 0x74, 0x65,
-	0x77, 0x61, 0x79, 0x2e, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x31, 0x42, 0x0e, 0x52, 0x65, 0x73,
-	0x6f, 0x75, 0x72, 0x63, 0x65, 0x73, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x50, 0x01, 0x5a, 0x3f, 0x67,
-	0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x63, 0x73, 0x33, 0x6f, 0x72, 0x67,
-	0x2f, 0x67, 0x6f, 0x2d, 0x63, 0x73, 0x33, 0x61, 0x70, 0x69, 0x73, 0x2f, 0x63, 0x73, 0x33, 0x2f,
-	0x67, 0x61, 0x74, 0x65, 0x77, 0x61, 0x79, 0x2f, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x31, 0x3b,
-	0x67, 0x61, 0x74, 0x65, 0x77, 0x61, 0x79, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x31, 0xa2, 0x02,
-	0x03, 0x43, 0x47, 0x58, 0xaa, 0x02, 0x13, 0x43, 0x73, 0x33, 0x2e, 0x47, 0x61, 0x74, 0x65, 0x77,
-	0x61, 0x79, 0x2e, 0x56, 0x31, 0x62, 0x65, 0x74, 0x61, 0x31, 0xca, 0x02, 0x13, 0x43, 0x73, 0x33,
-	0x5c, 0x47, 0x61, 0x74, 0x65, 0x77, 0x61, 0x79, 0x5c, 0x56, 0x31, 0x62, 0x65, 0x74, 0x61, 0x31,
-	0xe2, 0x02, 0x1f, 0x43, 0x73, 0x33, 0x5c, 0x47, 0x61, 0x74, 0x65, 0x77, 0x61, 0x79, 0x5c, 0x56,
-	0x31, 0x62, 0x65, 0x74, 0x61, 0x31, 0x5c, 0x47, 0x50, 0x42, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61,
-	0x74, 0x61, 0xea, 0x02, 0x15, 0x43, 0x73, 0x33, 0x3a, 0x3a, 0x47, 0x61, 0x74, 0x65, 0x77, 0x61,
-	0x79, 0x3a, 0x3a, 0x56, 0x31, 0x62, 0x65, 0x74, 0x61, 0x31, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74,
-	0x6f, 0x33,
+	0x6f, 0x52, 0x0c, 0x72, 0x65, 0x73, 0x6f, 0x75, 0x72, 0x63, 0x65, 0x49, 0x6e, 0x66, 0x6f, 0x22,
+	0x4a, 0x0a, 0x05, 0x45, 0x76, 0x65, 0x6e, 0x74, 0x12, 0x12, 0x0a, 0x04, 0x74, 0x79, 0x70, 0x65,
+	0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x74, 0x79, 0x70, 0x65, 0x12, 0x2d, 0x0a, 0x04,
+	0x64, 0x61, 0x74, 0x61, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x19, 0x2e, 0x63, 0x73, 0x33,
+	0x2e, 0x74, 0x79, 0x70, 0x65, 0x73, 0x2e, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x31, 0x2e, 0x4f,
+	0x70, 0x61, 0x71, 0x75, 0x65, 0x52, 0x04, 0x64, 0x61, 0x74, 0x61, 0x42, 0xd8, 0x01, 0x0a, 0x17,
+	0x63, 0x6f, 0x6d, 0x2e, 0x63, 0x73, 0x33, 0x2e, 0x67, 0x61, 0x74, 0x65, 0x77, 0x61, 0x79, 0x2e,
+	0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x31, 0x42, 0x0e, 0x52, 0x65, 0x73, 0x6f, 0x75, 0x72, 0x63,
+	0x65, 0x73, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x50, 0x01, 0x5a, 0x3f, 0x67, 0x69, 0x74, 0x68, 0x75,
+	0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x63, 0x73, 0x33, 0x6f, 0x72, 0x67, 0x2f, 0x67, 0x6f, 0x2d,
+	0x63, 0x73, 0x33, 0x61, 0x70, 0x69, 0x73, 0x2f, 0x63, 0x73, 0x33, 0x2f, 0x67, 0x61, 0x74, 0x65,
+	0x77, 0x61, 0x79, 0x2f, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x31, 0x3b, 0x67, 0x61, 0x74, 0x65,
+	0x77, 0x61, 0x79, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x31, 0xa2, 0x02, 0x03, 0x43, 0x47, 0x58,
+	0xaa, 0x02, 0x13, 0x43, 0x73, 0x33, 0x2e, 0x47, 0x61, 0x74, 0x65, 0x77, 0x61, 0x79, 0x2e, 0x56,
+	0x31, 0x62, 0x65, 0x74, 0x61, 0x31, 0xca, 0x02, 0x13, 0x43, 0x73, 0x33, 0x5c, 0x47, 0x61, 0x74,
+	0x65, 0x77, 0x61, 0x79, 0x5c, 0x56, 0x31, 0x62, 0x65, 0x74, 0x61, 0x31, 0xe2, 0x02, 0x1f, 0x43,
+	0x73, 0x33, 0x5c, 0x47, 0x61, 0x74, 0x65, 0x77, 0x61, 0x79, 0x5c, 0x56, 0x31, 0x62, 0x65, 0x74,
+	0x61, 0x31, 0x5c, 0x47, 0x50, 0x42, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0xea, 0x02,
+	0x15, 0x43, 0x73, 0x33, 0x3a, 0x3a, 0x47, 0x61, 0x74, 0x65, 0x77, 0x61, 0x79, 0x3a, 0x3a, 0x56,
+	0x31, 0x62, 0x65, 0x74, 0x61, 0x31, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -641,7 +706,7 @@ func file_cs3_gateway_v1beta1_resources_proto_rawDescGZIP() []byte {
 	return file_cs3_gateway_v1beta1_resources_proto_rawDescData
 }
 
-var file_cs3_gateway_v1beta1_resources_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
+var file_cs3_gateway_v1beta1_resources_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
 var file_cs3_gateway_v1beta1_resources_proto_goTypes = []interface{}{
 	(*FileUploadProtocol)(nil),                // 0: cs3.gateway.v1beta1.FileUploadProtocol
 	(*FileDownloadProtocol)(nil),              // 1: cs3.gateway.v1beta1.FileDownloadProtocol
@@ -649,35 +714,37 @@ var file_cs3_gateway_v1beta1_resources_proto_goTypes = []interface{}{
 	(*ReceivedShareResourceInfo)(nil),         // 3: cs3.gateway.v1beta1.ReceivedShareResourceInfo
 	(*PublicShareResourceInfo)(nil),           // 4: cs3.gateway.v1beta1.PublicShareResourceInfo
 	(*OCMShareResourceInfo)(nil),              // 5: cs3.gateway.v1beta1.OCMShareResourceInfo
-	(*v1beta1.Opaque)(nil),                    // 6: cs3.types.v1beta1.Opaque
-	(*v1beta11.ResourceChecksumPriority)(nil), // 7: cs3.storage.provider.v1beta1.ResourceChecksumPriority
-	(*v1beta12.Share)(nil),                    // 8: cs3.sharing.collaboration.v1beta1.Share
-	(*v1beta11.ResourceInfo)(nil),             // 9: cs3.storage.provider.v1beta1.ResourceInfo
-	(*v1beta12.ReceivedShare)(nil),            // 10: cs3.sharing.collaboration.v1beta1.ReceivedShare
-	(*v1beta13.PublicShare)(nil),              // 11: cs3.sharing.link.v1beta1.PublicShare
-	(*v1beta14.Share)(nil),                    // 12: cs3.sharing.ocm.v1beta1.Share
+	(*Event)(nil),                             // 6: cs3.gateway.v1beta1.Event
+	(*v1beta1.Opaque)(nil),                    // 7: cs3.types.v1beta1.Opaque
+	(*v1beta11.ResourceChecksumPriority)(nil), // 8: cs3.storage.provider.v1beta1.ResourceChecksumPriority
+	(*v1beta12.Share)(nil),                    // 9: cs3.sharing.collaboration.v1beta1.Share
+	(*v1beta11.ResourceInfo)(nil),             // 10: cs3.storage.provider.v1beta1.ResourceInfo
+	(*v1beta12.ReceivedShare)(nil),            // 11: cs3.sharing.collaboration.v1beta1.ReceivedShare
+	(*v1beta13.PublicShare)(nil),              // 12: cs3.sharing.link.v1beta1.PublicShare
+	(*v1beta14.Share)(nil),                    // 13: cs3.sharing.ocm.v1beta1.Share
 }
 var file_cs3_gateway_v1beta1_resources_proto_depIdxs = []int32{
-	6,  // 0: cs3.gateway.v1beta1.FileUploadProtocol.opaque:type_name -> cs3.types.v1beta1.Opaque
-	7,  // 1: cs3.gateway.v1beta1.FileUploadProtocol.available_checksums:type_name -> cs3.storage.provider.v1beta1.ResourceChecksumPriority
-	6,  // 2: cs3.gateway.v1beta1.FileDownloadProtocol.opaque:type_name -> cs3.types.v1beta1.Opaque
-	6,  // 3: cs3.gateway.v1beta1.ShareResourceInfo.opaque:type_name -> cs3.types.v1beta1.Opaque
-	8,  // 4: cs3.gateway.v1beta1.ShareResourceInfo.share:type_name -> cs3.sharing.collaboration.v1beta1.Share
-	9,  // 5: cs3.gateway.v1beta1.ShareResourceInfo.resource_info:type_name -> cs3.storage.provider.v1beta1.ResourceInfo
-	6,  // 6: cs3.gateway.v1beta1.ReceivedShareResourceInfo.opaque:type_name -> cs3.types.v1beta1.Opaque
-	10, // 7: cs3.gateway.v1beta1.ReceivedShareResourceInfo.received_share:type_name -> cs3.sharing.collaboration.v1beta1.ReceivedShare
-	9,  // 8: cs3.gateway.v1beta1.ReceivedShareResourceInfo.resource_info:type_name -> cs3.storage.provider.v1beta1.ResourceInfo
-	6,  // 9: cs3.gateway.v1beta1.PublicShareResourceInfo.opaque:type_name -> cs3.types.v1beta1.Opaque
-	11, // 10: cs3.gateway.v1beta1.PublicShareResourceInfo.public_share:type_name -> cs3.sharing.link.v1beta1.PublicShare
-	9,  // 11: cs3.gateway.v1beta1.PublicShareResourceInfo.resource_info:type_name -> cs3.storage.provider.v1beta1.ResourceInfo
-	6,  // 12: cs3.gateway.v1beta1.OCMShareResourceInfo.opaque:type_name -> cs3.types.v1beta1.Opaque
-	12, // 13: cs3.gateway.v1beta1.OCMShareResourceInfo.ocm_share:type_name -> cs3.sharing.ocm.v1beta1.Share
-	9,  // 14: cs3.gateway.v1beta1.OCMShareResourceInfo.resource_info:type_name -> cs3.storage.provider.v1beta1.ResourceInfo
-	15, // [15:15] is the sub-list for method output_type
-	15, // [15:15] is the sub-list for method input_type
-	15, // [15:15] is the sub-list for extension type_name
-	15, // [15:15] is the sub-list for extension extendee
-	0,  // [0:15] is the sub-list for field type_name
+	7,  // 0: cs3.gateway.v1beta1.FileUploadProtocol.opaque:type_name -> cs3.types.v1beta1.Opaque
+	8,  // 1: cs3.gateway.v1beta1.FileUploadProtocol.available_checksums:type_name -> cs3.storage.provider.v1beta1.ResourceChecksumPriority
+	7,  // 2: cs3.gateway.v1beta1.FileDownloadProtocol.opaque:type_name -> cs3.types.v1beta1.Opaque
+	7,  // 3: cs3.gateway.v1beta1.ShareResourceInfo.opaque:type_name -> cs3.types.v1beta1.Opaque
+	9,  // 4: cs3.gateway.v1beta1.ShareResourceInfo.share:type_name -> cs3.sharing.collaboration.v1beta1.Share
+	10, // 5: cs3.gateway.v1beta1.ShareResourceInfo.resource_info:type_name -> cs3.storage.provider.v1beta1.ResourceInfo
+	7,  // 6: cs3.gateway.v1beta1.ReceivedShareResourceInfo.opaque:type_name -> cs3.types.v1beta1.Opaque
+	11, // 7: cs3.gateway.v1beta1.ReceivedShareResourceInfo.received_share:type_name -> cs3.sharing.collaboration.v1beta1.ReceivedShare
+	10, // 8: cs3.gateway.v1beta1.ReceivedShareResourceInfo.resource_info:type_name -> cs3.storage.provider.v1beta1.ResourceInfo
+	7,  // 9: cs3.gateway.v1beta1.PublicShareResourceInfo.opaque:type_name -> cs3.types.v1beta1.Opaque
+	12, // 10: cs3.gateway.v1beta1.PublicShareResourceInfo.public_share:type_name -> cs3.sharing.link.v1beta1.PublicShare
+	10, // 11: cs3.gateway.v1beta1.PublicShareResourceInfo.resource_info:type_name -> cs3.storage.provider.v1beta1.ResourceInfo
+	7,  // 12: cs3.gateway.v1beta1.OCMShareResourceInfo.opaque:type_name -> cs3.types.v1beta1.Opaque
+	13, // 13: cs3.gateway.v1beta1.OCMShareResourceInfo.ocm_share:type_name -> cs3.sharing.ocm.v1beta1.Share
+	10, // 14: cs3.gateway.v1beta1.OCMShareResourceInfo.resource_info:type_name -> cs3.storage.provider.v1beta1.ResourceInfo
+	7,  // 15: cs3.gateway.v1beta1.Event.data:type_name -> cs3.types.v1beta1.Opaque
+	16, // [16:16] is the sub-list for method output_type
+	16, // [16:16] is the sub-list for method input_type
+	16, // [16:16] is the sub-list for extension type_name
+	16, // [16:16] is the sub-list for extension extendee
+	0,  // [0:16] is the sub-list for field type_name
 }
 
 func init() { file_cs3_gateway_v1beta1_resources_proto_init() }
@@ -758,6 +825,18 @@ func file_cs3_gateway_v1beta1_resources_proto_init() {
 				return nil
 			}
 		}
+		file_cs3_gateway_v1beta1_resources_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*Event); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
@@ -765,7 +844,7 @@ func file_cs3_gateway_v1beta1_resources_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_cs3_gateway_v1beta1_resources_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   6,
+			NumMessages:   7,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
