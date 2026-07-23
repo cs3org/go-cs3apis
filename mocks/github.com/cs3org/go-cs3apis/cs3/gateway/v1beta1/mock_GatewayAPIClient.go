@@ -6278,6 +6278,80 @@ func (_c *MockGatewayAPIClient_OpenInApp_Call) RunAndReturn(run func(context.Con
 	return _c
 }
 
+// PublishEvent provides a mock function with given fields: ctx, in, opts
+func (_m *MockGatewayAPIClient) PublishEvent(ctx context.Context, in *gatewayv1beta1.PublishEventRequest, opts ...grpc.CallOption) (*gatewayv1beta1.PublishEventResponse, error) {
+	_va := make([]interface{}, len(opts))
+	for _i := range opts {
+		_va[_i] = opts[_i]
+	}
+	var _ca []interface{}
+	_ca = append(_ca, ctx, in)
+	_ca = append(_ca, _va...)
+	ret := _m.Called(_ca...)
+
+	if len(ret) == 0 {
+		panic("no return value specified for PublishEvent")
+	}
+
+	var r0 *gatewayv1beta1.PublishEventResponse
+	var r1 error
+	if rf, ok := ret.Get(0).(func(context.Context, *gatewayv1beta1.PublishEventRequest, ...grpc.CallOption) (*gatewayv1beta1.PublishEventResponse, error)); ok {
+		return rf(ctx, in, opts...)
+	}
+	if rf, ok := ret.Get(0).(func(context.Context, *gatewayv1beta1.PublishEventRequest, ...grpc.CallOption) *gatewayv1beta1.PublishEventResponse); ok {
+		r0 = rf(ctx, in, opts...)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*gatewayv1beta1.PublishEventResponse)
+		}
+	}
+
+	if rf, ok := ret.Get(1).(func(context.Context, *gatewayv1beta1.PublishEventRequest, ...grpc.CallOption) error); ok {
+		r1 = rf(ctx, in, opts...)
+	} else {
+		r1 = ret.Error(1)
+	}
+
+	return r0, r1
+}
+
+// MockGatewayAPIClient_PublishEvent_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'PublishEvent'
+type MockGatewayAPIClient_PublishEvent_Call struct {
+	*mock.Call
+}
+
+// PublishEvent is a helper method to define mock.On call
+//   - ctx context.Context
+//   - in *gatewayv1beta1.PublishEventRequest
+//   - opts ...grpc.CallOption
+func (_e *MockGatewayAPIClient_Expecter) PublishEvent(ctx interface{}, in interface{}, opts ...interface{}) *MockGatewayAPIClient_PublishEvent_Call {
+	return &MockGatewayAPIClient_PublishEvent_Call{Call: _e.mock.On("PublishEvent",
+		append([]interface{}{ctx, in}, opts...)...)}
+}
+
+func (_c *MockGatewayAPIClient_PublishEvent_Call) Run(run func(ctx context.Context, in *gatewayv1beta1.PublishEventRequest, opts ...grpc.CallOption)) *MockGatewayAPIClient_PublishEvent_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		variadicArgs := make([]grpc.CallOption, len(args)-2)
+		for i, a := range args[2:] {
+			if a != nil {
+				variadicArgs[i] = a.(grpc.CallOption)
+			}
+		}
+		run(args[0].(context.Context), args[1].(*gatewayv1beta1.PublishEventRequest), variadicArgs...)
+	})
+	return _c
+}
+
+func (_c *MockGatewayAPIClient_PublishEvent_Call) Return(_a0 *gatewayv1beta1.PublishEventResponse, _a1 error) *MockGatewayAPIClient_PublishEvent_Call {
+	_c.Call.Return(_a0, _a1)
+	return _c
+}
+
+func (_c *MockGatewayAPIClient_PublishEvent_Call) RunAndReturn(run func(context.Context, *gatewayv1beta1.PublishEventRequest, ...grpc.CallOption) (*gatewayv1beta1.PublishEventResponse, error)) *MockGatewayAPIClient_PublishEvent_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
 // PurgeRecycle provides a mock function with given fields: ctx, in, opts
 func (_m *MockGatewayAPIClient) PurgeRecycle(ctx context.Context, in *providerv1beta1.PurgeRecycleRequest, opts ...grpc.CallOption) (*providerv1beta1.PurgeRecycleResponse, error) {
 	_va := make([]interface{}, len(opts))
